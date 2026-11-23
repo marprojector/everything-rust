@@ -25,7 +25,7 @@ e ogni pezzo viene verificato rispetto a quella registrazione prima di proseguir
 
 <p align="center"><b><a href="#avvio-rapido">Installa</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Release</a> · <a href="#avvio-rapido">Plugin per Claude Code</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">Registro MCP</a> · <a href="real-world.md">Port reali</a> · <a href="faq.md#faq">FAQ</a><br>
 <sub><a href="#linguaggi">Linguaggi</a> · <a href="how-it-works.md#how-it-works">Come funziona</a> · <a href="whole-apps.md#port-a-whole-app">Applicazioni intere</a> · <a href="#sponsor">Sponsor</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">Novità della 2.0: <a href="real-world.md#prettier">Prettier, portato in Rust</a>. 19 volte più veloce · 15.861 delle 17.224 esecuzioni registrate interamente in Rust · ogni esecuzione identica byte per byte</p>
 

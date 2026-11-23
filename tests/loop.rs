@@ -635,8 +635,10 @@ fn record_prefers_an_exact_tsconfig_alias_to_a_matching_wildcard() {
     if !common::have("node") {
         return;
     }
-    let root =
-        std::env::temp_dir().join(format!("everything-rust-exact-alias-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!(
+        "everything-rust-exact-alias-{}",
+        std::process::id()
+    ));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src")).unwrap();
     std::fs::write(root.join("package.json"), r#"{"type":"module"}"#).unwrap();
@@ -720,8 +722,10 @@ fn record_resolves_workspace_packages_to_source() {
 #[test]
 fn python_required_optional_port_local_type_compiles() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/python");
-    let dir =
-        std::env::temp_dir().join(format!("everything-rust-python-local-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!(
+        "everything-rust-python-local-{}",
+        std::process::id()
+    ));
     bridge::bridge(&bridge::Options {
         root: &root,
         unit: "src/textkit/",
@@ -1540,7 +1544,8 @@ fn batches_use_the_chosen_allocator() {
     std::fs::remove_dir_all(&dir).unwrap();
 
     // Without batches there is no global allocator to choose.
-    let dir = std::env::temp_dir().join(format!("everything-rust-alloc-none-{}", std::process::id()));
+    let dir =
+        std::env::temp_dir().join(format!("everything-rust-alloc-none-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &fixture(),

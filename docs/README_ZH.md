@@ -24,7 +24,7 @@
 
 <p align="center"><b><a href="#快速开始">快速开始</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#快速开始">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">真实项目迁移</a> · <a href="faq.md#faq">常见问题</a><br>
 <sub><a href="#支持语言">支持语言</a> · <a href="how-it-works.md#how-it-works">工作原理</a> · <a href="whole-apps.md#port-a-whole-app">整应用迁移</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0 新功能：<a href="real-world.md#prettier">Prettier 已移植到 Rust</a>。提速 19 倍 · 17,224 次录制运行中 15,861 次完全由 Rust 执行 · 全部逐字节一致</p>
 

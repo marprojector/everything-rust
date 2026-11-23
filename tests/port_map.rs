@@ -153,7 +153,8 @@ fn map_names_a_crate_folder_whose_manifest_does_not_parse() {
 #[test]
 fn a_broken_manifest_with_an_unresolved_root_is_reported() {
     let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini");
-    let repo = std::env::temp_dir().join(format!("everything-rust-map-root-{}", std::process::id()));
+    let repo =
+        std::env::temp_dir().join(format!("everything-rust-map-root-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     copy_dir(&fixture, &repo);
     let crate_dir = repo.join("rust/util-rs");

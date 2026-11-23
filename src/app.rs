@@ -2282,7 +2282,9 @@ fn stable_paths(text: &str) -> String {
         text.to_string()
     };
     SANDBOX
-        .get_or_init(|| regex::Regex::new(r"everything-rust-app-(\w+)-\d+-\d+").expect("valid regex"))
+        .get_or_init(|| {
+            regex::Regex::new(r"everything-rust-app-(\w+)-\d+-\d+").expect("valid regex")
+        })
         .replace_all(&text, "everything-rust-app-$1")
         .into_owned()
 }

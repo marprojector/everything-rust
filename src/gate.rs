@@ -52,7 +52,9 @@ fn fix_for(check: &Check, crate_dir: &Path) -> Option<String> {
             crate::recording::KNOWN_DIFFS
         ),
         "api" => {
-            format!("export the missing functions from src/port.rs, then `everything-rust build {c}`")
+            format!(
+                "export the missing functions from src/port.rs, then `everything-rust build {c}`"
+            )
         }
         "error cases" | "panics" => {
             format!("everything-rust diff {c} to see the cases where the port's errors differ")

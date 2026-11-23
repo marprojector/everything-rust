@@ -1228,7 +1228,9 @@ mod tests {
                 "cargo build failed (exit status: 101):\nerror[E0308]",
                 "build_failed",
                 false,
-                Some("fix the compiler errors in the message, then everything-rust build rust/slug"),
+                Some(
+                    "fix the compiler errors in the message, then everything-rust build rust/slug",
+                ),
             ),
             (
                 "`node x.mjs` was still running after 600s and was stopped",

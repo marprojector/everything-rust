@@ -1739,7 +1739,8 @@ mod tests {
 
     #[test]
     fn a_relative_root_is_resolved_from_the_crate_and_kept_relative() {
-        let base = std::env::temp_dir().join(format!("everything-rust-root-{}", std::process::id()));
+        let base =
+            std::env::temp_dir().join(format!("everything-rust-root-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&base);
         let crate_dir = base.join("repo/rust/x-rs");
         std::fs::create_dir_all(&crate_dir).unwrap();
@@ -1890,7 +1891,9 @@ mod tests {
         assert!(cs.contains("what the C# code does") && cs.contains("build the shared library"));
         assert!(!cs.contains("everything-rust shadow") && cs.contains("C# has no shadow module"));
         let php = readme(&manifest("php", "ffi"));
-        assert!(!php.contains("everything-rust shadow") && php.contains("PHP has no shadow module"));
+        assert!(
+            !php.contains("everything-rust shadow") && php.contains("PHP has no shadow module")
+        );
     }
 
     #[test]

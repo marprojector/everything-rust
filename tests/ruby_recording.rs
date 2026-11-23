@@ -8,8 +8,10 @@ fn ruby_recording_fails_on_unencodable_results_and_preserves_cases() {
         return;
     }
 
-    let root =
-        std::env::temp_dir().join(format!("everything-rust-ruby-record-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!(
+        "everything-rust-ruby-record-{}",
+        std::process::id()
+    ));
     let lib = root.join("lib");
     std::fs::create_dir_all(&lib).unwrap();
     std::fs::write(root.join("textkit.gemspec"), "").unwrap();

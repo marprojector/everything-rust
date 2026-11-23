@@ -24,7 +24,7 @@
 
 <p align="center"><b><a href="#быстрый-старт">Быстрый старт</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#быстрый-старт">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Реальные порты</a> · <a href="faq.md#faq">FAQ</a><br>
 <sub><a href="#поддерживаемые-языки">Языки</a> · <a href="how-it-works.md#how-it-works">Как это работает</a> · <a href="whole-apps.md#port-a-whole-app">Целые приложения</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">Новое в 2.0: <a href="real-world.md#prettier">Prettier, портированный на Rust</a>. В 19x быстрее · 15,861 из 17,224 записанных запусков полностью на Rust · все совпадают байт в байт</p>
 

@@ -24,7 +24,7 @@ Não traduz código: o seu agente de programação (ou você) escreve o Rust, e 
 
 <p align="center"><b><a href="#início-rápido">Início rápido</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#início-rápido">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Migrações reais</a> · <a href="faq.md#faq">Perguntas frequentes</a><br>
 <sub><a href="#linguagens">Linguagens</a> · <a href="how-it-works.md#how-it-works">Como funciona</a> · <a href="whole-apps.md#port-a-whole-app">Aplicações completas</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">Novo na 2.0: <a href="real-world.md#prettier">Prettier, migrado para Rust</a>. 19x mais rápido · 15,861 de 17,224 execuções registadas inteiramente em Rust · todas idênticas byte a byte</p>
 

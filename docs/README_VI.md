@@ -24,7 +24,7 @@ Công cụ không tự dịch code: agent lập trình của bạn (hoặc chín
 
 <p align="center"><b><a href="#quick-start">Bắt đầu nhanh</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#quick-start">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Các bản port thực tế</a> · <a href="faq.md#faq">FAQ</a><br>
 <sub><a href="#languages">Ngôn ngữ</a> · <a href="how-it-works.md#how-it-works">Cách hoạt động</a> · <a href="whole-apps.md#port-a-whole-app">Chuyển cả ứng dụng</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">Mới trong 2.0: <a href="real-world.md#prettier">Prettier đã được port sang Rust</a>. Nhanh hơn 19x · 15,861 trên 17,224 lần chạy đã ghi chạy hoàn toàn bằng Rust · tất cả giống từng byte</p>
 

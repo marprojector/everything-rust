@@ -24,7 +24,7 @@ Ol kody özi terjime etmeýär: Rust-y kodlaýyş agentiňiz (ýa-da siz) ýazý
 
 <p align="center"><b><a href="#çalt-başlangyç">Çalt başlangyç</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#çalt-başlangyç">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Hakyky portlar</a> · <a href="faq.md#faq">Köp soralýan soraglar</a><br>
 <sub><a href="#diller">Diller</a> · <a href="how-it-works.md#how-it-works">Nähili işleýär</a> · <a href="whole-apps.md#port-a-whole-app">Tutuş programmalar</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0-da täze: <a href="real-world.md#prettier">Prettier Rust-a geçirildi</a>. 19x has çalt · ýazga alnan 17,224 işletmäniň 15,861-si doly Rust-da · hemmesi baýtma-baýt deň</p>
 

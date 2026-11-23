@@ -13,7 +13,8 @@ fn java_replay_distinguishes_null_from_a_rejected_argument() {
         return;
     }
 
-    let root = std::env::temp_dir().join(format!("everything-rust-java-null-{}", std::process::id()));
+    let root =
+        std::env::temp_dir().join(format!("everything-rust-java-null-{}", std::process::id()));
     std::fs::create_dir_all(&root).unwrap();
     let result = replay(&root);
     std::fs::remove_dir_all(root).unwrap();

@@ -313,7 +313,10 @@ fn a_c_library_lifts_to_one_pure_rust_crate() {
     );
     assert!(lifted.binary.is_none());
     let lib = std::fs::read_to_string(repo.join("rust/app/src/lib.rs")).unwrap();
-    assert!(lib.contains("Written by `everything-rust app lift`"), "{lib}");
+    assert!(
+        lib.contains("Written by `everything-rust app lift`"),
+        "{lib}"
+    );
     assert!(lib.contains("pub use text_rs::port as text;"), "{lib}");
     let cargo = std::fs::read_to_string(dir.join("Cargo.toml")).unwrap();
     assert!(!cargo.contains("cdylib"), "{cargo}");

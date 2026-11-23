@@ -1733,8 +1733,9 @@ fn java_wire_fns<'m>(
             continue;
         }
         // Java body of `call_<name>`.
-        let mut java =
-            String::from("        EverythingRustWire.Writer w = new EverythingRustWire.Writer();\n");
+        let mut java = String::from(
+            "        EverythingRustWire.Writer w = new EverythingRustWire.Writer();\n",
+        );
         for (name, t) in &params {
             let _ = writeln!(java, "        {}", java_enc(name, t, 0));
         }

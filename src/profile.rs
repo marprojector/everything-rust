@@ -1326,7 +1326,8 @@ mod tests {
 
     #[test]
     fn compiled_code_changes_the_advice() {
-        let root = std::env::temp_dir().join(format!("everything-rust-numba-{}", std::process::id()));
+        let root =
+            std::env::temp_dir().join(format!("everything-rust-numba-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("sim")).unwrap();
         std::fs::write(root.join("pyproject.toml"), "[project]\nname = \"sim\"\n").unwrap();

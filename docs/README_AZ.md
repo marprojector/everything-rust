@@ -24,7 +24,7 @@ Kodu özü tərcümə etmir: Rust-u kodlaşdırma agentiniz (və ya siz) yazır,
 
 <p align="center"><b><a href="#sürətli-başlanğıc">Sürətli başlanğıc</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#sürətli-başlanğıc">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Real portlar</a> · <a href="faq.md#faq">Tez-tez verilən suallar</a><br>
 <sub><a href="#dillər">Dillər</a> · <a href="how-it-works.md#how-it-works">Necə işləyir</a> · <a href="whole-apps.md#port-a-whole-app">Bütöv tətbiqlər</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0-da yeni: <a href="real-world.md#prettier">Prettier, Rust-a port edildi</a>. 19x daha sürətli · 17,224 qeydə alınmış icranın 15,861-si tamamilə Rust-da · hamısı bayt-bayt eyni</p>
 

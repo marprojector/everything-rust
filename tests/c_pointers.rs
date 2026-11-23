@@ -144,7 +144,8 @@ const INPUTS: &str = r#"{"fn": "sum_update", "args": [7, "00ff10"]}
 "#;
 
 fn project() -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("everything-rust-c-pointers-{}", std::process::id()));
+    let dir =
+        std::env::temp_dir().join(format!("everything-rust-c-pointers-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(dir.join("src")).unwrap();
     std::fs::write(dir.join("src/types.h"), TYPES_H).unwrap();

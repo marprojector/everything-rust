@@ -752,7 +752,8 @@ fn run() -> Result<ExitCode> {
             };
             if let Some(t) = float_tolerance {
                 let mut manifest = bridge::Manifest::load(&crate_dir)?;
-                manifest.float_tolerance = (everything_rust::tolerance::check(t)? > 0.0).then_some(t);
+                manifest.float_tolerance =
+                    (everything_rust::tolerance::check(t)? > 0.0).then_some(t);
                 manifest.save(&crate_dir)?;
             }
             if (pin_clock || no_pin_clock)

@@ -24,7 +24,7 @@
 
 <p align="center"><b><a href="#тиз-башлау">Тиз башлау</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#тиз-башлау">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Чын портлар</a> · <a href="faq.md#faq">Еш бирелә торган сораулар</a><br>
 <sub><a href="#телләр">Телләр</a> · <a href="how-it-works.md#how-it-works">Ничек эшли</a> · <a href="whole-apps.md#port-a-whole-app">Бөтен кушымталар</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0 версиясендә яңа: <a href="real-world.md#prettier">Prettier, Rust'ка күчерелде</a>. 19x тизрәк · язып алынган 17,224 җибәрүнең 15,861се тулысынча Rust'та · барысы да байтка байт туры килә</p>
 

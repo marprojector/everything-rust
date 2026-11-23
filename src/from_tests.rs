@@ -75,7 +75,10 @@ pub fn capture(crate_dir: &Path, command: &[String]) -> Result<Capture> {
                 ),
             )?;
             cmd.env("PYTHONPATH", path)
-                .env("EVERYTHING_RUST_CAPTURE_FUNCS", serde_json::to_string(&want)?)
+                .env(
+                    "EVERYTHING_RUST_CAPTURE_FUNCS",
+                    serde_json::to_string(&want)?,
+                )
                 .env("PYTHONDONTWRITEBYTECODE", "1");
             crate::process::status(&mut cmd, crate::process::TESTS)
         }

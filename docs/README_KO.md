@@ -24,7 +24,7 @@
 
 <p align="center"><b><a href="#빠른-시작">빠른 시작</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#빠른-시작">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">실제 포팅 사례</a> · <a href="faq.md#faq">자주 묻는 질문</a><br>
 <sub><a href="#지원-언어">지원 언어</a> · <a href="how-it-works.md#how-it-works">작동 방식</a> · <a href="whole-apps.md#port-a-whole-app">전체 앱 포팅하기</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0의 새 기능: <a href="real-world.md#prettier">Prettier를 Rust로 포팅</a>. 19x 더 빠름 · 기록된 실행 17,224회 중 15,861회가 완전히 Rust · 모두 바이트 단위로 동일</p>
 

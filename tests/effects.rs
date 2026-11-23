@@ -160,8 +160,10 @@ fn a_server_that_mails_twice_fails_only_on_that_request() {
     let Some(python) = common::python() else {
         return;
     };
-    let repo =
-        std::env::temp_dir().join(format!("everything-rust-effects-http-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!(
+        "everything-rust-effects-http-{}",
+        std::process::id()
+    ));
     let _ = std::fs::remove_dir_all(&repo);
     std::fs::create_dir_all(&repo).unwrap();
     std::fs::write(repo.join("server.py"), SERVER).unwrap();

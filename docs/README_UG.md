@@ -24,7 +24,7 @@
 
 <p align="center"><b><a href="#تېز-باشلاش">تېز باشلاش</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#تېز-باشلاش">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">ئەمەلىي كۆچۈرمىلەر</a> · <a href="faq.md#faq">دائىم سورىلىدىغان سوئاللار</a><br>
 <sub><a href="#تىللار">تىللار</a> · <a href="how-it-works.md#how-it-works">قانداق ئىشلەيدۇ</a> · <a href="whole-apps.md#port-a-whole-app">پۈتۈن ئەپلەر</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0 دىكى يېڭىلىق: <a href="real-world.md#prettier">Prettier، Rust قا كۆچۈرۈلدى</a>. 19x تېز · خاتىرىلەنگەن 17,224 ئىجرانىڭ 15,861 تامامەن Rust دا · ھەممىسى بايتمۇ-بايت ئوخشاش</p>
 

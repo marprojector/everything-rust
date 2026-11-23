@@ -114,8 +114,10 @@ fn picks_status_and_bridge() {
 
 #[test]
 fn python_packages_match_dependencies_by_normalized_name() {
-    let root =
-        std::env::temp_dir().join(format!("everything-rust-python-names-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!(
+        "everything-rust-python-names-{}",
+        std::process::id()
+    ));
     let package = |dir: &str, toml: &str| {
         std::fs::create_dir_all(root.join(dir).join(dir)).unwrap();
         std::fs::write(root.join(dir).join("pyproject.toml"), toml).unwrap();
@@ -170,7 +172,8 @@ fn numpy_array_parameters_are_flagged() {
 
 #[test]
 fn a_c_unit_depends_on_what_its_own_header_includes() {
-    let root = std::env::temp_dir().join(format!("everything-rust-c-header-{}", std::process::id()));
+    let root =
+        std::env::temp_dir().join(format!("everything-rust-c-header-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src")).unwrap();
     for (name, text) in [
@@ -181,7 +184,8 @@ fn a_c_unit_depends_on_what_its_own_header_includes() {
     ] {
         std::fs::write(root.join(name), text).unwrap();
     }
-    let report = everything_rust::analyze::analyze_lang(&root, everything_rust::lang::Lang::C).unwrap();
+    let report =
+        everything_rust::analyze::analyze_lang(&root, everything_rust::lang::Lang::C).unwrap();
     std::fs::remove_dir_all(&root).unwrap();
     let a = unit(&report, "src/a.c");
     assert_eq!(a.internal_deps, ["src/b.c"], "{:?}", a.internal_deps);

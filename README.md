@@ -22,7 +22,7 @@ and every piece is checked against that recording before it moves on. It doesn't
 
 <p align="center"><b><a href="#quick-start">Install</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#quick-start">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="docs/real-world.md">Real-world ports</a> · <a href="docs/faq.md#faq">FAQ</a><br>
 <sub><a href="#languages">Languages</a> · <a href="docs/how-it-works.md#how-it-works">How it works</a> · <a href="docs/whole-apps.md#port-a-whole-app">Whole apps</a> · <a href="LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">New in 2.0: <a href="docs/real-world.md#prettier">Prettier, ported to Rust</a>. 19x faster · 15,861 of 17,224 recorded runs fully in Rust · every run byte-identical</p>
 

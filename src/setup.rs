@@ -525,7 +525,10 @@ pub fn text(r: &Report) -> String {
     let mut out = String::new();
     let verb = if r.dry_run { "Would set up" } else { "Set up" };
     let names: Vec<&str> = r.agents.iter().map(|a| a.name()).collect();
-    out.push_str(&format!("{verb} everything-rust for {}\n", names.join(", ")));
+    out.push_str(&format!(
+        "{verb} everything-rust for {}\n",
+        names.join(", ")
+    ));
     for c in &r.changes {
         out.push_str(&format!(
             "  {:<10} {:<9} {}\n",
@@ -556,8 +559,10 @@ mod tests {
     use super::*;
 
     fn temp_home(name: &str) -> PathBuf {
-        let dir =
-            std::env::temp_dir().join(format!("everything-rust-setup-{name}-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!(
+            "everything-rust-setup-{name}-{}",
+            std::process::id()
+        ));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).unwrap();
         dir
@@ -815,7 +820,11 @@ mod tests {
         let doc: Value = serde_json::from_str(&std::fs::read_to_string(&config).unwrap()).unwrap();
         assert!(doc["mcp"]["servers"].get(NAME).is_none());
         assert_eq!(doc["mcp"]["servers"]["other"]["command"], json!(["x"]));
-        assert!(!home.join(".config/opencode/skills/everything-rust").exists());
+        assert!(
+            !home
+                .join(".config/opencode/skills/everything-rust")
+                .exists()
+        );
 
         // A file that lists servers in `mcp` by name (the older shape) keeps that shape.
         let flat = temp_home("opencode-flat");

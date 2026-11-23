@@ -559,7 +559,11 @@ fn check(crate_dir: &Path, steps: &mut Vec<String>) -> Result<(usize, usize, Vec
         && let Err(e) = crate::bridge::refresh(crate_dir)
     {
         say(steps, "refresh failed".into());
-        return Ok((0, 0, vec![format!("`everything-rust refresh` fails:\n{e:#}")]));
+        return Ok((
+            0,
+            0,
+            vec![format!("`everything-rust refresh` fails:\n{e:#}")],
+        ));
     }
     if let Err(e) = crate::harness::build(crate_dir) {
         say(steps, "the build failed".into());

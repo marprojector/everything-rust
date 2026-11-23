@@ -24,7 +24,7 @@ U kodni o'zi tarjima qilmaydi: Rust'ni kodlash agentingiz (yoki siz) yozadi, eve
 
 <p align="center"><b><a href="#tezkor-boshlash">Tezkor boshlash</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#tezkor-boshlash">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Haqiqiy portlar</a> · <a href="faq.md#faq">Ko'p so'raladigan savollar</a><br>
 <sub><a href="#tillar">Tillar</a> · <a href="how-it-works.md#how-it-works">Qanday ishlaydi</a> · <a href="whole-apps.md#port-a-whole-app">Butun ilovalar</a> · <a href="../LICENSE">MIT</a></sub><br>
-<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a></p>
 
 <p align="center">2.0'da yangi: <a href="real-world.md#prettier">Prettier Rust'ga port qilindi</a>. 19x tezroq · 17,224 ta yozib olingan ishga tushirishdan 15,861 tasi to'liq Rust'da · hammasi baytma-bayt bir xil</p>
 

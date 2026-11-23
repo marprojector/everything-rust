@@ -8,8 +8,10 @@ fn records_go_internal_packages() {
         return;
     }
 
-    let root =
-        std::env::temp_dir().join(format!("everything-rust-go-internal-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!(
+        "everything-rust-go-internal-{}",
+        std::process::id()
+    ));
     let unit = root.join("internal/textkit");
     std::fs::create_dir_all(&unit).unwrap();
     std::fs::write(root.join("go.mod"), "module example.com/app\n\ngo 1.21\n").unwrap();

@@ -1011,7 +1011,10 @@ mod tests {
         };
         assert_eq!(entry_state(None, exe), Install::Missing);
         assert_eq!(
-            entry_state(Some(&entry("/opt/bin/everything-rust", &["mcp"], false)), exe),
+            entry_state(
+                Some(&entry("/opt/bin/everything-rust", &["mcp"], false)),
+                exe
+            ),
             Install::Current
         );
         assert_eq!(
@@ -1026,7 +1029,10 @@ mod tests {
             Install::Foreign
         );
         assert_eq!(
-            entry_state(Some(&entry("/opt/bin/everything-rust", &["mcp"], true)), exe),
+            entry_state(
+                Some(&entry("/opt/bin/everything-rust", &["mcp"], true)),
+                exe
+            ),
             Install::Foreign
         );
         assert_eq!(entry_state(Some(&Entry::default()), exe), Install::Foreign);
