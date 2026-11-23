@@ -40,7 +40,7 @@ jobs:
           exe=target/${{ matrix.target }}/release/${{ matrix.port }}
           [ -f "$exe.exe" ] && exe="$exe.exe"
           cp "$exe" bin/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: bin-${{ matrix.port }}-${{ matrix.key }}
           path: bin/*
@@ -92,7 +92,7 @@ jobs:
           rule='{"eqeqeq":"error"}'
           diff <("$prefix/bin/eslint-rs" --no-config-lookup --rule "$rule" --stdin < "$RUNNER_TEMP/y.js" || true) \
             <(node "$modules/eslint-rs/node_modules/eslint/bin/eslint.js" --no-config-lookup --rule "$rule" --stdin < "$RUNNER_TEMP/y.js" || true)
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: npm-tarballs
           path: tarballs/*
