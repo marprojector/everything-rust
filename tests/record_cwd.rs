@@ -7,7 +7,7 @@ fn record_leaves_the_callers_working_directory_untouched() {
     if common::python().is_none() {
         return;
     }
-    let root = std::env::temp_dir().join(format!("rust-anything-cwd-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-cwd-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     let project = root.join("notes");
     let elsewhere = root.join("elsewhere");
@@ -24,7 +24,7 @@ fn record_leaves_the_callers_working_directory_untouched() {
     )
     .unwrap();
 
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let bridged = Command::new(cli)
         .arg("bridge")
         .arg(".")

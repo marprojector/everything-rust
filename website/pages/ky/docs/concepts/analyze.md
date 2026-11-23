@@ -10,7 +10,7 @@ description: profile менен убакыт кайда кетерин табы�
 Максат ылдамдык болсо, бир нерсени тандоодон мурун өлчөңүз:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby
 ## Analyze: портту пландоо
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # for people
-rust-anything analyze <repo> --json            # for agents: schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
+everything-rust analyze <repo> -o plan.md        # for people
+everything-rust analyze <repo> --json            # for agents: schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
 ```
 
 `analyze` бирдиктерди, порттоо тартибин, `file:line` менен тобокелдиктерди, ар бир бирдиктин bridge'ин, ар бир көз карандылык crate'ке канчалык жакшы шайкештелерин жана `start_here` маанисин тизмектейт: биринчи порттоо үчүн эң жакшылары. `--whole-app` колдонмонун формасын (CLI, сервер же китепкана) жана кирүү чекиттерин, ар бир көз карандылыкты (импорттолгон же жарыяланган) анын crate'и менен, бөлүктөрдү (бири-бирин импорттогон бирдиктер чогуу көчөт) жана сунушталган жооп менен номерленген чечимдерди кошот. [Бүт колдонмону порттоо](/docs/whole-apps/overview) барагын караңыз.

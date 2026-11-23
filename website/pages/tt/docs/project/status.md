@@ -1,6 +1,6 @@
 ---
 title: Халәт
-description: rust-anything'та бүген нәрсә эшли һәм һәр өлеш соңгы тапкыр ничек тикшерелде.
+description: everything-rust'та бүген нәрсә эшли һәм һәр өлеш соңгы тапкыр ничек тикшерелде.
 ---
 
 # Халәт
@@ -15,7 +15,7 @@ description: rust-anything'та бүген нәрсә эшли һәм һәр ө�
 
 | Тел | Халәт | Соңгы чын җибәрү | Нәтиҗә |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Тикшерелгән | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'ның `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 һәм `js-format-rs` 1,279/1,279, икесендә дә gate уза; json-server: алты берәмлек, 3,399 очрак, һәрберсендә gate уза; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 һәм 9,000+ очрак туры килә |
+| TypeScript/JavaScript | Тикшерелгән | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'ның `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 һәм `js-format-rs` 1,279/1,279, икесендә дә gate уза; json-server: алты берәмлек, 3,399 очрак, һәрберсендә gate уза; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 һәм 9,000+ очрак туры килә |
 | Python | Тикшерелгән | CPython 3.13'тән `colorsys.py` (2026-11-16) | 2,400/2,400; gate уза |
 | Go | Тикшерелгән | Go 1.24'тән `path` (2026-11-16) | 2,642/2,642; gate уза |
 | Ruby | Тикшерелгән | Ruby 3.3'тән `shellwords.rb` (2026-11-16) | 1,617/1,617; gate уза |

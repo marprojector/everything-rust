@@ -13,7 +13,7 @@ description: 將 Go 套件移植到 Rust，透過具型別的 cgo 呼叫與自�
 | 需求 | Go 1.21+ |
 | 狀態 | 已在 Go 1.24 的 `path` 上驗證：2,642/2,642（其中 542 個來自 Go 自己的測試表），gate 通過 |
 
-`profile` 透過 `go test` 運作：`rust-anything profile <repo> -- go test -run X -bench . ./pkg`。批次為 `NewFnBatch(items)`；使用完畢後請關閉。
+`profile` 透過 `go test` 運作：`everything-rust profile <repo> -- go test -run X -bench . ./pkg`。批次為 `NewFnBatch(items)`；使用完畢後請關閉。
 
 ## 移植版本必須做對的地方
 

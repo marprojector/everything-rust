@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor는 언어 런타임, 에이전트 설정, MCP 서버를 점검하고 각 문제를 해결하는 명령어를 알려 줍니다.
+description: everything-rust doctor는 언어 런타임, 에이전트 설정, MCP 서버를 점검하고 각 문제를 해결하는 명령어를 알려 줍니다.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor`는 언어 런타임, 에이전트 설정, MCP 서버를 점검하고 각 문제를 해결하는 명령어를 출력합니다. 필수 항목이 없으면 종료 코드 1로 끝납니다.

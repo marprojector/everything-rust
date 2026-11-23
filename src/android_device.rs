@@ -2,7 +2,7 @@
 //!
 //! The cases are generated on the host (same generator as `record`), but the original Kotlin
 //! runs under ART and the result comes back as the same `cases.jsonl`. Both sides use the
-//! generated `RustAnythingDriver`: it is compiled to Java classes, dexed with d8 together with
+//! generated `EverythingRustDriver`: it is compiled to Java classes, dexed with d8 together with
 //! the original Kotlin jar (record) or the generated JNI wrappers (diff), and started with
 //! `app_process`. This covers logic units; Android UI, lifecycle and SDK-only classes stay
 //! outside the profile.
@@ -39,7 +39,7 @@ impl Drop for Device {
 impl Device {
     fn connect(explicit: Option<&str>) -> Result<Self> {
         let serial = select(explicit)?;
-        let dir = format!("/data/local/tmp/rust-anything-{}", std::process::id());
+        let dir = format!("/data/local/tmp/everything-rust-{}", std::process::id());
         adb(
             Some(&serial),
             &["shell", "mkdir", "-p", &dir],
@@ -102,7 +102,7 @@ impl Device {
                 .map(|(key, value)| format!("-D{key}={value}")),
         );
         parts.extend(
-            ["/system/bin", "rustanything.RustAnythingDriver", mode]
+            ["/system/bin", "everythingrust.EverythingRustDriver", mode]
                 .iter()
                 .map(|s| s.to_string()),
         );
@@ -336,7 +336,7 @@ pub fn diff(
     let cases = crate_dir.join(crate::harness::CASES);
     if !cases.is_file() {
         bail!(
-            "no {} in {} (run `rust-anything record --profile android` first)",
+            "no {} in {} (run `everything-rust record --profile android` first)",
             crate::harness::CASES,
             crate_dir.display()
         );
@@ -349,7 +349,7 @@ pub fn diff(
     let lib = base.join(&abi).join(format!("lib{}.so", m.lib_name()));
     if !lib.is_file() {
         bail!(
-            "no {} for the device ABI {abi}; run `rust-anything build {crate} --profile android --abi {abi}` first",
+            "no {} for the device ABI {abi}; run `everything-rust build {crate} --profile android --abi {abi}` first",
             lib.display(),
             crate = crate_dir.display()
         );
@@ -357,7 +357,7 @@ pub fn diff(
     if crate::harness::sources_newer_than(crate_dir, &lib) {
         bail!(
             "{} is older than the crate's sources, so diff would test the previous port; run \
-             `rust-anything build {crate} --profile android --abi {abi}` first",
+             `everything-rust build {crate} --profile android --abi {abi}` first",
             lib.display(),
             crate = crate_dir.display()
         );
@@ -378,7 +378,7 @@ pub fn diff(
     device.driver(
         &remote_jar,
         &[(
-            &format!("rust-anything.lib.{}", m.lib_name()),
+            &format!("everything-rust.lib.{}", m.lib_name()),
             remote_lib.as_str(),
         )],
         "diff",

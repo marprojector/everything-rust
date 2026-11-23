@@ -8,10 +8,10 @@ description: app front-door는 원본 앞에 Rust 바이너리를 두고, app wi
 먼저 진입점을 Rust로 옮긴 다음, 유닛 하나씩 명령을 넘깁니다:
 
 ```sh
-rust-anything app front-door .                            # rust/app: 모든 명령이 원본을 실행
-rust-anything app wire . textkit --command upper          # textkit-rs가 게이트를 통과한 후
+everything-rust app front-door .                            # rust/app: 모든 명령이 원본을 실행
+everything-rust app wire . textkit --command upper          # textkit-rs가 게이트를 통과한 후
 # rust/app/src/units/textkit.rs에 글루 코드 작성, 그다음:
-rust-anything app wire . textkit                          # 다시 100%, 폴백 비율은 낮아짐
+everything-rust app wire . textkit                          # 다시 100%, 폴백 비율은 낮아짐
 ```
 
 ## 프런트 도어
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 다시 100%, 폴백 
 3. 개발자나 에이전트가 채울 `src/units/<unit>.rs`를 한 번 작성합니다: 인자를 파싱하고, `<crate>::port`를 호출하고, 원본이 출력하는 것을 출력합니다.
 4. 명령을 그 유닛으로 라우팅한 다음 빌드하고 재생합니다.
 
-글루 코드를 작성한 뒤 다시 실행하세요: 100% 통과에 폴백 비율은 낮아집니다. `RUST_ANYTHING_UNIT_<NAME>=original`은 리프트 전까지 연결된 유닛을 원본으로 되돌립니다.
+글루 코드를 작성한 뒤 다시 실행하세요: 100% 통과에 폴백 비율은 낮아집니다. `EVERYTHING_RUST_UNIT_<NAME>=original`은 리프트 전까지 연결된 유닛을 원본으로 되돌립니다.
 
 명령을 지정하지 않은 argv(인자 없음, 알 수 없는 명령, 사용법 오류)를 위해 앱 자체 이름을 명령으로 연결하세요(`--command mytool`).
 

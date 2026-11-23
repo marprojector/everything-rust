@@ -6,8 +6,8 @@ description: bridge bitta birlik uchun binding'lar va wrapper bilan Rust crate'i
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate <repo>/rust/<name> da; hech qachon qayta yozmaydi
-rust-anything refresh <crate>                  # port.rs dagi signaturani o'zgartirgandan keyin
+everything-rust bridge <repo> <unit-id>          # crate <repo>/rust/<name> da; hech qachon qayta yozmaydi
+everything-rust refresh <crate>                  # port.rs dagi signaturani o'zgartirgandan keyin
 ```
 
 `bridge` binding'lar (`lib.rs` va manba tili yuklaydigan wrapper) hamda port qilinadigan stub'lar (`port.rs`) bilan crate yaratadi. Portni faqat `src/port.rs` ga yozasiz; `src/lib.rs` va wrapper'lar generatsiya qilinadi, `refresh` esa ularni `port.rs` dagi signaturalardan qayta generatsiya qiladi va yangi batch klasslarini qo'shadi. U hech qachon `port.rs` ga tegmaydi.

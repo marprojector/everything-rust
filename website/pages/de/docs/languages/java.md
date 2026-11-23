@@ -20,7 +20,7 @@ Batches sind `new FnBatch(items)`; schließe sie, wenn du fertig bist. `profile`
 - `Integer.parseInt` akzeptiert über `Character.digit` jede Unicode-Dezimalziffer (`١٢`, `２`).
 - `Double.toString` (JDK 19+) gibt die kürzeste Dezimaldarstellung aus, aber nie weniger als zwei Ziffern: `4.9E-324`, wo Rusts kürzeste Form `5e-324` ist.
 - `\s` gilt nur für ASCII; Rusts `split_whitespace` trennt auch an U+00A0.
-- Floats müssen den Hin- und Rückweg überstehen: Der Standard-Float-Parser von `serde_json` rundet nicht immer korrekt, daher nutzen rust-anything und jedes Crate, das es erzeugt, dessen Feature `float_roundtrip`.
+- Floats müssen den Hin- und Rückweg überstehen: Der Standard-Float-Parser von `serde_json` rundet nicht immer korrekt, daher nutzen everything-rust und jedes Crate, das es erzeugt, dessen Feature `float_roundtrip`.
 
 ## Geschwindigkeit
 

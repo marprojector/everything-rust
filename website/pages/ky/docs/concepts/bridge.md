@@ -6,8 +6,8 @@ description: bridge бир бирдик үчүн Rust crate'ин даярдай�
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate in <repo>/rust/<name>; never overwrites
-rust-anything refresh <crate>                  # after changing a signature in port.rs
+everything-rust bridge <repo> <unit-id>          # crate in <repo>/rust/<name>; never overwrites
+everything-rust refresh <crate>                  # after changing a signature in port.rs
 ```
 
 `bridge` байланыштары (`lib.rs`, плюс баштапкы тил жүктөгөн wrapper) жана порттоо үчүн stub'тары (`port.rs`) бар crate түзөт. Портту `src/port.rs` ичинде гана жазасыз; `src/lib.rs` жана wrapper'лер генерацияланат, ал эми `refresh` аларды `port.rs`'теги сигнатуралардан кайра генерациялайт жана жаңы batch класстарын кошот. Ал `port.rs`'ке эч качан тийбейт.

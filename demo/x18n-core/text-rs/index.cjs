@@ -1,4 +1,4 @@
-// Loads the wasm-bindgen (nodejs target) output built by `rust-anything build`.
+// Loads the wasm-bindgen (nodejs target) output built by `everything-rust build`.
 const native = require('./pkg/text_rs.js')
 
 // Structured values cross as JSON text. JSON has no `undefined`, NaN or -0, and Rust strings no
@@ -61,10 +61,10 @@ for (const [name, [ctor, methods]] of Object.entries(classes)) {
   module.exports[name] = Wrapped
 }
 
-// The binary wire (see rust-anything's `wire.rs`): arguments are written into `wIn` and copied into
+// The binary wire (see everything-rust's `wire.rs`): arguments are written into `wIn` and copied into
 // wasm memory in one step; results are read where the Rust side left them.
 let wIn = new Uint8Array(1 << 16), iv = new DataView(wIn.buffer), at = 0, p = 0
-const mem = native.rustAnythingWireMemory()
+const mem = native.everythingRustWireMemory()
 let wOut = new Uint8Array(mem.buffer), ov = new DataView(mem.buffer)
 const regrow = () => {}
 // Growing wasm memory replaces its buffer: views are made again when that happened.
@@ -75,12 +75,12 @@ const views = () => {
   }
 }
 const wireCall = fn => {
-  const ptr = native.rustAnythingWireIn(at)
+  const ptr = native.everythingRustWireIn(at)
   views()
   wOut.set(wIn.subarray(0, at), ptr)
   if (fn(at) === 0xFFFFFFFF) return false
   views()
-  p = native.rustAnythingWireOut()
+  p = native.everythingRustWireOut()
   return true
 }
 

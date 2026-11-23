@@ -1,6 +1,6 @@
 # Install, update and develop
 
-Every way to install rust-anything, keep it up to date, remove it, and build it from source. Back to the [README](../README.md).
+Every way to install everything-rust, keep it up to date, remove it, and build it from source. Back to the [README](../README.md).
 
 ## Install
 
@@ -20,7 +20,7 @@ Native Windows CI uses the `x86_64-pc-windows-msvc` Rust target. Install the sta
 toolchain and Visual Studio Build Tools with the **Desktop development with C++** workload; the
 C compiler and linker are required for C bridges and native Rust extensions. Install the runtime
 for the source language you are migrating. Python may be available as either `python3` or
-`python`; rust-anything detects both. The GNU Windows target is not exercised by CI.
+`python`; everything-rust detects both. The GNU Windows target is not exercised by CI.
 
 Run the native bridge integration suite from a Developer PowerShell prompt:
 
@@ -39,14 +39,14 @@ PowerShell and verify that `where.exe link` finds the MSVC linker. Tests use tem
 including a path with spaces and Unicode characters, and remove generated artifacts after a
 successful run.
 
-For agents, `rust-anything setup` registers everything (see Quick start). The same MCP server and
+For agents, `everything-rust setup` registers everything (see Quick start). The same MCP server and
 skill also ship as a Codex plugin from `.agents/plugins/marketplace.json`
-(`codex plugin marketplace add erkamyaman/rust-anything`, then
-`codex plugin add rust-anything@rust-anything`). To add the MCP server to one project by hand
+(`codex plugin marketplace add marprojector/everything-rust`, then
+`codex plugin add everything-rust@everything-rust`). To add the MCP server to one project by hand
 instead (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 OpenCode takes a local server under `mcp.servers` and the whole argv in one `command` array, in
@@ -57,14 +57,14 @@ that shape):
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
 ```
 
-Its skill goes in `~/.config/opencode/skills/rust-anything/` (`SKILL.md` and `whole-app.md` from
-[`skills/rust-anything/`](../skills/rust-anything)).
+Its skill goes in `~/.config/opencode/skills/everything-rust/` (`SKILL.md` and `whole-app.md` from
+[`skills/everything-rust/`](../skills/everything-rust)).
 
 Every tool, its parameters and what it may touch: [docs/tools.md](tools.md). The server also
 offers two prompts, `port_unit` and `port_whole_app`, built from the skill.
@@ -82,12 +82,12 @@ Design choices and their reasons: [DECISIONS.md](../DECISIONS.md).
 ## Update or remove
 
 ```sh
-cargo install rust-anything                                    # update (Cargo)
-npm install -g rust-anything@latest                            # update (npm)
-rust-anything setup                                            # refresh agent settings
-rust-anything setup --remove && cargo uninstall rust-anything  # remove (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # remove (npm)
+cargo install everything-rust                                    # update (Cargo)
+npm install -g everything-rust@latest                            # update (npm)
+everything-rust setup                                            # refresh agent settings
+everything-rust setup --remove && cargo uninstall everything-rust  # remove (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # remove (npm)
 ```
 
-`setup --remove` takes out only rust-anything's entries; the copies it saved
-(`<file>.rust-anything.bak`) stay until you delete them.
+`setup --remove` takes out only everything-rust's entries; the copies it saved
+(`<file>.everything-rust.bak`) stay until you delete them.

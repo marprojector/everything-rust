@@ -6,9 +6,9 @@ description: record түпнұсқаны генерацияланған шетк
 # Жазып алу
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # немесе: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # немесе: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` түпнұсқа функцияларды іске қосып, әрқайсысының не қайтаратынын немесе не лақтыратынын crate-тің қасындағы `cases.jsonl` файлына сақтайды: порт сәйкес келуге тиіс мінез-құлық. Кейінгі сәйкессіздік мінез-құлық айырмашылығы: жазбаны емес, портты түзетіңіз.

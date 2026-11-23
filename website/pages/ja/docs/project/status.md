@@ -1,6 +1,6 @@
 ---
 title: ステータス
-description: rust-anything で現在動作するもの、そして各部分が最後にどう確認されたか。
+description: everything-rust で現在動作するもの、そして各部分が最後にどう確認されたか。
 ---
 
 # ステータス
@@ -15,7 +15,7 @@ description: rust-anything で現在動作するもの、そして各部分が�
 
 | 言語 | ステータス | 最後の実プロジェクトでの実行 | 結果 |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | 検証済み | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier)（2026-11-18）、[json-server](/docs/real-world/json-server)（2026-11-18）、[Fuse.js](/docs/real-world/fuse-js)（2026-11-18）、[vercel/ms](/docs/real-world/vercel-ms)（2026-11-18）、x18n の `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 と `js-format-rs` 1,279/1,279、両方とも gate に合格。json-server: 6 ユニット、3,399 ケース、それぞれ gate に合格。Fuse.js、vercel/ms、x18n: 3,414/3,414、975/975、9,000 件以上のケースが一致 |
+| TypeScript/JavaScript | 検証済み | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier)（2026-11-18）、[json-server](/docs/real-world/json-server)（2026-11-18）、[Fuse.js](/docs/real-world/fuse-js)（2026-11-18）、[vercel/ms](/docs/real-world/vercel-ms)（2026-11-18）、x18n の `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 と `js-format-rs` 1,279/1,279、両方とも gate に合格。json-server: 6 ユニット、3,399 ケース、それぞれ gate に合格。Fuse.js、vercel/ms、x18n: 3,414/3,414、975/975、9,000 件以上のケースが一致 |
 | Python | 検証済み | CPython 3.13 の `colorsys.py`（2026-11-16） | 2,400/2,400、gate に合格 |
 | Go | 検証済み | Go 1.24 の `path`（2026-11-16） | 2,642/2,642、gate に合格 |
 | Ruby | 検証済み | Ruby 3.3 の `shellwords.rb`（2026-11-16） | 1,617/1,617、gate に合格 |

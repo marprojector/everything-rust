@@ -6,7 +6,7 @@ description: gate는 포팅 완료의 정의입니다. gate가 실행하는 모�
 # 게이트
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 완료란 `gate`가 통과한다는 뜻입니다. 검사 항목은 다음과 같습니다:

@@ -8,9 +8,9 @@ description: app record uygulamanın tamamını belgelenmiş örnekleri, sizin g
 `record` ve `diff` tek bir birimi kanıtlar; `app record` ve `app replay` ise altı dilin herhangi birindeki CLI'lar ve sunucular için uygulamayı kanıtlar. Uygulama bir kara kutudur.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # orijinali çalıştıran komut
-rust-anything app replay .                            # orijinal %100 geçmeli
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # orijinali çalıştıran komut
+everything-rust app replay .                            # orijinal %100 geçmeli
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Vakalar nereden gelir
@@ -40,7 +40,7 @@ Onları elle okuyup düzenleyin; port bir binary'ye sahip olduğunda bir Rust te
 ## Yeniden oynatma
 
 - `app replay` herhangi bir derlemeyi vakalara karşı çalıştırır, `passed/total` yazdırır, başarısız her vaka için bir diff içeren `rust/app-cases/replay-report.md` dosyasını yazar ve herhangi bir uyuşmazlıkta sıfır olmayan bir kodla çıkar.
-- [Front door](/docs/whole-apps/front-door)'un yaptığı gibi `RUST_ANYTHING_FALLBACK_LOG` ile adı verilen dosyaya ekleme yapan (orijinale her fallback için bir satır) bir derlemenin fallback oranı da raporlanır.
+- [Front door](/docs/whole-apps/front-door)'un yaptığı gibi `EVERYTHING_RUST_FALLBACK_LOG` ile adı verilen dosyaya ekleme yapan (orijinale her fallback için bir satır) bir derlemenin fallback oranı da raporlanır.
 - `app replay --case <name>`, raporun verdiği adla tek bir vakayı yeniden çalıştırır: her şeyi yeniden çalıştırmadan önce bir uyuşmazlığı düzeltmek için hızlı, tekrarlanabilir döngü.
 
 ## CI'da yeniden oynatma
@@ -48,7 +48,7 @@ Onları elle okuyup düzenleyin; port bir binary'ye sahip olduğunda bir Rust te
 Raporda süre ölçümleri ya da geçici yollar yoktur: aynı derlemenin iki yeniden oynatması aynı dosyayı yazar. Onu commit'leyin, ardından CI'da çalıştırın:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

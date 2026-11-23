@@ -2,7 +2,7 @@ mod common;
 
 use std::{path::Path, process::Command};
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 #[test]
 fn record_uses_cgo_when_available_for_the_original_module() {
@@ -16,7 +16,7 @@ fn record_uses_cgo_when_available_for_the_original_module() {
         return;
     }
 
-    let temp = std::env::temp_dir().join(format!("rust-anything-go-cgo-{}", std::process::id()));
+    let temp = std::env::temp_dir().join(format!("everything-rust-go-cgo-{}", std::process::id()));
     let result = record(&temp);
     std::fs::remove_dir_all(temp).unwrap();
     result.unwrap();

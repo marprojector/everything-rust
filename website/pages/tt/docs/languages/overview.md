@@ -30,7 +30,7 @@ Rust'та кала, ә һәр чакыру аларның барысын да б
 PHP preview рәвешендә: `analyze` PHP кушымтасын планлаштыра (Composer пакетлары һәм PSR-4 autoloading, катгый булмаган
 чагыштыру һәм бөтен саннарның float'ка ташып чыгуы кебек куркынычлар, Composer пакетларына туры килгән crate'лар),
 ә PHP CLI яки серверны язып алып, кабат уйнатып, Rust front door артына куеп була. Аның
-берәмлекләрен PHP FFI аша Rust'ка күчерү киләсе адым ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+берәмлекләрен PHP FFI аша Rust'ка күчерү киләсе адым ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# та шулай ук preview рәвешендә: `analyze` `.csproj` проектларын һәм аларның NuGet пакетларын укый
 (crate'ларга туры китереп), `using` директиваларын папкаларга бәйли һәм C# нәрсәне башкача эшләгәнен билгели

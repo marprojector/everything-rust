@@ -24,7 +24,7 @@ export function faviconPlugin() {
     })
   }
   return {
-    name: 'rust-anything-favicon',
+    name: 'everything-rust-favicon',
     configureServer: serve,
     configurePreviewServer: serve,
     writeBundle(options) {
@@ -51,7 +51,7 @@ function searchEntries(locale = 'en') {
 
 export function searchIndexPlugin() {
   return {
-    name: 'rust-anything-search-index',
+    name: 'everything-rust-search-index',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const m = /^\/search-index\.([a-z-]+)\.json$/.exec(req.url?.split('?')[0] ?? '')
@@ -111,7 +111,7 @@ export async function renderOg({ title, eyebrow }) {
       'div',
       { alignItems: 'center', gap: '24px' },
       h('img', { src: logo, width: 88, height: 88 }),
-      h('div', { fontSize: 36, fontWeight: 600, fontFamily: 'PlexCond' }, 'rust-anything'),
+      h('div', { fontSize: 36, fontWeight: 600, fontFamily: 'PlexCond' }, 'everything-rust'),
     ),
     h(
       'div',
@@ -131,7 +131,7 @@ export async function renderOg({ title, eyebrow }) {
 
 export function ogImagePlugin(groupOf) {
   return {
-    name: 'rust-anything-og-images',
+    name: 'everything-rust-og-images',
     apply: 'build',
     async writeBundle(options) {
       if (!isClientDir(this, options)) return
@@ -151,7 +151,7 @@ export function ogImagePlugin(groupOf) {
 
 export function notFoundPlugin() {
   return {
-    name: 'rust-anything-404',
+    name: 'everything-rust-404',
     apply: 'build',
     writeBundle(options) {
       if (!isClientDir(this, options)) return

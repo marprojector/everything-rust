@@ -17,8 +17,8 @@
     "closeMenu": "Menyuni yopish",
     "menu": "Menyu",
     "language": "Til",
-    "home": "rust-anything bosh sahifasi",
-    "github": "GitHub'dagi rust-anything",
+    "home": "everything-rust bosh sahifasi",
+    "github": "GitHub'dagi everything-rust",
     "onThisPage": "Bu sahifada",
     "editPage": "Bu sahifani GitHub'da tahrirlash",
     "previous": "Oldingi",
@@ -54,7 +54,7 @@
       "project": "Loyiha"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything nima",
+      "/docs/introduction/what-is-everything-rust": "everything-rust nima",
       "/docs/introduction/quick-start": "Tezkor boshlash",
       "/docs/introduction/install": "O'rnatish",
       "/docs/introduction/agents": "Agentingizni sozlash",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Ilovangizni Rust'da qayta yozing.",
     "title2": "U xuddi shunday ishlashini isbotlang.",
-    "sub": "rust-anything kodingiz nima qilishini yozib oladi, so'ng har bir yozib olingan holatni Rust portiga qarshi qayta ijro etadi. Rust kodini agentingiz yozadi. Natijalar mos kelmaguncha hech narsa chiqarilmaydi.",
+    "sub": "everything-rust kodingiz nima qilishini yozib oladi, so'ng har bir yozib olingan holatni Rust portiga qarshi qayta ijro etadi. Rust kodini agentingiz yozadi. Natijalar mos kelmaguncha hech narsa chiqarilmaydi.",
     "cta": "Tezkor boshlashni o'qing",
     "source": "GitHub'dagi manba kodi",
     "sourceLanguage": "Manba tili",
@@ -138,10 +138,10 @@
     "installTitle": "O'rnatish",
     "installDesc": "CLI'ni o'rnating, so'ng MCP serverni va workflow skill'ini Claude Code, Codex, Cursor va Gemini CLI'da ro'yxatdan o'tkazing.",
     "installNote": "macOS, Linux va Windows uchun tayyor binary fayllar har bir [GitHub release]({releases}) sahifasida.",
-    "agentPrompt": "rust-anything'ni o'rnat: `cargo install rust-anything`, so'ng `rust-anything setup` ni ishga tushir.",
+    "agentPrompt": "everything-rust'ni o'rnat: `cargo install everything-rust`, so'ng `everything-rust setup` ni ishga tushir.",
     "agentRestart": "Seni qachon qayta ishga tushirishim kerakligini ayt.",
     "loopTitle": "Port qanday bajariladi",
-    "loopDesc": "Asl nusxa haqiqat manbai bo'lib qoladi. rust-anything kodni tarjima qilmaydi: u agent taxmin qila olmaydigan narsalarni va port qachon tayyor ekanini aytadigan gate'ni beradi.",
+    "loopDesc": "Asl nusxa haqiqat manbai bo'lib qoladi. everything-rust kodni tarjima qilmaydi: u agent taxmin qila olmaydigan narsalarni va port qachon tayyor ekanini aytadigan gate'ni beradi.",
     "steps": [
       {
         "title": "Yozib olish",
@@ -272,7 +272,7 @@
       "csharp": "butun ilovani yozib olish va qayta ijro etish; birlik ko'priklari navbatda"
     },
     "sponsorsTitle": "Homiylar",
-    "sponsorsDesc": "rust-anything bepul va ochiq manbali. Agar u ishingizga yordam bersa, iltimos, unga homiylik qilishni o'ylab ko'ring. Qo'llab-quvvatlashingiz ishlab chiqishni davom ettirishga yordam beradi.",
+    "sponsorsDesc": "everything-rust bepul va ochiq manbali. Agar u ishingizga yordam bersa, iltimos, unga homiylik qilishni o'ylab ko'ring. Qo'llab-quvvatlashingiz ishlab chiqishni davom ettirishga yordam beradi.",
     "companySponsor": "Kompaniya homiysi",
     "becomeSponsor": "Homiy bo'lish"
   }

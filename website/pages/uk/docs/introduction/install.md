@@ -1,6 +1,6 @@
 ---
 title: Встановлення
-description: Встановіть rust-anything з crates.io, npm або з бінарника релізу, а також середовища виконання, потрібні кожній мові.
+description: Встановіть everything-rust з crates.io, npm або з бінарника релізу, а також середовища виконання, потрібні кожній мові.
 ---
 
 # Встановлення
@@ -10,22 +10,22 @@ description: Встановіть rust-anything з crates.io, npm або з бі
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm встановлює той самий бінарник, для проєктів на JavaScript.
 
-Готові бінарники для macOS, Linux і Windows додано до кожного [релізу на GitHub](https://github.com/erkamyaman/rust-anything/releases). У Claude Code його також можна встановити як плагін (сервер MCP і навичка; CLI має бути у вашому `PATH`):
+Готові бінарники для macOS, Linux і Windows додано до кожного [релізу на GitHub](https://github.com/marprojector/everything-rust/releases). У Claude Code його також можна встановити як плагін (сервер MCP і навичка; CLI має бути у вашому `PATH`):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## Із вихідного коду
@@ -46,7 +46,7 @@ cargo install --path .
 і Visual Studio Build Tools з робочим навантаженням **Desktop development with C++**; компілятор C
 і лінкер потрібні для мостів C і нативних розширень Rust. Встановіть середовище виконання
 мови, з якої ви мігруєте. Python може бути доступний як `python3` або як
-`python`; rust-anything розпізнає обидва варіанти. GNU-ціль Windows у CI не перевіряється.
+`python`; everything-rust розпізнає обидва варіанти. GNU-ціль Windows у CI не перевіряється.
 
 Запускайте набір інтеграційних тестів нативних мостів із Developer PowerShell:
 
@@ -65,11 +65,11 @@ PowerShell і перевірте, що `where.exe link` знаходить лі�
 зокрема шлях із пробілами та символами Unicode, і прибирають згенеровані артефакти після
 успішного прогону.
 
-Для агентів `rust-anything setup` реєструє все (див. Швидкий старт). Щоб натомість додати сервер MCP
+Для агентів `everything-rust setup` реєструє все (див. Швидкий старт). Щоб натомість додати сервер MCP
 вручну до одного проєкту (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Усі інструменти, їхні параметри і те, що вони можуть змінювати: [docs/tools.md](/docs/reference/mcp-tools). Сервер також
@@ -77,12 +77,12 @@ PowerShell і перевірте, що `where.exe link` знаходить лі�
 ## Оновлення або видалення
 
 ```sh
-cargo install rust-anything                                    # оновити (Cargo)
-npm install -g rust-anything@latest                            # оновити (npm)
-rust-anything setup                                            # оновити налаштування агентів
-rust-anything setup --remove && cargo uninstall rust-anything  # видалити (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # видалити (npm)
+cargo install everything-rust                                    # оновити (Cargo)
+npm install -g everything-rust@latest                            # оновити (npm)
+everything-rust setup                                            # оновити налаштування агентів
+everything-rust setup --remove && cargo uninstall everything-rust  # видалити (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # видалити (npm)
 ```
 
-`setup --remove` прибирає лише записи rust-anything; збережені ним копії
-(`<file>.rust-anything.bak`) лишаються, доки ви їх не видалите.
+`setup --remove` прибирає лише записи everything-rust; збережені ним копії
+(`<file>.everything-rust.bak`) лишаються, доки ви їх не видалите.

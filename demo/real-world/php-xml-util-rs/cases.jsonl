@@ -508,8 +508,8 @@
 {"fn":"attributes_to_string","args":[[],true,{"$undefined":true},"ΣΊΣΥΦΟΣ","straßehello world"],"ok":""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},true,"a","a:b:c",7],"ok":""}
 {"fn":"attributes_to_string","args":[[],false,false,"😀",{"$undefined":true}],"ok":""}
-{"fn":"attributes_to_string","args":[true,{"$undefined":true},{"$undefined":true},"  ","  padded  ",2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
-{"fn":"attributes_to_string","args":[0,true,false,"{name} has {count} itemsa..b","hello world",255],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[true,{"$undefined":true},{"$undefined":true},"  ","  padded  ",2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[0,true,false,"{name} has {count} itemsa..b","hello world",255],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"😀":["a",1],"ünï":"x"},{"$undefined":true},false,"straße","key_name-1",2147483647],"ok":" ünï=\"x\" 😀=\"Array\""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},{"$undefined":true},":",":",{"$undefined":true}],"ok":""}
 {"fn":"attributes_to_string","args":[[{"a":{"b":"c"}},["a",1]],true,true,"hello world",":",-1],"ok":" 0=\"Array\":hello world1=\"Array\""}
@@ -537,14 +537,14 @@
 {"fn":"attributes_to_string","args":[[],false,{"$undefined":true},"HELLO","ab",-100],"ok":""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},false,"ünïcödé","a.b.c",255],"ok":""}
 {"fn":"attributes_to_string","args":[[{"a":{"b":"c"}}],true,false,"trailing.hello world","İstanbul",100],"ok":" 0=\"Array\""}
-{"fn":"attributes_to_string","args":["x",true,true,"é","key_name-1",255],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, string given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":["x",true,true,"é","key_name-1",255],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, string given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"a":{"b":"c"}},true,{"$undefined":true},"line1\nline2line1\nline2","ns:key.path"],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"2":[],"nav":true},false,false,"line1\nline2","LINE1",0],"ok":" 2=\"Array\" nav=\"1\""}
 {"fn":"attributes_to_string","args":[[],false,false,":",":",42],"ok":""}
 {"fn":"attributes_to_string","args":[[{"a":"b"}],{"$undefined":true},{"$undefined":true},"nbul","İstanbul",0],"ok":" 0=\"Array\""}
 {"fn":"attributes_to_string","args":[[],false,{"$undefined":true},"trailing.","abc",100],"ok":""}
 {"fn":"attributes_to_string","args":[{"ünï":[],"😀":0},false,true,"😀ΣΊΣΥΦΟΣ","straße",0],"ok":" ünï=\"Array\"straße😀ΣΊΣΥΦΟΣ😀=\"0\""}
-{"fn":"attributes_to_string","args":[true,{"$undefined":true},true,"a.b.c","abc",2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[true,{"$undefined":true},true,"a.b.c","abc",2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[[[],"x"],true,{"$undefined":true},"src/a/b.ts","{name} has {count} items",42],"ok":" 0=\"Array\" 1=\"x\""}
 {"fn":"attributes_to_string","args":[[],false,false,"ababc",".leading",-1],"ok":""}
 {"fn":"attributes_to_string","args":[{"title":null,"nav":[]},{"$undefined":true},true,"﻿bom",{"$undefined":true},1],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
@@ -556,7 +556,7 @@
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},true,"key_name-1",{"$undefined":true},-100],"ok":""}
 {"fn":"attributes_to_string","args":[[{"a":{"b":"c"}},[]],false,true,"Hello World"," World",7],"ok":" 0=\"Array\" WorldHello World1=\"Array\""}
 {"fn":"attributes_to_string","args":[[],true,false,{"$undefined":true},"tab\tseparated"],"ok":""}
-{"fn":"attributes_to_string","args":["x",false,true,"","ns:key.path",-100],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, string given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":["x",false,true,"","ns:key.path",-100],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, string given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"a":{"b":"c"}},true,false,"line1\nline2","a..b",100],"ok":" a=\"Array\""}
 {"fn":"attributes_to_string","args":[{"ünï":0},false,false,"ΣΊΣΥΦΟΣ",{"$undefined":true},-1],"ok":" ünï=\"0\""}
 {"fn":"attributes_to_string","args":[{"b":null},false,false,{"$undefined":true},"key_name-1",100],"ok":" b=\"\""}
@@ -567,7 +567,7 @@
 {"fn":"attributes_to_string","args":[[true],true,false,"src/a/b.ts","a:b:c.leading",-1],"ok":" 0=\"1\""}
 {"fn":"attributes_to_string","args":[{"a.b":0,"home":null},false,false,{"$undefined":true},{"$undefined":true},1],"ok":" a.b=\"0\" home=\"\""}
 {"fn":"attributes_to_string","args":[{"b":[]},true,true,"HELLO",{"$undefined":true},9223372036854775807],"ok":" b=\"Array\""}
-{"fn":"attributes_to_string","args":[0,{"$undefined":true},false,"straße",{"$undefined":true},2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[0,{"$undefined":true},false,"straße",{"$undefined":true},2147483647],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"a.b":["a",1],"title":true,"2":true},{"$undefined":true},true,{"$undefined":true},"a:b:c",255],"ok":" 2=\"1\"a:b:c    a.b=\"Array\"a:b:c    title=\"1\""}
 {"fn":"attributes_to_string","args":[{"home":["a",1],"2":[],"b":{"a":"b"}},false,{"$undefined":true},"abcline1\nline2","  padded  ",100],"ok":" home=\"Array\" 2=\"Array\" b=\"Array\""}
 {"fn":"attributes_to_string","args":[[{"a":"b"},["a",1],"x"],true,{"$undefined":true},"ns:key.path","a",{"$undefined":true}],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
@@ -589,7 +589,7 @@
 {"fn":"attributes_to_string","args":[[{"a":{"b":"c"}}],{"$undefined":true},false,{"$undefined":true},"",0],"ok":" 0=\"Array\""}
 {"fn":"attributes_to_string","args":[[true],false,{"$undefined":true},"  padded  :",{"$undefined":true},9223372036854775807],"ok":" 0=\"1\""}
 {"fn":"attributes_to_string","args":[[],false,true,"﻿bom",".leading",-1],"ok":""}
-{"fn":"attributes_to_string","args":[0,false,false,"tab\tseparated","a..b"],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[0,false,false,"tab\tseparated","a..b"],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, int given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[[],false,true,"a..b","B",255],"ok":""}
 {"fn":"attributes_to_string","args":[[],false,false,{"$undefined":true},"",-1],"ok":""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},true,"O WOR","hello world",{"$undefined":true}],"ok":""}
@@ -600,7 +600,7 @@
 {"fn":"attributes_to_string","args":[{"a":"b"},{"$undefined":true},true,{"$undefined":true},"HELLO",-2147483648],"ok":" a=\"b\""}
 {"fn":"attributes_to_string","args":[[{"a":"b"},{"a":"b"},["a",1]],true,false,"tab\tseparated",{"$undefined":true},2],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"2":null,"home":{"a":"b"}},{"$undefined":true},false,{"$undefined":true},{"$undefined":true},2],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
-{"fn":"attributes_to_string","args":[true,true,false,"straße﻿bom","trailing.日本語のテキスト",1],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[true,true,false,"straße﻿bom","trailing.日本語のテキスト",1],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[[["a",1],true,{"a":{"b":"c"}}],{"$undefined":true},{"$undefined":true},"é","a😀b😀c",-1],"ok":" 0=\"Array\" 1=\"1\" 2=\"Array\""}
 {"fn":"attributes_to_string","args":[{"home":["a",1],"😀":[],"2":"x"},true,{"$undefined":true},{"$undefined":true}],"error":"strtr(): Argument #1 ($string) must be of type string, array given","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"2":true},{"$undefined":true},false,{"$undefined":true},"a:b:c",2],"ok":" 2=\"1\""}
@@ -634,7 +634,7 @@
 {"fn":"attributes_to_string","args":[{"title":[],"10":"x"},false,true,"HELLOtab\tseparated","LOtab\tsepara",-2147483648],"ok":" title=\"Array\"LOtab\tseparaHELLOtab\tseparated10=\"x\""}
 {"fn":"attributes_to_string","args":[[],true,true,"./x/**/*.json","tab\tseparated",-100],"ok":""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},{"$undefined":true},"line1\nline2日本語のテキスト","a.b.c",1],"ok":""}
-{"fn":"attributes_to_string","args":[true,true,false,"﻿bom",{"$undefined":true},0],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.rust-anything/driver.php on line 125","error_type":"TypeError"}
+{"fn":"attributes_to_string","args":[true,true,false,"﻿bom",{"$undefined":true},0],"error":"XmlUtil\\attributes_to_string(): Argument #1 ($attributes) must be of type array, true given, called in <crate>/.everything-rust/driver.php on line 125","error_type":"TypeError"}
 {"fn":"attributes_to_string","args":[{"a":"b"},{"$undefined":true},false,{"$undefined":true},"line1\nline2",2],"ok":" a=\"b\""}
 {"fn":"attributes_to_string","args":[[],{"$undefined":true},true,"ame","key_name-1",7],"ok":""}
 {"fn":"attributes_to_string","args":[{"a.b":null,"ünï":null},{"$undefined":true},true,{"$undefined":true},"é",7],"ok":" a.b=\"\"é    ünï=\"\""}

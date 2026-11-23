@@ -6,7 +6,7 @@ description: Әр элемент үшін бір рет шақырылатын �
 # Batch-тар және hot path-тар
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # немесе: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # немесе: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` мәндерін бір рет алып, оларды Rust ішінде ұстайтын класты генерациялайды: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Әр сұраныста `run(<other args>)` барлық нәтижені бір массив ретінде қайтарады, ал `rank(<other args>, min)` элемент индекстерін ең жақсысынан бастап қайтарады. Ол барлық ядроларда жұмыс істейді, ал қателер түпнұсқанікі. C-дан басқа әр тіл batch-тарды алады.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # немесе: rust-anyt
 барлығына барлық ядроларда, типтелген массив нәтижелерімен орындайтын класты генерациялайды.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: іске қосудың төрттен бірі, `matched` әр кілт үшін шақырады: batch жасаңыз
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ x18n бүйірлік панеліндегі 50,000 кілт бойынша із
 
 Компиляцияланатын түпнұсқалар азырақ ұтады: әр элементке жұмыс онсыз да жылдам, сондықтан batch ядролар
 санына қарай ұтады. Batch crate-тері mimalloc арқылы жады бөледі: жүйелік аллокатормен Go batch-і бір
-ағыннан да баяу болды. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+ағыннан да баяу болды. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Жылдам индексті жазу
 
 - Шақырушы batch-ті әр сұраныс сайын емес, бір рет құрсын. Қайтарылған индекстерді элементтерге қарапайым циклмен қайта сәйкестендіріңіз.

@@ -6,7 +6,7 @@ description: Uma migração chamada uma vez por item perde para um JIT. Os lotes
 # Lotes e caminhos críticos
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # ou: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # ou: everything-rust refresh <crate> --batch fn:param
 ```
 
 O `--batch` gera uma classe que recebe os valores de `param` uma vez e os mantém no Rust: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Por consulta, `run(<other args>)` devolve todos os resultados como um único array, e `rank(<other args>, min)` devolve os índices dos itens, os melhores primeiro. Corre em todos os núcleos, e os erros são os do original. Todas as linguagens exceto C têm lotes.
@@ -16,9 +16,9 @@ mover o ciclo: o `profile` encontra-o, e o `--batch` gera uma classe que recebe 
 e executa a função sobre todos eles em cada chamada, em todos os núcleos, com resultados em typed arrays.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: um quarto da execução, chamada por chave por `matched`: processe-a em lote
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -59,7 +59,7 @@ mesmo trabalho em 4 núcleos, resultados e erros idênticos (benchmarks em cada 
 
 Os originais compilados ganham menos: o trabalho por item já é rápido, por isso o lote ganha pelo número
 de núcleos. As crates de lote alocam com mimalloc: com o alocador do sistema, o lote em Go era mais lento do que
-uma única thread. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+uma única thread. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Escrever um índice rápido
 
 - Faça com que o chamador construa o lote uma vez, não por consulta. Converta os índices devolvidos de volta em itens com um ciclo simples.

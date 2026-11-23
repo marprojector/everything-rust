@@ -6,12 +6,12 @@ description: shadow, orijinali ve Rust'ı yan yana çalıştıran ve uyuşmazlı
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow`, orijinalin API'sine sahip, doğrudan yerine geçen (drop-in) bir modül üretir: bir TS veya Python modülü, bir Go paketi, bir Ruby dosyası, Java sınıfları ya da bir C dosyası. Uygulamanın orijinali yüklediği yerde onu yükleyin. İkisini de çalıştırır, orijinalin sonucunu döndürür ve siz production'da güven kazanırken Rust uyuşmazlıklarını raporlar.
 
-| `RUST_ANYTHING_MODE` | Davranış |
+| `EVERYTHING_RUST_MODE` | Davranış |
 | --- | --- |
 | `shadow` (varsayılan) | ikisini de çalıştırır, orijinalin sonucunu döndürür, uyuşmazlıkları raporlar |
 | `new` | Rust'a geçer |

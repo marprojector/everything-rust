@@ -37,7 +37,7 @@ description: 通过 napi-rs 或 wasm-bindgen 把 Node.js 代码（TypeScript 或
 
 逐次调用时，移植版每次都要付出跨越桥接层的代价，而 V8 运行小函数只需纳秒级时间。在录制用例上，vercel/ms 逐次调用的速度是 0.56x；从 JS 调用时，x18n 的 core 移植版比 TS 更慢。改成批处理后，循环被迁到 Rust：
 
-| 工作负载 | 原实现 | 使用 rust-anything |
+| 工作负载 | 原实现 | 使用 everything-rust |
 | --- | ---: | ---: |
 | x18n 侧边栏搜索，50,000 个键（Node） | 每次查询 10 ms | 0.5 ms：快 20 倍 |
 | 浏览器中的同一搜索（wasm，单线程） | 10 ms | 0.95 ms：11.5x |

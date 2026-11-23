@@ -17,8 +17,8 @@
     "closeMenu": "Закрити меню",
     "menu": "Меню",
     "language": "Мова",
-    "home": "Головна rust-anything",
-    "github": "rust-anything на GitHub",
+    "home": "Головна everything-rust",
+    "github": "everything-rust на GitHub",
     "onThisPage": "На цій сторінці",
     "editPage": "Редагувати цю сторінку на GitHub",
     "previous": "Попередня",
@@ -54,7 +54,7 @@
       "project": "Проєкт"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "Що таке rust-anything",
+      "/docs/introduction/what-is-everything-rust": "Що таке everything-rust",
       "/docs/introduction/quick-start": "Швидкий старт",
       "/docs/introduction/install": "Встановлення",
       "/docs/introduction/agents": "Налаштування агента",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Перепишіть застосунок на Rust.",
     "title2": "Доведіть, що він поводиться так само.",
-    "sub": "rust-anything записує, що робить ваш код, а потім відтворює кожен записаний випадок на порті Rust. Rust пише ваш агент. Нічого не потрапляє в реліз, доки результати не збігаються.",
+    "sub": "everything-rust записує, що робить ваш код, а потім відтворює кожен записаний випадок на порті Rust. Rust пише ваш агент. Нічого не потрапляє в реліз, доки результати не збігаються.",
     "cta": "Читати швидкий старт",
     "source": "Код на GitHub",
     "sourceLanguage": "Мова оригіналу",
@@ -138,10 +138,10 @@
     "installTitle": "Встановлення",
     "installDesc": "Встановіть CLI, потім зареєструйте сервер MCP і навичку робочого процесу в Claude Code, Codex, Cursor і Gemini CLI.",
     "installNote": "Готові бінарники для macOS, Linux і Windows є в кожному [релізі на GitHub]({releases}).",
-    "agentPrompt": "Встанови rust-anything: виконай `cargo install rust-anything`, потім `rust-anything setup`.",
+    "agentPrompt": "Встанови everything-rust: виконай `cargo install everything-rust`, потім `everything-rust setup`.",
     "agentRestart": "Скажи мені, коли тебе перезапустити.",
     "loopTitle": "Як робиться портування",
-    "loopDesc": "Оригінал лишається джерелом істини. rust-anything не перекладає код: він дає те, чого агент не може вгадати, і перевірку, яка каже, коли портування завершено.",
+    "loopDesc": "Оригінал лишається джерелом істини. everything-rust не перекладає код: він дає те, чого агент не може вгадати, і перевірку, яка каже, коли портування завершено.",
     "steps": [
       {
         "title": "Запис",
@@ -272,7 +272,7 @@
       "csharp": "запис і відтворення цілого застосунку; bridge для модулів далі"
     },
     "sponsorsTitle": "Спонсори",
-    "sponsorsDesc": "rust-anything безкоштовний і з відкритим кодом. Якщо він допомагає вам у роботі, підтримайте його, будь ласка. Ваша підтримка дає змогу продовжувати розробку.",
+    "sponsorsDesc": "everything-rust безкоштовний і з відкритим кодом. Якщо він допомагає вам у роботі, підтримайте його, будь ласка. Ваша підтримка дає змогу продовжувати розробку.",
     "companySponsor": "Спонсор-компанія",
     "becomeSponsor": "Стати спонсором"
   }

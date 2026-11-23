@@ -37,7 +37,7 @@ description: 透過 napi-rs 或 wasm-bindgen 將 Node.js 程式碼（TypeScript 
 
 以單次呼叫而言，移植版本每次都要付出橋接成本，而 V8 執行小函式只需要幾奈秒。vercel/ms 在其已錄製的案例上單次呼叫為 0.56x；從 JS 呼叫時，x18n 核心的移植版本比 TS 慢。改用批次時，迴圈會搬到 Rust：
 
-| 工作負載 | 原始版本 | 使用 rust-anything |
+| 工作負載 | 原始版本 | 使用 everything-rust |
 | --- | ---: | ---: |
 | x18n 側邊欄搜尋，50,000 個 key（Node） | 每次查詢 10 ms | 0.5 ms：快 20x |
 | 相同的搜尋在瀏覽器中（wasm，單一執行緒） | 10 ms | 0.95 ms：11.5x |

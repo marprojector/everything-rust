@@ -5,7 +5,7 @@ description: Writing port.rs, the one file you or your agent write, and the rule
 
 # Port
 
-You or your agent write the port in `src/port.rs`. Everything else in the crate is generated. After changing a signature in `port.rs`, run `rust-anything refresh <crate>`.
+You or your agent write the port in `src/port.rs`. Everything else in the crate is generated. After changing a signature in `port.rs`, run `everything-rust refresh <crate>`.
 
 ## Rules that save a round of diff
 

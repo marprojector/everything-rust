@@ -8,9 +8,9 @@ description: app record はアプリ全体をドキュメント記載の例、�
 `record` と `diff` は 1 つのユニットを証明し、`app record` と `app replay` はアプリを証明します。6 つの言語いずれの CLI とサーバーにも対応しています。アプリはブラックボックスとして扱われます。
 
 ```sh
-rust-anything app record . -- python3 cli.py          # 元の実装を実行するコマンド
-rust-anything app replay .                            # 元の実装は 100% 合格しなければならない
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # 元の実装を実行するコマンド
+everything-rust app replay .                            # 元の実装は 100% 合格しなければならない
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## ケースの出どころ
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## リプレイ
 
 - `app replay` は任意のビルドをケースに対して実行し、`passed/total` を表示し、失敗したケースごとの差分を含む `rust/app-cases/replay-report.md` を書き出し、不一致があれば 0 以外で終了します。
-- [フロントドア](/docs/whole-apps/front-door)のように、`RUST_ANYTHING_FALLBACK_LOG` で指定されたファイルに追記する（元の実装へのフォールバックごとに 1 行）ビルドは、フォールバック率も報告されます。
+- [フロントドア](/docs/whole-apps/front-door)のように、`EVERYTHING_RUST_FALLBACK_LOG` で指定されたファイルに追記する（元の実装へのフォールバックごとに 1 行）ビルドは、フォールバック率も報告されます。
 - `app replay --case <name>` は、レポートが付けた名前で 1 つのケースを再実行します: すべてを再実行する前に不一致を直すための、速くて再現性のあるループです。
 
 ## CI でのリプレイ
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 レポートには実行時間や一時パスが含まれません: 同じビルドを 2 回リプレイすると同じファイルが書き出されます。それをコミットし、CI で次を実行してください:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

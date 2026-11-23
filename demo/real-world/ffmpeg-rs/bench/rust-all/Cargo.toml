@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 publish = false
 license = "LGPL-2.1-or-later"
-description = "Every libavutil port in one staticlib, exporting only the rust_anything_* names, for bench.c"
+description = "Every libavutil port in one staticlib, exporting only the everything_rust_* names, for bench.c"
 
 [lib]
 crate-type = ["staticlib"]

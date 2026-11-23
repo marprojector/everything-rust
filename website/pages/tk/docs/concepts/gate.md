@@ -6,7 +6,7 @@ description: gate port üçin taýýarlygyň kesgitlemesi. Onuň işledýän her
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Taýýar diýmek `gate` geçýär diýmek. Ol şulary barlaýar:

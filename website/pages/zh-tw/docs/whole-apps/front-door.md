@@ -8,10 +8,10 @@ description: app front-door 會在原始版本前面放一個 Rust 執行檔；a
 先把進入點搬到 Rust，再一次一個單元地把指令交給它：
 
 ```sh
-rust-anything app front-door .                            # rust/app：每個指令都執行原始版本
-rust-anything app wire . textkit --command upper          # 在 textkit-rs 通過 gate 之後
+everything-rust app front-door .                            # rust/app：每個指令都執行原始版本
+everything-rust app wire . textkit --command upper          # 在 textkit-rs 通過 gate 之後
 # 在 rust/app/src/units/textkit.rs 中撰寫膠合程式碼，然後：
-rust-anything app wire . textkit                          # 再次 100%，回退率降低
+everything-rust app wire . textkit                          # 再次 100%，回退率降低
 ```
 
 ## 入口
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 再次 100%，回退
 3. 寫入一次 `src/units/<unit>.rs`，讓你或你的 AI 代理填寫：解析參數、呼叫 `<crate>::port`、印出原始版本會印出的內容；
 4. 將指令路由到它，然後建置並重播。
 
-撰寫完膠合程式碼後再執行一次：100% 通過，且回退率降低。`RUST_ANYTHING_UNIT_<NAME>=original` 會在提升之前，把已接上的單元送回原始版本。
+撰寫完膠合程式碼後再執行一次：100% 通過，且回退率降低。`EVERYTHING_RUST_UNIT_<NAME>=original` 會在提升之前，把已接上的單元送回原始版本。
 
 把應用程式自己的名稱接為一個指令（`--command mytool`），用來處理沒有指定指令的 argv：沒有參數、未知的指令、用法錯誤。
 

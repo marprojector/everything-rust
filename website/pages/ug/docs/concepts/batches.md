@@ -6,7 +6,7 @@ description: ھەر بىر ئېلېمېنت ئۈچۈن بىر قېتىم چاق�
 # توپ ۋە قىزىق يوللار
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # ياكى: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # ياكى: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` قىممەتلىرىنى بىر قېتىم ئېلىپ Rust تا ساقلايدىغان بىر سىنىپ ھاسىل قىلىدۇ: `new FnBatch(items)` (TS، Python، Java)، `Mod::FnBatch.new(items)` (Ruby)، `NewFnBatch(items)` (Go). ھەر بىر سۈرۈشتۈرۈشتە `run(<other args>)` بارلىق نەتىجىلەرنى بىر سانلار گۇرۇپپىسى قىلىپ قايتۇرىدۇ، `rank(<other args>, min)` بولسا ئېلېمېنت ئىندېكسلىرىنى ئەڭ ياخشىسىدىن باشلاپ قايتۇرىدۇ. ئۇ بارلىق يادرولاردا ئىجرا بولىدۇ، خاتالىقلار ئەسلى نۇسخىنىڭكى. C دىن باشقا ھەر بىر تىلدا توپلار بار.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # ياكى: rust-anything
 ھەر بىر چاقىرىشتا فۇنكسىيەنى ئۇلارنىڭ ھەممىسى ئۈستىدە بارلىق يادرولاردا ئىجرا قىلىدىغان، تىپلىق سانلار گۇرۇپپىسى نەتىجىسى بېرىدىغان سىنىپ ھاسىل قىلىدۇ.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: ئىجرانىڭ تۆتتىن بىرى، `matched` تەرىپىدىن ھەر بىر ئاچقۇچ ئۈچۈن چاقىرىلىدۇ: ئۇنى توپلاڭ
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 تۈزۈلگەن ئەسلى نۇسخىلار ئازراق پايدا ئالىدۇ: ھەر بىر ئېلېمېنتنىڭ ئىشى ئاللىقاچان تېز، شۇڭا توپ يادرو سانىچىلىك
 ئۇتىدۇ. توپ crate لىرى mimalloc بىلەن ئىچكى ساقلىغۇچ ئاجرىتىدۇ: سىستېما ئاجراتقۇچىسى بىلەن Go توپى
-بىر ئېقىمدىنمۇ ئاستا ئىدى. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+بىر ئېقىمدىنمۇ ئاستا ئىدى. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## تېز ئىندېكس يېزىش
 
 - چاقىرغۇچىغا توپنى ھەر بىر سۈرۈشتۈرۈشتە ئەمەس، بىر قېتىم قۇرغۇزۇڭ. قايتۇرۇلغان ئىندېكسلارنى ئاددىي ئايلانما بىلەن ئېلېمېنتلارغا قايتۇرۇڭ.

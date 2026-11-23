@@ -5,8 +5,8 @@
     "redirects": {
       "/en": { "to": "/", "status": 301 },
       "/en/*": { "to": "/:splat", "status": 301 },
-      "/docs": { "to": "/docs/introduction/what-is-rust-anything", "status": 301 },
-      "/docs/": { "to": "/docs/introduction/what-is-rust-anything", "status": 301 },
+      "/docs": { "to": "/docs/introduction/what-is-everything-rust", "status": 301 },
+      "/docs/": { "to": "/docs/introduction/what-is-everything-rust", "status": 301 },
       "/docs/*/": { "to": "/docs/:splat", "status": 301 }
     },
     "rewrites": {
@@ -18,11 +18,11 @@
     }
   },
   "head": {
-    "titleTemplate": "%s · rust-anything",
+    "titleTemplate": "%s · everything-rust",
     "htmlAttrs": { "lang": "en" },
     "meta": [
       { "name": "viewport", "content": "width=device-width, initial-scale=1" },
-      { "property": "og:site_name", "content": "rust-anything" },
+      { "property": "og:site_name", "content": "everything-rust" },
       { "property": "og:type", "content": "website" },
       { "name": "twitter:card", "content": "summary_large_image" },
       { "name": "theme-color", "content": "#a33a0f" }

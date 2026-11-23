@@ -6,9 +6,9 @@ description: diff 在 Rust 实现上回放每一条录制用例。known-diffs.js
 # Diff 与已知差异
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # 必须是 N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # 必须是 N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` 以原实现调用方的调用方式，在构建好的 Rust 模块上回放 `cases.jsonl`，并列出不一致之处。不一致就是行为差异：要修的是移植版，而不是录制结果。

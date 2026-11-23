@@ -37,7 +37,7 @@ Encontrado por casos registados em código real:
 
 Por chamada, uma migração paga a bridge todas as vezes, e o V8 executa funções pequenas em nanossegundos. O vercel/ms correu a 0.56x por chamada sobre os seus casos registados; as migrações do core do x18n são mais lentas do que o TS quando chamadas a partir de JS. Em lotes, o ciclo passa para Rust:
 
-| Carga de trabalho | Original | Com rust-anything |
+| Carga de trabalho | Original | Com everything-rust |
 | --- | ---: | ---: |
 | Pesquisa na barra lateral do x18n, 50,000 chaves (Node) | 10 ms por consulta | 0.5 ms: 20x mais rápido |
 | A mesma pesquisa no navegador (wasm, uma thread) | 10 ms | 0.95 ms: 11.5x |

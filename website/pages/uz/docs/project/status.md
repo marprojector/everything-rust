@@ -1,6 +1,6 @@
 ---
 title: Holat
-description: rust-anything'da bugun nimalar ishlaydi va har bir qism oxirgi marta qanday tekshirilgan.
+description: everything-rust'da bugun nimalar ishlaydi va har bir qism oxirgi marta qanday tekshirilgan.
 ---
 
 # Holat
@@ -15,7 +15,7 @@ haqiqiy loyihada ishga tushirilmagan. **Preview**: tavsiflanganidek, jarayonning
 
 | Til | Holat | Oxirgi haqiqiy ishga tushirish | Natija |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Tekshirilgan | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'ning `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 va `js-format-rs` 1,279/1,279, gate ikkalasida ham o'tadi; json-server: oltita birlik, 3,399 holat, gate har birida o'tadi; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 va 9,000+ holat mos keladi |
+| TypeScript/JavaScript | Tekshirilgan | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'ning `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 va `js-format-rs` 1,279/1,279, gate ikkalasida ham o'tadi; json-server: oltita birlik, 3,399 holat, gate har birida o'tadi; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 va 9,000+ holat mos keladi |
 | Python | Tekshirilgan | CPython 3.13'dagi `colorsys.py` (2026-11-16) | 2,400/2,400; gate o'tadi |
 | Go | Tekshirilgan | Go 1.24'dagi `path` (2026-11-16) | 2,642/2,642; gate o'tadi |
 | Ruby | Tekshirilgan | Ruby 3.3'dagi `shellwords.rb` (2026-11-16) | 1,617/1,617; gate o'tadi |

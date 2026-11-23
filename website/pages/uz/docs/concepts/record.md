@@ -6,9 +6,9 @@ description: record asl nusxani generatsiya qilingan chegaraviy holatlar, semant
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # yoki: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # yoki: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` asl funksiyalarni ishga tushiradi va har biri nima qaytarishi yoki qanday xato tashlashini crate yonidagi `cases.jsonl` ga saqlaydi: port mos kelishi shart bo'lgan xatti-harakat. Keyinchalik nomuvofiqlik xatti-harakatdagi farqdir: portni tuzating, hech qachon yozuvni emas.

@@ -9,11 +9,11 @@ description: 같은 명령으로 HTTP 서버도 증명합니다. --http, --fresh
 `PORT`나 명령 안의 `{port}`에서 가져옵니다(항상 같은 포트에서 대기하는 서버에는 `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: 모든 라우트를 프록시
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: 모든 라우트를 프록시
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - 요청은 앱 문서의 `curl` 줄(`curl -X POST -d ... http://localhost:8080/x`),

@@ -13,7 +13,7 @@ description: 型付き cgo 呼び出しと自動生成のバイナリワイヤ�
 | 必要なもの | Go 1.21+ |
 | ステータス | Go 1.24 の `path` で検証済み: 2,642/2,642（542 件は Go 自身のテストテーブルから）、gate に合格 |
 
-`profile` は `go test` 経由で動作します: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`。バッチは `NewFnBatch(items)` です。使い終わったら閉じてください。
+`profile` は `go test` 経由で動作します: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`。バッチは `NewFnBatch(items)` です。使い終わったら閉じてください。
 
 ## 移植版が正しく扱うべきこと
 

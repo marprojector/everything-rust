@@ -20,7 +20,7 @@ description: 타입이 있는 JNI와 생성된 바이너리 와이어를 통해,
 - `Integer.parseInt`는 `Character.digit`을 통해 모든 유니코드 십진 숫자(`١٢`, `２`)를 받아들입니다.
 - `Double.toString`(JDK 19+)은 가장 짧은 십진수를 출력하지만 두 자리보다 적게 출력하지는 않습니다: `4.9E-324`이며, Rust의 가장 짧은 형식은 `5e-324`입니다.
 - `\s`는 ASCII만 해당합니다. Rust의 `split_whitespace`는 U+00A0에서도 나눕니다.
-- 부동소수점 값은 왕복 변환을 거쳐도 유지되어야 합니다. `serde_json`의 기본 부동소수점 파서는 항상 정확히 반올림하지는 않으므로, rust-anything과 rust-anything이 생성하는 모든 crate는 `float_roundtrip` 기능을 사용합니다.
+- 부동소수점 값은 왕복 변환을 거쳐도 유지되어야 합니다. `serde_json`의 기본 부동소수점 파서는 항상 정확히 반올림하지는 않으므로, everything-rust과 everything-rust이 생성하는 모든 crate는 `float_roundtrip` 기능을 사용합니다.
 
 ## 속도
 

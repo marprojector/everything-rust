@@ -1,5 +1,5 @@
 //! The cases recorded from the original (`cases.jsonl`), run on the port directly: what
-//! `rust-anything diff` checked through the bindings before the lift. They ran in a folder whose
+//! `everything-rust diff` checked through the bindings before the lift. They ran in a folder whose
 //! `public/test.html` the app serves, so the test makes one.
 
 use json_server_js::json;

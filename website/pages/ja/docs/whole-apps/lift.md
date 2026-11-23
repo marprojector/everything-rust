@@ -8,7 +8,7 @@ description: app lift は、リプレイがフォールバック率 0 で合格�
 リプレイがフォールバック率 0 で合格し、すべてのユニットが gate に合格したら、純粋な Rust アプリにします:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` は両方の条件が満たされるまで拒否し、何が妨げているかを示します: まだフォールバックしているケース、まだスタブのままのグルーコード、gate に失敗しているユニットです。

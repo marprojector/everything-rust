@@ -9,11 +9,11 @@ description: 同じコマンドで HTTP サーバーも証明できます。--ht
 `PORT` またはコマンド内の `{port}` から取得します（常に同じポートで待ち受けるサーバーには `--port`）:
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: すべてのルートをプロキシ
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: すべてのルートをプロキシ
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - リクエストは、アプリのドキュメントにある `curl` の行（`curl -X POST -d ... http://localhost:8080/x`）、

@@ -6,7 +6,7 @@ body:
     id: problem
     attributes:
       label: What you're trying to do
-      description: The port or workflow you have in mind, and where rust-anything gets in the way today.
+      description: The port or workflow you have in mind, and where everything-rust gets in the way today.
     validations:
       required: true
   - type: textarea

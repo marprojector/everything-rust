@@ -9,11 +9,11 @@ description: Сол командалар HTTP серверлерін дәлел�
 портын `PORT` айнымалысынан немесе командадағы `{port}` ішінен алады (әрқашан бір портты тыңдайтын сервер үшін `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: әр маршрут прокси арқылы
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: әр маршрут прокси арқылы
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Сұраныстар қолданба құжаттамасындағы `curl` жолдарынан (`curl -X POST -d ... http://localhost:8080/x`),

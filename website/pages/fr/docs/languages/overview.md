@@ -30,7 +30,7 @@ comme des nombres.
 PHP est en préversion : `analyze` planifie une application PHP (packages Composer et autoload PSR-4, risques
 comme la comparaison souple et le dépassement d'entier vers les flottants, packages Composer mis en correspondance avec des crates),
 et une CLI ou un serveur PHP peut être enregistré, rejoué et placé derrière une porte d'entrée Rust. Porter ses
-unités en Rust via le FFI de PHP est la prochaine étape ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+unités en Rust via le FFI de PHP est la prochaine étape ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# est en préversion de la même manière : `analyze` lit les projets `.csproj` et leurs packages NuGet
 (mis en correspondance avec des crates), résout les directives `using` en dossiers, et signale ce que C# fait différemment

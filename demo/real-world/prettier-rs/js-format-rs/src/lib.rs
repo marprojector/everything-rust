@@ -1,5 +1,5 @@
-//! JS bindings for `src/index.js`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! JS bindings for `src/index.js`: generated from the signatures in `port.rs` by everything-rust.
+//! Regenerate with `everything-rust refresh` after changing them.
 
 use napi_derive::napi;
 

@@ -1,9 +1,9 @@
 //! C ABI for `oneshot_md5.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
 
     /// A `const` byte pointer and its length as a slice; empty for `NULL` or a zero length.
     pub(super) fn bytes<'a>(ptr: *const u8, len: usize) -> &'a [u8] {
@@ -45,22 +45,22 @@ pub extern "C" fn oneshot_md5(
     chunk: std::ffi::c_int,
 ) -> std::ffi::c_int {
     port::oneshot_md5(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(dst_size),
+            crate::__everything_rust_c_abi::len(dst_size),
         ),
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             src.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
         chunk,
     )
 }
 
-/// `oneshot_md5` as `rust_anything_oneshot_md5`, for shadow builds beside the original.
+/// `oneshot_md5` as `everything_rust_oneshot_md5`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_oneshot_md5(
+pub extern "C" fn everything_rust_oneshot_md5(
     dst: *mut u8,
     dst_size: std::ffi::c_int,
     src: *const u8,
@@ -68,13 +68,13 @@ pub extern "C" fn rust_anything_oneshot_md5(
     chunk: std::ffi::c_int,
 ) -> std::ffi::c_int {
     port::oneshot_md5(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(dst_size),
+            crate::__everything_rust_c_abi::len(dst_size),
         ),
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             src.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
         chunk,
     )

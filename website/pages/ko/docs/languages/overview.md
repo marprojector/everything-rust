@@ -30,7 +30,7 @@ Rust 안에 머물고, 각 호출은 모든 코어에서 전체 항목을 처리
 PHP는 프리뷰 단계입니다: `analyze`는 PHP 앱을 계획하고(Composer 패키지와 PSR-4 오토로딩, 느슨한
 비교나 정수가 부동소수점으로 넘치는 것 같은 위험 요소, crate로 매핑된 Composer 패키지),
 PHP CLI나 서버를 기록하고 재생하며 Rust 프런트 도어 뒤에 둘 수 있습니다. PHP의 FFI를 통해
-유닛을 Rust로 포팅하는 것이 다음 단계입니다([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+유닛을 Rust로 포팅하는 것이 다음 단계입니다([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C#도 같은 방식으로 프리뷰 단계입니다: `analyze`는 `.csproj` 프로젝트와 NuGet 패키지
 (crate로 매핑)를 읽고, `using` 지시문을 폴더로 해석하며, C#이 다르게 동작하는 부분을 표시합니다

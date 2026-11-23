@@ -8,10 +8,10 @@ description: app front-door 在原实现前面放一个 Rust 二进制；当某�
 先把入口点迁到 Rust，然后一次一个单元地把命令交给它：
 
 ```sh
-rust-anything app front-door .                            # rust/app：每条命令都运行原实现
-rust-anything app wire . textkit --command upper          # 在 textkit-rs 通过 gate 之后
+everything-rust app front-door .                            # rust/app：每条命令都运行原实现
+everything-rust app wire . textkit --command upper          # 在 textkit-rs 通过 gate 之后
 # 在 rust/app/src/units/textkit.rs 中编写胶水代码，然后：
-rust-anything app wire . textkit                          # 再次 100% 通过，回退率降低
+everything-rust app wire . textkit                          # 再次 100% 通过，回退率降低
 ```
 
 ## 前门
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 再次 100% 通过�
 3. 只生成一次 `src/units/<unit>.rs`，由你或你的智能体填写：解析参数，调用 `<crate>::port`，打印与原实现相同的内容；
 4. 把命令路由过去，然后构建并回放。
 
-写好胶水代码后再运行一次：100% 通过，回退率降低。在收口之前，`RUST_ANYTHING_UNIT_<NAME>=original` 可以把已接入的单元切回原实现。
+写好胶水代码后再运行一次：100% 通过，回退率降低。在收口之前，`EVERYTHING_RUST_UNIT_<NAME>=original` 可以把已接入的单元切回原实现。
 
 对于没有指定命令的 argv（没有参数、未知命令、用法错误），可以把应用自身的名称作为命令接入（`--command mytool`）。
 

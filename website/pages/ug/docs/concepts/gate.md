@@ -6,7 +6,7 @@ description: gate كۆچۈرۈشنىڭ تاماملانغانلىقىنىڭ ئې
 # دەرۋازا
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 تامام دېگەن `gate` نىڭ ئۆتۈشى. ئۇ تەكشۈرىدىغانلار:

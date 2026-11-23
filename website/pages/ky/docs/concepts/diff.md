@@ -6,9 +6,9 @@ description: diff ар бир жазылган кейсти Rust'ка каршы
 # Diff жана белгилүү айырмалар
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # must be N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # must be N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` файлын курулган Rust модулуна каршы, түп нусканын чакыруучулары аны кантип чакырса ошондой чакырып, кайра ойнотот жана дал келбестиктерди тизмектейт. Дал келбестик жүрүм-турумдагы айырма: портту оңдоңуз, жазууну эч качан оңдобоңуз.

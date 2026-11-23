@@ -1,0 +1,36 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<an ESLint 10.15.0 checkout with wrappers/eslint-stdin.js; see ../README.md>",
+  "unit": "wrappers/eslint-stdin.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "eslint-stdin-rs",
+  "exports": [
+    {
+      "name": "lintStdin",
+      "file": "wrappers/eslint-stdin.js",
+      "line": 13,
+      "params": [
+        {
+          "name": "args",
+          "ts_type": "string[]",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "text",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<string>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

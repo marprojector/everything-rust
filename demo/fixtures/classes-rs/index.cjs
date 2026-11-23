@@ -1,4 +1,4 @@
-// Loads the wasm-bindgen (nodejs target) output built by `rust-anything build`.
+// Loads the wasm-bindgen (nodejs target) output built by `everything-rust build`.
 const native = require('./pkg/stats_rs.js')
 
 // Structured values cross as JSON text. JSON has no `undefined`, NaN or -0, and Rust strings no

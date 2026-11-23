@@ -9,7 +9,7 @@ description: Başdan-başa port edilmiş ilk bütöv tətbiq. Node serverinin ca
 1.0.0-beta.15) JSON faylından REST API təqdim edir: Node, tinyhttp və lowdb. Bu, bütöv tətbiq axını
 (`app record`, `front-door`, `wire`, `lift`) ilə başdan-başa port edilmiş ilk bütöv tətbiqdir:
 nəticə Node serverinin cavab verdiyini cavablandıran bir Rust binary-sidir. Hər şey
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs)-dədir.
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs)-dədir.
 
 | Addım | Nəticə |
 | --- | --- |
@@ -53,7 +53,7 @@ Benchmark: Apple M4 (10 nüvə, 16 GB), macOS 27.3, `tsc`-nin npm üçün qurdu�
 Node 24.15.0, `--release` ilə qurulmuş Rust binary-si. Hər ikisi loopback üzərində eyni verilənlər bazasının
 surətini təqdim edir; `ab -k` isinmədən sonra eyni sorğuları göndərir, hər sətir üçün 20,000 (böyük
 verilənlər bazasında yavaş embed üçün 40). İki işləmə, hər biri 1 dəqiqəlik orta yük 3-dən aşağı olanda başladılıb;
-xanalar saniyədə sorğu ilə 1-ci işləmə / 2-ci işləməni göstərir. Skript [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)-dir.
+xanalar saniyədə sorğu ilə 1-ci işləmə / 2-ci işləməni göstərir. Skript [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)-dir.
 
 Fixture verilənlər bazası (6 post, 3 şərh):
 

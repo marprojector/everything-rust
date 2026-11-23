@@ -6,9 +6,9 @@ description: diff は記録されたすべてのケースを Rust に対して�
 # 差分と既知の差分
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N でなければならない
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N でなければならない
+everything-rust diff <crate> --json
 ```
 
 `diff` は `cases.jsonl` を、ビルドした Rust モジュールに対して、元の実装の呼び出し元と同じ呼び方でリプレイし、不一致を一覧表示します。不一致は挙動の違いです: 直すのは移植版であり、記録ではありません。

@@ -17,8 +17,8 @@
     "closeMenu": "メニューを閉じる",
     "menu": "メニュー",
     "language": "言語",
-    "home": "rust-anything ホーム",
-    "github": "GitHub の rust-anything",
+    "home": "everything-rust ホーム",
+    "github": "GitHub の everything-rust",
     "onThisPage": "このページの内容",
     "editPage": "GitHub でこのページを編集",
     "previous": "前へ",
@@ -54,7 +54,7 @@
       "project": "プロジェクト"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything とは",
+      "/docs/introduction/what-is-everything-rust": "everything-rust とは",
       "/docs/introduction/quick-start": "クイックスタート",
       "/docs/introduction/install": "インストール",
       "/docs/introduction/agents": "エージェントの設定",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "アプリを Rust で書き直す。",
     "title2": "同じ挙動であることを証明する。",
-    "sub": "rust-anything はコードの挙動を記録し、記録したすべてのケースを Rust の移植版に対してリプレイします。Rust を書くのはエージェントです。出力が一致するまで何も出荷されません。",
+    "sub": "everything-rust はコードの挙動を記録し、記録したすべてのケースを Rust の移植版に対してリプレイします。Rust を書くのはエージェントです。出力が一致するまで何も出荷されません。",
     "cta": "クイックスタートを読む",
     "source": "GitHub のソースコード",
     "sourceLanguage": "移植元の言語",
@@ -138,10 +138,10 @@
     "installTitle": "インストール",
     "installDesc": "CLI をインストールし、MCP サーバーとワークフロースキルを Claude Code、Codex、Cursor、Gemini CLI に登録します。",
     "installNote": "macOS、Linux、Windows 向けのビルド済みバイナリは各 [GitHub リリース]({releases}) にあります。",
-    "agentPrompt": "rust-anything をインストールして: `cargo install rust-anything` を実行し、次に `rust-anything setup` を実行してください。",
+    "agentPrompt": "everything-rust をインストールして: `cargo install everything-rust` を実行し、次に `everything-rust setup` を実行してください。",
     "agentRestart": "再起動が必要なタイミングを教えてください。",
     "loopTitle": "移植はこうして完了する",
-    "loopDesc": "元の実装が常に正解の基準です。rust-anything はコードを翻訳しません。エージェントが推測できない情報と、移植の完了を判定するゲートを提供します。",
+    "loopDesc": "元の実装が常に正解の基準です。everything-rust はコードを翻訳しません。エージェントが推測できない情報と、移植の完了を判定するゲートを提供します。",
     "steps": [
       {
         "title": "記録",
@@ -272,7 +272,7 @@
       "csharp": "アプリ全体の記録とリプレイ。ユニットのブリッジは次に対応予定"
     },
     "sponsorsTitle": "スポンサー",
-    "sponsorsDesc": "rust-anything は無料のオープンソースです。お役に立ちましたら、ぜひスポンサーをご検討ください。皆様のご支援が開発を支えます。",
+    "sponsorsDesc": "everything-rust は無料のオープンソースです。お役に立ちましたら、ぜひスポンサーをご検討ください。皆様のご支援が開発を支えます。",
     "companySponsor": "企業スポンサー",
     "becomeSponsor": "スポンサーになる"
   }

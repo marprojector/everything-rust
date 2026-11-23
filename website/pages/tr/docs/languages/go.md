@@ -13,7 +13,7 @@ description: Bir Go paketini, orijinal API'ye sahip bir pakette tipli cgo çağr
 | Gerekenler | Go 1.21+ |
 | Durum | Go 1.24'ün `path` paketi üzerinde doğrulandı: 2,642/2,642 (542'si Go'nun kendi test tablolarından), gate geçiyor |
 
-`profile`, `go test` üzerinden çalışır: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batch'ler `NewFnBatch(items)` şeklindedir; işiniz bittiğinde onları kapatın.
+`profile`, `go test` üzerinden çalışır: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batch'ler `NewFnBatch(items)` şeklindedir; işiniz bittiğinde onları kapatın.
 
 ## Bir portun doğru yapması gerekenler
 

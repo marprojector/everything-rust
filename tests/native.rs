@@ -6,12 +6,12 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge::{self, Kind};
-use rust_anything::harness::{self, DiffOptions, RecordOptions};
+use everything_rust::bridge::{self, Kind};
+use everything_rust::harness::{self, DiffOptions, RecordOptions};
 
 fn project(name: &str, files: &[(&str, &str)]) -> PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-native-{name}-{}",
+        "everything-rust-native-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -87,7 +87,7 @@ fn round_trip(root: &Path, unit: &str, kind: Kind, name: &str, body: &str) {
     })
     .unwrap_err();
     assert!(
-        format!("{stale:#}").contains("rust-anything build"),
+        format!("{stale:#}").contains("everything-rust build"),
         "{stale:#}"
     );
     std::fs::remove_dir_all(root).unwrap();
@@ -151,7 +151,7 @@ fn stubs_fail(root: &Path, unit: &str, kind: Option<Kind>, program: &str) {
         return;
     }
     let dir = std::env::temp_dir().join(format!(
-        "rust-anything-stubs-{}-{}",
+        "everything-rust-stubs-{}-{}",
         root.file_name().unwrap().to_string_lossy(),
         std::process::id()
     ));
@@ -547,7 +547,7 @@ fn cli_entry_points_stay_in_python() {
         ],
     );
     let outcome = bridge_python(&root, "tool/").unwrap();
-    let manifest = rust_anything::bridge::Manifest::load(&outcome.crate_dir).unwrap();
+    let manifest = everything_rust::bridge::Manifest::load(&outcome.crate_dir).unwrap();
     std::fs::remove_dir_all(&root).unwrap();
     assert_eq!(outcome.exports, ["shout"]);
     let kept: Vec<&str> = manifest.js_only.iter().map(|j| j.name.as_str()).collect();
@@ -633,7 +633,7 @@ fn one_file_of_a_unit_can_be_bridged_alone() {
     );
     let outcome = bridge_python(&root, "pkg/core.py").unwrap();
     assert_eq!(outcome.exports, ["score"]);
-    let manifest = rust_anything::bridge::Manifest::load(&outcome.crate_dir).unwrap();
+    let manifest = everything_rust::bridge::Manifest::load(&outcome.crate_dir).unwrap();
     assert_eq!(manifest.unit, "pkg/core.py");
     let recorded = harness::record(&RecordOptions {
         crate_dir: &outcome.crate_dir,

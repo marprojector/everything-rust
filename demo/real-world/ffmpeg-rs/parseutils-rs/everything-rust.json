@@ -1,0 +1,132 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the ffmpeg tree scripts/prepare.sh assembles; see README.md>",
+  "unit": "parseutils.c",
+  "language": "c",
+  "kind": "c-abi",
+  "crate_name": "parseutils-rs",
+  "exports": [
+    {
+      "name": "av_parse_video_size",
+      "file": "parseutils.c",
+      "line": 150,
+      "params": [
+        {
+          "name": "width_ptr",
+          "ts_type": "out",
+          "optional": false,
+          "rest": false,
+          "native_type": "int*"
+        },
+        {
+          "name": "height_ptr",
+          "ts_type": "out",
+          "optional": false,
+          "rest": false,
+          "native_type": "int*"
+        },
+        {
+          "name": "str",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false,
+          "native_type": "const char*"
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "int",
+      "prototype": "int av_parse_video_size(int *width_ptr, int *height_ptr, const char *str)"
+    },
+    {
+      "name": "av_find_info_tag",
+      "file": "parseutils.c",
+      "line": 753,
+      "params": [
+        {
+          "name": "arg",
+          "ts_type": "buffer",
+          "optional": false,
+          "rest": false,
+          "native_type": "char*"
+        },
+        {
+          "name": "arg_size",
+          "ts_type": "len:0",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        },
+        {
+          "name": "tag1",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false,
+          "native_type": "const char*"
+        },
+        {
+          "name": "info",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false,
+          "native_type": "const char*"
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "int",
+      "prototype": "int av_find_info_tag(char *arg, int arg_size, const char *tag1, const char *info)"
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "av_parse_ratio",
+      "file": "parseutils.c",
+      "line": 45,
+      "reason": "passes a pointer (`AVRational*`): ownership must be designed"
+    },
+    {
+      "name": "av_parse_video_rate",
+      "file": "parseutils.c",
+      "line": 181,
+      "reason": "passes a pointer (`AVRational*`): ownership must be designed"
+    },
+    {
+      "name": "av_parse_color",
+      "file": "parseutils.c",
+      "line": 356,
+      "reason": "writes to a buffer (`void*`) whose size is not a parameter"
+    },
+    {
+      "name": "av_get_known_color_name",
+      "file": "parseutils.c",
+      "line": 436,
+      "reason": "passes a pointer (`const uint8_t**`): ownership must be designed"
+    },
+    {
+      "name": "av_small_strptime",
+      "file": "parseutils.c",
+      "line": 491,
+      "reason": "passes a pointer (`struct tm*`): ownership must be designed"
+    },
+    {
+      "name": "av_timegm",
+      "file": "parseutils.c",
+      "line": 570,
+      "reason": "passes a pointer (`struct tm*`): ownership must be designed"
+    },
+    {
+      "name": "av_parse_time",
+      "file": "parseutils.c",
+      "line": 589,
+      "reason": "kept on request"
+    }
+  ]
+}

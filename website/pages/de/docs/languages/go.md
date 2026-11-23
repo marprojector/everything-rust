@@ -13,7 +13,7 @@ description: Portiere ein Go-Package nach Rust, über typisierte cgo-Aufrufe und
 | Braucht | Go 1.21+ |
 | Status | Verifiziert mit `path` aus Go 1.24: 2,642/2,642 (542 aus Gos eigenen Testtabellen), gate besteht |
 
-`profile` arbeitet über `go test`: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batches sind `NewFnBatch(items)`; schließe sie, wenn du fertig bist.
+`profile` arbeitet über `go test`: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batches sind `NewFnBatch(items)`; schließe sie, wenn du fertig bist.
 
 ## Was eine Portierung richtig machen muss
 

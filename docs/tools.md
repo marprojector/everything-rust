@@ -4,7 +4,7 @@ Generated from the MCP server's tool list by `tests/tools.rs`; do not edit by ha
 
 ## Analyze repository
 
-Tool `analyze` · CLI `rust-anything analyze`
+Tool `analyze` · CLI `everything-rust analyze`
 
 Map a repository (TypeScript/JavaScript, Python, C, Go, Ruby, Java or Kotlin): units, port order (waves), risks with file:line, bridge per unit, dependency-to-crate fit, and `start_here`: the best first ports.
 
@@ -18,7 +18,7 @@ Read-only.
 
 ## Scaffold unit crate
 
-Tool `bridge` · CLI `rust-anything bridge`
+Tool `bridge` · CLI `everything-rust bridge`
 
 Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.rs, stubs to port in src/port.rs, UTF-16 helpers when the unit uses string offsets. Never overwrites an existing folder.
 
@@ -37,18 +37,18 @@ Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.
 
 ## Regenerate bindings
 
-Tool `refresh` · CLI `rust-anything refresh`
+Tool `refresh` · CLI `everything-rust refresh`
 
 Regenerate a crate's bindings (lib.rs, index.cjs, js.rs) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `batch` | string[] |  | Batch classes to add, `function:param`: the function runs over many `param` values kept in Rust, on all cores, in one call. A `<Function>Index` struct in port.rs replaces the default per-item loop. |
 
 ## Record original behavior
 
-Tool `record` · CLI `rust-anything record`
+Tool `record` · CLI `everything-rust record`
 
 Run the original functions on generated edge-case inputs (non-ASCII, emoji, -0, NaN, ...) plus optional extra inputs, and save the results as cases.jsonl: the behavior the port must match.
 
@@ -56,7 +56,7 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `count` | integer |  | Generated cases per function (default 200). |
 | `inputs` | string |  | JSONL file of extra cases: {"fn": name, "args": [...]}. |
 | `module` | string |  | JS only: import the original from this JS module instead of the TS source. |
@@ -70,7 +70,7 @@ Runs the original's code or commands.
 
 ## Build crate
 
-Tool `build` · CLI `rust-anything build`
+Tool `build` · CLI `everything-rust build`
 
 Build the crate: the napi-rs .node, wasm-bindgen output, Python extension or shared library. With `profile: "android"`, build the JNI library for Android ABIs into `jniLibs/` (needs the NDK and the Rust Android targets; returned as {ndk, api, libraries} instead of {artifact}).
 
@@ -78,7 +78,7 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `profile` | string |  | Build for this machine (default) or for Android. |
 | `abi` | string[] |  | Android ABIs; defaults to arm64-v8a, armeabi-v7a and x86_64. |
 | `api` | integer |  | Android API level (at least 26; default 26). |
@@ -87,7 +87,7 @@ Runs the original's code or commands.
 
 ## Diff port against recording
 
-Tool `diff` · CLI `rust-anything diff`
+Tool `diff` · CLI `everything-rust diff`
 
 Replay cases.jsonl against the built Rust module and list mismatches. With `profile: "android"`, replay on the device against the .so built for its ABI.
 
@@ -95,7 +95,7 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `profile` | string |  | Diff on this machine (default) or on a connected Android device (JVM crates). |
 | `device` | string |  | Android device serial; picked automatically when only one is connected. |
 | `jni_libs` | string |  | Android libraries folder to diff; defaults to <crate>/jniLibs. |
@@ -106,7 +106,7 @@ Runs the original's code or commands.
 
 ## Profile workload
 
-Tool `profile` · CLI `rust-anything profile`
+Tool `profile` · CLI `everything-rust profile`
 
 Run a real workload (a command: node or python3 script, `go test -bench`, java, ruby) under the language's profiler and rank the repository's hot functions by inclusive time, with their callers, call counts and advice: what to port together, and which loops to batch (`bridge` with `batch`). Profile before porting: leaf functions called one at a time are slower in Rust.
 
@@ -120,7 +120,7 @@ Runs the original's code or commands.
 
 ## Port the hot path end to end
 
-Tool `go` · CLI `rust-anything go`
+Tool `go` · CLI `everything-rust go`
 
 The hot-path loop in one call: profile the workload, pick the top portable function (the outermost loop; batched where profile says so), bridge it into rust/<function>-rs, record generated cases plus the calls the workload makes, write TASK.md, hand the port to `agent` (claude, codex, or a command reading the prompt on stdin), then build, diff and gate, and switch the unit on with `enable` only when every case matches, gate passes and `bench` shows it is not slower as its callers call it. Without `agent` it stops at `waiting_for_port`: port src/port.rs as TASK.md says and call go again; finished steps are kept. Returns the stage (waiting_for_port, mismatch, gate_failed, slower, on, passed), the speedup, the pick, the steps and what to do next.
 
@@ -138,28 +138,28 @@ Runs the original's code or commands.
 
 ## Switch a unit on
 
-Tool `enable` · CLI `rust-anything enable`
+Tool `enable` · CLI `everything-rust enable`
 
-Switch a ported TS/JS or Python unit on: one marked block in each original source file rebinds the unit's functions to the built Rust module, for every caller, with no import changed. RUST_ANYTHING_MODE=old or RUST_ANYTHING_UNIT_<NAME>=original runs the original for one run. Refuses while recorded cases differ unless `force`.
+Switch a ported TS/JS or Python unit on: one marked block in each original source file rebinds the unit's functions to the built Rust module, for every caller, with no import changed. EVERYTHING_RUST_MODE=old or EVERYTHING_RUST_UNIT_<NAME>=original runs the original for one run. Refuses while recorded cases differ unless `force`.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `force` | boolean |  |  |
 
 ## Switch a unit off
 
-Tool `disable` · CLI `rust-anything disable`
+Tool `disable` · CLI `everything-rust disable`
 
 Switch a unit off: removes exactly the lines enable added, leaving the source files byte for byte as they were.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 
 ## Write a report card
 
-Tool `report` · CLI `rust-anything report`
+Tool `report` · CLI `everything-rust report`
 
 Write <crate>/report/REPORT.md and card.svg for a pull request or README: the unit, recorded cases matched (diff), speedup call included (bench), fallback rate, on or off, and the machine with its core count. Builds first; every number comes from this run.
 
@@ -167,14 +167,14 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `out` | string |  | Output folder; defaults to <crate>/report. |
 | `min_ms` | integer |  | Minimum measured time per function and side, in milliseconds (default 200). |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
 
 ## Benchmark port
 
-Tool `bench` · CLI `rust-anything bench`
+Tool `bench` · CLI `everything-rust bench`
 
 Time the recorded cases on the original and on the built Rust module, bridge included; speedup below 1 means the port is slower as its callers call it. Returns the rows and a verdict with advice: ship, keep the slower functions, or port a bigger unit.
 
@@ -182,14 +182,14 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `resolve_from` | string |  |  |
 | `min_ms` | integer |  | Minimum measured time per function and side, in milliseconds (default 200). |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
 
 ## Fuzz port against original
 
-Tool `fuzz` · CLI `rust-anything fuzz`
+Tool `fuzz` · CLI `everything-rust fuzz`
 
 Live differential test: generate fresh inputs from a new seed (the record generator, without the cases already recorded), run them through the original and the built port, and report mismatches the recording missed. Returns the seed to replay, counts and the first mismatches; `keep` appends mismatching (or all) fresh cases to cases.jsonl so the next diff and gate check them. Works wherever record and diff do on this machine (TS/JS, Python, C, Go, Ruby, Java, Kotlin).
 
@@ -197,7 +197,7 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `cases` | integer |  | Fresh cases per function (and scenarios per class) in each round (default 200). |
 | `seed` | integer |  | Seed of the first round; random when omitted (returned as `seed`). Later rounds count up from it. |
 | `time` | number |  | Keep running new rounds until this many seconds have passed; one round when omitted. |
@@ -207,20 +207,20 @@ Runs the original's code or commands.
 
 ## Generate shadow module
 
-Tool `shadow` · CLI `rust-anything shadow`
+Tool `shadow` · CLI `everything-rust shadow`
 
-Generate a drop-in shadow (a TS or Python module, Go package, Ruby file, Java classes or C file) that runs the original and the Rust port side by side and reports mismatches; RUST_ANYTHING_MODE=old|shadow|new switches at runtime.
+Generate a drop-in shadow (a TS or Python module, Go package, Ruby file, Java classes or C file) that runs the original and the Rust port side by side and reports mismatches; EVERYTHING_RUST_MODE=old|shadow|new switches at runtime.
 
 Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `out` | string |  |  |
 
 ## Map the port
 
-Tool `map` · CLI `rust-anything map`
+Tool `map` · CLI `everything-rust map`
 
 Port map of a repository: each unit of the original with the crate that ports it, its functions in Rust and kept in the original, its cases and last diff, the whole app's glue (Rust only, or still handing cases to the original), the units not ported yet in the order analyze suggests, and every port whose original changed since it was recorded (`changed_upstream`: re-record it and diff). Read-only; the CLI's `map --write` saves it as rust/PORT_MAP.md.
 
@@ -233,13 +233,13 @@ Read-only.
 
 ## Lay out packages
 
-Tool `package` · CLI `rust-anything package`
+Tool `package` · CLI `everything-rust package`
 
 Lay out installable packages for a gated port; writes files only, never builds other platforms or publishes. PyO3: a maturin project (abi3 wheel importable under the original module's name). CLI front door (`rust/app` of a Node CLI): a main npm package whose command runs `<name>-<platform>`'s front door binary, with the original pinned to its exact version as a dependency for every case the port hands back. napi: a main npm package whose loader picks `<name>-<platform>` from optionalDependencies and falls back to the original JS, one package per platform (this machine's binary copied in when built). wasm: one npm package with the built pkg/. PyO3 and napi also get a GitHub Actions workflow building macOS (arm64, x86_64), Linux (x86_64, aarch64) and Windows.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `name` | string |  | Package name on npm or PyPI; defaults to the crate name. |
 | `version` | string |  | Package version; defaults to the original package's. |
 | `out` | string |  | Output folder; defaults to <crate>/package. |
@@ -250,7 +250,7 @@ Lay out installable packages for a gated port; writes files only, never builds o
 
 ## Check definition of done
 
-Tool `gate` · CLI `rust-anything gate`
+Tool `gate` · CLI `everything-rust gate`
 
 Definition of done: fmt, clippy -D warnings, cargo test, unsafe with SAFETY comments only, no unimplemented functions, build, API present, recorded behavior matches.
 
@@ -258,12 +258,12 @@ Runs the original's code or commands.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `crate` | string | yes | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | yes | Folder of the generated crate (holds everything-rust.json). |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
 
 ## Record whole app
 
-Tool `app_record` · CLI `rust-anything app record`
+Tool `app_record` · CLI `everything-rust app record`
 
 Record the whole CLI app's behavior: run the original on its own documented examples, an inputs file and semantic traps (non-ASCII and emoji, negative division, overflow, float extremes, map order), twice each. What differs between runs is reported by kind in `noise`: values (now [..] wildcards), order (lines compared in any order) and lines (a ... that matches anything): show every one to the user. Cases are trycmd files in <repo>/rust/app-cases/ (argv, stdin, env, files in; stdout, stderr, exit code, files out).
 
@@ -280,7 +280,7 @@ Runs the original's code or commands.
 | `traps` | boolean |  | Add semantic-trap cases (default true). |
 | `http` | boolean |  | The app is a server: `run` starts it (it takes its port from PORT or {port}); cases are requests from curl lines in its docs, `inputs` ({"name", "method", "path", "headers", "body"}) and traps. |
 | `port` | integer |  | A port the server always listens on (implies http). |
-| `effects` | string[] |  | Record what leaves the process: "http" (a local sink set as HTTP_PROXY, http_proxy and RUST_ANYTHING_HTTP_SINK) and "smtp" (a local mail server, SMTP_HOST and SMTP_PORT). Each case stores what reached them, in order, and replay compares it. |
+| `effects` | string[] |  | Record what leaves the process: "http" (a local sink set as HTTP_PROXY, http_proxy and EVERYTHING_RUST_HTTP_SINK) and "smtp" (a local mail server, SMTP_HOST and SMTP_PORT). Each case stores what reached them, in order, and replay compares it. |
 | `effect_env` | string[] |  | Point the app's own settings at a sink: VAR=http-url, VAR=smtp-host, VAR=smtp-port or VAR=smtp-url. |
 | `db_reset` | string |  | Shell command that resets the database before each case (each start for servers); cases then run one at a time. |
 | `db_dump` | string |  | Shell command that prints the database's state (e.g. `sqlite3 app.db .dump`), run after each case or request and recorded with the effects. |
@@ -292,7 +292,7 @@ Runs the original's code or commands.
 
 ## Replay app cases
 
-Tool `app_replay` · CLI `rust-anything app replay`
+Tool `app_replay` · CLI `everything-rust app replay`
 
 Replay <repo>/rust/app-cases/ against a build (the original, the front door, the final Rust binary): passed/total, fallback rate when the build reports it, and a report with a diff per failing case (rust/app-cases/replay-report.md).
 
@@ -308,7 +308,7 @@ Runs the original's code or commands.
 
 ## Scaffold Rust front door
 
-Tool `app_front_door` · CLI `rust-anything app front-door`
+Tool `app_front_door` · CLI `everything-rust app front-door`
 
 Scaffold <repo>/rust/app, the Rust binary that owns the CLI's entry point: a clap parser for the recorded commands and flags, every command running the original with the same argv, stdin and env (each fallback counted). For a server: an axum app that starts the original on a port of its own and proxies every route no unit answers. Builds it and replays the cases: 100% passed at 100% fallback. Needs app_record first; never overwrites rust/app.
 
@@ -322,9 +322,9 @@ Runs the original's code or commands.
 
 ## Wire unit into app
 
-Tool `app_wire` · CLI `rust-anything app wire`
+Tool `app_wire` · CLI `everything-rust app wire`
 
-After a unit passes gate, hand its commands to its port.rs: adds the unit crate to rust/app as a library, writes a glue stub (src/units/<unit>.rs, yours to write: parse args, call <crate>::port, print what the original prints), regenerates the routing with a kill switch RUST_ANYTHING_UNIT_<NAME>=original, then builds and replays. Run it again after writing the glue: 100% passed and a lower fallback rate.
+After a unit passes gate, hand its commands to its port.rs: adds the unit crate to rust/app as a library, writes a glue stub (src/units/<unit>.rs, yours to write: parse args, call <crate>::port, print what the original prints), regenerates the routing with a kill switch EVERYTHING_RUST_UNIT_<NAME>=original, then builds and replays. Run it again after writing the glue: 100% passed and a lower fallback rate.
 
 Runs the original's code or commands.
 
@@ -339,7 +339,7 @@ Runs the original's code or commands.
 
 ## Lift to pure Rust app
 
-Tool `app_lift` · CLI `rust-anything app lift`
+Tool `app_lift` · CLI `everything-rust app lift`
 
 Make rust/app a pure Rust app. Refuses (and lists every blocker) unless replay passes with fallback rate 0 and every unit passes gate. Then, on a copy first: removes the fallback and kill switches, turns each unit into a plain library (no cdylib, bindings or generated wrappers), adds a trycmd test running rust/app-cases on cargo test, checks fmt/clippy/tests, DECISIONS.md targets and assets, and replays the pure binary. Never touches the original.
 

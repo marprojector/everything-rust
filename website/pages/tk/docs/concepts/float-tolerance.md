@@ -6,8 +6,8 @@ description: Sanly kod geçirilenden soň seýrek bitme-bit birmeňzeş float-la
 # Float rugsady
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Sanly kod (fizika, statistika, grafika) geçirilenden soň seýrek bitme-bit birmeňzeş float-lar berýär: amallaryň tertibi, fused multiply-add we matematika kitaphanasy kompilýatorlaryň arasynda tapawutlanýar. Muny kabul edýän bolsaňyz, `--float-tolerance` we öz sanyňyz bilen ýazga alyň. Şonda float-lar has uly bahanyň şol paýynyň çäginde gabat gelýär (1-den kiçi bahalarda absolýut), `diff` we `gate` hem ony ulanýar. `0` ony aýyrýar.

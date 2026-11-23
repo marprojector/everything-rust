@@ -8,10 +8,10 @@ description: app front-door түп нусканын алдына Rust бинар
 Адегенде кирүү чекитин Rust'ка көчүрүңүз, андан кийин ага буйруктарды бир убакта бир бирдиктен өткөрүп бериңиз:
 
 ```sh
-rust-anything app front-door .                            # rust/app: every command runs the original
-rust-anything app wire . textkit --command upper          # after textkit-rs passes gate
+everything-rust app front-door .                            # rust/app: every command runs the original
+everything-rust app wire . textkit --command upper          # after textkit-rs passes gate
 # write the glue in rust/app/src/units/textkit.rs, then:
-rust-anything app wire . textkit                          # 100% again, lower fallback rate
+everything-rust app wire . textkit                          # 100% again, lower fallback rate
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 100% again, lower fa
 3. `src/units/<unit>.rs` файлын бир жолу жазат, аны сиз же агентиңиз толтурасыз: аргументтерди талдоо, `<crate>::port` чакыруу, түп нуска эмне басып чыгарса ошону басып чыгаруу;
 4. буйруктарды ага багыттайт, андан кийин курат жана кайра ойнотот.
 
-Glue'ну жазгандан кийин аны кайра иштетиңиз: 100% passed жана төмөнкү fallback rate. `RUST_ANYTHING_UNIT_<NAME>=original` lift'ке чейин туташтырылган бирдикти түп нускага кайра жөнөтөт.
+Glue'ну жазгандан кийин аны кайра иштетиңиз: 100% passed жана төмөнкү fallback rate. `EVERYTHING_RUST_UNIT_<NAME>=original` lift'ке чейин туташтырылган бирдикти түп нускага кайра жөнөтөт.
 
 Эч бир буйрукту атабаган argv үчүн колдонмонун өзүнүн атын буйрук катары туташтырыңыз (`--command mytool`): аргументтер жок, белгисиз буйруктар, колдонуу каталары.
 

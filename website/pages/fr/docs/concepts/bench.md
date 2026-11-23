@@ -6,7 +6,7 @@ description: bench chronomètre les cas enregistrés sur l'original et sur le Ru
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` chronomètre les cas enregistrés sur l'original et sur le module Rust compilé, bridge compris, et renvoie les lignes de mesure et un verdict avec un conseil : livrer, garder les fonctions les plus lentes dans le langage source, ou porter une unité plus grande. Un gain inférieur à 1 signifie que le portage est plus lent tel que ses appelants l'appellent. `--min-ms` fixe le temps de mesure minimal par fonction et par côté (200 par défaut).
@@ -31,7 +31,7 @@ Mesuré par appel sur du code réel ([six langages](/docs/real-world/six-languag
 | Java | 0.18x | porter de plus grandes unités |
 | Go | 0.04x | porter de plus grandes unités |
 
-Les 29 fonctions du cœur de x18n qui peuvent être déplacées sans changer l'API ont été portées : chaque gate passe et 7,925 cas enregistrés correspondent exactement, et `bench` a montré que les portages sont plus lents que le TS lorsqu'ils sont appelés depuis JS, car le bridge coûte plus que le travail ([rapport](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms tournait à 0.56x par appel sur ses cas enregistrés ([étude de cas](/docs/real-world/vercel-ms)).
+Les 29 fonctions du cœur de x18n qui peuvent être déplacées sans changer l'API ont été portées : chaque gate passe et 7,925 cas enregistrés correspondent exactement, et `bench` a montré que les portages sont plus lents que le TS lorsqu'ils sont appelés depuis JS, car le bridge coûte plus que le travail ([rapport](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms tournait à 0.56x par appel sur ses cas enregistrés ([étude de cas](/docs/real-world/vercel-ms)).
 
 ## Ce qui gagne : déplacer la boucle
 

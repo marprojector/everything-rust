@@ -6,8 +6,8 @@ description: bridge bir birlik üçin Rust crate-ini binding-ler we wrapper bile
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # <repo>/rust/<name> içinde crate; hiç haçan üstünden ýazmaýar
-rust-anything refresh <crate>                  # port.rs içinde signatura üýtgedilenden soň
+everything-rust bridge <repo> <unit-id>          # <repo>/rust/<name> içinde crate; hiç haçan üstünden ýazmaýar
+everything-rust refresh <crate>                  # port.rs içinde signatura üýtgedilenden soň
 ```
 
 `bridge` binding-leri (`lib.rs`, üstesine çeşme diliniň ýükleýän wrapper-i) we geçirmek üçin stub-lary (`port.rs`) bolan crate döredýär. Porty diňe `src/port.rs` içinde ýazýarsyňyz; `src/lib.rs` we wrapper-ler döredilýär, `refresh` bolsa olary `port.rs` içindäki signaturalardan täzeden döredýär we islendik täze batch klaslaryny goşýar. Ol hiç haçan `port.rs`-e degmeýär.

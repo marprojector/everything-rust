@@ -4,8 +4,8 @@
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge;
-use rust_anything::harness::{self, RecordOptions};
+use everything_rust::bridge;
+use everything_rust::harness::{self, RecordOptions};
 
 fn runs(program: &str, args: &[&str]) -> Option<String> {
     let out = Command::new(program).args(args).output().ok()?;
@@ -20,7 +20,7 @@ fn sdk_ready() -> bool {
         .filter_map(std::env::var_os)
         .map(PathBuf::from)
         .collect();
-    candidates.extend(rust_anything::android::sdk_folders());
+    candidates.extend(everything_rust::android::sdk_folders());
     candidates.into_iter().any(|sdk| {
         let d8 = std::fs::read_dir(sdk.join("build-tools"))
             .ok()
@@ -58,7 +58,7 @@ fn records_a_kotlin_unit_on_a_connected_device() {
         return;
     }
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/kotlin");
-    let dir = std::env::temp_dir().join(format!("rust-anything-device-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-device-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let _cleanup = Cleanup(dir.clone());
     bridge::bridge(&bridge::Options {

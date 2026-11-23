@@ -8,9 +8,9 @@ description: app record tutuş programmany onuň resminamalaşdyrylan mysallaryn
 `record` we `diff` bir birligi subut edýär; `app record` we `app replay` bolsa programmany subut edýär, alty diliň islendiginde CLI-ler we serwerler üçin. Programma gara guty hökmünde seredilýär.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # asyl nusgany işledýän buýruk
-rust-anything app replay .                            # asyl nusga 100% geçmeli
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # asyl nusgany işledýän buýruk
+everything-rust app replay .                            # asyl nusga 100% geçmeli
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Ýagdaýlar nireden gelýär
@@ -40,7 +40,7 @@ Olary el bilen okaň we üýtgediň; portuň binar faýly bolandan soň Rust tes
 ## Gaýtadan işletmek
 
 - `app replay` islendik gurluşy ýagdaýlara garşy işledýär, `passed/total` çap edýär, şowsuz her ýagdaý üçin diff bilen `rust/app-cases/replay-report.md` ýazýar we islendik gabat gelmezlikde noldan tapawutly kod bilen çykýar.
-- [Front door](/docs/whole-apps/front-door) ýaly `RUST_ANYTHING_FALLBACK_LOG` bilen görkezilen faýla ýazgy goşýan gurluş (asyl nusga her fallback üçin bir setir) öz fallback paýyny hem habar berýär.
+- [Front door](/docs/whole-apps/front-door) ýaly `EVERYTHING_RUST_FALLBACK_LOG` bilen görkezilen faýla ýazgy goşýan gurluş (asyl nusga her fallback üçin bir setir) öz fallback paýyny hem habar berýär.
 - `app replay --case <name>` hasabatyň beren ady boýunça bir ýagdaýy täzeden işledýär: hemmesini ýene işletmezden öň gabat gelmezligi düzetmek üçin çalt we gaýtalanýan aýlaw.
 
 ## CI-de gaýtadan işletmek
@@ -48,7 +48,7 @@ Olary el bilen okaň we üýtgediň; portuň binar faýly bolandan soň Rust tes
 Hasabatda wagt ölçegleri ýa-da wagtlaýyn ýollar ýok: şol bir gurluşyň iki replay-i şol bir faýly ýazýar. Ony commit ediň, soňra CI-de işlediň:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

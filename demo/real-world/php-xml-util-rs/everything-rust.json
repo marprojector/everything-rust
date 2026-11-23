@@ -1,0 +1,201 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/",
+  "language": "php",
+  "kind": "ffi",
+  "crate_name": "xml-util-rs",
+  "exports": [
+    {
+      "name": "replace_entities",
+      "file": "src/xml_util.php",
+      "line": 12,
+      "params": [
+        {
+          "name": "string",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "replaceEntities",
+          "ts_type": "int",
+          "optional": true,
+          "rest": false,
+          "default": "1"
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\replace_entities(string $string, int $replaceEntities = 1)"
+    },
+    {
+      "name": "reverse_entities",
+      "file": "src/xml_util.php",
+      "line": 22,
+      "params": [
+        {
+          "name": "string",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "replaceEntities",
+          "ts_type": "int",
+          "optional": true,
+          "rest": false,
+          "default": "1"
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\reverse_entities(string $string, int $replaceEntities = 1)"
+    },
+    {
+      "name": "attributes_to_string",
+      "file": "src/xml_util.php",
+      "line": 31,
+      "params": [
+        {
+          "name": "attributes",
+          "ts_type": "unknown[] | Record<string, unknown>",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sort",
+          "ts_type": "boolean",
+          "optional": true,
+          "rest": false,
+          "default": "true"
+        },
+        {
+          "name": "multiline",
+          "ts_type": "boolean",
+          "optional": true,
+          "rest": false,
+          "default": "false"
+        },
+        {
+          "name": "indent",
+          "ts_type": "string",
+          "optional": true,
+          "rest": false,
+          "default": "'    '"
+        },
+        {
+          "name": "linebreak",
+          "ts_type": "string",
+          "optional": true,
+          "rest": false,
+          "default": "\"\\n\""
+        },
+        {
+          "name": "entities",
+          "ts_type": "int",
+          "optional": true,
+          "rest": false,
+          "default": "1"
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\attributes_to_string(\n    array $attributes,\n    bool $sort = true,\n    bool $multiline = false,\n    string $indent = '    ',\n    string $linebreak = \"\\n\",\n    int $entities = 1\n)"
+    },
+    {
+      "name": "split_qualified_name",
+      "file": "src/xml_util.php",
+      "line": 45,
+      "params": [
+        {
+          "name": "qname",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "defaultNs",
+          "ts_type": "string | undefined",
+          "optional": true,
+          "rest": false,
+          "default": "null"
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\split_qualified_name(string $qname, ?string $defaultNs = null)"
+    },
+    {
+      "name": "create_comment",
+      "file": "src/xml_util.php",
+      "line": 50,
+      "params": [
+        {
+          "name": "content",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\create_comment(string $content)"
+    },
+    {
+      "name": "create_cdata_section",
+      "file": "src/xml_util.php",
+      "line": 55,
+      "params": [
+        {
+          "name": "data",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\create_cdata_section(string $data)"
+    },
+    {
+      "name": "create_end_element",
+      "file": "src/xml_util.php",
+      "line": 60,
+      "params": [
+        {
+          "name": "qname",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "prototype": "XmlUtil\\create_end_element(string $qname)"
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

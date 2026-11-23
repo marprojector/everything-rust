@@ -9,11 +9,11 @@ description: كۇتۇپخانىنىڭ قايتا قويغىلى بولىدىغا
 ئەھۋاللىرى ئىسپات.
 
 ```sh
-rust-anything app front-door .        # rust/app: ئاممىۋى API سى بار بىر Rust crate
+everything-rust app front-door .        # rust/app: ئاممىۋى API سى بار بىر Rust crate
 # ھەر بىر بىرلىك ئايلانمىدىن ئۆتىدۇ: bridge، record، port.rs، build، diff، gate؛ ئاندىن:
-rust-anything app wire . textkit-rs   # rust/app تىن قايتا چىقىرىلىدۇ؛ ئەسلى نۇسخا ئۇنىڭ سايىسىنى import قىلىدۇ
-rust-anything app replay .            # ئۇلانغان ھەر بىر بىرلىكنىڭ ئەھۋاللىرى؛ زاپاس يول = تېخى ئەسلى نۇسخىدىكى چىقىرىشلار
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app تىن قايتا چىقىرىلىدۇ؛ ئەسلى نۇسخا ئۇنىڭ سايىسىنى import قىلىدۇ
+everything-rust app replay .            # ئۇلانغان ھەر بىر بىرلىكنىڭ ئەھۋاللىرى؛ زاپاس يول = تېخى ئەسلى نۇسخىدىكى چىقىرىشلار
+everything-rust app lift .
 ```
 
 - ئامباردا `main` ۋە مۇلازىمېتىر بولمىسا، `app front-door` ئاممىۋى API نى (ھەر بىر بىرلىكنىڭ چىقىرىشلىرى) تاپىدۇ
@@ -21,7 +21,7 @@ rust-anything app lift .
   بىرلىك ئۇنىڭ بىر مودۇلىغا ئايلىنىدۇ: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` ياسىغان crate نى ئېلىپ، `gate` نى ئىجرا قىلىدۇ، ھەمدە بىرلىكنىڭ سايە ئالماشتۇرغۇچىسىنى يازىدۇ:
   ئەسلى بوغچا ئۇنى بىرلىكنىڭ ئورنىغا import قىلىدۇ، شۇڭا ئۇنىڭ چاقىرغۇچىلىرى ئەسلى API نى ساقلاپ،
-  Rust قا يېتىدۇ. `RUST_ANYTHING_UNIT_<NAME>=original` بىرلىكنى قايتۇرىدۇ (C: سايىنىڭ بەلگىلىرىسىز
+  Rust قا يېتىدۇ. `EVERYTHING_RUST_UNIT_<NAME>=original` بىرلىكنى قايتۇرىدۇ (C: سايىنىڭ بەلگىلىرىسىز
   قۇرۇڭ).
 - `app replay` ئۇلانغان ھەر بىر بىرلىكنىڭ خاتىرىلەنگەن ئەھۋاللىرىنى ئۇنىڭ باغلىنىشلىرى ئارقىلىق ئىجرا قىلىدۇ. زاپاس يول نىسبىتى
   Rust تېخى جاۋاب بەرمەيدىغان ئاممىۋى چىقىرىشلارنىڭ ئۈلۈشى: ئۇلانمىغان بىرلىكلەر، ۋە `bridge` ئەسلى تىلدا

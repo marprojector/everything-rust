@@ -8,10 +8,10 @@ description: app front-door asyl nusganyň öňünde Rust binar faýlyny goýýa
 Ilki giriş nokadyny Rust-a göçüriň, soňra buýruklary oňa bir gezekde bir birlik tabşyryň:
 
 ```sh
-rust-anything app front-door .                            # rust/app: her buýruk asyl nusgany işledýär
-rust-anything app wire . textkit --command upper          # textkit-rs gate-den geçenden soň
+everything-rust app front-door .                            # rust/app: her buýruk asyl nusgany işledýär
+everything-rust app wire . textkit --command upper          # textkit-rs gate-den geçenden soň
 # rust/app/src/units/textkit.rs içinde glue ýazyň, soňra:
-rust-anything app wire . textkit                          # ýene 100%, has pes fallback paýy
+everything-rust app wire . textkit                          # ýene 100%, has pes fallback paýy
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # ýene 100%, has pes 
 3. `src/units/<unit>.rs` faýlyny bir gezek ýazýar, siziň ýa-da agentiňiziň doldurmagy üçin: argumentleri parse etmek, `<crate>::port` çagyrmak, asyl nusganyň çap edýän zadyny çap etmek;
 4. buýruklary oňa ugrukdyrýar, soňra gurýar we gaýtadan işledýär.
 
-Glue ýazandan soň ony ýene işlediň: 100% geçýär we fallback paýy has pes. `RUST_ANYTHING_UNIT_<NAME>=original` baglanan birligi lift-e çenli asyl nusga yzyna iberýär.
+Glue ýazandan soň ony ýene işlediň: 100% geçýär we fallback paýy has pes. `EVERYTHING_RUST_UNIT_<NAME>=original` baglanan birligi lift-e çenli asyl nusga yzyna iberýär.
 
 Hiç bir buýrugy görkezmeýän argv üçin programmanyň öz adyny buýruk hökmünde baglaň (`--command mytool`): argumentsiz, näbelli buýruklar, ulanyş ýalňyşlyklary.
 

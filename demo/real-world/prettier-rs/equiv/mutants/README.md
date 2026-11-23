@@ -13,11 +13,11 @@ original code. `triage.tsv` records which, for every survivor of the current sam
 
 ## Running
 
-You need the recorded cases (an `app-cases` folder written by `rust-anything app record`). Record
+You need the recorded cases (an `app-cases` folder written by `everything-rust app record`). Record
 them from the corpus inputs (see `../../README.md`) plus `../cases.jsonl`:
 
 ```sh
-rust-anything app record . --name prettier --no-traps --inputs equiv/cases.jsonl -- node node_modules/prettier/bin/prettier.cjs
+everything-rust app record . --name prettier --no-traps --inputs equiv/cases.jsonl -- node node_modules/prettier/bin/prettier.cjs
 ```
 
 Record with the same Prettier the front door falls back to (`demo/real-world/node_modules`).

@@ -17,10 +17,10 @@ description: "C# önizləmədədir. analyze .csproj layihələrini oxuyur, C# CL
 Qurulmuş tətbiqi qeydə alın:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Vahidləri P/Invoke vasitəsilə port etmək növbədədir. O vaxta qədər `bridge` C# vahidlərini aydın mesajla rədd edir.

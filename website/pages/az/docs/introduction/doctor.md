@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor dil runtime-larını, agent quraşdırmasını və MCP serveri yoxlayır, hər problemi düzəldən əmrlə birlikdə.
+description: everything-rust doctor dil runtime-larını, agent quraşdırmasını və MCP serveri yoxlayır, hər problemi düzəldən əmrlə birlikdə.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` dil runtime-larını, agent quraşdırmasını və MCP serveri yoxlayır və hər problemi düzəldən əmri çap edir. Tələb olunan nəsə çatışmayanda 1 kodu ilə çıxır.

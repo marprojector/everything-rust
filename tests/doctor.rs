@@ -6,10 +6,10 @@ use serde_json::Value;
 
 #[test]
 fn doctor_json_lists_every_check_with_a_fix_for_each_problem() {
-    let home = std::env::temp_dir().join(format!("rust-anything-doctor-{}", std::process::id()));
+    let home = std::env::temp_dir().join(format!("everything-rust-doctor-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&home);
     std::fs::create_dir_all(&home).unwrap();
-    let out = Command::new(env!("CARGO_BIN_EXE_rust-anything"))
+    let out = Command::new(env!("CARGO_BIN_EXE_everything-rust"))
         .args(["doctor", "--json"])
         .env("HOME", &home)
         .env("USERPROFILE", &home)

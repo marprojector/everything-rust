@@ -1,6 +1,6 @@
 ---
 title: Instalação
-description: Instale o rust-anything a partir do crates.io, do npm ou de um binário de lançamento, e os runtimes de que cada linguagem precisa.
+description: Instale o everything-rust a partir do crates.io, do npm ou de um binário de lançamento, e os runtimes de que cada linguagem precisa.
 ---
 
 # Instalação
@@ -10,22 +10,22 @@ description: Instale o rust-anything a partir do crates.io, do npm ou de um bin�
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 O npm instala o mesmo binário, para projetos JavaScript.
 
-Os binários pré-compilados para macOS, Linux e Windows estão anexados a cada [lançamento no GitHub](https://github.com/erkamyaman/rust-anything/releases). No Claude Code, também o pode instalar como plugin (o servidor MCP e a skill; a CLI tem de estar no seu `PATH`):
+Os binários pré-compilados para macOS, Linux e Windows estão anexados a cada [lançamento no GitHub](https://github.com/marprojector/everything-rust/releases). No Claude Code, também o pode instalar como plugin (o servidor MCP e a skill; a CLI tem de estar no seu `PATH`):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## A partir do código-fonte
@@ -46,7 +46,7 @@ A CI nativa em Windows utiliza o target Rust `x86_64-pc-windows-msvc`. Instale a
 e as Visual Studio Build Tools com a carga de trabalho **Desktop development with C++**; o
 compilador de C e o linker são necessários para as bridges de C e as extensões nativas em Rust. Instale o runtime
 da linguagem de origem que está a migrar. O Python pode estar disponível como `python3` ou
-`python`; o rust-anything deteta ambos. O target GNU para Windows não é testado pela CI.
+`python`; o everything-rust deteta ambos. O target GNU para Windows não é testado pela CI.
 
 Execute a suite de integração das bridges nativas a partir de uma linha de comandos Developer PowerShell:
 
@@ -65,11 +65,11 @@ PowerShell do Visual Studio e verifique se `where.exe link` encontra o linker MS
 incluindo um caminho com espaços e caracteres Unicode, e removem os artefactos gerados após uma
 execução bem-sucedida.
 
-Para agentes, o `rust-anything setup` regista tudo (consulte o Início rápido). Para adicionar manualmente o servidor MCP a
+Para agentes, o `everything-rust setup` regista tudo (consulte o Início rápido). Para adicionar manualmente o servidor MCP a
 um único projeto (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Cada ferramenta, os seus parâmetros e aquilo em que pode mexer: [docs/tools.md](/docs/reference/mcp-tools). O servidor oferece também
@@ -77,12 +77,12 @@ dois prompts, `port_unit` e `port_whole_app`, construídos a partir da skill.
 ## Atualizar ou remover
 
 ```sh
-cargo install rust-anything                                    # atualizar (Cargo)
-npm install -g rust-anything@latest                            # atualizar (npm)
-rust-anything setup                                            # atualizar as definições dos agentes
-rust-anything setup --remove && cargo uninstall rust-anything  # remover (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # remover (npm)
+cargo install everything-rust                                    # atualizar (Cargo)
+npm install -g everything-rust@latest                            # atualizar (npm)
+everything-rust setup                                            # atualizar as definições dos agentes
+everything-rust setup --remove && cargo uninstall everything-rust  # remover (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # remover (npm)
 ```
 
-O `setup --remove` remove apenas as entradas do rust-anything; as cópias guardadas
-(`<file>.rust-anything.bak`) ficam até as apagar.
+O `setup --remove` remove apenas as entradas do everything-rust; as cópias guardadas
+(`<file>.everything-rust.bak`) ficam até as apagar.

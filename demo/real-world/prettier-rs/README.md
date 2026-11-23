@@ -5,7 +5,7 @@ door: JavaScript, TypeScript, JSON, GraphQL, YAML, Markdown, CSS, SCSS and Less 
 byte-identical to Prettier; every other file goes to Prettier unchanged. The case study is in
 [`docs/real-world.md`](../../../docs/real-world.md#prettier).
 
-`rust-anything package app` lays it out as an npm command, `prettier-rs`, that runs this front
+`everything-rust package app` lays it out as an npm command, `prettier-rs`, that runs this front
 door and depends on Prettier 3.6.2 for everything it hands back; it is not on npm
 ([how](../../../docs/packaging.md#a-whole-cli-front-door)).
 
@@ -51,7 +51,7 @@ postcss-media-query-parser 0.2.3
 | `DECISIONS.md`, `MAP.md` | the choices made before porting, and what is ported |
 
 To rebuild it: clone Prettier at `3.6.2`, `corepack yarn install` and `corepack yarn build
---no-minify`, put this folder at `rust/` of the clone, and point each `rust-anything.json`'s
+--no-minify`, put this folder at `rust/` of the clone, and point each `everything-rust.json`'s
 `root` at the clone. Then, from a scratch folder holding a copy of `dist/prettier` as
 `node_modules/prettier` (so Prettier's own config does not apply to the cases):
 
@@ -63,17 +63,17 @@ node scripts/gen-graphql-inputs.mjs <prettier clone> graphql-inputs.jsonl && cat
 node scripts/gen-yaml-inputs.mjs <prettier clone> <folder with the real repositories> yaml-inputs.jsonl && cat yaml-inputs.jsonl >> inputs.jsonl
 node scripts/gen-markdown-inputs.mjs <prettier clone> <folder with the real repositories> md-inputs.jsonl && cat md-inputs.jsonl >> inputs.jsonl
 node scripts/gen-css-inputs.mjs <prettier clone> <folder with the real repositories> css-inputs.jsonl && cat css-inputs.jsonl >> inputs.jsonl
-rust-anything app record . --name prettier --inputs inputs.jsonl -- node node_modules/prettier/bin/prettier.cjs
-rust-anything app front-door .
-rust-anything record <clone>/rust/doc-printer-rs --count 0 --inputs doc-inputs.jsonl
-rust-anything gate <clone>/rust/doc-printer-rs
-rust-anything record <clone>/rust/js-format-rs --count 0 --inputs format-inputs.jsonl
-rust-anything gate <clone>/rust/js-format-rs
-rust-anything app wire . <clone>/rust/js-format-rs --command prettier
-rust-anything app replay . --build rust/app/target/release/prettier
+everything-rust app record . --name prettier --inputs inputs.jsonl -- node node_modules/prettier/bin/prettier.cjs
+everything-rust app front-door .
+everything-rust record <clone>/rust/doc-printer-rs --count 0 --inputs doc-inputs.jsonl
+everything-rust gate <clone>/rust/doc-printer-rs
+everything-rust record <clone>/rust/js-format-rs --count 0 --inputs format-inputs.jsonl
+everything-rust gate <clone>/rust/js-format-rs
+everything-rust app wire . <clone>/rust/js-format-rs --command prettier
+everything-rust app replay . --build rust/app/target/release/prettier
 ```
 
-The two unit crates were made with `rust-anything bridge`; each `rust-anything.json` names the
+The two unit crates were made with `everything-rust bridge`; each `everything-rust.json` names the
 unit and the exports kept in JavaScript. `doc-inputs.jsonl` is what `scripts/harvest-docs.mjs`
 and `scripts/synthetic-docs.mjs` write. The real repositories are ms `3.0.0-canary.1`, Fuse.js `v7.1.0` and json-server
 `v1.0.0-beta.3`. `format-inputs.jsonl` comes from `scripts/format-inputs.mjs` and the list of

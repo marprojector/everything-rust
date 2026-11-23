@@ -1,4 +1,4 @@
 target/
 *.node
 pkg/
-.rust-anything/
+.everything-rust/

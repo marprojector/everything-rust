@@ -6,9 +6,9 @@ description: record는 생성된 엣지 케이스, 의미상의 함정, 원본 �
 # 기록
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # 또는: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # 또는: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record`는 원본 함수를 실행하고 각 함수가 반환하거나 발생시킨 것을 crate 옆의 `cases.jsonl`에 저장합니다. 이것이 포트가 맞춰야 할 동작입니다. 나중에 생기는 불일치는 동작 차이입니다. 기록이 아니라 포트를 고치세요.

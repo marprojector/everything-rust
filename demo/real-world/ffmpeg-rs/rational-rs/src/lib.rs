@@ -1,5 +1,5 @@
 //! C ABI for `rational.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
@@ -11,7 +11,7 @@ pub struct AVRational {
     pub den: std::ffi::c_int,
 }
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
 
     /// A pointer to one value as a reference; `None` for `NULL`.
     pub(super) fn out<'a, T>(ptr: *mut T) -> Option<&'a mut T> {
@@ -33,18 +33,18 @@ pub extern "C" fn av_reduce(
     max: i64,
 ) -> std::ffi::c_int {
     port::av_reduce(
-        crate::__rust_anything_c_abi::out(dst_num),
-        crate::__rust_anything_c_abi::out(dst_den),
+        crate::__everything_rust_c_abi::out(dst_num),
+        crate::__everything_rust_c_abi::out(dst_den),
         num,
         den,
         max,
     )
 }
 
-/// `av_reduce` as `rust_anything_av_reduce`, for shadow builds beside the original.
+/// `av_reduce` as `everything_rust_av_reduce`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_reduce(
+pub extern "C" fn everything_rust_av_reduce(
     dst_num: *mut std::ffi::c_int,
     dst_den: *mut std::ffi::c_int,
     num: i64,
@@ -52,8 +52,8 @@ pub extern "C" fn rust_anything_av_reduce(
     max: i64,
 ) -> std::ffi::c_int {
     port::av_reduce(
-        crate::__rust_anything_c_abi::out(dst_num),
-        crate::__rust_anything_c_abi::out(dst_den),
+        crate::__everything_rust_c_abi::out(dst_num),
+        crate::__everything_rust_c_abi::out(dst_den),
         num,
         den,
         max,
@@ -68,10 +68,10 @@ pub extern "C" fn av_mul_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_mul_q(b, c)
 }
 
-/// `av_mul_q` as `rust_anything_av_mul_q`, for shadow builds beside the original.
+/// `av_mul_q` as `everything_rust_av_mul_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_mul_q(b: AVRational, c: AVRational) -> crate::AVRational {
+pub extern "C" fn everything_rust_av_mul_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_mul_q(b, c)
 }
 
@@ -83,10 +83,10 @@ pub extern "C" fn av_div_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_div_q(b, c)
 }
 
-/// `av_div_q` as `rust_anything_av_div_q`, for shadow builds beside the original.
+/// `av_div_q` as `everything_rust_av_div_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_div_q(b: AVRational, c: AVRational) -> crate::AVRational {
+pub extern "C" fn everything_rust_av_div_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_div_q(b, c)
 }
 
@@ -98,10 +98,10 @@ pub extern "C" fn av_add_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_add_q(b, c)
 }
 
-/// `av_add_q` as `rust_anything_av_add_q`, for shadow builds beside the original.
+/// `av_add_q` as `everything_rust_av_add_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_add_q(b: AVRational, c: AVRational) -> crate::AVRational {
+pub extern "C" fn everything_rust_av_add_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_add_q(b, c)
 }
 
@@ -113,10 +113,10 @@ pub extern "C" fn av_sub_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_sub_q(b, c)
 }
 
-/// `av_sub_q` as `rust_anything_av_sub_q`, for shadow builds beside the original.
+/// `av_sub_q` as `everything_rust_av_sub_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_sub_q(b: AVRational, c: AVRational) -> crate::AVRational {
+pub extern "C" fn everything_rust_av_sub_q(b: AVRational, c: AVRational) -> crate::AVRational {
     port::av_sub_q(b, c)
 }
 
@@ -128,10 +128,10 @@ pub extern "C" fn av_d2q(d: f64, max: std::ffi::c_int) -> crate::AVRational {
     port::av_d2q(d, max)
 }
 
-/// `av_d2q` as `rust_anything_av_d2q`, for shadow builds beside the original.
+/// `av_d2q` as `everything_rust_av_d2q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_d2q(d: f64, max: std::ffi::c_int) -> crate::AVRational {
+pub extern "C" fn everything_rust_av_d2q(d: f64, max: std::ffi::c_int) -> crate::AVRational {
     port::av_d2q(d, max)
 }
 
@@ -143,10 +143,10 @@ pub extern "C" fn av_nearer_q(q: AVRational, q1: AVRational, q2: AVRational) -> 
     port::av_nearer_q(q, q1, q2)
 }
 
-/// `av_nearer_q` as `rust_anything_av_nearer_q`, for shadow builds beside the original.
+/// `av_nearer_q` as `everything_rust_av_nearer_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_nearer_q(
+pub extern "C" fn everything_rust_av_nearer_q(
     q: AVRational,
     q1: AVRational,
     q2: AVRational,
@@ -162,9 +162,9 @@ pub extern "C" fn av_q2intfloat(q: AVRational) -> u32 {
     port::av_q2intfloat(q)
 }
 
-/// `av_q2intfloat` as `rust_anything_av_q2intfloat`, for shadow builds beside the original.
+/// `av_q2intfloat` as `everything_rust_av_q2intfloat`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_q2intfloat(q: AVRational) -> u32 {
+pub extern "C" fn everything_rust_av_q2intfloat(q: AVRational) -> u32 {
     port::av_q2intfloat(q)
 }

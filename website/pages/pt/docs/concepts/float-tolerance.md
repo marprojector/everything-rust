@@ -6,8 +6,8 @@ description: Código numérico raramente produz floats idênticos bit a bit depo
 # Tolerância de floats
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Código numérico (física, estatística, gráficos) raramente produz floats idênticos bit a bit depois de migrado: a ordem das operações, o fused multiply-add e a biblioteca matemática diferem entre compiladores. Quando aceitar isso, registe com `--float-tolerance` e o seu valor. Os floats passam então a corresponder dentro dessa fração do valor maior (em termos absolutos abaixo de 1), e o `diff` e o `gate` utilizam-na. `0` remove-a.

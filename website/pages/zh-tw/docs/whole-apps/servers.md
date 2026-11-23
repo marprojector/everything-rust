@@ -9,11 +9,11 @@ description: 相同的指令也能證明 HTTP 伺服器。--http、--fresh、--a
 `PORT` 或指令中的 `{port}` 取得連接埠（對於總是監聽同一個連接埠的伺服器，請用 `--port`）：
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum：代理每個路由
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum：代理每個路由
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - 請求來自應用程式文件中的 `curl` 行（`curl -X POST -d ... http://localhost:8080/x`）、

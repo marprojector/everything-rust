@@ -6,7 +6,7 @@ description: bench は記録ケースを元の実装と Rust でブリッジ込�
 # ベンチマーク
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` は記録ケースを元の実装とビルドした Rust モジュールでブリッジ込みで計測し、結果の行とアドバイス付きの判定を返します: 出荷する、遅い関数は元の言語に残す、またはより大きなユニットを移植する、のいずれかです。速度向上が 1 未満なら、呼び出し元からの呼び方では移植版の方が遅いということです。`--min-ms` で関数ごと・実装ごとの最小計測時間を設定します（デフォルトは 200）。
@@ -31,7 +31,7 @@ rust-anything bench <crate>
 | Java | 0.18 倍 | より大きなユニットを移植 |
 | Go | 0.04 倍 | より大きなユニットを移植 |
 
-API を変えずに移せる x18n のコアの 29 関数すべてを移植しました: すべてのゲートに合格し、7,925 件の記録ケースが完全に一致しましたが、`bench` によると JS から呼ぶ場合は移植版の方が TS より遅いことがわかりました。ブリッジのコストが処理そのものより大きいためです（[レポート](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)）。vercel/ms は記録ケース全体で呼び出しごとに 0.56 倍でした（[ケーススタディ](/docs/real-world/vercel-ms)）。
+API を変えずに移せる x18n のコアの 29 関数すべてを移植しました: すべてのゲートに合格し、7,925 件の記録ケースが完全に一致しましたが、`bench` によると JS から呼ぶ場合は移植版の方が TS より遅いことがわかりました。ブリッジのコストが処理そのものより大きいためです（[レポート](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)）。vercel/ms は記録ケース全体で呼び出しごとに 0.56 倍でした（[ケーススタディ](/docs/real-world/vercel-ms)）。
 
 ## 速くなる方法: ループを移す
 

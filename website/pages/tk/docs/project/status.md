@@ -1,6 +1,6 @@
 ---
 title: Ýagdaý
-description: rust-anything-de häzir näme işleýär we her bölegiň soňky gezek nähili barlanandygy.
+description: everything-rust-de häzir näme işleýär we her bölegiň soňky gezek nähili barlanandygy.
 ---
 
 # Ýagdaý
@@ -16,7 +16,7 @@ böleginde işleýär.
 
 | Dil | Ýagdaý | Soňky hakyky işletme | Netije |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Barlanan | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n-iň `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 we `js-format-rs` 1,279/1,279, ikisinde hem gate geçýär; json-server: alty birlik, 3,399 ýagdaý, hersinde gate geçýär; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 we 9,000+ ýagdaý gabat gelýär |
+| TypeScript/JavaScript | Barlanan | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n-iň `packages/core` | Prettier: `doc-printer-rs` 2,848/2,848 we `js-format-rs` 1,279/1,279, ikisinde hem gate geçýär; json-server: alty birlik, 3,399 ýagdaý, hersinde gate geçýär; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 we 9,000+ ýagdaý gabat gelýär |
 | Python | Barlanan | CPython 3.13-den `colorsys.py` (2026-11-16) | 2,400/2,400; gate geçýär |
 | Go | Barlanan | Go 1.24-den `path` (2026-11-16) | 2,642/2,642; gate geçýär |
 | Ruby | Barlanan | Ruby 3.3-den `shellwords.rb` (2026-11-16) | 1,617/1,617; gate geçýär |

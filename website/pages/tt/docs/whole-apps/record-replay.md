@@ -8,9 +8,9 @@ description: app record бөтен кушымтаны аның документ�
 `record` һәм `diff` бер берәмлекне исбатлый; `app record` һәм `app replay` алты телнең теләсә кайсындагы CLI һәм серверлар өчен кушымтаны исбатлый. Кушымта кара тартма итеп карала.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # оригиналны җибәрүче команда
-rust-anything app replay .                            # оригинал 100% узарга тиеш
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # оригиналны җибәрүче команда
+everything-rust app replay .                            # оригинал 100% узарга тиеш
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Очраклар каян килә
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## Кабат уйнату
 
 - `app replay` теләсә нинди build'ны очракларга каршы җибәрә, `passed/total` бастыра, һәр уңышсыз очрак өчен diff белән `rust/app-cases/replay-report.md` яза һәм теләсә нинди туры килмәүдә нульдән башка код белән чыга.
-- `RUST_ANYTHING_FALLBACK_LOG` атаган файлга язып баручы build (оригиналга һәр fallback өчен бер юл), [front door](/docs/whole-apps/front-door) эшләгәнчә, үзенең fallback өлеше турында да хисап ала.
+- `EVERYTHING_RUST_FALLBACK_LOG` атаган файлга язып баручы build (оригиналга һәр fallback өчен бер юл), [front door](/docs/whole-apps/front-door) эшләгәнчә, үзенең fallback өлеше турында да хисап ала.
 - `app replay --case <name>` бер очракны хисап биргән исем буенча кабат җибәрә: барысын да тагын җибәргәнче туры килмәүне төзәтү өчен тиз, кабатланучан цикл.
 
 ## CI'да кабат уйнату
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 Хисапта вакытлар яки вакытлыча юллар юк: бер үк build'ны ике тапкыр кабат уйнату бер үк файлны яза. Аны commit итегез, аннары CI'да җибәрегез:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

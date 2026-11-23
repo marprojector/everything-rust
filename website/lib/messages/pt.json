@@ -17,8 +17,8 @@
     "closeMenu": "Fechar menu",
     "menu": "Menu",
     "language": "Idioma",
-    "home": "Página inicial do rust-anything",
-    "github": "rust-anything no GitHub",
+    "home": "Página inicial do everything-rust",
+    "github": "everything-rust no GitHub",
     "onThisPage": "Nesta página",
     "editPage": "Editar esta página no GitHub",
     "previous": "Anterior",
@@ -54,7 +54,7 @@
       "project": "Projeto"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "O que é o rust-anything",
+      "/docs/introduction/what-is-everything-rust": "O que é o everything-rust",
       "/docs/introduction/quick-start": "Início rápido",
       "/docs/introduction/install": "Instalação",
       "/docs/introduction/agents": "Configurar o seu agente",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Reescreva a sua aplicação em Rust.",
     "title2": "Comprove que se comporta da mesma forma.",
-    "sub": "O rust-anything regista o que o seu código faz e depois reproduz cada caso registado contra a migração em Rust. O seu agente escreve o Rust. Nada é publicado até as saídas coincidirem.",
+    "sub": "O everything-rust regista o que o seu código faz e depois reproduz cada caso registado contra a migração em Rust. O seu agente escreve o Rust. Nada é publicado até as saídas coincidirem.",
     "cta": "Ler o início rápido",
     "source": "Código-fonte no GitHub",
     "sourceLanguage": "Linguagem de origem",
@@ -138,10 +138,10 @@
     "installTitle": "Instalação",
     "installDesc": "Instale a CLI e depois registe o servidor MCP e a skill do fluxo de trabalho no Claude Code, Codex, Cursor e Gemini CLI.",
     "installNote": "Os binários pré-compilados para macOS, Linux e Windows estão disponíveis em cada [lançamento no GitHub]({releases}).",
-    "agentPrompt": "Install rust-anything: run `cargo install rust-anything`, then `rust-anything setup`.",
+    "agentPrompt": "Install everything-rust: run `cargo install everything-rust`, then `everything-rust setup`.",
     "agentRestart": "Tell me when to restart you.",
     "loopTitle": "Como se faz uma migração",
-    "loopDesc": "O original continua a ser a fonte de verdade. O rust-anything não traduz código: fornece aquilo que um agente não consegue adivinhar, e um gate que diz quando uma migração está concluída.",
+    "loopDesc": "O original continua a ser a fonte de verdade. O everything-rust não traduz código: fornece aquilo que um agente não consegue adivinhar, e um gate que diz quando uma migração está concluída.",
     "steps": [
       {
         "title": "Registar",
@@ -272,7 +272,7 @@
       "csharp": "registo e replay de aplicações completas; bridges de unidades a seguir"
     },
     "sponsorsTitle": "Patrocinadores",
-    "sponsorsDesc": "O rust-anything é gratuito e open source. Se o ajuda no seu trabalho, considere patrociná-lo. O seu apoio mantém o desenvolvimento em curso.",
+    "sponsorsDesc": "O everything-rust é gratuito e open source. Se o ajuda no seu trabalho, considere patrociná-lo. O seu apoio mantém o desenvolvimento em curso.",
     "companySponsor": "Patrocinador empresarial",
     "becomeSponsor": "Tornar-se patrocinador"
   }

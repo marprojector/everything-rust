@@ -5,7 +5,7 @@ description: Sizin ya da ajanınızın yazdığı tek dosya olan port.rs'i yazma
 
 # Port
 
-Portu siz ya da ajanınız `src/port.rs` içinde yazarsınız. Crate'teki diğer her şey üretilir. `port.rs`'te bir imzayı değiştirdikten sonra `rust-anything refresh <crate>` çalıştırın.
+Portu siz ya da ajanınız `src/port.rs` içinde yazarsınız. Crate'teki diğer her şey üretilir. `port.rs`'te bir imzayı değiştirdikten sonra `everything-rust refresh <crate>` çalıştırın.
 
 ## Bir diff turunu kurtaran kurallar
 
@@ -24,15 +24,15 @@ Portu siz ya da ajanınız `src/port.rs` içinde yazarsınız. Crate'teki diğer
 
 ## Bir örnek: bir konum kaydıran emoji
 
-[x18n](https://github.com/x18n-dev/x18n)'den `packages/core/src/fuzzy.ts`, [`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo)
+[x18n](https://github.com/x18n-dev/x18n)'den `packages/core/src/fuzzy.ts`, [`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo)
 içinde iki şekilde port edildi:
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts: hazır, wasm-bindgen (core tarayıcılarda çalışır)
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts: hazır, wasm-bindgen (core tarayıcılarda çalışır)
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # src/port.rs'i yazın
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 Rust `char` ile indeksleyen ilk port basit testleri geçti ama `diff`'te kaldı:
@@ -46,7 +46,7 @@ JS `indexOf` UTF-16 kod birimlerini sayar, bu yüzden bir emoji iki konum tutar.
 içindeki port üretilen `utf16` yardımcılarını kullanır ve hem napi-rs (`demo/fuzzy-napi`) hem de
 wasm-bindgen (`demo/fuzzy-rs`) olarak 2000/2000 vakayı ve gate'i geçer.
 
-rust-anything'in x18n'in tamamı için yazdığı plan: [`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md).
+everything-rust'in x18n'in tamamı için yazdığı plan: [`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md).
 
 ## Ne kadar büyük olmalı?
 

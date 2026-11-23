@@ -6,7 +6,7 @@ description: gate порттун даярдыгынын аныктамасы. А
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Даяр дегени `gate` өтөт дегенди билдирет. Ал төмөнкүлөрдү текшерет:

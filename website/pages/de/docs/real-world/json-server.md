@@ -9,7 +9,7 @@ description: Die erste ganze App, durchgehend portiert. Eine Rust-Binary, die an
 1.0.0-beta.15) stellt eine REST-API aus einer JSON-Datei bereit: Node, tinyhttp und lowdb. Es ist die erste ganze
 App, die mit dem Ablauf für ganze Apps (`app record`, `front-door`, `wire`, `lift`) durchgehend portiert wurde:
 Das Ergebnis ist eine Rust-Binary, die antwortet, was der Node-Server antwortet. Alles liegt in
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs).
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs).
 
 | Schritt | Ergebnis |
 | --- | --- |
@@ -53,7 +53,7 @@ Benchmark: Apple M4 (10 Kerne, 16 GB), macOS 27.3, Node 24.15.0 mit `lib/bin.js`
 `tsc` es für npm baut, die Rust-Binary mit `--release` gebaut. Beide stellen eine Kopie derselben
 Datenbank über Loopback bereit; `ab -k` sendet dieselben Anfragen, 20,000 pro Zeile (40 für das langsame Embed auf
 der großen Datenbank) nach einer Aufwärmphase. Zwei Läufe, jeder gestartet mit einem 1-Minuten-Load-Average unter 3;
-die Zellen geben Lauf 1 / Lauf 2 in Anfragen pro Sekunde an. [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+die Zellen geben Lauf 1 / Lauf 2 in Anfragen pro Sekunde an. [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 ist das Skript.
 
 Die Fixture-Datenbank (6 Posts, 3 Kommentare):

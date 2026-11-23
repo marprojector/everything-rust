@@ -17,12 +17,12 @@ description: PHP is in preview. analyze plans a PHP app, and a PHP CLI or server
 A PHP CLI or server can be recorded, replayed and put behind a Rust front door:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Porting its units into Rust through PHP's FFI is the next step ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Until then, `bridge` refuses PHP units with a clear message.
+Porting its units into Rust through PHP's FFI is the next step ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). Until then, `bridge` refuses PHP units with a clear message.
 
 CI does not install PHP, so the PHP tests run only on a machine that has it.

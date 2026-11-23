@@ -10,13 +10,13 @@ description: Налаштування, куди класти тести, як д
 
 ## Перш ніж почати
 
-- **Баг:** відкрийте [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) з
-  командою, яку ви запустили, її виводом, вашою платформою і версією rust-anything
-  (`rust-anything --version`). Найбільше допомагає крихітний проєкт для відтворення.
+- **Баг:** відкрийте [issue](https://github.com/marprojector/everything-rust/issues/new/choose) з
+  командою, яку ви запустили, її виводом, вашою платформою і версією everything-rust
+  (`everything-rust --version`). Найбільше допомагає крихітний проєкт для відтворення.
 - **Більша зміна** (нова мова, нова команда, зміна того, що таке модуль чи запис):
   спершу відкрийте issue, щоб ми домовилися про форму, перш ніж ви її напишете. Причини минулих
-  рішень описано в [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md).
-- **Проблема безпеки:** не відкривайте публічний issue; див. [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md).
+  рішень описано в [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md).
+- **Проблема безпеки:** не відкривайте публічний issue; див. [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md).
 
 ## Налаштування
 
@@ -36,16 +36,16 @@ description: Налаштування, куди класти тести, як д
 | wasm-мости | `rustup target add wasm32-unknown-unknown` і відповідний `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` показує, які з цих середовищ виконання у вас є, їхні версії і команду,
 що встановлює або оновлює кожне з них. Щоб відсутнє середовище валило свої тести, а не пропускало
-їх (так робить CI), назвіть його в `RUST_ANYTHING_REQUIRE`, наприклад
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+їх (так робить CI), назвіть його в `EVERYTHING_RUST_REQUIRE`, наприклад
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Хук запускає `scripts/check-secrets.sh`, який відхиляє ключі, токени і шляхи до особистих домашніх тек
 у тому, що ви комітите. CI запускає його на кожному файлі.
@@ -65,7 +65,7 @@ cargo test
 - **Фікстури** є невеликими застосунками в `tests/fixtures/`. Фікстури CLI і HTTP реалізують ті самі
   команди й маршрути кожною мовою (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), тож нова має поводитися ідентично до інших.
-- **Згенерований код** (мости, драйвери і front door, які пише rust-anything) теж має проходити
+- **Згенерований код** (мости, драйвери і front door, які пише everything-rust) теж має проходити
   `clippy -D warnings`, бо `gate` запускає його на крейтах користувачів.
 - **Стиль:** дотримуйтеся коду навколо. Лишайте коментарі для того, чого код не може сказати сам, а
   обґрунтування зміни пишіть у pull request.
@@ -81,8 +81,8 @@ cargo test
 ## Додайте мову
 
 PHP і C# було додано як попередній перегляд у двох комітах, які варто прочитати першими:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) і
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Нова мова починається
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) і
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Нова мова починається
 так само:
 
 1. Плагін у `src/lang/<name>.rs`: пошук, сканування (імпорти і ризики), резолвінг та експорти,
@@ -139,10 +139,10 @@ Pull request зливаються зі збереженням комітів, т
 ## Поділіться реальним портом
 
 Порти реальних проєктів є найкращим доказом того, що працює, а що ламається. Якщо ви використали
-rust-anything на чомусь реальному, issue або pull request, що додає його до
+everything-rust на чомусь реальному, issue або pull request, що додає його до
 [docs/real-world.md](/docs/real-world/overview), дуже вітаються. Вкажіть проєкт, команди, які ви
 запускали, кількість випадків і все, що вас здивувало.
 
 ## Кодекс поведінки
 
-Усі учасники мають дотримуватися [кодексу поведінки](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md).
+Усі учасники мають дотримуватися [кодексу поведінки](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md).

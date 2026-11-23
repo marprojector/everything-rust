@@ -8,10 +8,10 @@ description: app front-door place un binaire Rust devant l'original ; app wire c
 Déplacez d'abord le point d'entrée en Rust, puis confiez-lui les commandes une unité à la fois :
 
 ```sh
-rust-anything app front-door .                            # rust/app : chaque commande exécute l'original
-rust-anything app wire . textkit --command upper          # après que textkit-rs passe le gate
+everything-rust app front-door .                            # rust/app : chaque commande exécute l'original
+everything-rust app wire . textkit --command upper          # après que textkit-rs passe le gate
 # écrivez la glue dans rust/app/src/units/textkit.rs, puis :
-rust-anything app wire . textkit                          # de nouveau 100%, taux de fallback plus bas
+everything-rust app wire . textkit                          # de nouveau 100%, taux de fallback plus bas
 ```
 
 ## La porte d'entrée
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # de nouveau 100%, tau
 3. écrit `src/units/<unit>.rs` une seule fois, à remplir par vous ou votre agent : analyser les arguments, appeler `<crate>::port`, afficher ce qu'affiche l'original ;
 4. lui route les commandes, puis compile et rejoue.
 
-Relancez-le après avoir écrit la glue : 100% de réussite et un taux de fallback plus bas. `RUST_ANYTHING_UNIT_<NAME>=original` renvoie une unité câblée vers l'original jusqu'au lift.
+Relancez-le après avoir écrit la glue : 100% de réussite et un taux de fallback plus bas. `EVERYTHING_RUST_UNIT_<NAME>=original` renvoie une unité câblée vers l'original jusqu'au lift.
 
 Câblez le nom propre de l'application comme commande (`--command mytool`) pour les argv qui ne nomment aucune commande : aucun argument, commandes inconnues, erreurs d'utilisation.
 

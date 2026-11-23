@@ -9,7 +9,7 @@ description: Первое целое приложение, портирован�
 1.0.0-beta.15) отдаёт REST API из JSON-файла: Node, tinyhttp и lowdb. Это первое целое
 приложение, портированное от начала до конца по процессу для целых приложений (`app record`, `front-door`, `wire`, `lift`):
 результат представляет собой один Rust-бинарник, который отвечает так же, как Node-сервер. Всё лежит в
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs).
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs).
 
 | Шаг | Результат |
 | --- | --- |
@@ -53,7 +53,7 @@ description: Первое целое приложение, портирован�
 собирает `tsc` для npm, Rust-бинарник собран с `--release`. Оба отдают копию одной и той же
 базы данных по loopback; `ab -k` отправляет одинаковые запросы, по 20,000 на строку (40 для медленного embed на
 большой базе) после прогрева. Два прогона, каждый запущен при средней нагрузке за 1 минуту ниже 3;
-в ячейках прогон 1 / прогон 2 в запросах в секунду. Скрипт: [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py).
+в ячейках прогон 1 / прогон 2 в запросах в секунду. Скрипт: [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py).
 
 База данных из фикстуры (6 постов, 3 комментария):
 

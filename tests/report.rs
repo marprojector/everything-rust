@@ -2,8 +2,8 @@
 
 use std::path::Path;
 
-use rust_anything::analyze::analyze;
-use rust_anything::report;
+use everything_rust::analyze::analyze;
+use everything_rust::report;
 
 #[test]
 fn a_parse_error_names_a_status_that_exists_and_an_empty_start_here_explains_itself() {

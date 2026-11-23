@@ -13,7 +13,7 @@ description: Port a Go package to Rust through typed cgo calls and a generated b
 | Needs | Go 1.21+ |
 | Status | Verified on `path` from Go 1.24: 2,642/2,642 (542 from Go's own test tables), gate passes |
 
-`profile` works through `go test`: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batches are `NewFnBatch(items)`; close them when done.
+`profile` works through `go test`: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batches are `NewFnBatch(items)`; close them when done.
 
 ## What a port has to get right
 

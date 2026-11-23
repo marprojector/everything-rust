@@ -31,7 +31,7 @@ PHP preview күйінде: `analyze` PHP қолданбасын жоспарл�
 loose comparison және integer-дің float-қа толып кетуі сияқты тәуекелдер, crate-терге сәйкестендірілген
 Composer пакеттері), ал PHP CLI немесе серверін жазып алуға, қайта ойнатуға және Rust front door-ының
 артына қоюға болады. Оның бірліктерін PHP FFI арқылы Rust-қа порттау келесі қадам
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# та дәл солай preview күйінде: `analyze` `.csproj` жобалары мен олардың NuGet пакеттерін оқиды
 (crate-терге сәйкестендіріледі), `using` директиваларын бумаларға шешеді және C# басқаша істейтін

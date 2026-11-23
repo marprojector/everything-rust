@@ -20,7 +20,7 @@ Batches are `new FnBatch(items)`; close them when done. `profile` uses JFR.
 - `Integer.parseInt` accepts any Unicode decimal digit (`١٢`, `２`) through `Character.digit`.
 - `Double.toString` (JDK 19+) prints the shortest decimal, but never fewer than two digits: `4.9E-324`, where Rust's shortest form is `5e-324`.
 - `\s` is ASCII-only; Rust's `split_whitespace` also splits at U+00A0.
-- Floats must survive the round trip: `serde_json`'s default float parser is not always correctly rounded, so rust-anything and every crate it generates use its `float_roundtrip` feature.
+- Floats must survive the round trip: `serde_json`'s default float parser is not always correctly rounded, so everything-rust and every crate it generates use its `float_roundtrip` feature.
 
 ## Speed
 

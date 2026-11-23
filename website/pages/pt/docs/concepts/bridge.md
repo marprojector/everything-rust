@@ -6,8 +6,8 @@ description: O bridge cria a estrutura de uma crate Rust para uma unidade, com b
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate em <repo>/rust/<name>; nunca sobrescreve
-rust-anything refresh <crate>                  # depois de alterar uma assinatura em port.rs
+everything-rust bridge <repo> <unit-id>          # crate em <repo>/rust/<name>; nunca sobrescreve
+everything-rust refresh <crate>                  # depois de alterar uma assinatura em port.rs
 ```
 
 O `bridge` cria uma crate com os bindings (`lib.rs`, mais o wrapper que a linguagem de origem carrega) e stubs a migrar (`port.rs`). Escreve a migração apenas em `src/port.rs`; `src/lib.rs` e os wrappers são gerados, e o `refresh` regenera-os a partir das assinaturas em `port.rs`, acrescentando quaisquer novas classes de lote. Nunca mexe em `port.rs`.

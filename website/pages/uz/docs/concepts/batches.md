@@ -6,7 +6,7 @@ description: Har bir element uchun bir marta chaqiriladigan port JIT'dan yutqaza
 # Batch'lar va hot path'lar
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # yoki: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # yoki: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` qiymatlarini bir marta qabul qilib, ularni Rust'da saqlaydigan klassni generatsiya qiladi: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Har bir so'rovda `run(<other args>)` barcha natijalarni bitta massiv sifatida qaytaradi, `rank(<other args>, min)` esa element indekslarini eng yaxshisidan boshlab qaytaradi. U barcha yadrolarda ishlaydi va xatolar asl nusxanikidek bo'ladi. C'dan tashqari har bir til batch'larni oladi.
@@ -16,9 +16,9 @@ siklni ko'chirish: `profile` uni topadi, `--batch` esa elementlarni bir marta qa
 va har bir chaqiruvda funksiyani ularning hammasi ustida, barcha yadrolarda, tiplangan massiv natijalari bilan bajaradigan klassni generatsiya qiladi.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: ishning to'rtdan biri, `matched` tomonidan har bir kalit uchun chaqiriladi: batch qiling
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ Har bir til batch'larni oladi va ular har bir chaqiruvli portlar yutqazadigan jo
 
 Kompilyatsiya qilinadigan asl nusxalar kamroq yutadi: har bir elementdagi ish allaqachon tez, shuning uchun batch yadrolar
 soni hisobiga yutadi. Batch crate'lari mimalloc bilan xotira ajratadi: tizim allokatori bilan Go batch'i bitta
-thread'dan sekinroq edi. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+thread'dan sekinroq edi. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Tez indeks yozish
 
 - Chaqiruvchi batch'ni har bir so'rovda emas, bir marta qursin. Qaytarilgan indekslarni oddiy sikl bilan elementlarga qayta moslang.

@@ -9,7 +9,7 @@ description: La première application entière portée de bout en bout. Un binai
 1.0.0-beta.15) sert une API REST à partir d'un fichier JSON : Node, tinyhttp et lowdb. C'est la première
 application entière portée de bout en bout avec le flux application entière (`app record`, `front-door`, `wire`, `lift`) :
 le résultat est un seul binaire Rust qui répond ce que répond le serveur Node. Tout se trouve dans
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs).
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs).
 
 | Étape | Résultat |
 | --- | --- |
@@ -53,7 +53,7 @@ Benchmark : Apple M4 (10 cœurs, 16 GB), macOS 27.3, Node 24.15.0 exécutant `li
 `tsc` le compile pour npm, le binaire Rust compilé avec `--release`. Les deux servent une copie de la même
 base de données en loopback ; `ab -k` envoie les mêmes requêtes, 20,000 par ligne (40 pour l'embed lent sur
 la grosse base) après une phase de chauffe. Deux exécutions, chacune lancée avec une charge moyenne sur 1 minute inférieure à 3 ;
-les cellules donnent exécution 1 / exécution 2 en requêtes par seconde. [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+les cellules donnent exécution 1 / exécution 2 en requêtes par seconde. [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 est le script.
 
 La base de fixtures (6 posts, 3 commentaires) :

@@ -9,11 +9,11 @@ Kitaphanada gaýtadan işletmek üçin proses ýok: onuň köpçülikleýin API-
 ýagdaýlary bolsa subutnama.
 
 ```sh
-rust-anything app front-door .        # rust/app: köpçülikleýin API-li Rust crate-i
+everything-rust app front-door .        # rust/app: köpçülikleýin API-li Rust crate-i
 # her birlik aýlawdan geçýär: bridge, record, port.rs, build, diff, gate; soňra:
-rust-anything app wire . textkit-rs   # rust/app-dan täzeden eksport edilýär; asyl nusga onuň shadow-yny import edýär
-rust-anything app replay .            # baglanan her birligiň ýagdaýlary; fallback = entek asyl nusgadaky eksportlar
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app-dan täzeden eksport edilýär; asyl nusga onuň shadow-yny import edýär
+everything-rust app replay .            # baglanan her birligiň ýagdaýlary; fallback = entek asyl nusgadaky eksportlar
+everything-rust app lift .
 ```
 
 - Repozitoriýde `main` we serwer ýok bolanda `app front-door` köpçülikleýin API-ni (her birligiň eksportlaryny) tapýar
@@ -21,7 +21,7 @@ rust-anything app lift .
   birlik onuň moduly bolýar: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` tarapyndan döredilen crate-i alýar, `gate` işledýär we birligiň shadow çalşygyny ýazýar:
   asyl paket ony birligiň ýerine import edýär, şonuň üçin onuň çagyryjylary asyl API-ni saklaýar we
-  Rust-a ýetýär. `RUST_ANYTHING_UNIT_<NAME>=original` birligi yzyna iberýär (C: shadow-yň
+  Rust-a ýetýär. `EVERYTHING_RUST_UNIT_<NAME>=original` birligi yzyna iberýär (C: shadow-yň
   baýdaklary bolmazdan guruň).
 - `app replay` baglanan her birligiň ýazga alnan ýagdaýlaryny onuň binding-leri arkaly işledýär. Fallback paýy
   Rust-yň entek jogap bermeýän köpçülikleýin eksportlarynyň paýy: baglanmadyk birlikler we `bridge`-iň

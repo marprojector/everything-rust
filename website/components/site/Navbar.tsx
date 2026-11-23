@@ -64,7 +64,7 @@ export default function Navbar({
 }) {
   const L = (p: string) => withLocale(p, locale)
   const LINKS = [
-    { title: ui.docs, href: L('/docs/introduction/what-is-rust-anything'), match: L('/docs/') },
+    { title: ui.docs, href: L('/docs/introduction/what-is-everything-rust'), match: L('/docs/') },
     { title: ui.languages, href: L('/docs/languages/overview'), match: L('/docs/languages/') },
     { title: ui.realWorld, href: L('/docs/real-world/overview'), match: L('/docs/real-world/') },
   ]

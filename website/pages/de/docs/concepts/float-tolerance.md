@@ -6,8 +6,8 @@ description: Numerischer Code liefert nach der Portierung selten bitgleiche Floa
 # Float-Toleranz
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Numerischer Code (Physik, Statistik, Grafik) liefert nach der Portierung selten bitgleiche Floats: Die Reihenfolge der Operationen, Fused Multiply-Add und die Mathebibliothek unterscheiden sich zwischen Compilern. Wenn du das akzeptierst, zeichne mit `--float-tolerance` und deinem Wert auf. Floats stimmen dann innerhalb dieses Anteils des größeren Werts überein (absolut unterhalb von 1), und `diff` und `gate` nutzen ihn. `0` entfernt ihn.

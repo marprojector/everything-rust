@@ -37,7 +37,7 @@ Found by recorded cases on real code:
 
 Per call, a port pays the bridge every time, and V8 runs small functions in nanoseconds. vercel/ms ran at 0.56x per call over its recorded cases; x18n's core ports are slower than the TS as called from JS. As batches, the loop moves to Rust:
 
-| Workload | Original | With rust-anything |
+| Workload | Original | With everything-rust |
 | --- | ---: | ---: |
 | x18n's sidebar search, 50,000 keys (Node) | 10 ms per query | 0.5 ms: 20x faster |
 | The same search in the browser (wasm, one thread) | 10 ms | 0.95 ms: 11.5x |

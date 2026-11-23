@@ -6,12 +6,12 @@ description: shadow asyl nusgany we Rust-y ýanaşyk işledýän we gabat gelmez
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow` asyl nusganyň API-si bilen çalşyp goýulýan modul döredýär: TS ýa-da Python moduly, Go paketi, Ruby faýly, Java klaslary ýa-da C faýly. Ony programmanyň asyl nusgany ýükleýän ýerinde ýükläň. Ol ikisini hem işledýär, asyl nusganyň netijesini gaýtarýar we siz production-da ynam toplaýan wagtyňyz Rust gabat gelmezliklerini habar berýär.
 
-| `RUST_ANYTHING_MODE` | Özüni alyp barşy |
+| `EVERYTHING_RUST_MODE` | Özüni alyp barşy |
 | --- | --- |
 | `shadow` (adaty) | ikisini hem işledýär, asyl nusganyň netijesini gaýtarýar, gabat gelmezlikleri habar berýär |
 | `new` | Rust-a geçýär |

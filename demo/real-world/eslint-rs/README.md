@@ -8,7 +8,7 @@ The case study is in [`docs/real-world.md`](../../../docs/real-world.md#eslint).
 
 Install it as a command: `npm install -g eslint-rs` runs this front door (macOS and Linux;
 Windows runs ESLint itself) and depends on ESLint 10.15.0 for everything it hands back
-([what runs where](../../../README.md#install-the-ports)). `rust-anything package app` lays out
+([what runs where](../../../README.md#install-the-ports)). `everything-rust package app` lays out
 the packages ([how](../../../docs/packaging.md#a-whole-cli-front-door)).
 
 ESLint is MIT licensed, Copyright OpenJS Foundation and other contributors; its license is in
@@ -77,19 +77,19 @@ outside a small matcher, `ecmaVersion`, `impliedStrict`).
 ```sh
 scripts/setup.sh <work>
 cd <work>/eslint-app
-rust-anything app record . --name eslint --inputs ../inputs.jsonl --normalize timestamps -- node node_modules/eslint/bin/eslint.js
-(cd rust/app && RUST_ANYTHING_REPO=$PWD/../.. cargo build --release)
-rust-anything app replay . --build rust/app/target/release/eslint
+everything-rust app record . --name eslint --inputs ../inputs.jsonl --normalize timestamps -- node node_modules/eslint/bin/eslint.js
+(cd rust/app && EVERYTHING_RUST_REPO=$PWD/../.. cargo build --release)
+everything-rust app replay . --build rust/app/target/release/eslint
 cargo run --release --manifest-path <this folder>/linter-rs/Cargo.toml --example check -- rust/app-cases
 ```
 
-The gate unit: point `eslint-stdin-rs/rust-anything.json`'s `root` at the clone, then
+The gate unit: point `eslint-stdin-rs/everything-rust.json`'s `root` at the clone, then
 
 ```sh
 CLAIMED=claimed.txt cargo run --release --manifest-path linter-rs/Cargo.toml --example check -- <work>/eslint-app/rust/app-cases
 node scripts/unit-inputs.cjs <work>/inputs.jsonl claimed.txt unit-inputs.jsonl
-rust-anything record eslint-stdin-rs --count 0 --inputs unit-inputs.jsonl
-rust-anything gate eslint-stdin-rs
+everything-rust record eslint-stdin-rs --count 0 --inputs unit-inputs.jsonl
+everything-rust gate eslint-stdin-rs
 ```
 
 The benchmark (from any folder; the CLI bench makes its own empty one):

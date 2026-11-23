@@ -1,6 +1,6 @@
 # Real-world runs
 
-What happened when rust-anything met real code, and what changed in the tool because of it.
+What happened when everything-rust met real code, and what changed in the tool because of it.
 
 ## x18n (the case-study repository)
 
@@ -26,7 +26,7 @@ Found in the tool, and fixed:
 
 [vercel/ms](https://github.com/vercel/ms) (5.5k stars, commit `4ff48ce`) turns `"2 days"` into
 milliseconds and back; most Node projects pull it in through some dependency. Ported end to end
-with rust-anything 1.5.1; the crate is in
+with everything-rust 1.5.1; the crate is in
 [`demo/real-world/vercel-ms-rs`](../demo/real-world/vercel-ms-rs).
 
 | Step | Result |
@@ -81,7 +81,7 @@ only when a program parses many durations in one go.
 
 [Fuse.js](https://github.com/krisk/Fuse) (20k stars, about 20 million npm downloads a week,
 commit `edf2fb6`) is the fuzzy-search library behind countless search boxes. Ported with
-rust-anything 1.6 (unreleased); the crate is in [`demo/real-world/fuse-rs`](../demo/real-world/fuse-rs).
+everything-rust 1.6 (unreleased); the crate is in [`demo/real-world/fuse-rs`](../demo/real-world/fuse-rs).
 
 `analyze` put every folder of `src/` in one import cycle, so Fuse cannot be ported file by file.
 The port takes the path a search spends its time on instead: a 54-line adapter
@@ -519,7 +519,7 @@ Another compiler may differ on those inputs.
 
 **Speed.** `scripts/bench.sh` links ffmpeg's own `libavutil.a` (built by its configure and make: Apple
 clang 21, `-O3`) and one LTO staticlib of all the ports (rustc 1.100, built with the `shadow`
-feature so it exports only `rust_anything_*` names) into one C program, and runs the same calls
+feature so it exports only `everything_rust_*` names) into one C program, and runs the same calls
 on both until 200 ms pass, five times, printing the median. Apple M4 (10 cores), macOS, two
 runs, load average 9 to 13 at the start (other builds were running), so read differences under
 5% as noise. Hashes call ffmpeg's context API directly on a
@@ -615,7 +615,7 @@ eight are faster, and the other 16 are slower by 3 to 40%, the slowest the 1 ns 
 - `record` put every header folder on `-I`, so `libavutil/time.h` shadowed `<time.h>` and the
   originals did not compile; such folders now go on `-iquote`, and `CFLAGS` is honored
   (`-DHAVE_AV_CONFIG_H`).
-- `rust-anything build .` failed for C crates (the relative path was read from a scratch folder).
+- `everything-rust build .` failed for C crates (the relative path was read from a scratch folder).
 - `analyze` blocked every C unit with a `goto` as "dynamic code", ranked CPU-specific code first,
   did not resolve `#include "libavutil/x.h"` from inside `libavutil` (so no test counted), and
   told C units their exports were "JS-shaped".
@@ -694,7 +694,7 @@ What the port had to get right, all caught by recorded cases:
 - `1e400` comes out of oxc's ESTree JSON as `1e+400`, which serde_json refuses; it is read as
   infinity.
 
-Found in rust-anything, and fixed (all in the [changelog](../CHANGELOG.md)):
+Found in everything-rust, and fixed (all in the [changelog](../CHANGELOG.md)):
 
 - `bridge` and `analyze` found no functions in a CommonJS module (`module.exports = { a, b }`),
   so no ESLint unit could be bridged; they now read `module.exports = { ... }`,

@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor prüft die Sprach-Runtimes, die Agent-Einrichtung und den MCP-Server und nennt zu jedem Problem den Befehl, der es behebt.
+description: everything-rust doctor prüft die Sprach-Runtimes, die Agent-Einrichtung und den MCP-Server und nennt zu jedem Problem den Befehl, der es behebt.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` prüft die Sprach-Runtimes, die Agent-Einrichtung und den MCP-Server und gibt zu jedem Problem den Befehl aus, der es behebt. Es beendet sich mit 1, wenn etwas Erforderliches fehlt.

@@ -8,7 +8,7 @@ description: O app lift torna rust/app numa aplicação em Rust puro assim que o
 Quando o replay passa com taxa de fallback 0 e todas as unidades passam o gate, transforme-a numa aplicação em Rust puro:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - O `app lift` recusa-se a avançar até que ambas as condições se verifiquem, e diz o que o bloqueia: os casos que ainda recorrem ao fallback, ligações que ainda são um stub, unidades que falham o gate.

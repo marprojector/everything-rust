@@ -8,7 +8,7 @@ use serde_json::Value;
 use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -72,7 +72,7 @@ fn driver_command(
     } else {
         let autoload = m.root.join("vendor/autoload.php");
         if autoload.is_file() {
-            cmd.env("RUST_ANYTHING_PHP_AUTOLOAD", autoload);
+            cmd.env("EVERYTHING_RUST_PHP_AUTOLOAD", autoload);
         }
     }
     cmd.arg(&script)
@@ -130,7 +130,7 @@ fn need_cases(crate_dir: &Path) -> Result<PathBuf> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -153,7 +153,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = need_cases(crate_dir)?;
     if built_file(crate_dir, m).is_none() {
         bail!(
-            "no built library in {} (run `rust-anything build {}` first)",
+            "no built library in {} (run `everything-rust build {}` first)",
             crate_dir.join("php").display(),
             crate_dir.display()
         );

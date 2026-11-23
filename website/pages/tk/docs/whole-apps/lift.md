@@ -8,7 +8,7 @@ description: Replay 0 fallback paýy bilen geçende we her birlik gate-den geçe
 Replay 0 fallback paýy bilen geçende we her birlik gate-den geçende, ony arassa Rust programmasyna öwüriň:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` iki şert hem ýerine ýetýänçä ret edýär we nämäniň böwet bolýandygyny aýdýar: henizem fallback-e düşýän ýagdaýlar, henizem stub bolan glue, gate-den geçmeýän birlikler.

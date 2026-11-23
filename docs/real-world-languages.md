@@ -1,6 +1,6 @@
 # Real code in eight languages
 
-rust-anything was run end to end (analyze, bridge, record, port, diff, gate, bench) on real code in
+everything-rust was run end to end (analyze, bridge, record, port, diff, gate, bench) on real code in
 each language it supports. The code had to be already on this machine: code downloaded from the
 internet was not executed. So the targets are standard-library modules shipped with the
 installed toolchains, and for Java and C, where no suitable library source was on disk, the JDK
@@ -74,7 +74,7 @@ What decides it:
 ### Batches: x18n's search
 
 The leaf ports above are measured per call. On x18n's sidebar search (50,000 keys, typed letter
-by letter), `rust-anything profile` showed `fuzzyScore` at about a quarter of the run, called once per key by
+by letter), `everything-rust profile` showed `fuzzyScore` at about a quarter of the run, called once per key by
 `matched`, and suggested `--batch fuzzyScore:text`. The generated `FuzzyScoreBatch` keeps the
 keys in Rust; a `FuzzyScoreIndex` in `port.rs` lowercases them to UTF-16 once and keeps a 64-bit
 mask of the code units in each key, so most keys that cannot match are skipped unread. Results
@@ -124,7 +124,7 @@ without table lookups and without an intermediate string fixed that; Java's port
 final-sigma rule by lowering only the whitespace-separated piece that holds a `Σ` as a whole.
 Per call, the Go port went from 0.73x to 0.93x, the Java one from 0.46x to 0.68x.
 
-**Correction (2026-11-19, [#110](https://github.com/erkamyaman/rust-anything/issues/110)).** The Java `slugify` numbers above do not hold up:
+**Correction (2026-11-19, [#110](https://github.com/marprojector/everything-rust/issues/110)).** The Java `slugify` numbers above do not hold up:
 
 - **The port was wrong on some text.** Java's `Character.isLetterOrDigit` takes letters and
   decimal digits per UTF-16 unit; the port used Rust's `char::is_alphanumeric`, which also takes
@@ -141,12 +141,12 @@ Per call, the Go port went from 0.73x to 0.93x, the Java one from 0.46x to 0.68x
 
 ## What the runs found
 
-### Bugs in rust-anything, fixed
+### Bugs in everything-rust, fixed
 
 - **Floats changed by one ULP** (Java run). `serde_json`'s default float parser is not always
-  correctly rounded. rust-anything perturbed recorded inputs when it read them, and generated crates
+  correctly rounded. everything-rust perturbed recorded inputs when it read them, and generated crates
   perturbed them again. 43 `Double.toString` cases failed for a correct port. Fixed with
-  `serde_json`'s `float_roundtrip` feature in rust-anything and in every crate it generates (napi-rs,
+  `serde_json`'s `float_roundtrip` feature in everything-rust and in every crate it generates (napi-rs,
   wasm and the JSON dispatcher).
 - **C crashes killed recording** (C run). Inputs outside a C function's contract (`isalpha(INT_MAX)`)
   segfault glibc. The C driver now runs each case in a forked child and records
@@ -259,5 +259,5 @@ Handled in the first port, and confirmed by the recorded cases:
 | Java | reflection driver compiled with the original sources | the same driver compiled with the JNI wrapper classes | typed JNI with a binary wire + wrapper classes with the original static methods | `<Class>Shadow` classes |
 | Python | in-process driver imports the original | the same driver imports the PyO3 package | PyO3 | module with the original API |
 | PHP | generated `driver.php` requires the original files (after `vendor/autoload.php` when present) | the same driver requires the generated wrapper | JSON dispatcher over `ext-ffi` + a file redeclaring the functions in their namespaces with the original parameters | none: `shadow` refuses PHP |
-| C | `cc -shared` of the original, called through ctypes, one fork per case | ctypes over the Rust `cdylib` | `extern "C"` functions with the original names and a header | shadow `.c` with `-D` renames; the crate's `shadow` feature exports only `rust_anything_` names |
+| C | `cc -shared` of the original, called through ctypes, one fork per case | ctypes over the Rust `cdylib` | `extern "C"` functions with the original names and a header | shadow `.c` with `-D` renames; the crate's `shadow` feature exports only `everything_rust_` names |
 | C# | reflection driver compiled with the project's sources (`dotnet build`) | the same driver compiled with the P/Invoke wrapper | JSON dispatcher over the C ABI + `<namespace>.Rust` classes with the original static methods | none yet: C# binds calls at compile time; call the `.Rust` classes or alias them with `using` |

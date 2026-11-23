@@ -8,7 +8,7 @@ description: 재생이 폴백 비율 0으로 통과하고 모든 유닛이 gate�
 재생이 폴백 비율 0으로 통과하고 모든 유닛이 게이트를 통과하면 순수 Rust 앱으로 만드세요:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift`는 두 조건이 모두 충족될 때까지 거부하며, 무엇이 막고 있는지 알려 줍니다: 아직 폴백하는 케이스, 여전히 스텁인 글루 코드, 게이트에 실패하는 유닛.

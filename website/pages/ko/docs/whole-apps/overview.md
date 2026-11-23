@@ -5,7 +5,7 @@ description: 첫 기록부터 순수 Rust 바이너리까지. 목표는 원본�
 
 # 앱 전체 포팅
 
-목표는 원본을 참조용으로 남겨 둔 채, 원본처럼 동작하는 순수 Rust 앱입니다. Rust 코드는 에이전트가 작성하고, rust-anything은 작업 순서를 정하고, 뼈대를 만들고, 모든 단계를 증명합니다. CLI, HTTP 서버, 라이브러리를 지원합니다.
+목표는 원본을 참조용으로 남겨 둔 채, 원본처럼 동작하는 순수 Rust 앱입니다. Rust 코드는 에이전트가 작성하고, everything-rust은 작업 순서를 정하고, 뼈대를 만들고, 모든 단계를 증명합니다. CLI, HTTP 서버, 라이브러리를 지원합니다.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. 계획
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app`은 다음을 추가합니다: 앱의 형태(CLI, 서버 또는 라이브러리)와 진입점, 모든 외부 의존성(import했거나 선언한 것)과 그에 맞는 Rust crate 및 적합도, 조각 단위의 포팅 순서(서로 import하는 유닛은 함께 옮김), 그리고 권장 답이 붙은 번호 매긴 결정 사항: 유지할 유닛, 막힌 유닛, crate가 없거나 일부만 있는 의존성.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## 에이전트가 진행하는 방식
 
-[whole-app 스킬](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md)이 에이전트를 안내하며, 개발자만 내릴 수 있는 결정부터 시작합니다:
+[whole-app 스킬](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md)이 에이전트를 안내하며, 개발자만 내릴 수 있는 결정부터 시작합니다:
 
 - **집중 질문(Grilling)**: 에이전트가 여러 차례에 걸쳐 질문하며, 각 질문에는 권장 답이 붙습니다. 포팅이 의존하는 모든 결정이 정해질 때까지 계속하고, 각 결정을 `rust/DECISIONS.md`에 ADR로 기록하며, `rust/GLOSSARY.md`에 원본의 용어를 Rust 이름으로 매핑합니다.
 - **조사**: 백그라운드 에이전트가 각 의존성의 1차 자료를 읽고, 발견한 의미상의 함정을 모두 담아 `rust/research/<topic>.md`를 작성합니다.

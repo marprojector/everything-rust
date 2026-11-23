@@ -1,13 +1,13 @@
 ---
 title: 环境诊断
-description: rust-anything doctor 检查语言运行时、智能体配置和 MCP 服务器，并给出修复每个问题的命令。
+description: everything-rust doctor 检查语言运行时、智能体配置和 MCP 服务器，并给出修复每个问题的命令。
 ---
 
 # 环境诊断
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` 会检查语言运行时、智能体配置和 MCP 服务器，并打印修复每个问题的命令。当缺少必需的组件时，它以状态码 1 退出。

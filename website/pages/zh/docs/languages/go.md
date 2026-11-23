@@ -13,7 +13,7 @@ description: 通过类型化 cgo 调用和生成的二进制传输协议，把 G
 | 依赖 | Go 1.21+ |
 | 状态 | 已在 Go 1.24 的 `path` 上验证：2,642/2,642（其中 542 条来自 Go 自身的测试表），门禁通过 |
 
-`profile` 通过 `go test` 工作：`rust-anything profile <repo> -- go test -run X -bench . ./pkg`。批处理通过 `NewFnBatch(items)` 创建；用完后需要关闭。
+`profile` 通过 `go test` 工作：`everything-rust profile <repo> -- go test -run X -bench . ./pkg`。批处理通过 `NewFnBatch(items)` 创建；用完后需要关闭。
 
 ## 移植版必须做对的地方
 

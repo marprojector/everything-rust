@@ -37,7 +37,7 @@ Gefunden durch aufgezeichnete Fälle in echtem Code:
 
 Pro Aufruf bezahlt eine Portierung jedes Mal die Bridge, und V8 führt kleine Funktionen in Nanosekunden aus. vercel/ms lief über seine aufgezeichneten Fälle mit 0.56x pro Aufruf; die Kern-Portierungen von x18n sind, aus JS aufgerufen, langsamer als das TS. Als Batches wandert die Schleife nach Rust:
 
-| Arbeitslast | Original | Mit rust-anything |
+| Arbeitslast | Original | Mit everything-rust |
 | --- | ---: | ---: |
 | Sidebar-Suche von x18n, 50,000 Keys (Node) | 10 ms pro Anfrage | 0.5 ms: 20x schneller |
 | Dieselbe Suche im Browser (wasm, ein Thread) | 10 ms | 0.95 ms: 11.5x |

@@ -17,12 +17,12 @@ description: PHP ist in der Vorschau. analyze plant eine PHP-App, und eine PHP-C
 Eine PHP-CLI oder ein PHP-Server lässt sich aufzeichnen, abspielen und hinter eine Rust-Front-Door stellen:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Das Portieren der Units nach Rust über PHPs FFI ist der nächste Schritt ([Issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Bis dahin lehnt `bridge` PHP-Units mit einer klaren Meldung ab.
+Das Portieren der Units nach Rust über PHPs FFI ist der nächste Schritt ([Issue #2](https://github.com/marprojector/everything-rust/issues/2)). Bis dahin lehnt `bridge` PHP-Units mit einer klaren Meldung ab.
 
 Die CI installiert kein PHP, daher laufen die PHP-Tests nur auf einem Rechner, auf dem es vorhanden ist.

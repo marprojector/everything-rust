@@ -9,7 +9,7 @@ description: 처음부터 끝까지 포팅한 첫 번째 앱 전체. Node 서버
 1.0.0-beta.15)는 JSON 파일에서 REST API를 제공합니다: Node, tinyhttp, lowdb. 앱 전체 흐름
 (`app record`, `front-door`, `wire`, `lift`)으로 처음부터 끝까지 포팅한 첫 번째 앱 전체이며,
 결과는 Node 서버가 응답하는 대로 응답하는 Rust 바이너리 하나입니다. 모든 것이
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs)에 있습니다.
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs)에 있습니다.
 
 | 단계 | 결과 |
 | --- | --- |
@@ -51,7 +51,7 @@ json-server에서 발견한 것: 자체 쓰기가 끝날 때마다 파일 감시
 벤치마크: Apple M4(10코어, 16 GB), macOS 27.3, npm용으로 `tsc`가 빌드한 `lib/bin.js`를 실행하는 Node 24.15.0,
 `--release`로 빌드한 Rust 바이너리. 둘 다 같은 데이터베이스의 복사본을 루프백에서 제공하며,
 `ab -k`가 워밍업 후 같은 요청을 행마다 20,000개 보냅니다(큰 데이터베이스의 느린 embed는 40개). 두 번 실행했고,
-각 실행은 1분 평균 부하가 3 미만일 때 시작했습니다. 각 칸은 1회차 / 2회차의 초당 요청 수입니다. [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)가
+각 실행은 1분 평균 부하가 3 미만일 때 시작했습니다. 각 칸은 1회차 / 2회차의 초당 요청 수입니다. [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)가
 그 스크립트입니다.
 
 픽스처 데이터베이스(게시물 6개, 댓글 3개):

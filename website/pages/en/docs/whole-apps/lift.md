@@ -8,7 +8,7 @@ description: app lift makes rust/app a pure Rust app once replay passes with fal
 When replay passes with fallback rate 0 and every unit passes gate, make it a pure Rust app:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` refuses until both hold, and says what blocks it: the cases still falling back, glue still a stub, units failing gate.

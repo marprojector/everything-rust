@@ -1,5 +1,5 @@
 target/
-.rust-anything/
+.everything-rust/
 ruby/*.so
 ruby/*.bundle
 cs/*.so

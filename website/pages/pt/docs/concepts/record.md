@@ -6,9 +6,9 @@ description: O record executa o original com casos-limite gerados, armadilhas se
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # ou: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # ou: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 O `record` executa as funções originais e guarda o que cada uma devolve ou lança em `cases.jsonl`, junto da crate: o comportamento a que a migração tem de corresponder. Uma divergência mais tarde é uma diferença de comportamento: corrija a migração, nunca o registo.

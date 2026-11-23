@@ -2,11 +2,11 @@
 //! recorded and diffed.
 //!
 //! The setting lives in `pinned.json` next to the recording. While it is there, `record`, `diff`,
-//! `fuzz` and `gate` start the original and the port with `RUST_ANYTHING_NOW_MS`,
-//! `RUST_ANYTHING_SEED` and `TZ=UTC`. The JS and Python drivers replace the clock (`Date.now()`,
+//! `fuzz` and `gate` start the original and the port with `EVERYTHING_RUST_NOW_MS`,
+//! `EVERYTHING_RUST_SEED` and `TZ=UTC`. The JS and Python drivers replace the clock (`Date.now()`,
 //! `new Date()`; `time.time`, `datetime.now`) with that instant and the random numbers
 //! (`Math.random`; the `random` module) with mulberry32 from that seed. Before each case they
-//! restart the generator and set `RUST_ANYTHING_CASE`, so a case's numbers do not depend on the
+//! restart the generator and set `EVERYTHING_RUST_CASE`, so a case's numbers do not depend on the
 //! cases before it. The port reproduces both with the helper in [`HELPER`].
 
 use std::path::{Path, PathBuf};
@@ -19,9 +19,9 @@ use crate::bridge::{Kind, Manifest};
 use crate::lang::Lang;
 
 pub const FILE: &str = "pinned.json";
-pub const NOW_MS: &str = "RUST_ANYTHING_NOW_MS";
-pub const SEED: &str = "RUST_ANYTHING_SEED";
-pub const CASE: &str = "RUST_ANYTHING_CASE";
+pub const NOW_MS: &str = "EVERYTHING_RUST_NOW_MS";
+pub const SEED: &str = "EVERYTHING_RUST_SEED";
+pub const CASE: &str = "EVERYTHING_RUST_CASE";
 /// Where `record --pin-clock` writes the port's helper (`mod pinned;` in `port.rs`).
 pub const HELPER: &str = "src/port/pinned.rs";
 
@@ -112,13 +112,13 @@ pub fn apply(cmd: &mut Command, crate_dir: &Path) -> Result<()> {
 }
 
 /// Installed in the Node record and diff scripts after the codec: a fixed `Date` and a seeded
-/// `Math.random` when `RUST_ANYTHING_NOW_MS` is set, and `pinCase(index)` to call before each case.
+/// `Math.random` when `EVERYTHING_RUST_NOW_MS` is set, and `pinCase(index)` to call before each case.
 pub const PIN_JS: &str = r#"
 const pinCase = (() => {
-  const now = process.env.RUST_ANYTHING_NOW_MS
+  const now = process.env.EVERYTHING_RUST_NOW_MS
   if (now === undefined) return () => {}
   const nowMs = Number(now)
-  const seed = Number(process.env.RUST_ANYTHING_SEED ?? 0) >>> 0
+  const seed = Number(process.env.EVERYTHING_RUST_SEED ?? 0) >>> 0
   let state = seed
   const RealDate = Date
   class PinnedDate extends RealDate {
@@ -136,19 +136,19 @@ const pinCase = (() => {
   }
   return (index) => {
     state = seed
-    process.env.RUST_ANYTHING_CASE = String(index)
+    process.env.EVERYTHING_RUST_CASE = String(index)
   }
 })()
 "#;
 
 /// The port's side: `src/port/pinned.rs`, declared with `mod pinned;` in `port.rs`.
-pub const HELPER_RS: &str = r#"//! The clock and random numbers the original saw while rust-anything recorded it.
+pub const HELPER_RS: &str = r#"//! The clock and random numbers the original saw while everything-rust recorded it.
 //!
-//! Written by `rust-anything record --pin-clock`. Declare it with `mod pinned;` in `port.rs`,
+//! Written by `everything-rust record --pin-clock`. Declare it with `mod pinned;` in `port.rs`,
 //! then call `pinned::now_ms()` where the original reads the clock and `pinned::random()` where
 //! it draws a random number. While `record`, `diff`, `fuzz` and `gate` run, the clock is fixed at
-//! `RUST_ANYTHING_NOW_MS` (time zone UTC) and the numbers come from mulberry32 seeded with
-//! `RUST_ANYTHING_SEED`, restarted at every case (the drivers change `RUST_ANYTHING_CASE` between
+//! `EVERYTHING_RUST_NOW_MS` (time zone UTC) and the numbers come from mulberry32 seeded with
+//! `EVERYTHING_RUST_SEED`, restarted at every case (the drivers change `EVERYTHING_RUST_CASE` between
 //! cases). Without those variables (in production) the real clock and a clock seed are used.
 //!
 //! The generator, as the drivers run it, on wrapping `u32` arithmetic:
@@ -188,18 +188,18 @@ fn real_ms() -> f64 {
 
 /// Milliseconds since the Unix epoch, like JS `Date.now()`.
 pub fn now_ms() -> f64 {
-    var::<i64>("RUST_ANYTHING_NOW_MS").map_or_else(|| real_ms().floor(), |ms| ms as f64)
+    var::<i64>("EVERYTHING_RUST_NOW_MS").map_or_else(|| real_ms().floor(), |ms| ms as f64)
 }
 
 /// Seconds since the Unix epoch, like Python `time.time()`.
 pub fn now_secs() -> f64 {
-    var::<i64>("RUST_ANYTHING_NOW_MS").map_or_else(|| real_ms() / 1000.0, |ms| ms as f64 / 1000.0)
+    var::<i64>("EVERYTHING_RUST_NOW_MS").map_or_else(|| real_ms() / 1000.0, |ms| ms as f64 / 1000.0)
 }
 
 /// The next 32 random bits.
 pub fn next_u32() -> u32 {
-    let seed = var::<u32>("RUST_ANYTHING_SEED");
-    let case = var::<u64>("RUST_ANYTHING_CASE");
+    let seed = var::<u32>("EVERYTHING_RUST_SEED");
+    let case = var::<u64>("EVERYTHING_RUST_CASE");
     STATE.with(|cell| {
         let (last_case, mut state, started) = cell.get();
         if !started || (seed.is_some() && case != last_case) {
@@ -278,7 +278,7 @@ mod tests {
              console.log(JSON.stringify({{ a: a.map(x => x * 4294967296), b: b * 4294967296, \
              now: Date.now(), date: new Date().getTime(), iso: new Date(0).toISOString(), \
              s: typeof Date(), inst: new Date() instanceof Date, \
-             case: process.env.RUST_ANYTHING_CASE }}))"
+             case: process.env.EVERYTHING_RUST_CASE }}))"
         );
         let out = std::process::Command::new("node")
             .args(["--input-type=module", "-e", &script])

@@ -22,7 +22,7 @@ use crate::walk::Canonical;
 /// Captured calls kept per function: enough to cover a test suite, small enough to record.
 const PER_FUNCTION: usize = 1000;
 pub const TEST_INPUTS: &str = "test-inputs.jsonl";
-const BACKUP: &str = ".rust-anything-backup";
+const BACKUP: &str = ".everything-rust-backup";
 
 #[derive(Debug)]
 pub struct Capture {
@@ -46,7 +46,7 @@ pub fn capture(crate_dir: &Path, command: &[String]) -> Result<Capture> {
     cmd.args(args)
         .current_dir(&m.root)
         .stdout(std::io::stderr())
-        .env("RUST_ANYTHING_CAPTURE", &raw)
+        .env("EVERYTHING_RUST_CAPTURE", &raw)
         .env("CI", "1");
     let mut skipped = Vec::new();
     let status = match m.language {
@@ -75,7 +75,7 @@ pub fn capture(crate_dir: &Path, command: &[String]) -> Result<Capture> {
                 ),
             )?;
             cmd.env("PYTHONPATH", path)
-                .env("RUST_ANYTHING_CAPTURE_FUNCS", serde_json::to_string(&want)?)
+                .env("EVERYTHING_RUST_CAPTURE_FUNCS", serde_json::to_string(&want)?)
                 .env("PYTHONDONTWRITEBYTECODE", "1");
             crate::process::status(&mut cmd, crate::process::TESTS)
         }
@@ -211,12 +211,12 @@ fn instrument_js(m: &Manifest, skipped: &mut Vec<String>) -> Result<Restore> {
     Ok(guard)
 }
 
-const JS_CAPTURE: &str = r#"// rust-anything record --from-tests: removed when the tests finish.
+const JS_CAPTURE: &str = r#"// everything-rust record --from-tests: removed when the tests finish.
 /* c8 ignore start */
 /* istanbul ignore next */
 {
   const __raFs = globalThis.process?.getBuiltinModule?.('node:fs')
-  const __raOut = globalThis.process?.env?.RUST_ANYTHING_CAPTURE
+  const __raOut = globalThis.process?.env?.EVERYTHING_RUST_CAPTURE
   const __raCount = new globalThis.Map()
   // The built-in name of a typed array, which a subclass cannot change.
   const __raTypedName = globalThis.Object.getOwnPropertyDescriptor(globalThis.Object.getPrototypeOf(globalThis.Uint8Array.prototype), globalThis.Symbol.toStringTag).get
@@ -318,7 +318,7 @@ fn python_hook() -> String {
     format!("{PY_HOOK_HEAD}\n{enc}\n{PY_HOOK_TAIL}")
 }
 
-const PY_HOOK_HEAD: &str = r#"# rust-anything record --from-tests: wraps the unit's functions when their module loads.
+const PY_HOOK_HEAD: &str = r#"# everything-rust record --from-tests: wraps the unit's functions when their module loads.
 import functools
 import importlib.abc
 import importlib.machinery
@@ -332,8 +332,8 @@ BIG = 2 ** 53
 "#;
 
 const PY_HOOK_TAIL: &str = r#"
-_OUT = os.environ.get("RUST_ANYTHING_CAPTURE")
-_WANT = json.loads(os.environ.get("RUST_ANYTHING_CAPTURE_FUNCS") or "{}")
+_OUT = os.environ.get("EVERYTHING_RUST_CAPTURE")
+_WANT = json.loads(os.environ.get("EVERYTHING_RUST_CAPTURE_FUNCS") or "{}")
 _COUNT = {}
 
 

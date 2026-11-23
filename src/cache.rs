@@ -1,6 +1,6 @@
 //! One cargo target folder for every port and bridge, so dependencies compile once.
 //!
-//! The folder is `CARGO_TARGET_DIR` when set, else `rust-anything/target` in the user's cache
+//! The folder is `CARGO_TARGET_DIR` when set, else `everything-rust/target` in the user's cache
 //! folder. Cargo names a crate's library after its package name alone, so two crates with one
 //! name would overwrite each other's artifact there. Each package name therefore belongs to one
 //! crate folder (`owners.json`, written under a file lock); another crate with that name builds
@@ -23,7 +23,7 @@ pub fn shared_dir() -> PathBuf {
         let dir = PathBuf::from(dir);
         return std::path::absolute(&dir).unwrap_or(dir);
     }
-    user_cache().join("rust-anything").join("target")
+    user_cache().join("everything-rust").join("target")
 }
 
 fn user_cache() -> PathBuf {
@@ -194,7 +194,7 @@ mod tests {
 
     fn scratch(name: &str) -> PathBuf {
         let dir =
-            std::env::temp_dir().join(format!("rust-anything-cache-{name}-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-cache-{name}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).unwrap();
         dir.canonicalize().unwrap()

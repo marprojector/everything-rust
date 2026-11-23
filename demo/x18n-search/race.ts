@@ -1,6 +1,6 @@
 // Per-keystroke times for typing a query, the TS pipeline against FuzzyScoreBatch (median of 21
 // runs, results checked identical): the numbers in docs/assets/race.gif.
-// Run after `rust-anything build .`: node --experimental-strip-types race.ts <x18n checkout>
+// Run after `everything-rust build .`: node --experimental-strip-types race.ts <x18n checkout>
 import { createRequire } from 'node:module'
 import { resolve } from 'node:path'
 const require = createRequire(import.meta.url)

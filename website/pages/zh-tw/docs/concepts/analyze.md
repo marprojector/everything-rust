@@ -10,7 +10,7 @@ description: 用 profile 找出時間花在哪裡，再用 analyze 規劃單元�
 當目標是速度時，在做任何選擇之前先量測：
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # 或：python3 bench.py、ruby bench.rb、
+everything-rust profile <repo> -- node bench.mjs      # 或：python3 bench.py、ruby bench.rb、
                                                     #     java -cp out Main、go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # 或：python3 bench.py、r
 ## 分析：規劃移植
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # 給人看
-rust-anything analyze <repo> --json            # 給 AI 代理：schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # 另外加上進入點、型態、相依套件、決策
+everything-rust analyze <repo> -o plan.md        # 給人看
+everything-rust analyze <repo> --json            # 給 AI 代理：schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # 另外加上進入點、型態、相依套件、決策
 ```
 
 `analyze` 會列出單元、移植順序、附 `file:line` 的風險、每個單元的橋接方式、每個相依套件對應到 crate 的程度，以及 `start_here`：最適合先移植的部分。`--whole-app` 會加上應用程式的型態（CLI、伺服器或函式庫）與進入點、每個相依套件（已匯入或已宣告）及其 crate、區塊（互相匯入的單元會一起搬移），以及附有建議答案的編號決策。請參閱[移植整個應用程式](/docs/whole-apps/overview)。

@@ -6,9 +6,9 @@ description: diff خاتىرىلەنگەن ھەر بىر ئەھۋالنى Rust �
 # پەرق ۋە مەلۇم پەرقلەر
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # چوقۇم N/N بولۇشى كېرەك
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # چوقۇم N/N بولۇشى كېرەك
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` نى قۇرۇلغان Rust مودۇلىدا، ئەسلى نۇسخىنىڭ چاقىرغۇچىلىرى چاقىرغاندەك چاقىرىپ قايتا قويىدۇ، ھەمدە ماس كەلمەسلىكلەرنى كۆرسىتىدۇ. ماس كەلمەسلىك ھەرىكەت پەرقىدۇر: خاتىرىنى ئەمەس، ھەرگىز كۆچۈرمىنى تۈزىتىڭ.

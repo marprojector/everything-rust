@@ -6,8 +6,8 @@ description: Le code numérique donne rarement des flottants identiques au bit p
 # Tolérance des flottants
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Le code numérique (physique, statistiques, graphisme) donne rarement des flottants identiques au bit près une fois porté : l'ordre des opérations, le fused multiply-add et la bibliothèque mathématique diffèrent d'un compilateur à l'autre. Si vous l'acceptez, enregistrez avec `--float-tolerance` et votre valeur. Les flottants correspondent alors à cette fraction près de la plus grande valeur (en absolu sous 1), et `diff` et `gate` l'utilisent. `0` la supprime.

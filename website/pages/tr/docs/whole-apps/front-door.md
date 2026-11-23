@@ -8,10 +8,10 @@ description: app front-door orijinalin önüne bir Rust binary'si koyar; app wir
 Önce giriş noktasını Rust'a taşıyın, ardından komutları ona birim birim devredin:
 
 ```sh
-rust-anything app front-door .                            # rust/app: her komut orijinali çalıştırır
-rust-anything app wire . textkit --command upper          # textkit-rs gate'i geçtikten sonra
+everything-rust app front-door .                            # rust/app: her komut orijinali çalıştırır
+everything-rust app wire . textkit --command upper          # textkit-rs gate'i geçtikten sonra
 # yapıştırıcı kodu rust/app/src/units/textkit.rs içine yazın, ardından:
-rust-anything app wire . textkit                          # yine %100, daha düşük fallback oranı
+everything-rust app wire . textkit                          # yine %100, daha düşük fallback oranı
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # yine %100, daha dü�
 3. sizin ya da ajanınızın dolduracağı `src/units/<unit>.rs` dosyasını bir kez yazar: argümanları ayrıştırın, `<crate>::port`'u çağırın, orijinalin yazdırdığını yazdırın;
 4. komutları ona yönlendirir, ardından derler ve yeniden oynatır.
 
-Yapıştırıcı kodu yazdıktan sonra yeniden çalıştırın: %100 geçiş ve daha düşük bir fallback oranı. `RUST_ANYTHING_UNIT_<NAME>=original`, bağlanmış bir birimi lift'e kadar orijinale geri gönderir.
+Yapıştırıcı kodu yazdıktan sonra yeniden çalıştırın: %100 geçiş ve daha düşük bir fallback oranı. `EVERYTHING_RUST_UNIT_<NAME>=original`, bağlanmış bir birimi lift'e kadar orijinale geri gönderir.
 
 Hiçbir komut adlandırmayan argv için (argüman yok, bilinmeyen komutlar, kullanım hataları) uygulamanın kendi adını bir komut olarak bağlayın (`--command mytool`).
 

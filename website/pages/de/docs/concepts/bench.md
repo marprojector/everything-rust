@@ -6,7 +6,7 @@ description: bench misst die aufgezeichneten Fälle auf dem Original und auf dem
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` misst die aufgezeichneten Fälle auf dem Original und auf dem gebauten Rust-Modul, Bridge eingeschlossen, und liefert die Zeilen und ein Urteil mit Empfehlung: ausliefern, die langsameren Funktionen in der Quellsprache belassen oder eine größere Unit portieren. Ein Speedup unter 1 bedeutet, dass die Portierung langsamer ist, so wie ihre Aufrufer sie aufrufen. `--min-ms` legt die minimale Messzeit pro Funktion und Seite fest (Standard 200).
@@ -31,7 +31,7 @@ Pro Aufruf gemessen an echtem Code ([sechs Sprachen](/docs/real-world/six-langua
 | Java | 0.18x | größere Units portieren |
 | Go | 0.04x | größere Units portieren |
 
-Alle 29 Funktionen des Kerns von x18n, die sich ohne API-Änderung verlagern lassen, wurden portiert: Jedes Gate besteht und 7,925 aufgezeichnete Fälle stimmen exakt überein, und `bench` zeigte, dass die Portierungen, aus JS aufgerufen, langsamer als das TS sind, weil die Bridge mehr kostet als die Arbeit ([Bericht](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms lief über seine aufgezeichneten Fälle mit 0.56x pro Aufruf ([Fallstudie](/docs/real-world/vercel-ms)).
+Alle 29 Funktionen des Kerns von x18n, die sich ohne API-Änderung verlagern lassen, wurden portiert: Jedes Gate besteht und 7,925 aufgezeichnete Fälle stimmen exakt überein, und `bench` zeigte, dass die Portierungen, aus JS aufgerufen, langsamer als das TS sind, weil die Bridge mehr kostet als die Arbeit ([Bericht](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms lief über seine aufgezeichneten Fälle mit 0.56x pro Aufruf ([Fallstudie](/docs/real-world/vercel-ms)).
 
 ## Was gewinnt: die Schleife verlagern
 

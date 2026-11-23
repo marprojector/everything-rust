@@ -8,9 +8,9 @@ description: app record پۈتۈن ئەپنى ئۇنىڭ ھۆججەتلەشتۈ�
 `record` ۋە `diff` بىر بىرلىكنى ئىسپاتلايدۇ؛ `app record` ۋە `app replay` ئالتە تىلنىڭ ھەر قايسىسىدىكى CLI ۋە مۇلازىمېتىرلار ئۈچۈن ئەپنى ئىسپاتلايدۇ. ئەپ بىر قارا قۇتا.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # ئەسلى نۇسخىنى ئىجرا قىلىدىغان بۇيرۇق
-rust-anything app replay .                            # ئەسلى نۇسخا 100% ئۆتۈشى كېرەك
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # ئەسلى نۇسخىنى ئىجرا قىلىدىغان بۇيرۇق
+everything-rust app replay .                            # ئەسلى نۇسخا 100% ئۆتۈشى كېرەك
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## ئەھۋاللار قەيەردىن كېلىدۇ
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## قايتا قويۇش
 
 - `app replay` ھەر قانداق قۇرۇلمىنى ئەھۋاللارغا قارىتا ئىجرا قىلىدۇ، `passed/total` نى بېسىپ چىقىرىدۇ، مەغلۇپ بولغان ھەر بىر ئەھۋال ئۈچۈن diff بىلەن `rust/app-cases/replay-report.md` نى يازىدۇ، ھەر قانداق ماس كەلمەسلىكتە نۆلدىن پەرقلىق كود بىلەن چېكىنىدۇ.
-- [ئالدى ئىشىك](/docs/whole-apps/front-door) قىلغاندەك، `RUST_ANYTHING_FALLBACK_LOG` ئاتىغان ھۆججەتكە قوشۇپ يازىدىغان قۇرۇلما (ئەسلى نۇسخىغا ھەر بىر زاپاس يول ئۈچۈن بىر قۇر) زاپاس يول نىسبىتىنىمۇ دوكلات قىلدۇرىدۇ.
+- [ئالدى ئىشىك](/docs/whole-apps/front-door) قىلغاندەك، `EVERYTHING_RUST_FALLBACK_LOG` ئاتىغان ھۆججەتكە قوشۇپ يازىدىغان قۇرۇلما (ئەسلى نۇسخىغا ھەر بىر زاپاس يول ئۈچۈن بىر قۇر) زاپاس يول نىسبىتىنىمۇ دوكلات قىلدۇرىدۇ.
 - `app replay --case <name>` دوكلات بەرگەن نام بىلەن بىر ئەھۋالنى قايتا ئىجرا قىلىدۇ: ھەممىنى قايتا ئىجرا قىلىشتىن بۇرۇن بىر ماس كەلمەسلىكنى تۈزىتىشنىڭ تېز، قايتىلاشقا بولىدىغان ئايلانمىسى.
 
 ## CI دا قايتا قويۇش
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 دوكلاتتا ۋاقىت ياكى ۋاقىتلىق يول يوق: ئوخشاش قۇرۇلمىنى ئىككى قېتىم قايتا قويۇش ئوخشاش ھۆججەتنى يازىدۇ. ئۇنى commit قىلىڭ، ئاندىن CI دا ئىجرا قىلىڭ:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

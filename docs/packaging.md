@@ -1,6 +1,6 @@
 # Ship a port as a package
 
-Once a port passes `gate`, `rust-anything package <crate>` lays it out the way end users install
+Once a port passes `gate`, `everything-rust package <crate>` lays it out the way end users install
 Rust extensions: maturin wheels for Python, napi-rs's per-platform npm packages for Node, one npm
 package for wasm, and for a whole Node CLI's front door, an npm command backed by a binary per
 platform ([below](#a-whole-cli-front-door)). It writes files only. It builds nothing for other
@@ -8,9 +8,9 @@ platforms (the generated GitHub Actions workflow does that) and never publishes.
 [README](../README.md).
 
 ```sh
-rust-anything package rust/fuzzy-rs                     # writes rust/fuzzy-rs/package/
-rust-anything package rust/fuzzy-rs --dry-run           # lists the files instead
-rust-anything package rust/textkit-rs --name textkit-fast --version 2.0.0 --out dist/textkit
+everything-rust package rust/fuzzy-rs                     # writes rust/fuzzy-rs/package/
+everything-rust package rust/fuzzy-rs --dry-run           # lists the files instead
+everything-rust package rust/textkit-rs --name textkit-fast --version 2.0.0 --out dist/textkit
 ```
 
 | Flag | Default |
@@ -21,7 +21,7 @@ rust-anything package rust/textkit-rs --name textkit-fast --version 2.0.0 --out 
 | `--fallback` | napi only: the module loaded where no binary fits |
 | `--dry-run` | write nothing, list the files |
 
-The output folder holds `rust-anything-package.json`, the list of files the last run wrote; a
+The output folder holds `everything-rust-package.json`, the list of files the last run wrote; a
 rerun replaces those and leaves anything else you added. A non-empty folder without it is
 refused.
 
@@ -62,9 +62,9 @@ none does (musl, FreeBSD, 32-bit), `index.cjs` loads the fallback: the original 
 or the module given with `--fallback` (for example the original npm package). A TypeScript
 original is not copied, since Node does not strip types under `node_modules`; pass built JS with
 `--fallback`. Without a fallback the package throws, naming the platform and the builds it has.
-`RUST_ANYTHING_MODE=old` loads the fallback on any platform.
+`EVERYTHING_RUST_MODE=old` loads the fallback on any platform.
 
-When the crate was built (`rust-anything build`), this machine's binary is copied into its
+When the crate was built (`everything-rust build`), this machine's binary is copied into its
 platform folder, so the package can be tried before CI runs:
 
 ```sh
@@ -81,7 +81,7 @@ names you own: until `<name>-<key>` exists on npm, anyone could publish it.
 ## Node (wasm-bindgen)
 
 One package for every platform: `index.cjs`, the built `pkg/` and its type declarations. Run
-`rust-anything build` first; `package` refuses without `pkg/`.
+`everything-rust build` first; `package` refuses without `pkg/`.
 
 ## A whole CLI (front door)
 
@@ -93,8 +93,8 @@ by the binary; every other run goes to that original, so the command prints what
 prints either way.
 
 ```sh
-rust-anything package rust/app --name prettier-rs              # original from ./node_modules
-rust-anything package rust/app --original prettier@3.6.2 --out dist/prettier-rs
+everything-rust package rust/app --name prettier-rs              # original from ./node_modules
+everything-rust package rust/app --original prettier@3.6.2 --out dist/prettier-rs
 ```
 
 | Flag | Default |
@@ -102,7 +102,7 @@ rust-anything package rust/app --original prettier@3.6.2 --out dist/prettier-rs
 | `--name` | `<app>-rs` (`prettier-rs`) |
 | `--version` | the original's version (`3.6.2`) |
 | `--bin` | the package name without its scope; repeat for more commands |
-| `--original` | the package the front door runs (`node node_modules/<package>/...`), at the version installed in the repository's `node_modules` (`RUST_ANYTHING_REPO` or two folders above the front door). Only an exact version is accepted |
+| `--original` | the package the front door runs (`node node_modules/<package>/...`), at the version installed in the repository's `node_modules` (`EVERYTHING_RUST_REPO` or two folders above the front door). Only an exact version is accepted |
 
 ```
 dist/prettier-rs/
@@ -116,9 +116,9 @@ dist/prettier-rs/
 
 How a run reaches the original:
 
-- The launcher runs the binary with `RUST_ANYTHING_ORIGINAL_BASE` set to the folder Node resolved
+- The launcher runs the binary with `EVERYTHING_RUST_ORIGINAL_BASE` set to the folder Node resolved
   the pinned original from (it skips a copy of another version, such as a project's own
-  `prettier`). With no binary for the platform, or with `RUST_ANYTHING_MODE=old`, it runs the
+  `prettier`). With no binary for the platform, or with `EVERYTHING_RUST_MODE=old`, it runs the
   original itself.
 - Outside Windows, the postinstall script copies the binary over the launcher, so a run the port
   covers starts no Node process. The binary then looks for `node_modules/<original>` in the
@@ -172,7 +172,7 @@ from the same install:
 
 | Project | Run | Same output | In Rust |
 | --- | --- | --- | --- |
-| [analogjs](https://github.com/erkamyaman/analogjs-erkam) (a fork, `99b78c3`): `.prettierrc` with an override, `.editorconfig`, `.prettierignore` | `prettier-rs --stdin-filepath <file>` on 1,610 files (TS, JSON, Markdown, CSS, SCSS, Less, YAML, JS) | 1,610/1,610 | 1,150; the 460 others include all 237 Markdown files, since `.editorconfig` sets `max_line_length = off` for them, which the port declines |
+| [analogjs](https://github.com/analogjs/analogjs) (a fork, `99b78c3`): `.prettierrc` with an override, `.editorconfig`, `.prettierignore` | `prettier-rs --stdin-filepath <file>` on 1,610 files (TS, JSON, Markdown, CSS, SCSS, Less, YAML, JS) | 1,610/1,610 | 1,150; the 460 others include all 237 Markdown files, since `.editorconfig` sets `max_line_length = off` for them, which the port declines |
 | [ngmd](https://github.com/erkamyaman/ngmd) (`632da43`): `.prettierrc.json` with an override on `./.prettierrc.json`, `.prettierignore` | the same on 161 files | 161/161 | none: an override pattern starting with `./` sends the whole project to Prettier |
 | ngmd | `prettier-rs --check .` | identical | none (folder arguments) |
 | [hinge-guess](https://github.com/erkamyaman/hinge-guess) (`6e50fd0`): `eslint.config.js` with typescript-eslint and angular-eslint | `eslint-rs .`, `-f json .`, `--rule ... -f json .` | identical | none (config lookup) |
@@ -185,7 +185,7 @@ port answers took 100.7 s and 99.7 s against 6.6 s and 8.2 s (15.2x and 12.1x). 
 
 `tests/package.rs` repeats the napi round trip in `cargo test`, including the fallback with the
 platform package removed, and the CLI layout with a stand-in binary: the launcher, the
-`RUST_ANYTHING_MODE=old` path to the original, the postinstall swap, and a refused version range. The generated workflows have not been run on GitHub yet: the other
+`EVERYTHING_RUST_MODE=old` path to the original, the postinstall swap, and a refused version range. The generated workflows have not been run on GitHub yet: the other
 platforms' binaries are untested until they are.
 
 ## Where the workflow goes

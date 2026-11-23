@@ -8,7 +8,7 @@ description: go ports the one function a slow command spends its time in, checks
 You don't have to port the whole app. Point `go` at a command that is too slow, and it ports the one function that takes the time:
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 | Step | What `go` does |
@@ -24,10 +24,10 @@ rust-anything go --agent claude -- python3 app.py
 Then measure it for the pull request:
 
 ```sh
-rust-anything report rust/dedupe-rs     # report/REPORT.md and report/card.svg
-rust-anything disable rust/dedupe-rs    # back to the original, byte for byte
+everything-rust report rust/dedupe-rs     # report/REPORT.md and report/card.svg
+everything-rust disable rust/dedupe-rs    # back to the original, byte for byte
 ```
 
 `report` builds, runs `diff` and `bench`, and writes the recorded cases matched, the speedup with the call included, the fallback rate, whether the unit is on, and the machine with its core count.
 
-Try it on [`tests/fixtures/go-fuzzy`](https://github.com/erkamyaman/rust-anything/tree/main/tests/fixtures/go-fuzzy) (a Python dedupe, where `go` picks the outer `dedupe` over the inner `levenshtein`) or [`tests/fixtures/go-search-ts`](https://github.com/erkamyaman/rust-anything/tree/main/tests/fixtures/go-search-ts) (a TypeScript leaf called in a loop, which `go` bridges with a batch).
+Try it on [`tests/fixtures/go-fuzzy`](https://github.com/marprojector/everything-rust/tree/main/tests/fixtures/go-fuzzy) (a Python dedupe, where `go` picks the outer `dedupe` over the inner `levenshtein`) or [`tests/fixtures/go-search-ts`](https://github.com/marprojector/everything-rust/tree/main/tests/fixtures/go-search-ts) (a TypeScript leaf called in a loop, which `go` bridges with a batch).

@@ -1,5 +1,5 @@
-//! JS bindings for `src/rust/relevance.ts`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! JS bindings for `src/rust/relevance.ts`: generated from the signatures in `port.rs` by everything-rust.
+//! Regenerate with `everything-rust refresh` after changing them.
 
 use napi_derive::napi;
 
@@ -143,8 +143,8 @@ thread_local! {
 }
 
 /// Registers the argument, result and argument-length buffers `index.cjs` uses.
-#[napi(js_name = "rustAnythingWireInit")]
-pub fn rust_anything_wire_init(
+#[napi(js_name = "everythingRustWireInit")]
+pub fn everything_rust_wire_init(
     input: napi::bindgen_prelude::Uint8Array,
     output: napi::bindgen_prelude::Uint8Array,
     len: napi::bindgen_prelude::Uint32Array,
@@ -153,8 +153,8 @@ pub fn rust_anything_wire_init(
 }
 
 /// Copies a result that did not fit into the (now larger) result buffer.
-#[napi(js_name = "rustAnythingWireFlush")]
-pub fn rust_anything_wire_flush() -> f64 {
+#[napi(js_name = "everythingRustWireFlush")]
+pub fn everything_rust_wire_flush() -> f64 {
     let bytes = PENDING.with(|p| std::mem::take(&mut *p.borrow_mut()));
     WIRE.with(|w| {
         let mut w = w.borrow_mut();
@@ -170,7 +170,7 @@ pub fn rust_anything_wire_flush() -> f64 {
 }
 
 /// Reads the argument bytes (`wLen[0]` of them), runs `f`, and writes its result; a negative
-/// return is the size of a result that did not fit, kept for `rustAnythingWireFlush`.
+/// return is the size of a result that did not fit, kept for `everythingRustWireFlush`.
 fn wire_io(
     f: impl FnOnce(&mut wire::Reader, &mut wire::Writer) -> Result<(), String>,
 ) -> napi::Result<f64> {
@@ -178,7 +178,7 @@ fn wire_io(
         let mut guard = cell.borrow_mut();
         let Some((input, output, len)) = guard.as_mut() else {
             return Err(napi::Error::from_reason(
-                "rust-anything: the wire buffers are not registered",
+                "everything-rust: the wire buffers are not registered",
             ));
         };
         let len = (len.first().copied().unwrap_or(0) as usize).min(input.len());

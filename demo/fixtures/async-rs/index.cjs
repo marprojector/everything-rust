@@ -1,4 +1,4 @@
-// Loads the native module built by `rust-anything build`.
+// Loads the native module built by `everything-rust build`.
 const native = require('./pipeline_rs.node')
 
 // Structured values cross as JSON text. JSON has no `undefined`, NaN or -0, and Rust strings no

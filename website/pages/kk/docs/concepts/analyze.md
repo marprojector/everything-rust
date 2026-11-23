@@ -10,7 +10,7 @@ description: profile арқылы уақыттың қайда кететінін
 Мақсат жылдамдық болса, бірдеңе таңдамас бұрын өлшеңіз:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # немесе: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # немесе: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # немесе: python3 benc
 ## Analyze: портты жоспарлау
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # адамдар үшін
-rust-anything analyze <repo> --json            # агенттер үшін: rust-anything/analyze@1 схемасы
-rust-anything analyze <repo> --whole-app       # қосымша кіру нүктелері, пішін, тәуелділіктер, шешімдер
+everything-rust analyze <repo> -o plan.md        # адамдар үшін
+everything-rust analyze <repo> --json            # агенттер үшін: everything-rust/analyze@1 схемасы
+everything-rust analyze <repo> --whole-app       # қосымша кіру нүктелері, пішін, тәуелділіктер, шешімдер
 ```
 
 `analyze` бірліктерді, порттау ретін, `file:line` көрсетілген тәуекелдерді, әр бірліктің bridge-ін, әр тәуелділіктің crate-ке қаншалықты сәйкес келетінін және `start_here` тізімдейді: алғашқы порттау үшін ең жақсылары. `--whole-app` мыналарды қосады: қолданбаның пішіні (CLI, сервер немесе кітапхана) және кіру нүктелері, әр тәуелділік (импортталған немесе жарияланған) өз crate-імен, бөліктер (бір-бірін импорттайтын бірліктер бірге көшеді) және ұсынылған жауабы бар нөмірленген шешімдер. [Бүкіл қолданбаны порттау](/docs/whole-apps/overview) бетін қараңыз.

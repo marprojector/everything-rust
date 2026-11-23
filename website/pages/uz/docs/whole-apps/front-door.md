@@ -8,10 +8,10 @@ description: app front-door asl nusxaning oldiga Rust binary'sini qo'yadi; app w
 Avval kirish nuqtasini Rust'ga ko'chiring, so'ng unga buyruqlarni birma-bir birlik bo'yicha topshiring:
 
 ```sh
-rust-anything app front-door .                            # rust/app: har bir buyruq asl nusxani ishga tushiradi
-rust-anything app wire . textkit --command upper          # textkit-rs gate'dan o'tgandan keyin
+everything-rust app front-door .                            # rust/app: har bir buyruq asl nusxani ishga tushiradi
+everything-rust app wire . textkit --command upper          # textkit-rs gate'dan o'tgandan keyin
 # bog'lovchi kodni rust/app/src/units/textkit.rs ga yozing, so'ng:
-rust-anything app wire . textkit                          # yana 100%, fallback ulushi pastroq
+everything-rust app wire . textkit                          # yana 100%, fallback ulushi pastroq
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # yana 100%, fallback 
 3. siz yoki agentingiz to'ldirishi uchun `src/units/<unit>.rs` ni bir marta yozadi: argumentlarni parse qilish, `<crate>::port` ni chaqirish, asl nusxa chiqaradigan narsani chiqarish;
 4. buyruqlarni unga yo'naltiradi, so'ng build qiladi va qayta ijro etadi.
 
-Bog'lovchi kodni yozgandan keyin uni yana ishga tushiring: 100% o'tish va pastroq fallback ulushi. `RUST_ANYTHING_UNIT_<NAME>=original` ulangan birlikni lift'gacha asl nusxaga qaytaradi.
+Bog'lovchi kodni yozgandan keyin uni yana ishga tushiring: 100% o'tish va pastroq fallback ulushi. `EVERYTHING_RUST_UNIT_<NAME>=original` ulangan birlikni lift'gacha asl nusxaga qaytaradi.
 
 Hech qanday buyruq nomlamaydigan argv uchun (argumentsiz, noma'lum buyruqlar, foydalanish xatolari) ilovaning o'z nomini buyruq sifatida ulang (`--command mytool`).
 

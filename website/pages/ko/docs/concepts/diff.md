@@ -6,9 +6,9 @@ description: diff는 기록된 모든 케이스를 Rust에 대해 재생합니�
 # Diff와 알려진 차이
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N이어야 함
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N이어야 함
+everything-rust diff <crate> --json
 ```
 
 `diff`는 빌드된 Rust 모듈을 원본의 호출자가 호출하는 방식 그대로 호출해 `cases.jsonl`을 재생하고, 불일치 목록을 보여 줍니다. 불일치는 동작 차이입니다. 기록이 아니라 포트를 고치세요.

@@ -12,7 +12,7 @@ use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 use crate::lang::c::{defines_main, scalar};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -213,7 +213,7 @@ pub fn built_library(crate_dir: &Path, manifest: &Manifest) -> Result<PathBuf> {
     .find(|p| p.exists())
     .with_context(|| {
         format!(
-            "no built library in {} (run `rust-anything build` first)",
+            "no built library in {} (run `everything-rust build` first)",
             release.display()
         )
     })
@@ -223,7 +223,7 @@ pub fn diff(crate_dir: &Path, manifest: &Manifest) -> Result<DiffOutcome> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -247,7 +247,7 @@ pub fn bench(crate_dir: &Path, manifest: &Manifest, min_ms: u64) -> Result<Vec<B
     let cases_path = crate_dir.join(CASES);
     if !cases_path.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -262,7 +262,7 @@ pub fn bench(crate_dir: &Path, manifest: &Manifest, min_ms: u64) -> Result<Vec<B
     let source = work.join("bench.c");
     std::fs::write(&source, bench_c(manifest, &cases, min_ms))?;
     // The original, its functions renamed `<name>__original`, and the Rust library, whose
-    // `rust_anything_<name>` aliases are the port: both called directly from one C program.
+    // `everything_rust_<name>` aliases are the port: both called directly from one C program.
     let (sources, include_dirs) = original_sources(manifest)?;
     let bin = work.join("bench");
     let mut cmd = Command::new(compiler());
@@ -369,7 +369,7 @@ fn c_arg(v: &Value, c_type: &str, is_string: bool) -> Option<String> {
     match v {
         Value::Number(n) if float => n
             .as_f64()
-            .map(|x| format!("({c_type})rust_anything_f({}ULL)", x.to_bits())),
+            .map(|x| format!("({c_type})everything_rust_f({}ULL)", x.to_bits())),
         Value::Object(o) if float => {
             let x = match o.get("$num")?.as_str()? {
                 "NaN" => f64::NAN,
@@ -377,7 +377,7 @@ fn c_arg(v: &Value, c_type: &str, is_string: bool) -> Option<String> {
                 "-Infinity" => f64::NEG_INFINITY,
                 _ => -0.0,
             };
-            Some(format!("({c_type})rust_anything_f({}ULL)", x.to_bits()))
+            Some(format!("({c_type})everything_rust_f({}ULL)", x.to_bits()))
         }
         Value::Number(n) => n
             .as_i64()
@@ -538,7 +538,7 @@ fn bench_c(m: &Manifest, cases: &[Value], min_ms: u64) -> String {
     let mut out = String::from(
         "#include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n#include <stdio.h>\n#include <string.h>\n\
          #include <sys/types.h>\n#include <time.h>\n\n\
-         static double rust_anything_f(uint64_t bits) { double d; memcpy(&d, &bits, sizeof d); return d; }\n\
+         static double everything_rust_f(uint64_t bits) { double d; memcpy(&d, &bits, sizeof d); return d; }\n\
          static double now_ns(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1e9 + t.tv_nsec; }\n\
          static volatile uint64_t sink;\n\n",
     );
@@ -549,7 +549,7 @@ fn bench_c(m: &Manifest, cases: &[Value], min_ms: u64) -> String {
             out,
             "{};\n{};",
             crate::codegen_c::c_prototype(f, &format!("{}__original", f.name)),
-            crate::codegen_c::c_prototype(f, &format!("rust_anything_{}", f.name))
+            crate::codegen_c::c_prototype(f, &format!("everything_rust_{}", f.name))
         );
         let mut calls = Vec::new();
         for (k, c) in cases
@@ -587,7 +587,7 @@ fn bench_c(m: &Manifest, cases: &[Value], min_ms: u64) -> String {
             out,
             "static void pass_{n}_original(void) {{\n{}}}\nstatic void pass_{n}_rust(void) {{\n{}}}\n",
             body(&format!("{}__original", f.name)),
-            body(&format!("rust_anything_{}", f.name)),
+            body(&format!("everything_rust_{}", f.name)),
             n = f.name
         );
         rows.push((f.name.clone(), calls.len()));
@@ -843,7 +843,7 @@ def cases_of(path):
 
 def record(lib, sigs, inputs, out_path):
     functions = bind(lib, json.load(open(sigs)))
-    progress = os.environ.get("RUST_ANYTHING_PROGRESS")
+    progress = os.environ.get("EVERYTHING_RUST_PROGRESS")
     with open(out_path, "w", encoding="utf-8") as out:
         for index, c in enumerate(json.load(open(inputs, encoding="utf-8"))):
             if progress:

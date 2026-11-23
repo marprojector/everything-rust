@@ -9,7 +9,7 @@ description: 第一個端對端移植的整個應用程式。一個能回應 Nod
 1.0.0-beta.15）會從 JSON 檔案提供 REST API：使用 Node、tinyhttp 與 lowdb。它是第一個
 以整個應用程式流程（`app record`、`front-door`、`wire`、`lift`）端對端移植的應用程式：
 結果是一個能回應 Node 伺服器所回應內容的 Rust 執行檔。所有內容都在
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs)。
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs)。
 
 | 步驟 | 結果 |
 | --- | --- |
@@ -53,7 +53,7 @@ description: 第一個端對端移植的整個應用程式。一個能回應 Nod
 `tsc` 為 npm 建置的 `lib/bin.js`，Rust 執行檔以 `--release` 建置。兩者都在 loopback 上提供同一個
 資料庫的副本；`ab -k` 送出相同的請求，暖機之後每列 20,000 個（大型資料庫上較慢的嵌入
 為 40 個）。執行兩次，每次都在 1 分鐘平均負載低於 3 時開始；
-儲存格中為第 1 次 / 第 2 次執行的每秒請求數。[`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+儲存格中為第 1 次 / 第 2 次執行的每秒請求數。[`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 是所用的指令稿。
 
 fixture 資料庫（6 篇文章，3 則留言）：

@@ -6,7 +6,7 @@ description: Un portage appelé une fois par élément perd face à un JIT. Les 
 # Lots et chemins chauds
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # ou : rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # ou : everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` génère une classe qui reçoit les valeurs de `param` une seule fois et les garde en Rust : `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Par requête, `run(<other args>)` renvoie tous les résultats dans un seul tableau, et `rank(<other args>, min)` renvoie les index des éléments, les meilleurs d'abord. Il s'exécute sur tous les cœurs, et les erreurs sont celles de l'original. Tous les langages sauf C ont les lots.
@@ -16,9 +16,9 @@ de déplacer la boucle : `profile` la trouve, et `--batch` génère une classe q
 et exécute la fonction sur tous à chaque appel, sur tous les cœurs, avec des résultats en tableaux typés.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore : un quart de l'exécution, appelée par clé depuis `matched` : la mettre en lot
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ même travail sur 4 cœurs, résultats et erreurs identiques (benchmarks dans ch
 
 Les originaux compilés gagnent moins : le travail par élément est déjà rapide, donc le lot gagne à hauteur du nombre de
 cœurs. Les crates de lot allouent avec mimalloc : avec l'allocateur système, le lot Go était plus lent qu'un
-seul thread. Démo : [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+seul thread. Démo : [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Écrire un index rapide
 
 - Faites construire le lot une seule fois par l'appelant, pas à chaque requête. Reconvertissez les index renvoyés en éléments avec une simple boucle.

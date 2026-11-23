@@ -74,8 +74,8 @@ The checks need a Prettier 3.6.2 build (see the folder README) and Node 24. The 
 each folder's README. To check the cases through the front door:
 
 ```sh
-rust-anything app record . --name prettier --no-traps --inputs equiv/cases.jsonl -- node node_modules/prettier/bin/prettier.cjs
-rust-anything app replay . --build app/target/release/prettier
+everything-rust app record . --name prettier --no-traps --inputs equiv/cases.jsonl -- node node_modules/prettier/bin/prettier.cjs
+everything-rust app replay . --build app/target/release/prettier
 ```
 
 Record with the same Prettier the front door falls back to. Prettier's crash messages contain its

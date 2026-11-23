@@ -6,8 +6,8 @@ description: Numeric code rarely gives bit-identical floats once ported. --float
 # Float tolerance
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Numeric code (physics, statistics, graphics) rarely gives bit-identical floats once ported: operation order, fused multiply-add and the math library differ between compilers. When you accept that, record with `--float-tolerance` and your number. Floats then match within that share of the larger value (absolute below 1), and `diff` and `gate` use it. `0` removes it.

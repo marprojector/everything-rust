@@ -1,5 +1,5 @@
 //! The cases recorded from the original (`cases.jsonl`), run on the port directly: what
-//! `rust-anything diff` checked through the bindings before the lift.
+//! `everything-rust diff` checked through the bindings before the lift.
 
 use json_server_js::json;
 use serde_json::Value;

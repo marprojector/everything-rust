@@ -6,7 +6,7 @@ description: gate est la définition de « terminé » pour un portage. Chaque v
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Terminé signifie que `gate` passe. Il vérifie :

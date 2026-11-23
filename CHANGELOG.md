@@ -9,7 +9,7 @@
   says why `bridge` keeps it (a new `js_only` field in `--json`), and `go` passes over it to the
   next hot function that can cross, or says none can. `go --function f` names `bridge`'s reason for
   such a function and, when two hot functions share the name, takes the one that can cross; the
-  functions `go` leaves in the original keep `bridge`'s own reason in `rust-anything.json`
+  functions `go` leaves in the original keep `bridge`'s own reason in `everything-rust.json`
   instead of "not hot in the profiled run"; `profile` reads and judges each hot file once.
 
 ## 3.3.0 (2026-11-22)
@@ -18,9 +18,9 @@
   only functions, so porting `get_close_matches` from `difflib` also bridged `HtmlDiff`, and
   `diff` and `gate` could not pass on stubs the task said to leave alone.
 - Generated Python bindings allow `clippy::too_many_arguments`: a function or method with many
-  parameters made `gate` fail on rust-anything's own `lib.rs`.
+  parameters made `gate` fail on everything-rust's own `lib.rs`.
 - `go` takes the repository root as its first argument, as `profile` does
-  (`rust-anything go . -- node bench.mjs`); `--root` still works.
+  (`everything-rust go . -- node bench.mjs`); `--root` still works.
 - `docs/STATUS.md`'s table of which command covers which language (XiaoBinGan, #201) has rows
   for C++, Swift, Dart, PowerShell, CUDA and Assembly (whole apps only, no adapter yet), from
   his audit in #200.
@@ -98,7 +98,7 @@
 - README: "Only the slow part" in all 20 translations. Website: "Only the slow part" and
   "Switch on and off" pages (English).
 
-- `go`: the hot-path loop in one command. `rust-anything go --agent claude -- python3 app.py`
+- `go`: the hot-path loop in one command. `everything-rust go --agent claude -- python3 app.py`
   profiles the workload, picks the outermost exported function of a portable unit that takes
   arguments (bridged with `--batch` where `profile` advises it; `--function` picks another),
   bridges it alone into `rust/<function>-rs`, records generated cases plus the calls the workload
@@ -110,7 +110,7 @@
 - `enable` and `disable`: switch a TS/JS or Python unit on in place, for every caller, with one
   marked block in its original files that rebinds the ported functions to the Rust module (no
   import changes, no absolute paths); `disable` removes exactly those lines. The unit's
-  `RUST_ANYTHING_UNIT_<NAME>=original` or `RUST_ANYTHING_MODE=old` keeps the original for a run,
+  `EVERYTHING_RUST_UNIT_<NAME>=original` or `EVERYTHING_RUST_MODE=old` keeps the original for a run,
   and `record`, `diff`, `bench` and `fuzz` set it for the original's side. `enable` refuses
   while recorded cases differ (`--force`). Every switch is listed in one place,
   [Switch a port on and off](docs/how-it-works.md#switch-a-port-on-and-off). MCP tools too.
@@ -118,7 +118,7 @@
   card's light style: the unit, recorded cases matched (`diff`), speedup with the call included
   (`bench`), fallback rate, on or off, and the machine with its core count. MCP tool too.
 - One build cache: ports and bridges build into one cargo target folder (`CARGO_TARGET_DIR`, else
-  `rust-anything/target` in the user's cache folder), so dependencies compile once. A package
+  `everything-rust/target` in the user's cache folder), so dependencies compile once. A package
   name belongs to one crate folder there, so a second crate with the same name builds in its own
   `target/` and cannot replace the first one's library; libraries are copied to each crate's
   `target/release`. `clean` removes the folder (`--dry-run`, `--force` for a `CARGO_TARGET_DIR`).
@@ -147,12 +147,12 @@
   a main npm package whose command runs the front door binary from `<name>-<platform>` (macOS
   arm64 and x64, Linux x64 and arm64 with glibc, Windows x64), with the original as a dependency
   pinned to the exact recorded version for every run the port hands back. A Node launcher runs
-  the binary (or the original where no binary fits, or with `RUST_ANYTHING_MODE=old`); outside
+  the binary (or the original where no binary fits, or with `EVERYTHING_RUST_MODE=old`); outside
   Windows a postinstall script puts the binary in its place, so a covered run starts no Node.
   `--bin` names the commands, `--original <package>@<version>` the original when it is not in
   the repository's `node_modules`. A generated workflow builds and packs every platform.
 - Front doors find the original next to themselves when installed: inside `node_modules`, the
-  generated `original.rs` resolves `node_modules/...` from `RUST_ANYTHING_ORIGINAL_BASE` (set by
+  generated `original.rs` resolves `node_modules/...` from `EVERYTHING_RUST_ORIGINAL_BASE` (set by
   the launcher) or the nearest folder above the binary, before the repository it was built in.
   The Prettier and ESLint front doors carry the change.
 - The ESLint port on npm as `eslint-rs` (ESLint 10.15.0; macOS and Linux binaries, Windows runs
@@ -187,7 +187,7 @@
   TS/JS, Python, C, Go, Ruby, Java and Kotlin. Also an MCP tool.
 - `record --pin-clock` (TS/JS with the napi bridge, Python): units that read the clock or random
   numbers can be recorded. While pinned (`pinned.json`, until `--no-pin-clock`), record, diff,
-  fuzz and gate run with `RUST_ANYTHING_NOW_MS`, `RUST_ANYTHING_SEED` and `TZ=UTC`; `Date.now()`,
+  fuzz and gate run with `EVERYTHING_RUST_NOW_MS`, `EVERYTHING_RUST_SEED` and `TZ=UTC`; `Date.now()`,
   `new Date()`, `Date()` and `Math.random` (`time.time`, `datetime.now`, `date.today` and the
   `random` module) return that instant and a mulberry32 sequence restarted at every case. The port
   reads the same values from `src/port/pinned.rs` (`now_ms()`, `random()`, `getrandbits()`,
@@ -220,7 +220,7 @@
 - Contributors: `mise.toml` pins the toolchains CI uses, and `hk.pkl` runs the secrets check,
   `cargo fmt` and `cargo clippy` before each commit (suggested by u/touristtam on Reddit).
 - `setup --no-backup`: changes settings files in place without saving a
-  `<file>.rust-anything.bak` copy first.
+  `<file>.everything-rust.bak` copy first.
 - `record`/`diff` (TS/JS): plain data shaped like a marker (`{"$date": ...}`, Mongo extended JSON)
   is kept as data instead of being read as a Date, undefined or bigint, and a marker key next to
   other keys is ordinary data. Write such an object in `--inputs` as `{"$object": {...}}` (#121).
@@ -240,8 +240,8 @@
   can be the working directory), written files are what differs from it, and files a case
   removes are recorded in `<case>.removed` and compared on replay. An `--inputs` case can also
   `"remove"` files of the snapshot before it runs. `--fresh` alone no longer implies `--http`.
-- Front doors built by rust-anything find the original when `rust/` is a symlink to a folder
-  outside the repository (`RUST_ANYTHING_REPO` is set at build time).
+- Front doors built by everything-rust find the original when `rust/` is a symlink to a folder
+  outside the repository (`EVERYTHING_RUST_REPO` is set at build time).
 - Case study: ESLint 10.15.0 behind a Rust front door, 90 rules (`eslint:recommended` and 26
   more), 10,585/10,585 recorded CLI runs at 3.6% fallback, gate passes on `eslint-stdin-rs`
   (`demo/real-world/eslint-rs`, `docs/real-world.md#eslint`).
@@ -272,7 +272,7 @@
   `libavutil/time.h`) is passed with `-iquote`, so `<time.h>` stays the system's; flags in
   `CFLAGS` are added (`-DHAVE_AV_CONFIG_H`, `-I<tree>`).
 - `build`, `diff`, `bench`, `shadow`, `gate`, `refresh` and `record` take the crate path as
-  given and make it absolute: `rust-anything build .` on a C crate failed, since the compiler and
+  given and make it absolute: `everything-rust build .` on a C crate failed, since the compiler and
   cargo run in a scratch folder.
 - `analyze` for C: files under a CPU-architecture folder (`x86/`, `aarch64/`, `arm/`, ...) stay
   in C; `goto` no longer marks a unit blocked as dynamic code; `#include "libavutil/x.h"`
@@ -340,7 +340,7 @@
 ## 2.0.2 (2026-11-19)
 
 - The npm package carries `mcpName`, and `server.json` describes the MCP server, so it can be
-  listed in the official MCP Registry as `io.github.erkamyaman/rust-anything`.
+  listed in the official MCP Registry as `io.github.marprojector/everything-rust`.
 
 ## 2.0.1 (2026-11-19)
 
@@ -356,8 +356,8 @@
   order puts it first.
 - `setup`: a symlinked settings file (a dotfiles repo) is written at its target instead of being
   replaced by a plain file, and an existing file keeps its permissions (a `600` file stays `600`).
-- `setup`: a Codex entry written as an inline table (`rust-anything = { ..., env = { ... } }`)
-  keeps its other keys on reinstall, as a `[mcp_servers.rust-anything]` table already did.
+- `setup`: a Codex entry written as an inline table (`everything-rust = { ..., env = { ... } }`)
+  keeps its other keys on reinstall, as a `[mcp_servers.everything-rust]` table already did.
 
 ## 2.0.0 (2026-11-19)
 
@@ -493,11 +493,11 @@ Changed: `diff` exits non-zero when the recording is stale (it printed a warning
 
 ## 1.5.1 (2026-11-18)
 
-- Fix ([#80](https://github.com/erkamyaman/rust-anything/issues/80)): `record` could stall for good
+- Fix ([#80](https://github.com/marprojector/everything-rust/issues/80)): `record` could stall for good
   when a generated input made the original run away (a trap like `2147483647` in `[w] * n`
   allocates gigabytes, a loop that never ends). Every recorder (TS/JS, Python, C, Go, Ruby, Java)
   now runs under a watchdog: a case that runs past the limit (10 seconds, or
-  `RUST_ANYTHING_CASE_TIMEOUT`) stops the original, the cases recorded so far are kept, and that
+  `EVERYTHING_RUST_CASE_TIMEOUT`) stops the original, the cases recorded so far are kept, and that
   input is left out and listed. Drivers now write each case as it finishes instead of at the end.
 
 ## 1.5.0 (2026-11-18)
@@ -536,18 +536,18 @@ Twenty-two contributions from the community, Windows in CI, and a README in 16 l
 
 Fixes from the first round of outside issues and pull requests, and the project's community files.
 
-- Fix ([#31](https://github.com/erkamyaman/rust-anything/issues/31)): `bridge` takes a single source
-  file inside a unit (`rust-anything bridge . pkg/core.py`) and ports just that file, so a helper
+- Fix ([#31](https://github.com/marprojector/everything-rust/issues/31)): `bridge` takes a single source
+  file inside a unit (`everything-rust bridge . pkg/core.py`) and ports just that file, so a helper
   script next to the real module can stay in the source language.
-- Fix ([#32](https://github.com/erkamyaman/rust-anything/issues/32)): a name defined twice in one
+- Fix ([#32](https://github.com/marprojector/everything-rust/issues/32)): a name defined twice in one
   unit (a wrapper in `__init__.py` and the function it wraps in a submodule, say) made one
   definition silently replace the other. `bridge` now refuses with both locations and how to
   bridge the module you want on its own.
-- Fix ([#33](https://github.com/erkamyaman/rust-anything/issues/33)): Python command-line entry
+- Fix ([#33](https://github.com/marprojector/everything-rust/issues/33)): Python command-line entry
   points are kept in Python instead of offered as ports: functions the
   `if __name__ == "__main__":` block (or a package's `__main__.py`) calls, and functions returning
   an `argparse.ArgumentParser`. `app front-door` takes the command line over in a whole-app port.
-- Fix ([#34](https://github.com/erkamyaman/rust-anything/issues/34)): a Python parameter typed with a
+- Fix ([#34](https://github.com/marprojector/everything-rust/issues/34)): a Python parameter typed with a
   dataclass now gets real instances in recorded cases, built from the dataclass's fields (defaulted
   fields sometimes left out), instead of only `None` and shapes that can never fit.
 - From @elfenomenokim: optional dataclass parameters bind as `Option` so the generated crate
@@ -580,17 +580,17 @@ fixes from the first outside contributor.
   and servers (front controllers, `$_SERVER`). `app record`, `app replay` and `app front-door`
   work on PHP CLIs and on servers run with `php -S`. Bridging PHP units into Rust (PHP FFI over a
   C ABI) comes next; `bridge` says so for now.
-- Fix ([#3](https://github.com/erkamyaman/rust-anything/issues/3)): `.gitignore` files in folders
+- Fix ([#3](https://github.com/marprojector/everything-rust/issues/3)): `.gitignore` files in folders
   above the repository (a `*` in a home-folder `.gitignore`, for one) no longer hide every source
   file. Ignore files are read the way git reads them: from the repository root down, and not from
   parent folders at all outside a repository. When ignore rules still exclude every source file,
   `analyze` says so instead of returning an empty plan.
 - PHP's built-in server echoes a `Host` header with the port it ran on; HTTP recordings now skip
   it, like `Date`.
-- Fix ([#4](https://github.com/erkamyaman/rust-anything/issues/4)): Python units bridged on macOS
+- Fix ([#4](https://github.com/marprojector/everything-rust/issues/4)): Python units bridged on macOS
   failed to link (`Undefined symbols ... _Py_IsInitialized`). The PyO3 crate now gets the same
   `build.rs` the Ruby bridge has, which lets the interpreter provide Python's symbols at load time.
-  `rust-anything refresh <crate>` adds it to crates bridged before this fix.
+  `everything-rust refresh <crate>` adds it to crates bridged before this fix.
 - Fix: a Rust panic no longer passes `diff` where the original also threw. An unfinished port
   (`unimplemented!`) used to "match" every recorded error case in TS, Ruby (a panic arrives as
   `RuntimeError`), Java (`RuntimeException`) and Go (a panic where the original panicked). Python's
@@ -623,15 +623,15 @@ fixes from the first outside contributor.
   `WebApplication.CreateBuilder`). `app record`, `app replay` and `app front-door` run built C#
   apps (`dotnet out/app.dll`). Bridging C# units (P/Invoke over a C ABI) comes next; `bridge` says
   so for now.
-- Fix ([#25](https://github.com/erkamyaman/rust-anything/issues/25)): a bridge crate in its default
+- Fix ([#25](https://github.com/marprojector/everything-rust/issues/25)): a bridge crate in its default
   place inside the project (`rust/<crate>`) was read as source, so Java `record` compiled its
   generated wrappers next to the originals ("duplicate class"). Every source walk now skips
-  folders holding a `rust-anything.json`.
-- Fix ([#26](https://github.com/erkamyaman/rust-anything/issues/26)): on Windows, paths handed to
+  folders holding a `everything-rust.json`.
+- Fix ([#26](https://github.com/marprojector/everything-rust/issues/26)): on Windows, paths handed to
   `java -cp`, `-D` library paths and the other runtimes carried the `\\?\` verbatim prefix, so
   Java `record`, `diff` and `bench` could not find their classes. Paths are now made absolute
   without it everywhere.
-- Fixes found by gating every demo port ([#27](https://github.com/erkamyaman/rust-anything/issues/27)
+- Fixes found by gating every demo port ([#27](https://github.com/marprojector/everything-rust/issues/27)
   reported the first): the generated binary wire tripped the new
   `chunks_exact_to_as_chunks` lint (every Go and Java port failed `gate`), and on macOS the
   Python and Ruby extension's test binary failed to link; the generated `build.rs` now covers it,
@@ -644,7 +644,7 @@ fixes from the first outside contributor.
 ## 1.2.0 (2026-11-17)
 
 Numeric code, already compiled code, and the edges of what a recording proves, after the first
-round of feedback. rust-anything is now on crates.io: `cargo install rust-anything`.
+round of feedback. everything-rust is now on crates.io: `cargo install everything-rust`.
 
 - Float tolerance for numeric code: `record --float-tolerance 1e-9` (and `app record`) lets floats
   match when they differ by at most that share of the larger value (absolute below 1); `diff`,
@@ -669,11 +669,11 @@ round of feedback. rust-anything is now on crates.io: `cargo install rust-anythi
   a Rust port gains little speed there.
 - Go: crates no longer build a static library. Go 1.26.11 and 1.27.4 refuse to link archives
   that carry LLVM bitcode, which every Rust static library does; cgo links the shared library
-  anyway. Run `rust-anything refresh <crate>` on a Go crate bridged by an earlier version.
+  anyway. Run `everything-rust refresh <crate>` on a Go crate bridged by an earlier version.
 
 ## 1.1.0 (2026-11-16)
 
-Whole-app ports: rust-anything now takes a TypeScript/JavaScript, Python, C, Go, Ruby or Java app
+Whole-app ports: everything-rust now takes a TypeScript/JavaScript, Python, C, Go, Ruby or Java app
 all the way to a pure Rust app, proving at every step that it still behaves the same. CLIs and HTTP
 servers in all six languages, and libraries (proven end to end in TypeScript, Python and C so
 far); every `app` command is also an MCP tool (`app_record`, `app_replay`, `app_front_door`, `app_wire`, `app_lift`).
@@ -694,7 +694,7 @@ far); every `app` command is also an MCP tool (`app_record`, `app_replay`, `app_
 - Replay: `app replay` runs any build (the original, the front door, the final binary) against
   the cases, prints `passed/total` and the fallback rate, writes a report with a diff per failing
   case, and exits non-zero on any mismatch, so CI can run it. Any build can report its fallbacks
-  through the file named by `RUST_ANYTHING_FALLBACK_LOG`. `--case <name>` reruns one
+  through the file named by `EVERYTHING_RUST_FALLBACK_LOG`. `--case <name>` reruns one
   failing case, the fast loop for fixing a mismatch.
 - Front door: `app front-door` scaffolds `rust/app`, which owns the entry point from day one and
   hands what is not ported yet to the original, counting every fallback: for a CLI a clap binary
@@ -704,7 +704,7 @@ far); every `app` command is also an MCP tool (`app_record`, `app_replay`, `app_
   Replay against a fresh front door passes 100% at 100% fallback.
 - Wire: after a unit passes `gate`, `app wire` adds its crate to `rust/app` and routes commands
   (`--command`), routes (`--route 'GET /users/{id}'`, `*`) or, for a library, the unit's exports
-  to it, behind a kill switch, `RUST_ANYTHING_UNIT_<NAME>=original`; it writes a glue file to fill
+  to it, behind a kill switch, `EVERYTHING_RUST_UNIT_<NAME>=original`; it writes a glue file to fill
   in once, then builds and replays. For a library it writes the unit's shadow drop-in for the
   original package to import, and shadows in every language but C (switched at build time) honor
   the kill switch.
@@ -735,7 +735,7 @@ far); every `app` command is also an MCP tool (`app_record`, `app_replay`, `app_
 
 ## 1.0.1 (2026-11-16)
 
-- npm: one `rust-anything` package that carries the binaries for macOS, Linux and Windows.
+- npm: one `everything-rust` package that carries the binaries for macOS, Linux and Windows.
 
 ## 1.0.0 (2026-11-16)
 
@@ -765,11 +765,11 @@ First version: the full loop for TypeScript/JavaScript, Python, C, Go, Ruby and 
   functions, async functions and classes; JS-only exports stay in TS with a reason.
 - `record` / `diff` / `bench`: recorded TS behavior from shaped, edge-case inputs and class
   scenarios, replayed against Rust; timing with the bridge included.
-- `shadow`: drop-in modules running TS and Rust side by side, `RUST_ANYTHING_MODE=old|shadow|new`.
+- `shadow`: drop-in modules running TS and Rust side by side, `EVERYTHING_RUST_MODE=old|shadow|new`.
 - `gate`: fmt, clippy, tests, `unsafe` audit, nothing unported, build, API, behavior.
 - `setup`: registers the MCP server and the workflow skill with Claude Code, Codex, Cursor and
   Gemini CLI, keeping other settings and backing up each file it changes; `--remove` and
   `--dry-run`.
-- `mcp`: every step as an MCP tool; agent skill in `skills/rust-anything`.
-- Install with `npm install -g rust-anything` (prebuilt binaries for macOS, Linux and Windows) or
+- `mcp`: every step as an MCP tool; agent skill in `skills/everything-rust`.
+- Install with `npm install -g everything-rust` (prebuilt binaries for macOS, Linux and Windows) or
   from the binaries attached to the GitHub release.

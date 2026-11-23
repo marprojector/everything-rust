@@ -1,16 +1,16 @@
 ---
 title: 六种语言
-description: 在 Go、Ruby、Python、Java 和 C 的真实代码上端到端运行 rust-anything，包括逐次调用和批处理的速度，以及这些运行发现的 bug。
+description: 在 Go、Ruby、Python、Java 和 C 的真实代码上端到端运行 everything-rust，包括逐次调用和批处理的速度，以及这些运行发现的 bug。
 ---
 
 # 六种语言的真实代码
 
-rust-anything 在它支持的每种语言的真实代码上都端到端运行过（analyze、bridge、record、port、diff、gate、bench）。
+everything-rust 在它支持的每种语言的真实代码上都端到端运行过（analyze、bridge、record、port、diff、gate、bench）。
 代码必须已经在这台机器上：从互联网下载的代码不会被执行。所以目标是
 随已安装工具链附带的标准库模块；对于 Java 和 C，由于磁盘上没有合适的库源码，
 就让 JDK 和 glibc 本身放在一层很薄的门面之后充当参照基准。
 
-移植版、录制用例和额外输入位于 [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md)。
+移植版、录制用例和额外输入位于 [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md)。
 
 | 语言 | 代码 | 函数 | 录制用例 | 结果 |
 | --- | --- | ---: | ---: | --- |
@@ -60,7 +60,7 @@ TypeScript（x18n core，九个单元，27 个函数，使用相同的用例）�
 ### 批处理：x18n 的搜索
 
 上面的叶子函数移植是按逐次调用测量的。在 x18n 的侧边栏搜索中（50,000 个键，逐字母
-输入），`rust-anything profile` 显示 `fuzzyScore` 约占整个运行时间的四分之一，由
+输入），`everything-rust profile` 显示 `fuzzyScore` 约占整个运行时间的四分之一，由
 `matched` 按键逐个调用，并建议使用 `--batch fuzzyScore:text`。生成的 `FuzzyScoreBatch` 把
 键留在 Rust 中；`port.rs` 中的 `FuzzyScoreIndex` 只做一次把它们小写化为 UTF-16 的处理，并为每个键保存一个 64 位
 码元掩码，因此大多数不可能匹配的键无需读取即可跳过。对于每个查询，结果
@@ -110,11 +110,11 @@ Go 批处理最初比单线程还慢：移植版为每个数据项分配内存�
 
 ## 这些运行发现了什么
 
-### rust-anything 中的 bug，已修复
+### everything-rust 中的 bug，已修复
 
 - **浮点数变化了一个 ULP**（Java 运行）。`serde_json` 默认的浮点解析器并不总是
-  正确舍入。rust-anything 在读取录制的输入时扰动了它们，生成的 crate
-  又扰动了一次。43 条 `Double.toString` 用例在移植版正确的情况下失败。通过在 rust-anything 及其生成的每个 crate（napi-rs、
+  正确舍入。everything-rust 在读取录制的输入时扰动了它们，生成的 crate
+  又扰动了一次。43 条 `Double.toString` 用例在移植版正确的情况下失败。通过在 everything-rust 及其生成的每个 crate（napi-rs、
   wasm 和 JSON 分发器）中启用 `serde_json` 的 `float_roundtrip` 特性修复。
 - **C 崩溃中断了录制**（C 运行）。超出 C 函数约定范围的输入（`isalpha(INT_MAX)`）
   会让 glibc 段错误。现在 C 驱动会在 fork 出的子进程中运行每条用例，并记录
@@ -192,4 +192,4 @@ Go 批处理最初比单线程还慢：移植版为每个数据项分配内存�
 | Ruby | 生成的驱动加载原始文件 | 同一个驱动加载 Fiddle 包装 | JSON 分发器 + 定义相同模块的 Fiddle 包装 | 在原实现之后 require 的文件：对两者都使用 `prepend` |
 | Java | 与原始源码一起编译的反射驱动 | 同一个驱动，与 JNI 包装类一起编译 | 基于 JNI 的 JSON 分发器 + 保持原静态方法的包装类 | `<Class>Shadow` 类 |
 | Python | 进程内驱动导入原实现 | 同一个驱动导入 PyO3 包 | PyO3 | 保持原 API 的模块 |
-| C | 用 `cc -shared` 编译原实现，通过 ctypes 调用，每条用例一个 fork | 基于 Rust `cdylib` 的 ctypes | 与原函数同名的 `extern "C"` 函数及头文件 | 使用 `-D` 重命名的影子 `.c` 文件；crate 的 `shadow` 特性只导出 `rust_anything_` 开头的名称 |
+| C | 用 `cc -shared` 编译原实现，通过 ctypes 调用，每条用例一个 fork | 基于 Rust `cdylib` 的 ctypes | 与原函数同名的 `extern "C"` 函数及头文件 | 使用 `-D` 重命名的影子 `.c` 文件；crate 的 `shadow` 特性只导出 `everything_rust_` 开头的名称 |

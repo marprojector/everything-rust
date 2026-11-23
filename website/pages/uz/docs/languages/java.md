@@ -20,7 +20,7 @@ Batch'lar `new FnBatch(items)`; ish tugagach ularni yoping. `profile` JFR'dan fo
 - `Integer.parseInt` `Character.digit` orqali istalgan Unicode o'nlik raqamini (`١٢`, `２`) qabul qiladi.
 - `Double.toString` (JDK 19+) eng qisqa o'nlik ko'rinishni chiqaradi, lekin hech qachon ikki raqamdan kam emas: `4.9E-324`, Rust'ning eng qisqa shakli esa `5e-324`.
 - `\s` faqat ASCII; Rust'ning `split_whitespace` U+00A0 da ham bo'ladi.
-- Float'lar borib-qaytishdan o'zgarmay chiqishi kerak: `serde_json` ning standart float parser'i har doim ham to'g'ri yaxlitlamaydi, shuning uchun rust-anything va u generatsiya qiladigan har bir crate uning `float_roundtrip` imkoniyatidan foydalanadi.
+- Float'lar borib-qaytishdan o'zgarmay chiqishi kerak: `serde_json` ning standart float parser'i har doim ham to'g'ri yaxlitlamaydi, shuning uchun everything-rust va u generatsiya qiladigan har bir crate uning `float_roundtrip` imkoniyatidan foydalanadi.
 
 ## Tezlik
 

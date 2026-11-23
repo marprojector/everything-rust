@@ -10,7 +10,7 @@ description: Найдите, куда уходит время, с помощью
 Когда цель в скорости, измеряйте, прежде чем что-либо выбирать:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # или: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # или: python3 bench.py, ruby bench.rb,
                                                     #      java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # или: python3 bench.py, 
 ## Analyze: спланировать порт
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # для людей
-rust-anything analyze <repo> --json            # для агентов: схема rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # плюс точки входа, форма, зависимости, решения
+everything-rust analyze <repo> -o plan.md        # для людей
+everything-rust analyze <repo> --json            # для агентов: схема everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # плюс точки входа, форма, зависимости, решения
 ```
 
 `analyze` перечисляет модули, порядок портирования, риски с `file:line`, мост для каждого модуля, насколько хорошо каждая зависимость отображается на крейт, и `start_here`: лучшие первые порты. `--whole-app` добавляет форму приложения (CLI, сервер или библиотека) и точки входа, каждую зависимость (импортированную или объявленную) с её крейтом, части (модули, импортирующие друг друга, переносятся вместе) и пронумерованные решения с рекомендуемым ответом. См. [Портирование целого приложения](/docs/whole-apps/overview).

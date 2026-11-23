@@ -7,7 +7,7 @@ description: profile、analyze、bridge、record、port、diff、bench、shadow�
 
 1 つのホットな関数からアプリ全体まで、すべての移植は同じステップを 1 ユニットずつ通ります。移植が完了するのは `gate` に合格したときだけです。
 
-rust-anything が移植をどう検証するか、各コマンドが何を判断するか、そして限界がどこにあるか。[README](/) に戻る。
+everything-rust が移植をどう検証するか、各コマンドが何を判断するか、そして限界がどこにあるか。[README](/) に戻る。
 
 ## 仕組み
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | ステップ | コマンド | 内容 |
 | --- | --- | --- |
-| 0. プロファイル | `rust-anything profile <repo> -- node bench.mjs` | 実際のワークロードをその言語のプロファイラー（node、cProfile、`go test` の pprof、JFR、Ruby のトレーサー）で実行: ホットな関数を包括時間順に、その呼び出し元、バッチ化すべきループとともに示す。すでにコンパイルされているコード（numba、Cython、JAX）は Rust で得るものが少ないと指摘する |
-| 1. 計画 | `rust-anything analyze <repo>` | ユニット、移植順序、`file:line` 付きのリスク、ユニットごとのブリッジ、依存関係とクレートの適合度、最初に移植するのに最適なもの。`--whole-app` はエントリポイントと形態、すべての依存関係（インポートされたものと宣言されたもの）とそのクレート、ピース（互いにインポートし合うユニットはまとめて移動する）、推奨回答付きの番号付き決定事項を追加する |
-| 2. ブリッジ | `rust-anything bridge <repo> <unit>` | バインディング（`lib.rs` と、元の言語が読み込むラッパー）と移植用のスタブ（`port.rs`）を持つクレート。`--batch fn:param` は多数の `param` の値を Rust 側に保持するクラスを追加する。`--as-json T` はアプリがデータでしか埋めない型パラメータを JSON 値としてブリッジする |
-| 3. 記録 | `rust-anything record <crate>` | 生成したエッジケース（非 ASCII、絵文字、`-0`、`NaN`、float が期待される場所での int など）と、すべての引数に対するすべてのセマンティックトラップ（文字列の長さと大文字小文字、符号付き除算、オーバーフローの境界、浮動小数点数の表示、マップとソートの順序）で元の実装を実行し、`cases.jsonl` を保存する。`--from-tests -- npx jest`（または `-- pytest`）は元の実装自身のテストスイートが行うすべての呼び出しも記録する。`--float-tolerance 1e-9` は数値計算のコードで浮動小数点数をその割合の範囲内で一致とみなす |
-| 3. ビルド | `rust-anything build <crate>` | Rust 側をビルドする: `.node`、wasm パッケージ、Python 拡張、または共有ライブラリ |
-| 3. 差分 | `rust-anything diff <crate>` | 記録ケースを、元の実装の呼び出し元と同じ呼び方で Rust に対してリプレイし、不一致を一覧表示する |
-| 3. ベンチマーク | `rust-anything bench <crate>` | 記録ケースを元の実装と Rust でブリッジ込みで計測する |
-| 4. シャドウ | `rust-anything shadow <crate>` | 両方を実行し、元の実装の結果を返し、不一致を報告する差し替え用モジュール。`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. ゲート | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、テスト、`unsafe` の監査、未移植のものがないこと、元の実装のすべてのエラーパスについて失敗する記録ケースがあること、元の実装がエラーを返す箇所に `unwrap`/`expect`/`panic!` がないこと（`// INFALLIBLE: <why>` が付いている場合を除く）、ビルド、API、挙動 |
-| エージェント | `rust-anything setup` | MCP サーバー（`rust-anything mcp`、すべてのステップをツールとして提供）とワークフロースキル（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)）をコーディングエージェントに登録する |
+| 0. プロファイル | `everything-rust profile <repo> -- node bench.mjs` | 実際のワークロードをその言語のプロファイラー（node、cProfile、`go test` の pprof、JFR、Ruby のトレーサー）で実行: ホットな関数を包括時間順に、その呼び出し元、バッチ化すべきループとともに示す。すでにコンパイルされているコード（numba、Cython、JAX）は Rust で得るものが少ないと指摘する |
+| 1. 計画 | `everything-rust analyze <repo>` | ユニット、移植順序、`file:line` 付きのリスク、ユニットごとのブリッジ、依存関係とクレートの適合度、最初に移植するのに最適なもの。`--whole-app` はエントリポイントと形態、すべての依存関係（インポートされたものと宣言されたもの）とそのクレート、ピース（互いにインポートし合うユニットはまとめて移動する）、推奨回答付きの番号付き決定事項を追加する |
+| 2. ブリッジ | `everything-rust bridge <repo> <unit>` | バインディング（`lib.rs` と、元の言語が読み込むラッパー）と移植用のスタブ（`port.rs`）を持つクレート。`--batch fn:param` は多数の `param` の値を Rust 側に保持するクラスを追加する。`--as-json T` はアプリがデータでしか埋めない型パラメータを JSON 値としてブリッジする |
+| 3. 記録 | `everything-rust record <crate>` | 生成したエッジケース（非 ASCII、絵文字、`-0`、`NaN`、float が期待される場所での int など）と、すべての引数に対するすべてのセマンティックトラップ（文字列の長さと大文字小文字、符号付き除算、オーバーフローの境界、浮動小数点数の表示、マップとソートの順序）で元の実装を実行し、`cases.jsonl` を保存する。`--from-tests -- npx jest`（または `-- pytest`）は元の実装自身のテストスイートが行うすべての呼び出しも記録する。`--float-tolerance 1e-9` は数値計算のコードで浮動小数点数をその割合の範囲内で一致とみなす |
+| 3. ビルド | `everything-rust build <crate>` | Rust 側をビルドする: `.node`、wasm パッケージ、Python 拡張、または共有ライブラリ |
+| 3. 差分 | `everything-rust diff <crate>` | 記録ケースを、元の実装の呼び出し元と同じ呼び方で Rust に対してリプレイし、不一致を一覧表示する |
+| 3. ベンチマーク | `everything-rust bench <crate>` | 記録ケースを元の実装と Rust でブリッジ込みで計測する |
+| 4. シャドウ | `everything-rust shadow <crate>` | 両方を実行し、元の実装の結果を返し、不一致を報告する差し替え用モジュール。`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. ゲート | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、テスト、`unsafe` の監査、未移植のものがないこと、元の実装のすべてのエラーパスについて失敗する記録ケースがあること、元の実装がエラーを返す箇所に `unwrap`/`expect`/`panic!` がないこと（`// INFALLIBLE: <why>` が付いている場合を除く）、ビルド、API、挙動 |
+| エージェント | `everything-rust setup` | MCP サーバー（`everything-rust mcp`、すべてのステップをツールとして提供）とワークフロースキル（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)）をコーディングエージェントに登録する |
 
 ## ホットパス: データを Rust 側に保持する
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 呼び出しのたびに全要素に対して関数を全コアで実行し、型付き配列で結果を返すクラスを生成します。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: 実行時間の 4 分の 1、`matched` からキーごとに呼ばれている: バッチ化する
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ x18n のサイドバー検索で 50,000 キーに対して 1 文字ずつ入力�
 
 コンパイル型の元の実装では効果が小さくなります: 要素ごとの処理がすでに速いので、バッチの効果はほぼコア数分です。
 バッチのクレートは mimalloc でメモリを確保します: システムのアロケーターでは、Go のバッチは
-シングルスレッドより遅くなりました。デモ: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+シングルスレッドより遅くなりました。デモ: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 
 ## `bridge` が判断すること
 
@@ -175,16 +175,16 @@ x18n のサイドバー検索で 50,000 キーに対して 1 文字ずつ入力�
 
 | ステップ | コマンド | 内容 |
 | --- | --- | --- |
-| 0. プロファイル | `rust-anything profile <repo> -- node bench.mjs` | 実際のワークロードをその言語のプロファイラー（node、cProfile、`go test` の pprof、JFR、Ruby のトレーサー）で実行: ホットな関数を包括時間順に、その呼び出し元、バッチ化すべきループとともに示す。すでにコンパイルされているコード（numba、Cython、JAX）は Rust で得るものが少ないと指摘する |
-| 1. 計画 | `rust-anything analyze <repo>` | ユニット、移植順序、`file:line` 付きのリスク、ユニットごとのブリッジ、依存関係とクレートの適合度、最初に移植するのに最適なもの。`--whole-app` はエントリポイントと形態、すべての依存関係（インポートされたものと宣言されたもの）とそのクレート、ピース（互いにインポートし合うユニットはまとめて移動する）、推奨回答付きの番号付き決定事項を追加する |
-| 2. ブリッジ | `rust-anything bridge <repo> <unit>` | バインディング（`lib.rs` と、元の言語が読み込むラッパー）と移植用のスタブ（`port.rs`）を持つクレート。`--batch fn:param` は多数の `param` の値を Rust 側に保持するクラスを追加する。`--as-json T` はアプリがデータでしか埋めない型パラメータを JSON 値としてブリッジする |
-| 3. 記録 | `rust-anything record <crate>` | 生成したエッジケース（非 ASCII、絵文字、`-0`、`NaN`、float が期待される場所での int など）と、すべての引数に対するすべてのセマンティックトラップ（文字列の長さと大文字小文字、符号付き除算、オーバーフローの境界、浮動小数点数の表示、マップとソートの順序）で元の実装を実行し、`cases.jsonl` を保存する。`--from-tests -- npx jest`（または `-- pytest`）は元の実装自身のテストスイートが行うすべての呼び出しも記録する。`--float-tolerance 1e-9` は数値計算のコードで浮動小数点数をその割合の範囲内で一致とみなす |
-| 3. ビルド | `rust-anything build <crate>` | Rust 側をビルドする: `.node`、wasm パッケージ、Python 拡張、または共有ライブラリ |
-| 3. 差分 | `rust-anything diff <crate>` | 記録ケースを、元の実装の呼び出し元と同じ呼び方で Rust に対してリプレイし、不一致を一覧表示する |
-| 3. ベンチマーク | `rust-anything bench <crate>` | 記録ケースを元の実装と Rust でブリッジ込みで計測する |
-| 4. シャドウ | `rust-anything shadow <crate>` | 両方を実行し、元の実装の結果を返し、不一致を報告する差し替え用モジュール。`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. ゲート | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、テスト、`unsafe` の監査、未移植のものがないこと、元の実装のすべてのエラーパスについて失敗する記録ケースがあること、元の実装がエラーを返す箇所に `unwrap`/`expect`/`panic!` がないこと（`// INFALLIBLE: <why>` が付いている場合を除く）、ビルド、API、挙動 |
-| エージェント | `rust-anything setup` | MCP サーバー（`rust-anything mcp`、すべてのステップをツールとして提供）とワークフロースキル（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)）をコーディングエージェントに登録する |
+| 0. プロファイル | `everything-rust profile <repo> -- node bench.mjs` | 実際のワークロードをその言語のプロファイラー（node、cProfile、`go test` の pprof、JFR、Ruby のトレーサー）で実行: ホットな関数を包括時間順に、その呼び出し元、バッチ化すべきループとともに示す。すでにコンパイルされているコード（numba、Cython、JAX）は Rust で得るものが少ないと指摘する |
+| 1. 計画 | `everything-rust analyze <repo>` | ユニット、移植順序、`file:line` 付きのリスク、ユニットごとのブリッジ、依存関係とクレートの適合度、最初に移植するのに最適なもの。`--whole-app` はエントリポイントと形態、すべての依存関係（インポートされたものと宣言されたもの）とそのクレート、ピース（互いにインポートし合うユニットはまとめて移動する）、推奨回答付きの番号付き決定事項を追加する |
+| 2. ブリッジ | `everything-rust bridge <repo> <unit>` | バインディング（`lib.rs` と、元の言語が読み込むラッパー）と移植用のスタブ（`port.rs`）を持つクレート。`--batch fn:param` は多数の `param` の値を Rust 側に保持するクラスを追加する。`--as-json T` はアプリがデータでしか埋めない型パラメータを JSON 値としてブリッジする |
+| 3. 記録 | `everything-rust record <crate>` | 生成したエッジケース（非 ASCII、絵文字、`-0`、`NaN`、float が期待される場所での int など）と、すべての引数に対するすべてのセマンティックトラップ（文字列の長さと大文字小文字、符号付き除算、オーバーフローの境界、浮動小数点数の表示、マップとソートの順序）で元の実装を実行し、`cases.jsonl` を保存する。`--from-tests -- npx jest`（または `-- pytest`）は元の実装自身のテストスイートが行うすべての呼び出しも記録する。`--float-tolerance 1e-9` は数値計算のコードで浮動小数点数をその割合の範囲内で一致とみなす |
+| 3. ビルド | `everything-rust build <crate>` | Rust 側をビルドする: `.node`、wasm パッケージ、Python 拡張、または共有ライブラリ |
+| 3. 差分 | `everything-rust diff <crate>` | 記録ケースを、元の実装の呼び出し元と同じ呼び方で Rust に対してリプレイし、不一致を一覧表示する |
+| 3. ベンチマーク | `everything-rust bench <crate>` | 記録ケースを元の実装と Rust でブリッジ込みで計測する |
+| 4. シャドウ | `everything-rust shadow <crate>` | 両方を実行し、元の実装の結果を返し、不一致を報告する差し替え用モジュール。`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. ゲート | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、テスト、`unsafe` の監査、未移植のものがないこと、元の実装のすべてのエラーパスについて失敗する記録ケースがあること、元の実装がエラーを返す箇所に `unwrap`/`expect`/`panic!` がないこと（`// INFALLIBLE: <why>` が付いている場合を除く）、ビルド、API、挙動 |
+| エージェント | `everything-rust setup` | MCP サーバー（`everything-rust mcp`、すべてのステップをツールとして提供）とワークフロースキル（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)）をコーディングエージェントに登録する |
 ## 次へ
 
 各ステップには専用のページがあります: [プロファイルと分析](/docs/concepts/analyze)、[ブリッジ](/docs/concepts/bridge)、[記録](/docs/concepts/record)、[移植](/docs/concepts/port)、[差分](/docs/concepts/diff)、[ベンチマーク](/docs/concepts/bench)、[シャドウ](/docs/concepts/shadow)、[ゲート](/docs/concepts/gate)。

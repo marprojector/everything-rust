@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor dil runtime'larını, ajan kurulumunu ve MCP sunucusunu kontrol eder ve her sorunu düzelten komutu gösterir.
+description: everything-rust doctor dil runtime'larını, ajan kurulumunu ve MCP sunucusunu kontrol eder ve her sorunu düzelten komutu gösterir.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` dil runtime'larını, ajan kurulumunu ve MCP sunucusunu kontrol eder ve her sorunu düzelten komutu yazdırır. Gerekli bir şey eksik olduğunda 1 koduyla çıkar.

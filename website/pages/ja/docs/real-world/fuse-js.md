@@ -7,7 +7,7 @@ description: Fuse.js の文字列リスト検索を Rust で。3,414/3,414 件�
 
 [Fuse.js](https://github.com/krisk/Fuse)（20k スター、npm で週に約 2,000 万ダウンロード、
 コミット `edf2fb6`）は、数え切れないほどの検索ボックスを支えるあいまい検索ライブラリです。
-rust-anything 1.6（未リリース）で移植しました。クレートは [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs) にあります。
+everything-rust 1.6（未リリース）で移植しました。クレートは [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs) にあります。
 
 `analyze` は `src/` のすべてのフォルダを 1 つのインポート循環に入れたので、Fuse はファイル単位では移植できません。
 代わりに、移植は検索が時間を費やすパスを対象にしています: 54 行のアダプター

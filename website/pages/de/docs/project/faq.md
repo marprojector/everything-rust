@@ -5,7 +5,7 @@ description: Schreibt es meinen Code automatisch um? Ist Rust immer schneller? S
 
 # FAQ
 
-Fragen, die Leute zu rust-anything stellen. Zurück zur [README](/).
+Fragen, die Leute zu everything-rust stellen. Zurück zur [README](/).
 
 ## FAQ
 
@@ -16,7 +16,7 @@ in `port.rs`; `diff` und `gate` entscheiden, wann es richtig ist.
 **Ändert sich die API meiner App?** Nein. Aufrufer importieren dieselben Funktionen (oder das Shadow-Modul, das
 beide ausführt und das Ergebnis des Originals zurückgibt, während du Vertrauen aufbaust).
 
-**Ist Rust immer schneller?** Nein, und rust-anything sagt das auch. Eine kleine Funktion, die einmal pro Element aufgerufen wird,
+**Ist Rust immer schneller?** Nein, und everything-rust sagt das auch. Eine kleine Funktion, die einmal pro Element aufgerufen wird,
 ist in Rust oft langsamer, weil jeder Aufruf eine Bridge überquert; V8, die JVM und Go führen solche Funktionen
 in Nanosekunden aus. `profile` findet die Schleife drumherum, `--batch` verlegt die ganze Schleife, und `bench`
 gibt ein Urteil ab, bevor du auslieferst. Code, der bereits von numba, Cython oder JAX kompiliert wird, läuft ebenfalls als Maschinencode:
@@ -59,7 +59,7 @@ frei um, und `app replay` beweist weiterhin das Verhalten. Auch ruft nichts zur�
 Die Front Door führt es als separaten Prozess aus (oder leitet HTTP dorthin weiter), gebridgte Units werden
 vom Original aufgerufen und nie umgekehrt, und Callbacks bleiben in der Quellsprache.
 
-**Verlässt mein Code meinen Rechner?** Nein: rust-anything läuft lokal und schickt deinen Code
+**Verlässt mein Code meinen Rechner?** Nein: everything-rust läuft lokal und schickt deinen Code
 nirgendwohin. Cargo lädt Crates wie üblich herunter, und der Modellanbieter deines Agents sieht, was dein Agent
 ihm schickt, nach dessen eigenen Richtlinien.
 

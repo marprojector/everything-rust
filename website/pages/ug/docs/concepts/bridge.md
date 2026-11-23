@@ -6,8 +6,8 @@ description: bridge بىر بىرلىك ئۈچۈن Rust crate ىنىڭ ئاسا�
 # كۆۋرۈك
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # <repo>/rust/<name> دىكى crate؛ ھەرگىز قاپلىمايدۇ
-rust-anything refresh <crate>                  # port.rs دىكى بىر ئىمزانى ئۆزگەرتكەندىن كېيىن
+everything-rust bridge <repo> <unit-id>          # <repo>/rust/<name> دىكى crate؛ ھەرگىز قاپلىمايدۇ
+everything-rust refresh <crate>                  # port.rs دىكى بىر ئىمزانى ئۆزگەرتكەندىن كېيىن
 ```
 
 `bridge` باغلىنىشلار (`lib.rs`، شۇنداقلا مەنبە تىل يۈكلەيدىغان ئوراما) ۋە كۆچۈرۈلىدىغان قۇرۇق قېلىپلار (`port.rs`) بار crate قۇرىدۇ. كۆچۈرمىنى پەقەت `src/port.rs` تىلا يازىسىز؛ `src/lib.rs` ۋە ئورامىلار ھاسىل قىلىنىدۇ، `refresh` ئۇلارنى `port.rs` دىكى ئىمزالاردىن قايتا ھاسىل قىلىپ، ھەر قانداق يېڭى توپ سىنىپلىرىنى قوشىدۇ. ئۇ ھەرگىز `port.rs` قا تەگمەيدۇ.

@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor は言語ランタイム、エージェントの設定、MCP サーバーをチェックし、問題ごとにそれを直すコマンドを示します。
+description: everything-rust doctor は言語ランタイム、エージェントの設定、MCP サーバーをチェックし、問題ごとにそれを直すコマンドを示します。
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` は言語ランタイム、エージェントの設定、MCP サーバーをチェックし、問題ごとにそれを直すコマンドを表示します。必要なものが欠けている場合は終了コード 1 で終了します。

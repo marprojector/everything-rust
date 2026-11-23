@@ -17,10 +17,10 @@ description: "C# preview holatida. analyze .csproj loyihalarini o'qiydi, C# CLI 
 Build qilingan ilovani yozib oling:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Birliklarni P/Invoke orqali port qilish navbatda. Ungacha `bridge` C# birliklarini aniq xabar bilan rad etadi.

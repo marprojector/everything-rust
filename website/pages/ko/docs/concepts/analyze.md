@@ -10,7 +10,7 @@ description: profile로 시간이 어디서 쓰이는지 찾은 다음, analyze�
 목표가 속도라면 무엇을 고르기 전에 먼저 측정하세요:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby
 ## Analyze: 포팅 계획 세우기
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # for people
-rust-anything analyze <repo> --json            # for agents: schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
+everything-rust analyze <repo> -o plan.md        # for people
+everything-rust analyze <repo> --json            # for agents: schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
 ```
 
 `analyze`는 유닛, 포팅 순서, `file:line`이 붙은 위험 요소, 유닛별 브리지, 각 의존성이 crate에 얼마나 잘 매핑되는지, 그리고 가장 좋은 첫 포팅 대상인 `start_here`를 나열합니다. `--whole-app`은 앱의 형태(CLI, 서버 또는 라이브러리)와 진입점, 모든 의존성(import했거나 선언한 것)과 그 crate, 조각(서로 import하는 유닛은 함께 옮김), 권장 답이 붙은 번호 매긴 결정 사항을 추가합니다. [앱 전체 포팅](/docs/whole-apps/overview)을 참고하세요.

@@ -37,7 +37,7 @@ Trouvé par les cas enregistrés sur du code réel :
 
 Par appel, un portage paie le bridge à chaque fois, et V8 exécute les petites fonctions en quelques nanosecondes. vercel/ms tournait à 0.56x par appel sur ses cas enregistrés ; les portages du cœur de x18n sont plus lents que le TS lorsqu'ils sont appelés depuis JS. En lot, la boucle passe en Rust :
 
-| Charge | Original | Avec rust-anything |
+| Charge | Original | Avec everything-rust |
 | --- | ---: | ---: |
 | Recherche de la barre latérale de x18n, 50,000 clés (Node) | 10 ms par requête | 0.5 ms : 20x plus rapide |
 | La même recherche dans le navigateur (wasm, un thread) | 10 ms | 0.95 ms : 11.5x |

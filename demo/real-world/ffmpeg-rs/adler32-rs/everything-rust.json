@@ -1,0 +1,47 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the ffmpeg tree scripts/prepare.sh assembles; see README.md>",
+  "unit": "adler32.c",
+  "language": "c",
+  "kind": "c-abi",
+  "crate_name": "adler32-rs",
+  "exports": [
+    {
+      "name": "av_adler32_update",
+      "file": "adler32.c",
+      "line": 44,
+      "params": [
+        {
+          "name": "adler",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false,
+          "native_type": "uint32_t"
+        },
+        {
+          "name": "buf",
+          "ts_type": "bytes",
+          "optional": false,
+          "rest": false,
+          "native_type": "const uint8_t*"
+        },
+        {
+          "name": "len",
+          "ts_type": "len:1",
+          "optional": false,
+          "rest": false,
+          "native_type": "size_t"
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "uint32_t",
+      "prototype": "AVAdler av_adler32_update(AVAdler adler, const uint8_t *buf, size_t len)"
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

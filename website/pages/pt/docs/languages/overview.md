@@ -30,7 +30,7 @@ como números.
 O PHP está em pré-visualização: o `analyze` planeia uma aplicação PHP (pacotes Composer e autoloading PSR-4, riscos
 como a comparação não estrita e o overflow de inteiros para floats, pacotes Composer mapeados para crates),
 e uma CLI ou um servidor PHP pode ser registado, reproduzido e colocado atrás de uma front door em Rust. Migrar as suas
-unidades para Rust através da FFI do PHP é o próximo passo ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+unidades para Rust através da FFI do PHP é o próximo passo ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 O C# está em pré-visualização da mesma forma: o `analyze` lê projetos `.csproj` e os respetivos pacotes NuGet
 (mapeados para crates), resolve as diretivas `using` para pastas e assinala o que o C# faz de forma diferente

@@ -7,8 +7,8 @@ description: 端到端迁移的 vercel/ms。在每条录制用例上都正确，
 
 [vercel/ms](https://github.com/vercel/ms)（5.5k stars，commit `4ff48ce`）把 `"2 days"` 转换为
 毫秒，也能反向转换；大多数 Node 项目都会通过某个依赖引入它。使用
-rust-anything 1.5.1 端到端迁移；crate 位于
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs)。
+everything-rust 1.5.1 端到端迁移；crate 位于
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs)。
 
 | 步骤 | 结果 |
 | --- | --- |

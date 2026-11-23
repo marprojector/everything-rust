@@ -29,7 +29,7 @@ Rust 侧，每次调用都会在全部 CPU 核心上处理所有数据。
 
 PHP 处于预览阶段：`analyze` 能为 PHP 应用制定计划（Composer 包和 PSR-4 自动加载，松散比较、
 整数溢出变成浮点数等风险，以及 Composer 包到 crate 的映射），并且可以对 PHP CLI 或服务端进行录制、回放，并把它放到 Rust 前门之后。通过 PHP 的 FFI 把它的
-单元迁移到 Rust 是下一步（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。
+单元迁移到 Rust 是下一步（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。
 
 C# 同样处于预览阶段：`analyze` 会读取 `.csproj` 项目及其 NuGet 包
 （映射为 crate），把 `using` 指令解析到对应文件夹，并标出 C# 行为不同的地方

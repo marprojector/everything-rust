@@ -6,7 +6,7 @@ description: Ар бир элемент үчүн бир жолу чакырыл�
 # Batch'тар жана hot path'тар
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # or: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # or: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` маанилерин бир жолу кабыл алып, аларды Rust ичинде сактаган класс генерациялайт: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Ар бир суроо үчүн `run(<other args>)` бардык натыйжаларды бир массив катары кайтарат, ал эми `rank(<other args>, min)` элементтердин индекстерин эң жакшысынан баштап кайтарат. Ал бардык ядролордо иштейт, ал эми каталар түп нусканыкындай. C'дан башка ар бир тил batch'тарды алат.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # or: rust-anything refre
 ар бир чакырууда функцияны алардын баарында, бардык ядролордо иштетип, натыйжаларды typed array катары берген класс генерациялайт.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: a quarter of the run, called per key by `matched`: batch it
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 Компиляцияланган түп нускалар азыраак утушат: бир элементке кеткен иш буга чейин эле ылдам, ошондуктан batch
 ядролордун саны эсебинен утат. Batch crate'тери mimalloc менен эс бөлөт: системалык аллокатор менен Go batch'ы
-бир агымдан жайыраак болгон. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+бир агымдан жайыраак болгон. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Ылдам индекс жазуу
 
 - Чакыруучуга batch'ты ар бир суроого эмес, бир жолу курдуруңуз. Кайтарылган индекстерди элементтерге жөнөкөй цикл менен кайра айлантыңыз.

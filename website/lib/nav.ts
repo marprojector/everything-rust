@@ -16,7 +16,7 @@ export const docsNav: NavGroup[] = [
     key: 'introduction',
     title: 'Introduction',
     items: [
-      { title: 'What is rust-anything', path: '/docs/introduction/what-is-rust-anything' },
+      { title: 'What is everything-rust', path: '/docs/introduction/what-is-everything-rust' },
       { title: 'Quick start', path: '/docs/introduction/quick-start' },
       { title: 'Install', path: '/docs/introduction/install' },
       { title: 'Set up your agent', path: '/docs/introduction/agents' },

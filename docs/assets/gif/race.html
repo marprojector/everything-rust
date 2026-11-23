@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- The README race: typing a query into x18n's search over 50,000 keys, TS on the left, the
-     rust-anything batch on the right. The numbers are real: per-keystroke medians of 21 runs on 4
+     everything-rust batch on the right. The numbers are real: per-keystroke medians of 21 runs on 4
      cores, results checked identical (scripts: demo/x18n-search/bench.ts). Render with
      node scripts/gifs.mjs race -->
 <html><head><meta charset="utf-8"><style>
@@ -55,7 +55,7 @@ window.render = i => {
     : "x18n’s sidebar search · 50,000 keys · measured per keystroke"
   document.getElementById('f').innerHTML = '<div class="cols">' +
     panel('ts', 'TypeScript', 'today', typed, row, tsTotal, 'ts') +
-    panel('rs', 'rust-anything', 'Rust batch, 4 cores', typed, row, rsTotal, 'rust') +
+    panel('rs', 'everything-rust', 'Rust batch, 4 cores', typed, row, rsTotal, 'rust') +
     '</div><div class="foot">' + foot + '</div>'
 }
 render(0)

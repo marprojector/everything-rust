@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor dil runtime-laryny, agent sazlamasyny we MCP serweri barlaýar we her meseläni düzedýän buýrugy görkezýär.
+description: everything-rust doctor dil runtime-laryny, agent sazlamasyny we MCP serweri barlaýar we her meseläni düzedýän buýrugy görkezýär.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` dil runtime-laryny, agent sazlamasyny we MCP serweri barlaýar we her meseläni düzedýän buýrugy çap edýär. Zerur bir zat ýetmezçilik edende ol 1 kody bilen çykýar.

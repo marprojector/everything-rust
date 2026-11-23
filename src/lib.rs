@@ -1,4 +1,4 @@
-//! rust-anything: plan, bridge, verify and ship incremental migrations to Rust.
+//! everything-rust: plan, bridge, verify and ship incremental migrations to Rust.
 //!
 //! The steps (`analyze`, `bridge`, `harness`, `shadow`, `gate`) are language-neutral in shape;
 //! each source language is a plugin module. TypeScript/JavaScript (`ts`) is the first.

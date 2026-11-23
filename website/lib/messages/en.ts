@@ -18,8 +18,8 @@ export const en = {
     closeMenu: 'Close menu',
     menu: 'Menu',
     language: 'Language',
-    home: 'rust-anything home',
-    github: 'rust-anything on GitHub',
+    home: 'everything-rust home',
+    github: 'everything-rust on GitHub',
     onThisPage: 'On this page',
     editPage: 'Edit this page on GitHub',
     previous: 'Previous',
@@ -56,7 +56,7 @@ export const en = {
       project: 'Project',
     },
     items: {
-      '/docs/introduction/what-is-rust-anything': 'What is rust-anything',
+      '/docs/introduction/what-is-everything-rust': 'What is everything-rust',
       '/docs/introduction/quick-start': 'Quick start',
       '/docs/introduction/install': 'Install',
       '/docs/introduction/agents': 'Set up your agent',
@@ -106,7 +106,7 @@ export const en = {
   hero: {
     title1: 'Rewrite your app in Rust.',
     title2: 'Prove it behaves the same.',
-    sub: 'rust-anything records what your code does, then replays every recorded case against the Rust port. Your agent writes the Rust. Nothing ships until the outputs match.',
+    sub: 'everything-rust records what your code does, then replays every recorded case against the Rust port. Your agent writes the Rust. Nothing ships until the outputs match.',
     cta: 'Read the quick start',
     source: 'Source on GitHub',
     sourceLanguage: 'Source language',
@@ -124,11 +124,11 @@ export const en = {
     installTitle: 'Install',
     installDesc: 'Install the CLI, then register the MCP server and the workflow skill with Claude Code, Codex, Cursor and Gemini CLI.',
     installNote: 'Prebuilt binaries for macOS, Linux and Windows are on each [GitHub release]({releases}).',
-    agentPrompt: 'Install rust-anything: run `cargo install rust-anything`, then `rust-anything setup`.',
+    agentPrompt: 'Install everything-rust: run `cargo install everything-rust`, then `everything-rust setup`.',
     agentRestart: 'Tell me when to restart you.',
     loopTitle: 'How a port gets done',
     loopDesc:
-      'The original stays the source of truth. rust-anything does not translate code: it supplies what an agent cannot guess, and a gate that says when a port is done.',
+      'The original stays the source of truth. everything-rust does not translate code: it supplies what an agent cannot guess, and a gate that says when a port is done.',
     steps: [
       {
         title: 'Record',
@@ -222,7 +222,7 @@ export const en = {
     },
     sponsorsTitle: 'Sponsors',
     sponsorsDesc:
-      'rust-anything is free and open source. If it helps your work, please consider sponsoring it. Your support keeps development going.',
+      'everything-rust is free and open source. If it helps your work, please consider sponsoring it. Your support keeps development going.',
     companySponsor: 'Company sponsor',
     becomeSponsor: 'Become a sponsor',
   },

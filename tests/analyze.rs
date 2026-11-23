@@ -1,7 +1,7 @@
 use std::path::Path;
 
-use rust_anything::analyze::{Bridge, Report, Status, UnitReport, analyze};
-use rust_anything::risks::Risk;
+use everything_rust::analyze::{Bridge, Report, Status, UnitReport, analyze};
+use everything_rust::risks::Risk;
 
 fn mini() -> Report {
     analyze(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini")).unwrap()
@@ -17,9 +17,9 @@ fn unit<'r>(report: &'r Report, id: &str) -> &'r UnitReport {
 
 #[test]
 fn detects_manifestless_typescript_modules_and_defaults_to_typescript_when_empty() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-detect-modules-{}",
+        "everything-rust-detect-modules-{}",
         std::process::id()
     ));
     std::fs::create_dir_all(&root).unwrap();
@@ -115,7 +115,7 @@ fn picks_status_and_bridge() {
 #[test]
 fn python_packages_match_dependencies_by_normalized_name() {
     let root =
-        std::env::temp_dir().join(format!("rust-anything-python-names-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-python-names-{}", std::process::id()));
     let package = |dir: &str, toml: &str| {
         std::fs::create_dir_all(root.join(dir).join(dir)).unwrap();
         std::fs::write(root.join(dir).join("pyproject.toml"), toml).unwrap();
@@ -150,7 +150,7 @@ fn python_packages_match_dependencies_by_normalized_name() {
 
 #[test]
 fn numpy_array_parameters_are_flagged() {
-    let root = std::env::temp_dir().join(format!("rust-anything-ndarray-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-ndarray-{}", std::process::id()));
     std::fs::create_dir_all(root.join("arrkit")).unwrap();
     std::fs::write(
         root.join("pyproject.toml"),
@@ -170,7 +170,7 @@ fn numpy_array_parameters_are_flagged() {
 
 #[test]
 fn a_c_unit_depends_on_what_its_own_header_includes() {
-    let root = std::env::temp_dir().join(format!("rust-anything-c-header-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-c-header-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src")).unwrap();
     for (name, text) in [
@@ -181,7 +181,7 @@ fn a_c_unit_depends_on_what_its_own_header_includes() {
     ] {
         std::fs::write(root.join(name), text).unwrap();
     }
-    let report = rust_anything::analyze::analyze_lang(&root, rust_anything::lang::Lang::C).unwrap();
+    let report = everything_rust::analyze::analyze_lang(&root, everything_rust::lang::Lang::C).unwrap();
     std::fs::remove_dir_all(&root).unwrap();
     let a = unit(&report, "src/a.c");
     assert_eq!(a.internal_deps, ["src/b.c"], "{:?}", a.internal_deps);
@@ -191,17 +191,17 @@ fn a_c_unit_depends_on_what_its_own_header_includes() {
 #[test]
 fn json_output_is_versioned() {
     let json = serde_json::to_value(mini()).unwrap();
-    assert_eq!(json["schema"], "rust-anything/analyze@1");
+    assert_eq!(json["schema"], "everything-rust/analyze@1");
     assert_eq!(json["units"][0]["status"], "ready");
     assert_eq!(json["units"][0]["bridge"], "napi-rs");
 }
 
-fn whole(dir: &str) -> rust_anything::whole_app::WholeApp {
+fn whole(dir: &str) -> everything_rust::whole_app::WholeApp {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("tests/fixtures")
         .join(dir);
     let report = analyze(&root).unwrap();
-    rust_anything::whole_app::whole_app(&root, &report)
+    everything_rust::whole_app::whole_app(&root, &report)
 }
 
 #[test]
@@ -255,7 +255,7 @@ fn whole_app_finds_the_shape_and_entry_points_in_every_language() {
 fn php_units_resolve_psr4_imports_and_map_composer_packages() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/php");
     let report = analyze(&root).unwrap();
-    assert_eq!(report.language, rust_anything::lang::Lang::Php);
+    assert_eq!(report.language, everything_rust::lang::Lang::Php);
     let slug = report
         .units
         .iter()
@@ -268,7 +268,7 @@ fn php_units_resolve_psr4_imports_and_map_composer_packages() {
         .find(|u| u.files.iter().any(|f| f.ends_with("Ascii.php")))
         .unwrap();
     assert!(slug.wave > ascii.wave, "Slug imports Ascii: {slug:?}");
-    let w = rust_anything::whole_app::whole_app(&root, &report);
+    let w = everything_rust::whole_app::whole_app(&root, &report);
     let carbon = w
         .dependencies
         .iter()
@@ -309,7 +309,7 @@ fn whole_app_lists_declared_dependencies_keeps_and_decisions() {
 
 #[test]
 fn whole_app_ports_units_that_import_each_other_as_one_piece() {
-    let root = std::env::temp_dir().join(format!("rust-anything-tangled-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-tangled-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src")).unwrap();
     std::fs::write(root.join("package.json"), r#"{"name":"tangled"}"#).unwrap();
@@ -329,7 +329,7 @@ fn whole_app_ports_units_that_import_each_other_as_one_piece() {
     )
     .unwrap();
     let report = analyze(&root).unwrap();
-    let w = rust_anything::whole_app::whole_app(&root, &report);
+    let w = everything_rust::whole_app::whole_app(&root, &report);
     let tangled: Vec<&Vec<String>> = w
         .pieces
         .iter()
@@ -479,7 +479,7 @@ fn electron_apps_get_a_main_process_decision() {
     )
     .unwrap();
     let report = analyze(&root).unwrap();
-    let app = rust_anything::whole_app::whole_app(&root, &report);
+    let app = everything_rust::whole_app::whole_app(&root, &report);
     std::fs::remove_dir_all(&root).unwrap();
     let shell = app
         .decisions
@@ -493,7 +493,7 @@ fn electron_apps_get_a_main_process_decision() {
 fn csharp_units_resolve_namespaces_and_map_nuget_packages() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/csharp");
     let report = analyze(&root).unwrap();
-    assert_eq!(report.language, rust_anything::lang::Lang::Csharp);
+    assert_eq!(report.language, everything_rust::lang::Lang::Csharp);
     assert_eq!(report.summary.test_files, 1);
     let text = unit(&report, "src/Text/");
     let util = unit(&report, "src/Util/");
@@ -508,7 +508,7 @@ fn csharp_units_resolve_namespaces_and_map_nuget_packages() {
         .find(|d| d.name == "Newtonsoft.Json")
         .unwrap();
     assert_eq!(json.crates, Some("serde_json"));
-    let app = rust_anything::whole_app::whole_app(&root, &report);
+    let app = everything_rust::whole_app::whole_app(&root, &report);
     assert!(
         app.dependencies.iter().all(|d| d.name != "xunit"),
         "test packages are not runtime dependencies: {:?}",
@@ -518,7 +518,7 @@ fn csharp_units_resolve_namespaces_and_map_nuget_packages() {
 
 #[test]
 fn kotlin_units_export_jvm_statics_and_map_gradle_packages() {
-    use rust_anything::lang::{Lang, exports};
+    use everything_rust::lang::{Lang, exports};
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/kotlin");
     let report = analyze(&root).unwrap();
     assert_eq!(report.language, Lang::Kotlin);
@@ -532,11 +532,11 @@ fn kotlin_units_export_jvm_statics_and_map_gradle_packages() {
     );
     let by_name = |name: &str| fns.iter().find(|f| f.name == name).unwrap();
     assert_eq!(
-        rust_anything::lang::kotlin::receiver(by_name("slugify")).0,
+        everything_rust::lang::kotlin::receiver(by_name("slugify")).0,
         "com.example.text.StringsKt"
     );
     assert_eq!(
-        rust_anything::lang::kotlin::receiver(by_name("gcd")).0,
+        everything_rust::lang::kotlin::receiver(by_name("gcd")).0,
         "com.example.text.Nums"
     );
     assert!(
@@ -546,7 +546,7 @@ fn kotlin_units_export_jvm_statics_and_map_gradle_packages() {
     );
     assert_eq!(by_name("words").returns, "string[]");
 
-    let w = rust_anything::whole_app::whole_app(&root, &report);
+    let w = everything_rust::whole_app::whole_app(&root, &report);
     let gson = w
         .dependencies
         .iter()
@@ -565,9 +565,9 @@ fn kotlin_units_export_jvm_statics_and_map_gradle_packages() {
 
 #[test]
 fn a_comment_inside_a_require_block_is_not_a_module() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/go-reqs");
-    let declared = rust_anything::whole_app::declared(&root, Lang::Go);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Go);
     for name in [
         "github.com/spf13/cobra",
         "github.com/google/uuid",
@@ -585,9 +585,9 @@ fn a_comment_inside_a_require_block_is_not_a_module() {
 
 #[test]
 fn a_gem_group_ends_at_its_own_end() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/ruby-gems");
-    let declared = rust_anything::whole_app::declared(&root, Lang::Ruby);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Ruby);
     assert!(
         declared.contains("rack"),
         "a Gemfile gem is a runtime dependency: {declared:?}"
@@ -604,9 +604,9 @@ fn a_gem_group_ends_at_its_own_end() {
 
 #[test]
 fn a_commented_out_maven_dependency_is_not_declared() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/java-pom");
-    let declared = rust_anything::whole_app::declared(&root, Lang::Java);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Java);
     assert!(
         declared.contains("com.google.guava:guava"),
         "a live dependency is declared: {declared:?}"
@@ -625,14 +625,14 @@ fn a_commented_out_maven_dependency_is_not_declared() {
 
 #[test]
 fn a_commented_out_test_package_does_not_hide_a_csharp_project() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/csharp-comments");
     let text = std::fs::read_to_string(root.join("App.csproj")).unwrap();
     assert!(
-        !rust_anything::lang::csharp::is_test_project(&text),
+        !everything_rust::lang::csharp::is_test_project(&text),
         "a project whose test package is commented out is not a test project"
     );
-    let declared = rust_anything::whole_app::declared(&root, Lang::Csharp);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Csharp);
     for name in ["Newtonsoft.Json", "Serilog"] {
         assert!(declared.contains(name), "{name}: {declared:?}");
     }
@@ -644,9 +644,9 @@ fn a_commented_out_test_package_does_not_hide_a_csharp_project() {
 
 #[test]
 fn a_requirements_file_names_packages_not_urls() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/python-reqs");
-    let declared = rust_anything::whole_app::declared(&root, Lang::Python);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Python);
     for name in ["requests", "flask", "myapp", "six"] {
         assert!(declared.contains(name), "{name}: {declared:?}");
     }
@@ -660,9 +660,9 @@ fn a_requirements_file_names_packages_not_urls() {
 
 #[test]
 fn a_requirements_include_is_followed_once() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/python-includes");
-    let declared = rust_anything::whole_app::declared(&root, Lang::Python);
+    let declared = everything_rust::whole_app::declared(&root, Lang::Python);
     for name in ["flask", "six", "pytest", "ruff"] {
         assert!(declared.contains(name), "{name}: {declared:?}");
     }
@@ -670,7 +670,7 @@ fn a_requirements_include_is_followed_once() {
 
 #[test]
 fn a_java_import_names_the_library_the_table_knows() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/java-guava");
     let report = analyze(&root).unwrap();
     assert_eq!(report.language, Lang::Java);
@@ -693,7 +693,7 @@ fn a_java_import_names_the_library_the_table_knows() {
 
 #[test]
 fn a_function_import_does_not_name_a_composer_package() {
-    use rust_anything::lang::Lang;
+    use everything_rust::lang::Lang;
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/php-namespace");
     let report = analyze(&root).unwrap();
     assert_eq!(report.language, Lang::Php);
@@ -742,7 +742,7 @@ fn scratch(name: &str, files: &[(&str, &str)]) -> std::path::PathBuf {
 
 #[test]
 fn the_plugin_and_whole_app_read_a_manifest_the_same_way() {
-    use rust_anything::lang::{Lang, discover};
+    use everything_rust::lang::{Lang, discover};
     let fixture = |dir: &str| {
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .join("tests/fixtures")
@@ -754,7 +754,7 @@ fn the_plugin_and_whole_app_read_a_manifest_the_same_way() {
     assert_eq!(gemfile.deps, ["rack"]);
     assert_eq!(gemfile.dev_deps, ["rspec", "byebug", "debug"]);
     let declared: Vec<String> =
-        rust_anything::whole_app::declared(&fixture("ruby-gems"), Lang::Ruby)
+        everything_rust::whole_app::declared(&fixture("ruby-gems"), Lang::Ruby)
             .into_iter()
             .collect();
     assert_eq!(declared, gemfile.deps);
@@ -792,7 +792,7 @@ fn a_python_library_imported_as_yaml_and_declared_as_pyyaml_is_one_dependency() 
         ],
     );
     let report = analyze(&root).unwrap();
-    let w = rust_anything::whole_app::whole_app(&root, &report);
+    let w = everything_rust::whole_app::whole_app(&root, &report);
     std::fs::remove_dir_all(&root).unwrap();
     let yaml: Vec<_> = w
         .dependencies
@@ -831,7 +831,7 @@ fn a_kotlin_import_and_its_gradle_coordinates_are_one_dependency() {
         ],
     );
     let report = analyze(&root).unwrap();
-    let w = rust_anything::whole_app::whole_app(&root, &report);
+    let w = everything_rust::whole_app::whole_app(&root, &report);
     std::fs::remove_dir_all(&root).unwrap();
     let room: Vec<_> = w
         .dependencies
@@ -849,8 +849,8 @@ fn a_kotlin_import_and_its_gradle_coordinates_are_one_dependency() {
     let json = serde_json::to_value(room[0]).unwrap();
     assert_eq!(json["name"], "androidx.room:room-runtime");
     assert_eq!(json["names"][0], "androidx.room");
-    let plan = rust_anything::report::markdown(
-        &rust_anything::analyze::Report {
+    let plan = everything_rust::report::markdown(
+        &everything_rust::analyze::Report {
             whole_app: Some(w),
             ..report
         },
@@ -886,13 +886,13 @@ fn a_unit_importing_another_workspace_package_is_not_a_leaf() {
 
 #[test]
 fn map_names_a_path_that_does_not_exist() {
-    let out = std::process::Command::new(env!("CARGO_BIN_EXE_rust-anything"))
-        .args(["map", "/no/such/rust-anything-path"])
+    let out = std::process::Command::new(env!("CARGO_BIN_EXE_everything-rust"))
+        .args(["map", "/no/such/everything-rust-path"])
         .output()
         .unwrap();
     assert!(!out.status.success());
     let err = String::from_utf8_lossy(&out.stderr);
-    assert!(err.contains("/no/such/rust-anything-path"), "{err}");
+    assert!(err.contains("/no/such/everything-rust-path"), "{err}");
 }
 
 #[test]

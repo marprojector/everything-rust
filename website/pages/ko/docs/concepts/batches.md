@@ -6,7 +6,7 @@ description: 항목마다 한 번씩 호출되는 포트는 JIT에 집니다. �
 # 배치와 핫 패스
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # 또는: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # 또는: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch`는 `param` 값들을 한 번 받아 Rust 안에 유지하는 클래스를 생성합니다: `new FnBatch(items)`(TS, Python, Java), `Mod::FnBatch.new(items)`(Ruby), `NewFnBatch(items)`(Go). 쿼리마다 `run(<other args>)`은 모든 결과를 하나의 배열로 반환하고, `rank(<other args>, min)`은 항목 인덱스를 좋은 순서로 반환합니다. 모든 코어에서 실행되며, 오류는 원본과 같습니다. C를 제외한 모든 언어가 배치를 지원합니다.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # 또는: rust-anything r
 호출마다 모든 항목에 함수를 실행하는 클래스를 생성합니다. 모든 코어에서 실행되며 결과는 typed array로 돌려줍니다.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: a quarter of the run, called per key by `matched`: batch it
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ x18n 사이드바에서 키 50,000개를 한 글자씩 입력하며 검색했을
 
 컴파일 언어 원본은 이득이 적습니다. 항목당 작업이 이미 빠르므로 배치는 코어 수만큼 이깁니다.
 배치 crate는 mimalloc으로 메모리를 할당합니다. 시스템 할당자를 쓰면 Go 배치가 단일 스레드보다
-느렸습니다. 데모: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+느렸습니다. 데모: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## 빠른 인덱스 작성하기
 
 - 호출하는 쪽이 배치를 쿼리마다가 아니라 한 번만 만들게 하세요. 반환된 인덱스는 평범한 루프로 항목에 다시 매핑하세요.

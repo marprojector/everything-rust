@@ -9,11 +9,11 @@ Kutubxonada qayta ijro etiladigan jarayon yo'q: uning ommaviy API'si front door,
 yozib olingan holatlari esa isbot.
 
 ```sh
-rust-anything app front-door .        # rust/app: ommaviy API'li Rust crate'i
+everything-rust app front-door .        # rust/app: ommaviy API'li Rust crate'i
 # har bir birlik sikldan o'tadi: bridge, record, port.rs, build, diff, gate; so'ng:
-rust-anything app wire . textkit-rs   # rust/app'dan qayta eksport qilinadi; asl nusxa uning shadow'ini import qiladi
-rust-anything app replay .            # har bir ulangan birlik holatlari; fallback = hali asl nusxadagi eksportlar
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app'dan qayta eksport qilinadi; asl nusxa uning shadow'ini import qiladi
+everything-rust app replay .            # har bir ulangan birlik holatlari; fallback = hali asl nusxadagi eksportlar
+everything-rust app lift .
 ```
 
 - Repozitoriyda `main` ham, server ham bo'lmasa (aks holda `--library`), `app front-door` ommaviy
@@ -21,7 +21,7 @@ rust-anything app lift .
   ulangan birlik uning moduliga aylanadi: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` yaratgan crate'ni oladi, `gate` ni ishga tushiradi va birlikning shadow o'rinbosarini yozadi:
   asl paket birlik o'rniga uni import qiladi, shunda uning chaqiruvchilari asl API'ni saqlaydi va
-  Rust'ga yetib boradi. `RUST_ANYTHING_UNIT_<NAME>=original` birlikni orqaga qaytaradi (C: shadow
+  Rust'ga yetib boradi. `EVERYTHING_RUST_UNIT_<NAME>=original` birlikni orqaga qaytaradi (C: shadow
   flag'larisiz build qiling).
 - `app replay` har bir ulangan birlikning yozib olingan holatlarini uning binding'lari orqali ishga tushiradi. Fallback ulushi
   Rust hali javob bermaydigan ommaviy eksportlar ulushi: ulanmagan birliklar va `bridge` asl tilda

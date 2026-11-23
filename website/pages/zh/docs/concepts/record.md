@@ -6,9 +6,9 @@ description: record 在生成的边界用例、语义陷阱、原实现自身的
 # 录制
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # 或：-- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # 或：-- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` 运行原始函数，并把每个函数的返回值或抛出的异常保存到 crate 旁边的 `cases.jsonl` 中：这就是移植版必须匹配的行为。之后出现的不一致就是行为差异：要修的是移植版，而不是录制结果。

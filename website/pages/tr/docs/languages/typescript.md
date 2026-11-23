@@ -37,7 +37,7 @@ Gerçek kod üzerindeki kayıtlı vakalarla bulunanlar:
 
 Çağrı başına bir port her seferinde köprünün bedelini öder ve V8 küçük fonksiyonları nanosaniyeler içinde çalıştırır. vercel/ms, kayıtlı vakaları üzerinde çağrı başına 0.56x hızında çalıştı; x18n çekirdeğinin portları JS'ten çağrıldığı haliyle TS'ten daha yavaştır. Batch olarak döngü Rust'a taşınır:
 
-| İş yükü | Orijinal | rust-anything ile |
+| İş yükü | Orijinal | everything-rust ile |
 | --- | ---: | ---: |
 | x18n'in kenar çubuğu araması, 50,000 anahtar (Node) | sorgu başına 10 ms | 0.5 ms: 20x daha hızlı |
 | Aynı arama tarayıcıda (wasm, tek thread) | 10 ms | 0.95 ms: 11.5x |

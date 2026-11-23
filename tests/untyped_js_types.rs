@@ -2,11 +2,11 @@ mod common;
 
 use std::path::{Path, PathBuf};
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 fn repo(name: &str, files: &[(&str, &str)]) -> PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-untyped-js-{name}-{}",
+        "everything-rust-untyped-js-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);

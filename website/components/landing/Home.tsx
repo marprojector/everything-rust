@@ -183,15 +183,15 @@ export default function Home({ hero, install, locale = 'en' }: { hero: React.Rea
                 <pre>
                   <span className="c">{m.demoComments.profile}</span>
                   {'\n'}
-                  <span className="p">$</span> rust-anything profile . -- node bench.mjs{'\n'}
-                  <span className="p">$</span> rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text{'\n'}
+                  <span className="p">$</span> everything-rust profile . -- node bench.mjs{'\n'}
+                  <span className="p">$</span> everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text{'\n'}
                   <span className="c">{m.demoComments.write}</span>
                   {'\n'}
-                  <span className="p">$</span> rust-anything record rust/fuzzy-rs{'\n'}
-                  <span className="p">$</span> rust-anything build rust/fuzzy-rs{'\n'}
-                  <span className="p">$</span> rust-anything diff rust/fuzzy-rs{'\n'}
-                  <span className="p">$</span> rust-anything bench rust/fuzzy-rs{'\n'}
-                  <span className="p">$</span> rust-anything gate rust/fuzzy-rs
+                  <span className="p">$</span> everything-rust record rust/fuzzy-rs{'\n'}
+                  <span className="p">$</span> everything-rust build rust/fuzzy-rs{'\n'}
+                  <span className="p">$</span> everything-rust diff rust/fuzzy-rs{'\n'}
+                  <span className="p">$</span> everything-rust bench rust/fuzzy-rs{'\n'}
+                  <span className="p">$</span> everything-rust gate rust/fuzzy-rs
                 </pre>
               </div>
               <div>
@@ -322,7 +322,7 @@ export default function Home({ hero, install, locale = 'en' }: { hero: React.Rea
                 {p.name}
               </a>
             ))}
-            <a className="btn btn-quiet" href="https://github.com/sponsors/erkamyaman">
+            <a className="btn btn-quiet" href="https://github.com/sponsors/marprojector">
               {m.becomeSponsor}
             </a>
           </div>

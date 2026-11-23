@@ -20,7 +20,7 @@ Batch'ler `new FnBatch(items)` şeklindedir; işiniz bittiğinde onları kapatı
 - `Integer.parseInt`, `Character.digit` üzerinden herhangi bir Unicode ondalık rakamını (`١٢`, `２`) kabul eder.
 - `Double.toString` (JDK 19+) en kısa ondalık gösterimi yazdırır ama asla iki basamaktan azını değil: `4.9E-324`; Rust'ın en kısa biçimi ise `5e-324`'tür.
 - `\s` yalnızca ASCII'dir; Rust'ın `split_whitespace`'i U+00A0'da da böler.
-- Float'lar gidiş-dönüşü sağlam atlatmalıdır: `serde_json`'ın varsayılan float ayrıştırıcısı her zaman doğru yuvarlamaz, bu yüzden rust-anything ve ürettiği her crate onun `float_roundtrip` özelliğini kullanır.
+- Float'lar gidiş-dönüşü sağlam atlatmalıdır: `serde_json`'ın varsayılan float ayrıştırıcısı her zaman doğru yuvarlamaz, bu yüzden everything-rust ve ürettiği her crate onun `float_roundtrip` özelliğini kullanır.
 
 ## Hız
 

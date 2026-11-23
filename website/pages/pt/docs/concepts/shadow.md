@@ -6,12 +6,12 @@ description: O shadow gera um módulo de substituição direta que executa o ori
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 O `shadow` gera um substituto direto com a API do original: um módulo TS ou Python, um pacote Go, um ficheiro Ruby, classes Java ou um ficheiro C. Carregue-o onde a aplicação carregava o original. Executa ambos, devolve o resultado do original e reporta as divergências do Rust enquanto ganha confiança em produção.
 
-| `RUST_ANYTHING_MODE` | Comportamento |
+| `EVERYTHING_RUST_MODE` | Comportamento |
 | --- | --- |
 | `shadow` (predefinição) | executa ambos, devolve o resultado do original, reporta as divergências |
 | `new` | muda para o Rust |

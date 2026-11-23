@@ -8,9 +8,9 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::app::{self, RecordOptions, ReplayOptions};
-use rust_anything::front_door::{self, FrontDoorOptions, WireOptions};
-use rust_anything::lift::{self, LiftOptions};
+use everything_rust::app::{self, RecordOptions, ReplayOptions};
+use everything_rust::front_door::{self, FrontDoorOptions, WireOptions};
+use everything_rust::lift::{self, LiftOptions};
 
 fn copy_dir(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
@@ -26,7 +26,7 @@ fn copy_dir(from: &Path, to: &Path) {
 
 fn fixture(lang: &str, phase: &str) -> PathBuf {
     let repo = std::env::temp_dir().join(format!(
-        "rust-anything-http-{lang}-{phase}-{}",
+        "everything-rust-http-{lang}-{phase}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&repo);
@@ -225,7 +225,7 @@ fn http_rerecord_uses_the_existing_fixed_port() {
         return;
     }
     let repo = fixture("ts", "saved-port");
-    let port = rust_anything::http::free_port().unwrap();
+    let port = everything_rust::http::free_port().unwrap();
     let server = repo.join("server.js");
     let text = std::fs::read_to_string(&server).unwrap();
     let condition = format!("if (Number(process.env.PORT) !== {port}) process.exit(2);");

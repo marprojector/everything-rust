@@ -2,8 +2,8 @@ mod common;
 
 use std::path::Path;
 
-use rust_anything::app::{self, RecordOptions, ReplayOptions};
-use rust_anything::effects::EffectsConfig;
+use everything_rust::app::{self, RecordOptions, ReplayOptions};
+use everything_rust::effects::EffectsConfig;
 
 const NOTIFY: &str = r#"import json, os, smtplib, sys, urllib.request
 from email.message import EmailMessage
@@ -65,7 +65,7 @@ fn a_second_email_fails_replay_even_when_the_output_matches() {
     let Some(python) = common::python() else {
         return;
     };
-    let repo = std::env::temp_dir().join(format!("rust-anything-effects-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!("everything-rust-effects-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     std::fs::create_dir_all(&repo).unwrap();
     std::fs::write(repo.join("notify.py"), NOTIFY).unwrap();
@@ -161,7 +161,7 @@ fn a_server_that_mails_twice_fails_only_on_that_request() {
         return;
     };
     let repo =
-        std::env::temp_dir().join(format!("rust-anything-effects-http-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-effects-http-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     std::fs::create_dir_all(&repo).unwrap();
     std::fs::write(repo.join("server.py"), SERVER).unwrap();
@@ -231,7 +231,7 @@ fn rows_written_differently_fail_replay_through_the_db_dump() {
         return;
     };
     let repo =
-        std::env::temp_dir().join(format!("rust-anything-effects-db-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-effects-db-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     std::fs::create_dir_all(&repo).unwrap();
     std::fs::write(repo.join("add.py"), DB_APP).unwrap();

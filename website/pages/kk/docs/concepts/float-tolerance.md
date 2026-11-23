@@ -6,8 +6,8 @@ description: Сандық код портталғаннан кейін сире�
 # Float рұқсат ауытқуы
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Сандық код (физика, статистика, графика) портталғаннан кейін сирек жағдайда ғана биттік деңгейде бірдей float-тар береді: операциялар реті, fused multiply-add және математикалық кітапхана компиляторлар арасында ерекшеленеді. Мұны қабылдасаңыз, `--float-tolerance` және өз саныңызбен жазып алыңыз. Сонда float-тар үлкенірек мәннің сол үлесі шегінде сәйкес келеді (1-ден төмен болса абсолютті), және `diff` пен `gate` оны қолданады. `0` оны алып тастайды.

@@ -8,7 +8,7 @@ description: Replay 0 fallback rate менен өтүп, ар бир бирди�
 Replay 0 fallback rate менен өтүп, ар бир бирдик gate'тен өткөндө, аны таза Rust колдонмосуна айлантыңыз:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` экөө тең аткарылмайынча баш тартат жана эмне тоскоол болуп жатканын айтат: дагы эле fallback'ке түшкөн кейстер, дагы эле stub абалындагы glue, gate'тен өтпөгөн бирдиктер.

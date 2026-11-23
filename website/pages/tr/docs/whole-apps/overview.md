@@ -5,7 +5,7 @@ description: İlk kayıttan saf bir Rust binary'sine. Hedef, orijinal referans o
 
 # Tüm uygulamayı port etmek
 
-Hedef, orijinal referans olarak tutulurken orijinal gibi davranan saf bir Rust uygulamasıdır. Rust'ı ajanınız yazar; rust-anything işi sıralar, iskeletini kurar ve her adımı kanıtlar. CLI'lar, HTTP sunucuları ve kütüphaneler.
+Hedef, orijinal referans olarak tutulurken orijinal gibi davranan saf bir Rust uygulamasıdır. Rust'ı ajanınız yazar; everything-rust işi sıralar, iskeletini kurar ve her adımı kanıtlar. CLI'lar, HTTP sunucuları ve kütüphaneler.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Plan
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app`, uygulamanın yapısını (CLI, sunucu veya kütüphane) ve giriş noktalarını, Rust crate'i ve uyumuyla birlikte her dış bağımlılığı (import edilen ya da bildirilen), parçalar halinde port sırasını (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler: tutulacak birimler, engellenen birimler, crate'i olmayan ya da kısmi olan bağımlılıklar.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## Ajan bunu nasıl yürütür
 
-[whole-app skill'i](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md), yalnızca sizin verebileceğiniz kararlardan başlayarak ajanı adım adım yönlendirir:
+[whole-app skill'i](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md), yalnızca sizin verebileceğiniz kararlardan başlayarak ajanı adım adım yönlendirir:
 
 - **Sorgulama (grilling)**: ajan, portun bağlı olduğu her karar netleşene kadar, her soruyu önerilen yanıtıyla birlikte turlar halinde sorar ve her birini `rust/DECISIONS.md` içinde bir ADR olarak yazar; `rust/GLOSSARY.md` ise orijinalin terimlerini Rust adlarına eşler.
 - **Araştırma**: arka plan ajanları her bağımlılığın birincil kaynaklarını okur ve buldukları her anlamsal tuzakla birlikte `rust/research/<topic>.md` dosyasını yazar.

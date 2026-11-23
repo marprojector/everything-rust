@@ -1,6 +1,6 @@
 {
     "name": "acme/textfns",
-    "description": "Top-level PHP functions used to test rust-anything's PHP unit bridge.",
+    "description": "Top-level PHP functions used to test everything-rust's PHP unit bridge.",
     "require": {
         "php": ">=8.1"
     },

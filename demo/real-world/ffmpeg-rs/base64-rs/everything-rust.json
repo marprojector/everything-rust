@@ -1,0 +1,89 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the ffmpeg tree scripts/prepare.sh assembles; see README.md>",
+  "unit": "base64.c",
+  "language": "c",
+  "kind": "c-abi",
+  "crate_name": "base64-rs",
+  "exports": [
+    {
+      "name": "av_base64_decode",
+      "file": "base64.c",
+      "line": 81,
+      "params": [
+        {
+          "name": "out",
+          "ts_type": "buffer",
+          "optional": false,
+          "rest": false,
+          "native_type": "uint8_t*"
+        },
+        {
+          "name": "in_str",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false,
+          "native_type": "const char*"
+        },
+        {
+          "name": "out_size",
+          "ts_type": "len:0",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "int",
+      "prototype": "int av_base64_decode(uint8_t *out, const char *in_str, int out_size)"
+    },
+    {
+      "name": "av_base64_encode",
+      "file": "base64.c",
+      "line": 147,
+      "params": [
+        {
+          "name": "out",
+          "ts_type": "buffer",
+          "optional": false,
+          "rest": false,
+          "native_type": "char*"
+        },
+        {
+          "name": "out_size",
+          "ts_type": "len:0",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        },
+        {
+          "name": "in",
+          "ts_type": "bytes",
+          "optional": false,
+          "rest": false,
+          "native_type": "const uint8_t*"
+        },
+        {
+          "name": "in_size",
+          "ts_type": "len:2",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        }
+      ],
+      "returns": "ptr:0",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "char*",
+      "prototype": "char *av_base64_encode(char *out, int out_size, const uint8_t *in, int in_size)"
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

@@ -5,7 +5,7 @@ description: Ilkinji ýazgydan arassa Rust binar faýlyna çenli. Maksat asyl nu
 
 # Tutuş programmany geçirmek
 
-Maksat asyl nusga ýaly özüni alyp barýan arassa Rust programmasy, asyl nusga bolsa salgylanma hökmünde saklanýar. Rust koduny agentiňiz ýazýar; rust-anything işi tertipleşdirýär, onuň karkasyny döredýär we her ädimi subut edýär. CLI-ler, HTTP serwerler we kitaphanalar.
+Maksat asyl nusga ýaly özüni alyp barýan arassa Rust programmasy, asyl nusga bolsa salgylanma hökmünde saklanýar. Rust koduny agentiňiz ýazýar; everything-rust işi tertipleşdirýär, onuň karkasyny döredýär we her ädimi subut edýär. CLI-ler, HTTP serwerler we kitaphanalar.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Meýilleşdirmek
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` programmanyň görnüşini (CLI, serwer ýa-da kitaphana) we giriş nokatlaryny, her daşky baglylygy (import edilen ýa-da yglan edilen) onuň Rust crate-i we laýyklygy bilen, geçiriş tertibini bölekler hökmünde (biri-birini import edýän birlikler bilelikde göçýär) we maslahat berilýän jogaply belgilenen kararlary goşýar: galdyrylýan birlikler, böwetlenen birlikler, crate-i ýok ýa-da bölekleýin bolan baglylyklar.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## Agent muny nähili ýerine ýetirýär
 
-[Tutuş programma skill-i](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) agenti ädimme-ädim alyp barýar, diňe siziň kabul edip bilýän kararlaryňyzdan başlap:
+[Tutuş programma skill-i](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) agenti ädimme-ädim alyp barýar, diňe siziň kabul edip bilýän kararlaryňyzdan başlap:
 
 - **Sorag-jogap (grilling)**: agent tapgyrlar bilen soraýar, her sorag maslahat berilýän jogaby bilen, portuň bagly her karary kesgitlenýänçä, we her birini `rust/DECISIONS.md` içinde ADR hökmünde ýazýar, `rust/GLOSSARY.md` bolsa asyl nusganyň adalgalaryny Rust atlaryna laýyklaşdyrýar.
 - **Gözleg**: fon agentleri her baglylygyň esasy çeşmelerini okaýar we tapan her semantik duzagy bilen `rust/research/<topic>.md` ýazýar.

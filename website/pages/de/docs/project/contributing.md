@@ -10,13 +10,13 @@ willkommen, und für einen Pull Request mit einer Fehlerkorrektur musst du nicht
 
 ## Bevor du anfängst
 
-- **Ein Fehler:** Eröffne ein [Issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) mit
-  dem Befehl, den du ausgeführt hast, seiner Ausgabe, deiner Plattform und der rust-anything-Version
-  (`rust-anything --version`). Ein winziges Projekt zum Reproduzieren hilft am meisten.
+- **Ein Fehler:** Eröffne ein [Issue](https://github.com/marprojector/everything-rust/issues/new/choose) mit
+  dem Befehl, den du ausgeführt hast, seiner Ausgabe, deiner Plattform und der everything-rust-Version
+  (`everything-rust --version`). Ein winziges Projekt zum Reproduzieren hilft am meisten.
 - **Eine größere Änderung** (eine neue Sprache, ein neuer Befehl, eine Änderung daran, was eine Unit oder eine Aufzeichnung ist):
   Eröffne zuerst ein Issue, damit wir uns auf die Form einigen können, bevor du sie schreibst. Die Gründe für frühere
-  Entscheidungen stehen in [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md).
-- **Ein Sicherheitsproblem:** Eröffne kein öffentliches Issue; siehe [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md).
+  Entscheidungen stehen in [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md).
+- **Ein Sicherheitsproblem:** Eröffne kein öffentliches Issue; siehe [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md).
 
 ## Einrichtung
 
@@ -36,16 +36,16 @@ Du brauchst Rust (stable, 1.97 oder neuer). Die Tests führen auch die Sprache a
 | wasm-Bridges | `rustup target add wasm32-unknown-unknown` und die passende `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` listet auf, welche dieser Runtimes du hast, ihre Versionen und den Befehl,
 der jede installiert oder aktualisiert. Damit eine fehlende Runtime ihre Tests fehlschlagen lässt, statt sie zu überspringen
-(das tut die CI), nenne sie in `RUST_ANYTHING_REQUIRE`, z. B.
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+(das tut die CI), nenne sie in `EVERYTHING_RUST_REQUIRE`, z. B.
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Der Hook führt `scripts/check-secrets.sh` aus, das Keys, Tokens und persönliche Home-Ordner-Pfade
 in deinen Commits ablehnt. Die CI führt es auf jeder Datei aus.
@@ -65,7 +65,7 @@ in deinen Commits ablehnt. Die CI führt es auf jeder Datei aus.
 - **Fixtures** sind kleine Apps unter `tests/fixtures/`. Die CLI- und HTTP-Fixtures implementieren dieselben
   Befehle und Routen in jeder Sprache (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), also halte ein neues im Verhalten identisch zu den anderen.
-- **Generierter Code** (die Bridges, Treiber und Front Doors, die rust-anything schreibt) muss ebenfalls
+- **Generierter Code** (die Bridges, Treiber und Front Doors, die everything-rust schreibt) muss ebenfalls
   `clippy -D warnings` bestehen, da `gate` es auf den Crates der Nutzer ausführt.
 - **Stil:** Passe dich dem umgebenden Code an. Behalte Kommentare für das, was der Code nicht selbst sagen kann, und
   schreib die Begründung für eine Änderung stattdessen in den Pull Request.
@@ -81,8 +81,8 @@ in der Tabelle fehlende Bibliothek wird als `unknown` gemeldet; rate nie ein Cra
 ## Eine Sprache hinzufügen
 
 PHP und C# wurden als Vorschau in zwei Commits hinzugefügt, die du zuerst lesen solltest:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) und
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Eine neue Sprache beginnt
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) und
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Eine neue Sprache beginnt
 genauso:
 
 1. Ein Plugin in `src/lang/<name>.rs`: Erkennung, Scan (Imports und Risiken), Auflösung und Exporte,
@@ -139,10 +139,10 @@ kleine Anpassungen, fügt ein Maintainer eventuell einen Commit obendrauf hinzu,
 ## Eine echte Portierung teilen
 
 Portierungen echter Projekte sind der beste Beleg dafür, was funktioniert und was bricht. Wenn du
-rust-anything an etwas Echtem eingesetzt hast, ist ein Issue oder ein Pull Request, der es zu
+everything-rust an etwas Echtem eingesetzt hast, ist ein Issue oder ein Pull Request, der es zu
 [docs/real-world.md](/docs/real-world/overview) hinzufügt, sehr willkommen. Nenne das Projekt, die Befehle, die du
 ausgeführt hast, die Anzahl der Fälle und alles, was dich überrascht hat.
 
 ## Verhaltenskodex
 
-Von allen Beteiligten wird erwartet, dass sie den [Verhaltenskodex](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md) befolgen.
+Von allen Beteiligten wird erwartet, dass sie den [Verhaltenskodex](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md) befolgen.

@@ -7,7 +7,7 @@ description: profile、analyze、bridge、record、port、diff、bench、shadow 
 
 每一次移植，從單一熱點函式到整個應用程式，都會一次一個單元地經過相同的步驟。只有在 `gate` 通過時，移植才算完成。
 
-rust-anything 如何檢查移植版本、它的指令會決定什麼，以及它的極限在哪裡。回到 [README](/)。
+everything-rust 如何檢查移植版本、它的指令會決定什麼，以及它的極限在哪裡。回到 [README](/)。
 
 ## 運作方式
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | 步驟 | 指令 | 作用 |
 | --- | --- | --- |
-| 0. 效能剖析 | `rust-anything profile <repo> -- node bench.mjs` | 在該語言的效能剖析工具（node、cProfile、`go test` pprof、JFR、Ruby tracer）下執行真實的工作負載：依包含時間列出熱點函式、它們的呼叫端，以及哪些迴圈該做批次處理；並標出已經編譯過的程式碼（numba、Cython、JAX），這類程式碼用 Rust 改寫幾乎沒有好處 |
-| 1. 規劃 | `rust-anything analyze <repo>` | 單元、移植順序、附 `file:line` 的風險、每個單元的橋接方式、相依套件對應 crate 的適配程度、最適合先移植的部分；`--whole-app` 會加上進入點與型態、每個相依套件（已匯入或已宣告）及其 crate、區塊（互相匯入的單元會一起搬移），以及附有建議答案的編號決策 |
-| 2. 橋接 | `rust-anything bridge <repo> <unit>` | 建立包含綁定（`lib.rs`，以及來源語言載入的包裝層）與待移植空殼（`port.rs`）的 crate；`--batch fn:param` 會新增一個將大量 `param` 值保留在 Rust 中的類別；`--as-json T` 會把應用程式只用資料填入的型別參數以 JSON 值的形式橋接 |
-| 3. 錄製 | `rust-anything record <crate>` | 以自動產生的邊界案例（非 ASCII、emoji、`-0`、`NaN`、預期浮點數的地方傳入整數……）以及每個參數上的每個語意陷阱（字串長度與大小寫、有號除法、溢位邊界、浮點數輸出、map 與排序的順序）執行原始版本，並儲存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）還會錄製原始版本自己的測試套件所做的每一次呼叫；`--float-tolerance 1e-9` 讓數值程式碼的浮點數在該比例內即視為一致 |
-| 3. 建置 | `rust-anything build <crate>` | 建置 Rust 端：`.node`、wasm 套件、Python 擴充或共用函式庫 |
-| 3. 比對 | `rust-anything diff <crate>` | 以原始版本呼叫端的呼叫方式，將已錄製的案例拿來重播比對 Rust；列出不一致之處 |
-| 3. 基準測試 | `rust-anything bench <crate>` | 在原始版本與 Rust 上（包含橋接）為已錄製的案例計時 |
-| 4. 影子模式 | `rust-anything shadow <crate>` | 可直接替換的模組，同時執行兩者，回傳原始版本的結果，回報不一致之處；`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 閘門 | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、測試、`unsafe` 稽核、沒有未移植的部分、原始版本的每條錯誤路徑都有已錄製的失敗案例、在原始版本會回傳錯誤的地方不使用 `unwrap`/`expect`/`panic!`（除非標記了 `// INFALLIBLE: <why>`）、建置、API、行為 |
-| AI 代理 | `rust-anything setup` | 在你的程式開發 AI 代理中註冊 MCP 伺服器（`rust-anything mcp`，每個步驟都是一個工具）與工作流程技能（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)） |
+| 0. 效能剖析 | `everything-rust profile <repo> -- node bench.mjs` | 在該語言的效能剖析工具（node、cProfile、`go test` pprof、JFR、Ruby tracer）下執行真實的工作負載：依包含時間列出熱點函式、它們的呼叫端，以及哪些迴圈該做批次處理；並標出已經編譯過的程式碼（numba、Cython、JAX），這類程式碼用 Rust 改寫幾乎沒有好處 |
+| 1. 規劃 | `everything-rust analyze <repo>` | 單元、移植順序、附 `file:line` 的風險、每個單元的橋接方式、相依套件對應 crate 的適配程度、最適合先移植的部分；`--whole-app` 會加上進入點與型態、每個相依套件（已匯入或已宣告）及其 crate、區塊（互相匯入的單元會一起搬移），以及附有建議答案的編號決策 |
+| 2. 橋接 | `everything-rust bridge <repo> <unit>` | 建立包含綁定（`lib.rs`，以及來源語言載入的包裝層）與待移植空殼（`port.rs`）的 crate；`--batch fn:param` 會新增一個將大量 `param` 值保留在 Rust 中的類別；`--as-json T` 會把應用程式只用資料填入的型別參數以 JSON 值的形式橋接 |
+| 3. 錄製 | `everything-rust record <crate>` | 以自動產生的邊界案例（非 ASCII、emoji、`-0`、`NaN`、預期浮點數的地方傳入整數……）以及每個參數上的每個語意陷阱（字串長度與大小寫、有號除法、溢位邊界、浮點數輸出、map 與排序的順序）執行原始版本，並儲存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）還會錄製原始版本自己的測試套件所做的每一次呼叫；`--float-tolerance 1e-9` 讓數值程式碼的浮點數在該比例內即視為一致 |
+| 3. 建置 | `everything-rust build <crate>` | 建置 Rust 端：`.node`、wasm 套件、Python 擴充或共用函式庫 |
+| 3. 比對 | `everything-rust diff <crate>` | 以原始版本呼叫端的呼叫方式，將已錄製的案例拿來重播比對 Rust；列出不一致之處 |
+| 3. 基準測試 | `everything-rust bench <crate>` | 在原始版本與 Rust 上（包含橋接）為已錄製的案例計時 |
+| 4. 影子模式 | `everything-rust shadow <crate>` | 可直接替換的模組，同時執行兩者，回傳原始版本的結果，回報不一致之處；`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 閘門 | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、測試、`unsafe` 稽核、沒有未移植的部分、原始版本的每條錯誤路徑都有已錄製的失敗案例、在原始版本會回傳錯誤的地方不使用 `unwrap`/`expect`/`panic!`（除非標記了 `// INFALLIBLE: <why>`）、建置、API、行為 |
+| AI 代理 | `everything-rust setup` | 在你的程式開發 AI 代理中註冊 MCP 伺服器（`everything-rust mcp`，每個步驟都是一個工具）與工作流程技能（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)） |
 
 ## 熱路徑：把資料留在 Rust 中
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 並在每次呼叫時對所有項目執行該函式，使用所有核心，以 typed array 回傳結果。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore：佔執行時間的四分之一，由 `matched` 對每個 key 呼叫：做批次處理
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -95,7 +95,7 @@ x18n 側邊欄對 50,000 個 key 的搜尋上，逐字母輸入，結果完全�
 
 編譯式的原始版本受益較少：每個項目的工作本來就很快，所以批次勝出的幅度約等於
 核心數。批次 crate 使用 mimalloc 配置記憶體：使用系統配置器時，Go 的批次甚至比
-單一執行緒還慢。Demo：[`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+單一執行緒還慢。Demo：[`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 
 ## `bridge` 會決定什麼
 
@@ -174,16 +174,16 @@ x18n 側邊欄對 50,000 個 key 的搜尋上，逐字母輸入，結果完全�
 
 | 步驟 | 指令 | 作用 |
 | --- | --- | --- |
-| 0. 效能剖析 | `rust-anything profile <repo> -- node bench.mjs` | 在該語言的效能剖析工具（node、cProfile、`go test` pprof、JFR、Ruby tracer）下執行真實的工作負載：依包含時間列出熱點函式、它們的呼叫端，以及哪些迴圈該做批次處理；並標出已經編譯過的程式碼（numba、Cython、JAX），這類程式碼用 Rust 改寫幾乎沒有好處 |
-| 1. 規劃 | `rust-anything analyze <repo>` | 單元、移植順序、附 `file:line` 的風險、每個單元的橋接方式、相依套件對應 crate 的適配程度、最適合先移植的部分；`--whole-app` 會加上進入點與型態、每個相依套件（已匯入或已宣告）及其 crate、區塊（互相匯入的單元會一起搬移），以及附有建議答案的編號決策 |
-| 2. 橋接 | `rust-anything bridge <repo> <unit>` | 建立包含綁定（`lib.rs`，以及來源語言載入的包裝層）與待移植空殼（`port.rs`）的 crate；`--batch fn:param` 會新增一個將大量 `param` 值保留在 Rust 中的類別；`--as-json T` 會把應用程式只用資料填入的型別參數以 JSON 值的形式橋接 |
-| 3. 錄製 | `rust-anything record <crate>` | 以自動產生的邊界案例（非 ASCII、emoji、`-0`、`NaN`、預期浮點數的地方傳入整數……）以及每個參數上的每個語意陷阱（字串長度與大小寫、有號除法、溢位邊界、浮點數輸出、map 與排序的順序）執行原始版本，並儲存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）還會錄製原始版本自己的測試套件所做的每一次呼叫；`--float-tolerance 1e-9` 讓數值程式碼的浮點數在該比例內即視為一致 |
-| 3. 建置 | `rust-anything build <crate>` | 建置 Rust 端：`.node`、wasm 套件、Python 擴充或共用函式庫 |
-| 3. 比對 | `rust-anything diff <crate>` | 以原始版本呼叫端的呼叫方式，將已錄製的案例拿來重播比對 Rust；列出不一致之處 |
-| 3. 基準測試 | `rust-anything bench <crate>` | 在原始版本與 Rust 上（包含橋接）為已錄製的案例計時 |
-| 4. 影子模式 | `rust-anything shadow <crate>` | 可直接替換的模組，同時執行兩者，回傳原始版本的結果，回報不一致之處；`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 閘門 | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、測試、`unsafe` 稽核、沒有未移植的部分、原始版本的每條錯誤路徑都有已錄製的失敗案例、在原始版本會回傳錯誤的地方不使用 `unwrap`/`expect`/`panic!`（除非標記了 `// INFALLIBLE: <why>`）、建置、API、行為 |
-| AI 代理 | `rust-anything setup` | 在你的程式開發 AI 代理中註冊 MCP 伺服器（`rust-anything mcp`，每個步驟都是一個工具）與工作流程技能（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)） |
+| 0. 效能剖析 | `everything-rust profile <repo> -- node bench.mjs` | 在該語言的效能剖析工具（node、cProfile、`go test` pprof、JFR、Ruby tracer）下執行真實的工作負載：依包含時間列出熱點函式、它們的呼叫端，以及哪些迴圈該做批次處理；並標出已經編譯過的程式碼（numba、Cython、JAX），這類程式碼用 Rust 改寫幾乎沒有好處 |
+| 1. 規劃 | `everything-rust analyze <repo>` | 單元、移植順序、附 `file:line` 的風險、每個單元的橋接方式、相依套件對應 crate 的適配程度、最適合先移植的部分；`--whole-app` 會加上進入點與型態、每個相依套件（已匯入或已宣告）及其 crate、區塊（互相匯入的單元會一起搬移），以及附有建議答案的編號決策 |
+| 2. 橋接 | `everything-rust bridge <repo> <unit>` | 建立包含綁定（`lib.rs`，以及來源語言載入的包裝層）與待移植空殼（`port.rs`）的 crate；`--batch fn:param` 會新增一個將大量 `param` 值保留在 Rust 中的類別；`--as-json T` 會把應用程式只用資料填入的型別參數以 JSON 值的形式橋接 |
+| 3. 錄製 | `everything-rust record <crate>` | 以自動產生的邊界案例（非 ASCII、emoji、`-0`、`NaN`、預期浮點數的地方傳入整數……）以及每個參數上的每個語意陷阱（字串長度與大小寫、有號除法、溢位邊界、浮點數輸出、map 與排序的順序）執行原始版本，並儲存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）還會錄製原始版本自己的測試套件所做的每一次呼叫；`--float-tolerance 1e-9` 讓數值程式碼的浮點數在該比例內即視為一致 |
+| 3. 建置 | `everything-rust build <crate>` | 建置 Rust 端：`.node`、wasm 套件、Python 擴充或共用函式庫 |
+| 3. 比對 | `everything-rust diff <crate>` | 以原始版本呼叫端的呼叫方式，將已錄製的案例拿來重播比對 Rust；列出不一致之處 |
+| 3. 基準測試 | `everything-rust bench <crate>` | 在原始版本與 Rust 上（包含橋接）為已錄製的案例計時 |
+| 4. 影子模式 | `everything-rust shadow <crate>` | 可直接替換的模組，同時執行兩者，回傳原始版本的結果，回報不一致之處；`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 閘門 | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、測試、`unsafe` 稽核、沒有未移植的部分、原始版本的每條錯誤路徑都有已錄製的失敗案例、在原始版本會回傳錯誤的地方不使用 `unwrap`/`expect`/`panic!`（除非標記了 `// INFALLIBLE: <why>`）、建置、API、行為 |
+| AI 代理 | `everything-rust setup` | 在你的程式開發 AI 代理中註冊 MCP 伺服器（`everything-rust mcp`，每個步驟都是一個工具）與工作流程技能（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)） |
 ## 下一步
 
 每個步驟都有自己的頁面：[效能剖析與分析](/docs/concepts/analyze)、[橋接](/docs/concepts/bridge)、[錄製](/docs/concepts/record)、[移植](/docs/concepts/port)、[比對](/docs/concepts/diff)、[基準測試](/docs/concepts/bench)、[影子模式](/docs/concepts/shadow)與[閘門](/docs/concepts/gate)。

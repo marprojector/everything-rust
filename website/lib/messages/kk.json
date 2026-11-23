@@ -17,8 +17,8 @@
     "closeMenu": "Мәзірді жабу",
     "menu": "Мәзір",
     "language": "Тіл",
-    "home": "rust-anything басты беті",
-    "github": "rust-anything GitHub-та",
+    "home": "everything-rust басты беті",
+    "github": "everything-rust GitHub-та",
     "onThisPage": "Осы бетте",
     "editPage": "Бұл бетті GitHub-та өңдеу",
     "previous": "Алдыңғы",
@@ -54,7 +54,7 @@
       "project": "Жоба"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything деген не",
+      "/docs/introduction/what-is-everything-rust": "everything-rust деген не",
       "/docs/introduction/quick-start": "Жылдам бастау",
       "/docs/introduction/install": "Орнату",
       "/docs/introduction/agents": "Агентті баптау",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Қолданбаңызды Rust тілінде қайта жазыңыз.",
     "title2": "Оның дәл солай жұмыс істейтінін дәлелдеңіз.",
-    "sub": "rust-anything кодыңыздың не істейтінін жазып алады, содан кейін әр жазылған кейсті Rust портына қарсы қайта ойнатады. Rust кодын агентіңіз жазады. Нәтижелер сәйкес келмейінше, ештеңе шығарылмайды.",
+    "sub": "everything-rust кодыңыздың не істейтінін жазып алады, содан кейін әр жазылған кейсті Rust портына қарсы қайта ойнатады. Rust кодын агентіңіз жазады. Нәтижелер сәйкес келмейінше, ештеңе шығарылмайды.",
     "cta": "Жылдам бастауды оқу",
     "source": "Бастапқы код GitHub-та",
     "sourceLanguage": "Бастапқы тіл",
@@ -138,10 +138,10 @@
     "installTitle": "Орнату",
     "installDesc": "CLI-ды орнатыңыз, содан кейін MCP серверді және workflow skill-ін Claude Code, Codex, Cursor және Gemini CLI ішінде тіркеңіз.",
     "installNote": "macOS, Linux және Windows үшін дайын бинарлық файлдар әр [GitHub release]({releases}) бетінде.",
-    "agentPrompt": "rust-anything орнат: `cargo install rust-anything`, содан кейін `rust-anything setup` іске қос.",
+    "agentPrompt": "everything-rust орнат: `cargo install everything-rust`, содан кейін `everything-rust setup` іске қос.",
     "agentRestart": "Сені қашан қайта іске қосу керектігін айт.",
     "loopTitle": "Порт қалай жасалады",
-    "loopDesc": "Түпнұсқа ақиқаттың көзі болып қала береді. rust-anything кодты аудармайды: ол агент болжай алмайтын нәрселерді және порттың қашан дайын екенін айтатын gate-ті береді.",
+    "loopDesc": "Түпнұсқа ақиқаттың көзі болып қала береді. everything-rust кодты аудармайды: ол агент болжай алмайтын нәрселерді және порттың қашан дайын екенін айтатын gate-ті береді.",
     "steps": [
       {
         "title": "Жазып алу",
@@ -272,7 +272,7 @@
       "csharp": "бүкіл қолданбаны жазып алу және қайта ойнату; бірлік bridge-тері келесі кезекте"
     },
     "sponsorsTitle": "Демеушілер",
-    "sponsorsDesc": "rust-anything тегін және ашық бастапқы кодты. Егер ол жұмысыңызға көмектессе, демеуші болуды қарастырыңыз. Сіздің қолдауыңыз әзірлеуді жалғастыруға көмектеседі.",
+    "sponsorsDesc": "everything-rust тегін және ашық бастапқы кодты. Егер ол жұмысыңызға көмектессе, демеуші болуды қарастырыңыз. Сіздің қолдауыңыз әзірлеуді жалғастыруға көмектеседі.",
     "companySponsor": "Компания демеушісі",
     "becomeSponsor": "Демеуші болу"
   }

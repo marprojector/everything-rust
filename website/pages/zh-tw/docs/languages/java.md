@@ -20,7 +20,7 @@ description: 將包含 public static 方法的套件移植到 Rust，透過具�
 - `Integer.parseInt` 透過 `Character.digit` 接受任何 Unicode 十進位數字（`١٢`、`２`）。
 - `Double.toString`（JDK 19+）會輸出最短的十進位表示，但絕不少於兩位數：`4.9E-324`，而 Rust 的最短形式是 `5e-324`。
 - `\s` 只涵蓋 ASCII；Rust 的 `split_whitespace` 也會在 U+00A0 處分割。
-- 浮點數必須能完整往返轉換：`serde_json` 預設的浮點數解析器並不總是正確捨入，所以 rust-anything 以及它產生的每個 crate 都使用它的 `float_roundtrip` 功能。
+- 浮點數必須能完整往返轉換：`serde_json` 預設的浮點數解析器並不總是正確捨入，所以 everything-rust 以及它產生的每個 crate 都使用它的 `float_roundtrip` 功能。
 
 ## 速度
 

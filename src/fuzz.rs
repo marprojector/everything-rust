@@ -294,7 +294,7 @@ mod tests {
     #[test]
     fn restore_puts_files_back_or_removes_new_ones() {
         let dir =
-            std::env::temp_dir().join(format!("rust-anything-restore-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-restore-{}", std::process::id()));
         std::fs::create_dir_all(&dir).unwrap();
         let kept = dir.join("a");
         let fresh = dir.join("b");

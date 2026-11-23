@@ -1,0 +1,20 @@
+{
+  "schema": "everything-rust/app-cases@1",
+  "name": "json-server",
+  "run": [
+    "node",
+    "--experimental-strip-types",
+    "src/bin.ts"
+  ],
+  "timeout_secs": 30,
+  "http": {
+    "args": [
+      "rust/fixtures/db.json"
+    ],
+    "fresh": [
+      "rust/fixtures/db.json",
+      "public"
+    ],
+    "pace_ms": 50
+  }
+}

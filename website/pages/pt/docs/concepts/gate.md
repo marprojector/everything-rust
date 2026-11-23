@@ -6,7 +6,7 @@ description: O gate é a definição de concluído para uma migração. Todas as
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Concluído significa que o `gate` passa. Verifica:

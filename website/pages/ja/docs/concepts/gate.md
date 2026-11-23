@@ -6,7 +6,7 @@ description: gate は移植の完了の定義です。実行されるすべて�
 # ゲート
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 完了とは `gate` に合格することです。チェック内容:

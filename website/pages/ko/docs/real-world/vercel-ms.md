@@ -6,9 +6,9 @@ description: 처음부터 끝까지 포팅한 vercel/ms. 기록된 모든 케이
 # vercel/ms
 
 [vercel/ms](https://github.com/vercel/ms)(스타 5.5k, 커밋 `4ff48ce`)는 `"2 days"`를
-밀리초로 바꾸고 그 반대도 합니다. 대부분의 Node 프로젝트가 어떤 의존성을 통해 이를 끌어옵니다. rust-anything 1.5.1로
+밀리초로 바꾸고 그 반대도 합니다. 대부분의 Node 프로젝트가 어떤 의존성을 통해 이를 끌어옵니다. everything-rust 1.5.1로
 처음부터 끝까지 포팅했으며, crate는
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs)에 있습니다.
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs)에 있습니다.
 
 | 단계 | 결과 |
 | --- | --- |

@@ -10,7 +10,7 @@ description: profile で時間がどこにかかっているかを見つけ、an
 目的が速度なら、何かを選ぶ前に計測してください:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # または: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # または: python3 bench.py, ruby bench.rb,
                                                     #         java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # または: python3 bench.p
 ## 分析: 移植を計画する
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # 人間向け
-rust-anything analyze <repo> --json            # エージェント向け: スキーマ rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # さらにエントリポイント、形態、依存関係、決定事項
+everything-rust analyze <repo> -o plan.md        # 人間向け
+everything-rust analyze <repo> --json            # エージェント向け: スキーマ everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # さらにエントリポイント、形態、依存関係、決定事項
 ```
 
 `analyze` は、ユニット、移植順序、`file:line` 付きのリスク、ユニットごとのブリッジ、各依存関係がクレートにどの程度対応付くか、そして `start_here`（最初に移植するのに最適なもの）を一覧表示します。`--whole-app` は、アプリの形態（CLI、サーバー、ライブラリ）とエントリポイント、すべての依存関係（インポートされたものと宣言されたもの）とそのクレート、ピース（互いにインポートし合うユニットはまとめて移動する）、推奨回答付きの番号付き決定事項を追加します。[アプリ全体の移植](/docs/whole-apps/overview)を参照してください。

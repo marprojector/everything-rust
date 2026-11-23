@@ -15,7 +15,7 @@ use crate::bridge::Manifest;
 use crate::harness::{self, BenchRow};
 use crate::walk::Canonical;
 
-pub const SCHEMA: &str = "rust-anything/report@1";
+pub const SCHEMA: &str = "everything-rust/report@1";
 
 #[derive(Debug, Serialize)]
 pub struct Card {
@@ -219,9 +219,9 @@ pub fn markdown(card: &Card) -> String {
     }
     let _ = writeln!(
         out,
-        "Measured with `rust-anything report` on {}: `diff` replays every recorded case, `bench` \
-         times them on both sides as callers call them. Reproduce: `rust-anything diff` and \
-         `rust-anything bench` in the crate folder.",
+        "Measured with `everything-rust report` on {}: `diff` replays every recorded case, `bench` \
+         times them on both sides as callers call them. Reproduce: `everything-rust diff` and \
+         `everything-rust bench` in the crate folder.",
         card.machine
     );
     out
@@ -269,7 +269,7 @@ pub fn svg(card: &Card) -> String {
 <rect width="{W}" height="{H}" fill="#ffffff"/>
 <g font-family="{font}">
 <svg x="64" y="52" width="60" height="60" viewBox="0 0 200 200">{crab}</svg>
-<text x="140" y="94" font-size="34" font-weight="700" fill="#1a1a1a">rust-anything</text>
+<text x="140" y="94" font-size="34" font-weight="700" fill="#1a1a1a">everything-rust</text>
 <text x="380" y="94" font-size="{title_size}" font-weight="700" fill="#1a1a1a">{name}, ported to <tspan fill="#e8561a">Rust</tspan></text>
 <text x="64" y="140" font-size="18" fill="#666666">{unit} ({lang}) · {functions}</text>
 <rect x="64" y="172" width="520" height="230" rx="20" fill="#ffffff" stroke="#e5e5e5" stroke-width="3"/>
@@ -284,7 +284,7 @@ pub fn svg(card: &Card) -> String {
 <rect x="648" y="360" width="{rust_w:.0}" height="14" rx="7" fill="#e8561a"/>
 <text x="600" y="460" font-size="28" fill="#1a1a1a" text-anchor="middle">{headline}: <tspan font-weight="700" fill="#e8561a">{speed}</tspan></text>
 <text x="600" y="500" font-size="18" fill="#777777" text-anchor="middle">Fallback to the original: {fallback:.1}% of cases · call included · {machine}</text>
-<text x="600" y="556" font-size="17" fill="#888888" text-anchor="middle">github.com/erkamyaman/rust-anything</text>
+<text x="600" y="556" font-size="17" fill="#888888" text-anchor="middle">github.com/marprojector/everything-rust</text>
 </g>
 </svg>
 "##,

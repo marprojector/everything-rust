@@ -37,7 +37,7 @@ Haqiqiy kodda yozib olingan holatlar orqali topilgan:
 
 Har bir chaqiruvda port har safar ko'prik narxini to'laydi, V8 esa kichik funksiyalarni nanosoniyalarda bajaradi. vercel/ms yozib olingan holatlari ustida har bir chaqiruvda 0.56x ishladi; x18n'ning yadro portlari JS'dan chaqirilganda TS'dan sekinroq. Batch'lar sifatida sikl Rust'ga ko'chadi:
 
-| Ish yuki | Asl nusxa | rust-anything bilan |
+| Ish yuki | Asl nusxa | everything-rust bilan |
 | --- | ---: | ---: |
 | x18n'ning yon panel qidiruvi, 50,000 kalit (Node) | har so'rovga 10 ms | 0.5 ms: 20x tezroq |
 | Xuddi shu qidiruv brauzerda (wasm, bitta thread) | 10 ms | 0.95 ms: 11.5x |

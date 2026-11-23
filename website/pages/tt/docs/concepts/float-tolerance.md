@@ -6,8 +6,8 @@ description: Сан белән эшләүче код күчерелгәч сир
 # Float төгәллеге
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Сан белән эшләүче код (физика, статистика, графика) күчерелгәч сирәк кенә битка кадәр бертөрле float бирә: операцияләр тәртибе, fused multiply-add һәм математика китапханәсе компиляторлар арасында аерыла. Моны кабул итсәгез, `--float-tolerance` һәм үз саныгыз белән язып алыгыз. Шуннан соң float'лар зуррак кыйммәтнең шул өлеше чикләрендә туры килә (1'дән кечкенә кыйммәтләр өчен абсолют), һәм `diff` белән `gate` аны куллана. `0` аны бетерә.

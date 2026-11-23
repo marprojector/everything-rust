@@ -13,7 +13,7 @@ description: Go paketini tipli cgo çagyryşlary we döredilen binar wire arkaly
 | Näme gerek | Go 1.21+ |
 | Ýagdaý | Go 1.24-iň `path` paketinde barlandy: 2,642/2,642 (542-si Go-nyň öz test tablisalaryndan), gate geçýär |
 
-`profile` `go test` arkaly işleýär: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batch-lar `NewFnBatch(items)`; iş gutarandan soň olary ýapyň.
+`profile` `go test` arkaly işleýär: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batch-lar `NewFnBatch(items)`; iş gutarandan soň olary ýapyň.
 
 ## Portuň dogry etmeli zatlary
 

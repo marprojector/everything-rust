@@ -8,9 +8,9 @@ description: app record бүт колдонмону анын документт�
 `record` жана `diff` бир бирдикти далилдейт; `app record` жана `app replay` колдонмону далилдейт, алты тилдин каалаганындагы CLI'лар жана серверлер үчүн. Колдонмо кара куту катары каралат.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # the command that runs the original
-rust-anything app replay .                            # the original must pass 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # the command that runs the original
+everything-rust app replay .                            # the original must pass 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Кейстер кайдан келет
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## Кайра ойнотуу
 
 - `app replay` каалаган build'ди кейстерге каршы иштетет, `passed/total` басып чыгарат, ар бир өтпөгөн кейс үчүн diff менен `rust/app-cases/replay-report.md` жазат жана каалаган дал келбестикте нөлдөн башка код менен аяктайт.
-- `RUST_ANYTHING_FALLBACK_LOG` аталган файлга сап кошкон build (түп нускага ар бир fallback үчүн бир сап), [front door](/docs/whole-apps/front-door) сыяктуу, өзүнүн fallback rate көрсөткүчүн да алат.
+- `EVERYTHING_RUST_FALLBACK_LOG` аталган файлга сап кошкон build (түп нускага ар бир fallback үчүн бир сап), [front door](/docs/whole-apps/front-door) сыяктуу, өзүнүн fallback rate көрсөткүчүн да алат.
 - `app replay --case <name>` бир кейсти отчет берген аты боюнча кайра иштетет: баарын кайра иштетүүдөн мурун дал келбестикти оңдоо үчүн ылдам, кайталана турган цикл.
 
 ## CI'да кайра ойнотуу
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 Отчетто убакыттар же убактылуу жолдор жок: бир эле build'дин эки кайра ойнотуусу бирдей файл жазат. Аны commit кылыңыз, андан кийин CI'да иштетиңиз:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

@@ -1,5 +1,5 @@
-//! JS bindings for `packages/core/src/locale.ts`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! JS bindings for `packages/core/src/locale.ts`: generated from the signatures in `port.rs` by everything-rust.
+//! Regenerate with `everything-rust refresh` after changing them.
 
 use wasm_bindgen::prelude::*;
 
@@ -62,14 +62,14 @@ thread_local! {
 }
 
 /// This module's memory, where `index.cjs` reads and writes the wire buffers.
-#[wasm_bindgen(js_name = "rustAnythingWireMemory")]
-pub fn rust_anything_wire_memory() -> JsValue {
+#[wasm_bindgen(js_name = "everythingRustWireMemory")]
+pub fn everything_rust_wire_memory() -> JsValue {
     wasm_bindgen::memory()
 }
 
 /// The address of an argument buffer of `len` bytes.
-#[wasm_bindgen(js_name = "rustAnythingWireIn")]
-pub fn rust_anything_wire_in(len: u32) -> u32 {
+#[wasm_bindgen(js_name = "everythingRustWireIn")]
+pub fn everything_rust_wire_in(len: u32) -> u32 {
     WIRE_IN.with(|b| {
         let mut b = b.borrow_mut();
         b.resize(len as usize, 0);
@@ -78,12 +78,12 @@ pub fn rust_anything_wire_in(len: u32) -> u32 {
 }
 
 /// The address of the last result.
-#[wasm_bindgen(js_name = "rustAnythingWireOut")]
-pub fn rust_anything_wire_out() -> u32 {
+#[wasm_bindgen(js_name = "everythingRustWireOut")]
+pub fn everything_rust_wire_out() -> u32 {
     WIRE_OUT.with(|b| b.borrow().as_ptr() as usize as u32)
 }
 
-/// Reads `len` argument bytes, runs `f`, and keeps its result for `rustAnythingWireOut`.
+/// Reads `len` argument bytes, runs `f`, and keeps its result for `everythingRustWireOut`.
 fn wire_io(
     len: u32,
     f: impl FnOnce(&mut wire::Reader, &mut wire::Writer) -> Result<(), String>,

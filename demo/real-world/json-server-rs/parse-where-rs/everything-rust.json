@@ -1,0 +1,30 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/parse-where.ts",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "parse-where-rs",
+  "exports": [
+    {
+      "name": "parseWhere",
+      "file": "src/parse-where.ts",
+      "line": 58,
+      "params": [
+        {
+          "name": "query",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "JsonObject",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

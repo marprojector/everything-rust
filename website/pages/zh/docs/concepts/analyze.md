@@ -10,7 +10,7 @@ description: 用 profile 找出时间花在哪里，再用 analyze 规划单元�
 当目标是速度时，先测量，再做任何选择：
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # 或：python3 bench.py、ruby bench.rb、
+everything-rust profile <repo> -- node bench.mjs      # 或：python3 bench.py、ruby bench.rb、
                                                     #     java -cp out Main、go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # 或：python3 bench.py、r
 ## Analyze：规划迁移
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # 给人看
-rust-anything analyze <repo> --json            # 给智能体：schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # 另外包括入口点、应用形态、依赖和决策项
+everything-rust analyze <repo> -o plan.md        # 给人看
+everything-rust analyze <repo> --json            # 给智能体：schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # 另外包括入口点、应用形态、依赖和决策项
 ```
 
 `analyze` 会列出单元、迁移顺序、带 `file:line` 的风险、每个单元的桥接层、每个依赖映射到 crate 的匹配程度，以及 `start_here`：最适合先迁移的单元。`--whole-app` 还会加上应用形态（CLI、服务端或程序库）和入口点、每个依赖（导入的或声明的）及其对应 crate、迁移块（相互导入的单元一起迁移），以及带推荐答案的编号决策项。见[迁移整个应用](/docs/whole-apps/overview)。

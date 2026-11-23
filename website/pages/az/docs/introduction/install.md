@@ -1,6 +1,6 @@
 ---
 title: Quraşdırma
-description: rust-anything-i crates.io, npm və ya release binary-sindən quraşdırın, həmçinin hər dilə lazım olan runtime-ları.
+description: everything-rust-i crates.io, npm və ya release binary-sindən quraşdırın, həmçinin hər dilə lazım olan runtime-ları.
 ---
 
 # Quraşdırma
@@ -10,22 +10,22 @@ description: rust-anything-i crates.io, npm və ya release binary-sindən quraş
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm JavaScript layihələri üçün eyni binary-ni quraşdırır.
 
-macOS, Linux və Windows üçün hazır binary fayllar hər [GitHub release](https://github.com/erkamyaman/rust-anything/releases)-ə əlavə olunub. Claude Code-da onu plugin kimi də quraşdıra bilərsiniz (MCP server və skill; CLI `PATH`-da olmalıdır):
+macOS, Linux və Windows üçün hazır binary fayllar hər [GitHub release](https://github.com/marprojector/everything-rust/releases)-ə əlavə olunub. Claude Code-da onu plugin kimi də quraşdıra bilərsiniz (MCP server və skill; CLI `PATH`-da olmalıdır):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## Mənbədən
@@ -46,7 +46,7 @@ Yerli Windows CI `x86_64-pc-windows-msvc` Rust target-indən istifadə edir. Sta
 toolchain-ini və **Desktop development with C++** iş yükü ilə Visual Studio Build Tools-u quraşdırın;
 C kompilyatoru və linker C körpüləri və yerli Rust genişlənmələri üçün tələb olunur. Köçürdüyünüz
 mənbə dilinin runtime-ını quraşdırın. Python `python3` və ya `python` kimi mövcud ola bilər;
-rust-anything hər ikisini tanıyır. GNU Windows target-i CI-da yoxlanılmır.
+everything-rust hər ikisini tanıyır. GNU Windows target-i CI-da yoxlanılmır.
 
 Yerli körpü inteqrasiya dəstini Developer PowerShell pəncərəsindən işə salın:
 
@@ -65,11 +65,11 @@ PowerShell-dən işə salın və `where.exe link`-in MSVC linker-i tapdığını
 Unicode simvolları olan yol da daxil olmaqla müvəqqəti qovluqlardan istifadə edir və uğurlu işləmədən
 sonra yaradılmış artefaktları silir.
 
-Agentlər üçün `rust-anything setup` hər şeyi qeydiyyatdan keçirir (bax Sürətli başlanğıc). Bunun əvəzinə MCP serveri
+Agentlər üçün `everything-rust setup` hər şeyi qeydiyyatdan keçirir (bax Sürətli başlanğıc). Bunun əvəzinə MCP serveri
 bir layihəyə əllə əlavə etmək üçün (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Hər alət, onun parametrləri və nəyə toxuna biləcəyi: [docs/tools.md](/docs/reference/mcp-tools). Server həmçinin
@@ -77,12 +77,12 @@ skill-dən qurulmuş iki prompt təklif edir: `port_unit` və `port_whole_app`.
 ## Yeniləmə və ya silmə
 
 ```sh
-cargo install rust-anything                                    # yeniləmə (Cargo)
-npm install -g rust-anything@latest                            # yeniləmə (npm)
-rust-anything setup                                            # agent ayarlarını yeniləmə
-rust-anything setup --remove && cargo uninstall rust-anything  # silmə (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # silmə (npm)
+cargo install everything-rust                                    # yeniləmə (Cargo)
+npm install -g everything-rust@latest                            # yeniləmə (npm)
+everything-rust setup                                            # agent ayarlarını yeniləmə
+everything-rust setup --remove && cargo uninstall everything-rust  # silmə (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # silmə (npm)
 ```
 
-`setup --remove` yalnız rust-anything-in qeydlərini silir; saxladığı surətlər
-(`<file>.rust-anything.bak`) siz onları silənə qədər qalır.
+`setup --remove` yalnız everything-rust-in qeydlərini silir; saxladığı surətlər
+(`<file>.everything-rust.bak`) siz onları silənə qədər qalır.

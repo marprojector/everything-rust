@@ -6,7 +6,7 @@ description: Hər element üçün bir dəfə çağırılan port JIT-ə uduzur. B
 # Batch-lər və hot path-lar
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # və ya: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # və ya: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` dəyərlərini bir dəfə qəbul edib Rust-da saxlayan sinif yaradır: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Hər sorğu üçün `run(<other args>)` bütün nəticələri bir massiv kimi qaytarır, `rank(<other args>, min)` isə element indekslərini, ən yaxşısı birinci olmaqla, qaytarır. O, bütün nüvələrdə işləyir, xətalar isə orijinalınkıdır. C-dən başqa hər dil batch-lər alır.
@@ -16,9 +16,9 @@ dövrü köçürməkdir: `profile` onu tapır, `--batch` isə elementləri bir d
 və funksiyanı hər çağırışda hamısının üzərində bütün nüvələrdə, typed array nəticələri ilə işlədən sinif yaradır.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: işləmənin dörddə biri, `matched` tərəfindən hər açar üçün çağırılır: batch edin
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ Hər dil batch-lər alır və onlar hətta çağırış başına portların uduz
 
 Kompilyasiya olunan orijinallar daha az qazanır: element başına iş artıq sürətlidir, buna görə batch nüvələrin sayı
 qədər qazanır. Batch crate-ləri mimalloc ilə yaddaş ayırır: sistem allocator-u ilə Go batch-i bir
-thread-dən daha yavaş idi. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+thread-dən daha yavaş idi. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Sürətli indeks yazmaq
 
 - Çağıranın batch-i hər sorğu üçün yox, bir dəfə qurmasını təmin edin. Qaytarılan indeksləri sadə dövrlə elementlərə geri çevirin.

@@ -37,7 +37,7 @@ Hakyky kodda ýazga alnan ýagdaýlar arkaly tapyldy:
 
 Her çagyryşda port her gezek bridge üçin töleýär, V8 bolsa kiçi funksiýalary nanosekuntlarda işledýär. vercel/ms ýazga alnan ýagdaýlarynda bir çagyryşda 0.56x işledi; x18n-iň ýadro portlary JS-den çagyrylanda TS-den haýal. Batch hökmünde aýlaw Rust-a göçýär:
 
-| Iş ýüki | Asyl nusga | rust-anything bilen |
+| Iş ýüki | Asyl nusga | everything-rust bilen |
 | --- | ---: | ---: |
 | x18n gapdal panelindäki gözleg, 50,000 açar (Node) | bir soraga 10 ms | 0.5 ms: 20x has çalt |
 | Şol gözleg brauzerde (wasm, bir akym) | 10 ms | 0.95 ms: 11.5x |

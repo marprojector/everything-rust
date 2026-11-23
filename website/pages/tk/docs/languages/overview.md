@@ -31,7 +31,7 @@ PHP preview ýagdaýynda: `analyze` PHP programmasyny meýilleşdirýär (Compos
 autoloading, loose comparison we integer-iň float-a doly geçmegi ýaly töwekgelçilikler, crate-lere
 laýyklaşdyrylan Composer paketleri), PHP CLI-ni ýa-da serwerini bolsa ýazga alyp, gaýtadan işledip we
 Rust front door-yň arkasyna goýup bolýar. Onuň birliklerini PHP FFI arkaly Rust-a geçirmek indiki ädim
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# hem edil şeýle preview ýagdaýynda: `analyze` `.csproj` taslamalaryny we olaryň NuGet paketlerini
 okaýar (crate-lere laýyklaşdyrylýar), `using` direktiwalaryny bukjalara çözýär we C#-yň başgaça

@@ -9,11 +9,11 @@ description: Бібліотека не має процесу, який можн�
 випадки кожного модуля слугують доказом.
 
 ```sh
-rust-anything app front-door .        # rust/app: крейт Rust з публічним API
+everything-rust app front-door .        # rust/app: крейт Rust з публічним API
 # кожен модуль проходить цикл: bridge, record, port.rs, build, diff, gate; потім:
-rust-anything app wire . textkit-rs   # реекспортується з rust/app; оригінал імпортує його shadow
-rust-anything app replay .            # випадки кожного підключеного модуля; fallback = експорти, що ще в оригіналі
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # реекспортується з rust/app; оригінал імпортує його shadow
+everything-rust app replay .            # випадки кожного підключеного модуля; fallback = експорти, що ще в оригіналі
+everything-rust app lift .
 ```
 
 - `app front-door` знаходить публічний API (експорти всіх модулів), коли в репозиторії немає `main`
@@ -21,7 +21,7 @@ rust-anything app lift .
   модуль стає його модулем: `pub use textkit_rs::port as textkit;`.
 - `app wire` бере крейт, створений `bridge`, запускає `gate` і пише shadow-заміну модуля:
   оригінальний пакет імпортує її замість модуля, тож код, що його викликає, зберігає оригінальний API і
-  потрапляє в Rust. `RUST_ANYTHING_UNIT_<NAME>=original` повертає модуль назад (C: збирайте без
+  потрапляє в Rust. `EVERYTHING_RUST_UNIT_<NAME>=original` повертає модуль назад (C: збирайте без
   прапорців shadow).
 - `app replay` проганяє записані випадки кожного підключеного модуля через його прив'язки. Частка fallback
   показує, на яку частину публічних експортів Rust ще не відповідає: непідключені модулі та експорти, які `bridge` лишає

@@ -9,11 +9,11 @@ Eine Bibliothek hat keinen Prozess zum Abspielen: Ihre öffentliche API ist die 
 Fälle jeder Unit sind der Beweis.
 
 ```sh
-rust-anything app front-door .        # rust/app: ein Rust-Crate mit der öffentlichen API
+everything-rust app front-door .        # rust/app: ein Rust-Crate mit der öffentlichen API
 # jede Unit durch den Ablauf: bridge, record, port.rs, build, diff, gate; dann:
-rust-anything app wire . textkit-rs   # aus rust/app re-exportiert; das Original importiert seinen Shadow
-rust-anything app replay .            # die Fälle jeder verdrahteten Unit; Fallback = Exporte noch im Original
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # aus rust/app re-exportiert; das Original importiert seinen Shadow
+everything-rust app replay .            # die Fälle jeder verdrahteten Unit; Fallback = Exporte noch im Original
+everything-rust app lift .
 ```
 
 - `app front-door` findet die öffentliche API (die Exporte jeder Unit), wenn das Repository kein `main`
@@ -21,7 +21,7 @@ rust-anything app lift .
   Unit wird zu einem Modul davon: `pub use textkit_rs::port as textkit;`.
 - `app wire` nimmt ein von `bridge` erzeugtes Crate, führt `gate` aus und schreibt den Shadow-Ersatz der Unit:
   Das ursprüngliche Package importiert ihn anstelle der Unit, sodass seine Aufrufer die ursprüngliche API behalten und
-  beim Rust landen. `RUST_ANYTHING_UNIT_<NAME>=original` schickt die Unit zurück (C: ohne die
+  beim Rust landen. `EVERYTHING_RUST_UNIT_<NAME>=original` schickt die Unit zurück (C: ohne die
   Flags des Shadows bauen).
 - `app replay` führt die aufgezeichneten Fälle jeder verdrahteten Unit über ihre Bindings aus. Die Fallback-Rate ist
   der Anteil öffentlicher Exporte, die Rust noch nicht beantwortet: nicht verdrahtete Units und Exporte, die `bridge`

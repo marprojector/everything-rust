@@ -17,12 +17,12 @@ description: PHP preview ýagdaýynda. analyze PHP programmasyny meýilleşdirý
 PHP CLI-ni ýa-da serwerini ýazga alyp, gaýtadan işledip we Rust front door-yň arkasyna goýup bolýar:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Onuň birliklerini PHP FFI arkaly Rust-a geçirmek indiki ädim ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Oňa çenli `bridge` PHP birliklerini düşnükli habar bilen ret edýär.
+Onuň birliklerini PHP FFI arkaly Rust-a geçirmek indiki ädim ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). Oňa çenli `bridge` PHP birliklerini düşnükli habar bilen ret edýär.
 
 CI PHP gurnamaýar, şonuň üçin PHP testleri diňe ol gurnalan maşynda işleýär.

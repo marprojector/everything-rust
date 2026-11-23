@@ -6,8 +6,8 @@
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::app::{self, RecordOptions, ReplayOptions};
-use rust_anything::front_door::{self, FrontDoorOptions};
+use everything_rust::app::{self, RecordOptions, ReplayOptions};
+use everything_rust::front_door::{self, FrontDoorOptions};
 
 const TOOL: &str = r#"#!/bin/sh
 cat config.txt || exit 3
@@ -20,7 +20,7 @@ fn repo() -> PathBuf {
     static NEXT: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
     let n = NEXT.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     let repo = std::env::temp_dir().join(format!(
-        "rust-anything-app-fresh-{}-{n}",
+        "everything-rust-app-fresh-{}-{n}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&repo);
@@ -95,7 +95,7 @@ fn cli_cases_start_from_the_fresh_snapshot() {
     );
     assert!(!dir.join("build.out/config.txt").exists());
     assert_eq!(read("build.removed"), "stale/old.txt\n");
-    let config = read("rust-anything.json");
+    let config = read("everything-rust.json");
     assert!(config.contains("\"fixtures/project/\""), "{config}");
     assert!(!config.contains("\"http\""), "{config}");
 

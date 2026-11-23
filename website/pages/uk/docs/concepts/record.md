@@ -6,9 +6,9 @@ description: record запускає оригінал на згенерован�
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # або: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # або: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` запускає оригінальні функції і зберігає, що кожна з них повертає або кидає, у `cases.jsonl` поруч із крейтом: це поведінка, якій має відповідати порт. Розбіжність надалі є відмінністю в поведінці: виправляйте порт, ніколи не запис.

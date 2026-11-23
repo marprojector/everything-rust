@@ -5,7 +5,7 @@ description: 最初の記録から純粋な Rust バイナリまで。目標は�
 
 # アプリ全体の移植
 
-目標は、元の実装を参照として残したまま、元の実装と同じように振る舞う純粋な Rust アプリです。Rust を書くのはエージェントで、rust-anything は作業の順序を決め、雛形を生成し、すべてのステップを証明します。CLI、HTTP サーバー、ライブラリに対応しています。
+目標は、元の実装を参照として残したまま、元の実装と同じように振る舞う純粋な Rust アプリです。Rust を書くのはエージェントで、everything-rust は作業の順序を決め、雛形を生成し、すべてのステップを証明します。CLI、HTTP サーバー、ライブラリに対応しています。
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. 計画する
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` は、アプリの形態（CLI、サーバー、ライブラリ）とエントリポイント、すべての外部依存関係（インポートされたものと宣言されたもの）とその Rust クレートと適合度、ピースとしての移植順序（互いにインポートし合うユニットはまとめて移動する）、そして推奨回答付きの番号付き決定事項（残すユニット、ブロックされているユニット、クレートがない、または部分的なクレートしかない依存関係）を追加します。
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## エージェントの進め方
 
-[アプリ全体用のスキル](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md)は、あなたにしか下せない決定から始めて、エージェントを順に導きます:
+[アプリ全体用のスキル](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md)は、あなたにしか下せない決定から始めて、エージェントを順に導きます:
 
 - **質問攻め（grilling）**: エージェントは何回かに分けて質問し、それぞれに推奨回答を添えます。移植が依存するすべての決定が確定するまで続け、それぞれを ADR として `rust/DECISIONS.md` に書き、`rust/GLOSSARY.md` で元の実装の用語を Rust の名前に対応付けます。
 - **調査**: バックグラウンドのエージェントが各依存関係の一次情報を読み、見つけたすべてのセマンティックトラップを含めて `rust/research/<topic>.md` を書きます。

@@ -5,7 +5,7 @@ description: U kodimni avtomatik qayta yozadimi? Rust har doim tezroqmi? Float'l
 
 # Ko'p so'raladigan savollar
 
-rust-anything haqida odamlar beradigan savollar. [README](/) ga qaytish.
+everything-rust haqida odamlar beradigan savollar. [README](/) ga qaytish.
 
 ## Ko'p so'raladigan savollar
 
@@ -16,7 +16,7 @@ yozadi; u qachon to'g'ri ekanini `diff` va `gate` hal qiladi.
 **Ilovamning API'si o'zgaradimi?** Yo'q. Chaqiruvchilar xuddi shu funksiyalarni (yoki ishonch hosil qilayotganingizda
 ikkalasini ishga tushirib, asl nusxa natijasini qaytaradigan shadow modulini) import qiladi.
 
-**Rust har doim tezroqmi?** Yo'q, va rust-anything buni ochiq aytadi. Har bir element uchun bir marta chaqiriladigan kichik funksiya
+**Rust har doim tezroqmi?** Yo'q, va everything-rust buni ochiq aytadi. Har bir element uchun bir marta chaqiriladigan kichik funksiya
 Rust'da ko'pincha sekinroq bo'ladi, chunki har bir chaqiruv ko'prikdan o'tadi; V8, JVM va Go bunday funksiyalarni
 nanosoniyalarda bajaradi. `profile` uning atrofidagi siklni topadi, `--batch` butun siklni ko'chiradi, `bench` esa
 chiqarishdan oldin hukm beradi. numba, Cython yoki JAX tomonidan allaqachon kompilyatsiya qilingan kod ham mashina
@@ -60,7 +60,7 @@ baribir isbotlaydi. Hech narsa asl nusxaga qayta murojaat ham qilmaydi:
 front door uni alohida jarayon sifatida ishga tushiradi (yoki HTTP'ni unga uzatadi), ko'prik orqali ulangan birliklarni
 asl nusxa chaqiradi va hech qachon aksincha emas, callback'lar esa manba tilida qoladi.
 
-**Kodim mashinamdan tashqariga chiqadimi?** Yo'q: rust-anything lokal ishlaydi va kodingizning hech bir qismini
+**Kodim mashinamdan tashqariga chiqadimi?** Yo'q: everything-rust lokal ishlaydi va kodingizning hech bir qismini
 hech qayerga yubormaydi. Cargo crate'larni odatdagidek yuklab oladi, agentingiz model provayderi esa agentingiz unga
 yuborgan narsani o'z siyosatiga ko'ra ko'radi.
 

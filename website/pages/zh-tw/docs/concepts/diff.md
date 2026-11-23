@@ -6,9 +6,9 @@ description: diff 會將每個已錄製的案例拿來重播比對 Rust 版本�
 # 比對與已知差異
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # 必須是 N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # 必須是 N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` 會以原始版本呼叫端的呼叫方式，將 `cases.jsonl` 拿來重播比對建置好的 Rust 模組，並列出不一致之處。不一致就是行為差異：請修正移植版本，絕對不要修改錄製內容。

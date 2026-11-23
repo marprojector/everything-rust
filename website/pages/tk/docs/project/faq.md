@@ -5,7 +5,7 @@ description: Ol meniň kodumy awtomatik täzeden ýazýarmy? Rust hemişe has ç
 
 # Köp soralýan soraglar
 
-rust-anything barada adamlaryň berýän soraglary. [README](/) sahypasyna gaýdyp barmak.
+everything-rust barada adamlaryň berýän soraglary. [README](/) sahypasyna gaýdyp barmak.
 
 ## Köp soralýan soraglar
 
@@ -16,7 +16,7 @@ döredýär, asyl nusganyň näme edýändigini ýazga alýar we Rust-y şoňa g
 **Programmamyň API-si üýtgärmi?** Ýok. Çagyryjylar şol bir funksiýalary import edýär (ýa-da ikisini
 hem işledýän we siz ynam gazanýançaňyz asyl nusganyň netijesini gaýtarýan shadow modulyny).
 
-**Rust hemişe has çaltmy?** Ýok, rust-anything hem muny aýdýar. Her element üçin bir gezek çagyrylýan
+**Rust hemişe has çaltmy?** Ýok, everything-rust hem muny aýdýar. Her element üçin bir gezek çagyrylýan
 kiçijik funksiýa Rust-da köplenç haýalrak, sebäbi her çagyryş bridge-den geçýär; V8, JVM we Go beýle
 funksiýalary nanosekuntlarda işledýär. `profile` onuň daşyndaky aýlawy tapýar, `--batch` tutuş aýlawy
 göçürýär, `bench` bolsa siz çykarmazdan öň netije berýär. numba, Cython ýa-da JAX tarapyndan eýýäm
@@ -64,7 +64,7 @@ geçýänçä köne gurluşy gaýtalaň; `app lift` asyl nusgany aýyrandan soň
 front door ony aýratyn proses hökmünde işledýär (ýa-da HTTP-ni oňa ugradýar), bridge edilen birlikleri
 asyl nusga çagyrýar, tersine hiç haçan däl, callback-ler bolsa çeşme dilinde galýar.
 
-**Kodum maşynymdan çykýarmy?** Ýok: rust-anything ýerli işleýär we kodyňyzy hiç ýere ibermeýär.
+**Kodum maşynymdan çykýarmy?** Ýok: everything-rust ýerli işleýär we kodyňyzy hiç ýere ibermeýär.
 Cargo crate-leri adatdakysy ýaly ýükleýär, agentiňiziň model üpjün edijisi bolsa agentiňiziň oňa
 iberýän zadyny öz syýasaty boýunça görýär.
 

@@ -8,9 +8,9 @@ description: app record는 문서화된 예제, 사용자 입력, 함정 케이�
 `record`와 `diff`는 유닛 하나를 증명하고, `app record`와 `app replay`는 앱을 증명합니다. 여섯 가지 언어 모두의 CLI와 서버를 지원합니다. 앱은 블랙박스로 다룹니다.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # 원본을 실행하는 명령
-rust-anything app replay .                            # 원본은 100% 통과해야 함
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # 원본을 실행하는 명령
+everything-rust app replay .                            # 원본은 100% 통과해야 함
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## 케이스의 출처
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## 재생
 
 - `app replay`는 어떤 빌드든 케이스에 대해 실행하고, `passed/total`을 출력하며, 실패한 케이스마다 diff를 담은 `rust/app-cases/replay-report.md`를 작성하고, 불일치가 하나라도 있으면 0이 아닌 코드로 종료합니다.
-- [프런트 도어](/docs/whole-apps/front-door)처럼 `RUST_ANYTHING_FALLBACK_LOG`가 가리키는 파일에 내용을 덧붙이는(원본으로 폴백할 때마다 한 줄) 빌드는 폴백 비율도 보고받습니다.
+- [프런트 도어](/docs/whole-apps/front-door)처럼 `EVERYTHING_RUST_FALLBACK_LOG`가 가리키는 파일에 내용을 덧붙이는(원본으로 폴백할 때마다 한 줄) 빌드는 폴백 비율도 보고받습니다.
 - `app replay --case <name>`은 보고서에 나온 이름으로 케이스 하나를 다시 실행합니다: 전체를 다시 실행하기 전에 불일치를 고치는 빠르고 반복 가능한 루프입니다.
 
 ## CI에서 재생하기
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 보고서에는 실행 시간이나 임시 경로가 없습니다. 같은 빌드를 두 번 재생하면 같은 파일이 작성됩니다. 커밋한 다음 CI에서 실행하세요:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

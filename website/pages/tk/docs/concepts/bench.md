@@ -6,7 +6,7 @@ description: bench ýazga alnan ýagdaýlaryň asyl nusgada we Rust-da wagtyny �
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` ýazga alnan ýagdaýlaryň asyl nusgada we gurlan Rust modulynda wagtyny ölçeýär, bridge hem hasaba alnanda, we setirleri hem-de maslahatly netijäni gaýtarýar: çykarmak, haýal funksiýalary çeşme dilinde galdyrmak ýa-da has uly birligi geçirmek. 1-den kiçi tizlenme portuň çagyryjylary çagyrşy ýaly çagyrylanda has haýaldygyny aňladýar. `--min-ms` her funksiýa we tarap üçin iň az ölçenýän wagty kesgitleýär (adaty 200).
@@ -31,7 +31,7 @@ Hakyky kodda bir çagyryş boýunça ölçeldi ([alty dil](/docs/real-world/six-
 | Java | 0.18x | has uly birlikleri geçirmek |
 | Go | 0.04x | has uly birlikleri geçirmek |
 
-x18n ýadrosynyň API üýtgetmezden göçürip bolýan 29 funksiýasynyň hemmesi geçirildi: her gate geçýär we ýazga alnan 7,925 ýagdaý takyk gabat gelýär, `bench` bolsa portlaryň JS-den çagyrylanda TS-den haýaldygyny görkezdi, sebäbi bridge işiň özünden köp durýar ([hasabat](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms ýazga alnan ýagdaýlarynda bir çagyryşda 0.56x işledi ([tejribe mysaly](/docs/real-world/vercel-ms)).
+x18n ýadrosynyň API üýtgetmezden göçürip bolýan 29 funksiýasynyň hemmesi geçirildi: her gate geçýär we ýazga alnan 7,925 ýagdaý takyk gabat gelýär, `bench` bolsa portlaryň JS-den çagyrylanda TS-den haýaldygyny görkezdi, sebäbi bridge işiň özünden köp durýar ([hasabat](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms ýazga alnan ýagdaýlarynda bir çagyryşda 0.56x işledi ([tejribe mysaly](/docs/real-world/vercel-ms)).
 
 ## Näme utýar: aýlawy göçürmek
 

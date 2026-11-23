@@ -1,9 +1,9 @@
-use rust_anything::walk::Canonical;
+use everything_rust::walk::Canonical;
 use std::io::Write as _;
 use std::path::PathBuf;
 use std::process::ExitCode;
 
-/// `println!` that stops quietly when stdout is closed (`rust-anything ... | head`).
+/// `println!` that stops quietly when stdout is closed (`everything-rust ... | head`).
 macro_rules! say {
     ($($arg:tt)*) => {{
         let _ = writeln!(std::io::stdout().lock(), $($arg)*);
@@ -18,11 +18,11 @@ macro_rules! say_raw {
 
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
-use rust_anything::{analyze, app, bridge, front_door, gate, harness, lift, mcp, report, shadow};
+use everything_rust::{analyze, app, bridge, front_door, gate, harness, lift, mcp, report, shadow};
 
 #[derive(Parser)]
 #[command(
-    name = "rust-anything",
+    name = "everything-rust",
     version,
     about = "Rewrite TypeScript/JavaScript, Python, C, Go, Ruby, Java or Kotlin apps in Rust, one verified piece at a time",
     after_help = "Loop per unit: analyze -> bridge -> record -> port src/port.rs -> build -> diff -> shadow -> gate\nOnly the slow part: go --agent claude -- <workload>, then enable/disable and report"
@@ -53,7 +53,7 @@ enum Cmd {
         /// Repository root.
         #[arg(default_value = ".")]
         root: PathBuf,
-        /// Print the machine-readable report (schema `rust-anything/analyze@1`) instead of Markdown.
+        /// Print the machine-readable report (schema `everything-rust/analyze@1`) instead of Markdown.
         #[arg(long)]
         json: bool,
         /// Write to this file instead of stdout.
@@ -61,7 +61,7 @@ enum Cmd {
         out: Option<PathBuf>,
         /// Source language; detected from the repository when omitted.
         #[arg(long, value_enum)]
-        lang: Option<rust_anything::lang::Lang>,
+        lang: Option<everything_rust::lang::Lang>,
         /// Plan a whole-app port: entry points and shape, every dependency (imported or
         /// declared) with its crate, pieces in port order, and decisions for the user.
         #[arg(long)]
@@ -97,7 +97,7 @@ enum Cmd {
         #[arg(long, value_name = "TYPE_PARAM")]
         as_json: Vec<String>,
         /// Global allocator for crates with batches: `mimalloc` (C; wasm keeps Rust's default)
-        /// or `rusty_alloc` (pure Rust, no C compiler; wasm too). Kept in `rust-anything.json`.
+        /// or `rusty_alloc` (pure Rust, no C compiler; wasm too). Kept in `everything-rust.json`.
         #[arg(long, value_enum, default_value = "mimalloc")]
         allocator: bridge::Allocator,
     },
@@ -238,7 +238,7 @@ enum Cmd {
         /// Append the mismatching cases (`--keep`) or every fresh case (`--keep=all`) to
         /// `cases.jsonl`, so the next diff and gate check them.
         #[arg(long, value_enum, num_args = 0..=1, require_equals = true, default_missing_value = "mismatches")]
-        keep: Option<rust_anything::fuzz::Keep>,
+        keep: Option<everything_rust::fuzz::Keep>,
         /// Resolve npm packages the original imports from this folder's `node_modules`.
         #[arg(long)]
         resolve_from: Option<PathBuf>,
@@ -248,7 +248,7 @@ enum Cmd {
         node_args: Vec<String>,
     },
     /// Run a real workload under the language's profiler and say what to port: hot functions,
-    /// their callers, and loops to batch. `rust-anything profile <repo> -- node bench.mjs` (also
+    /// their callers, and loops to batch. `everything-rust profile <repo> -- node bench.mjs` (also
     /// `python3 x.py`, `go test -bench . ./pkg`, `java ...`, `ruby x.rb`)
     Profile {
         /// Repository root.
@@ -257,14 +257,14 @@ enum Cmd {
         json: bool,
         /// Source language; detected from the repository when omitted.
         #[arg(long, value_enum)]
-        lang: Option<rust_anything::lang::Lang>,
+        lang: Option<everything_rust::lang::Lang>,
         /// The workload, after `--`.
         #[arg(last = true, required = true)]
         command: Vec<String>,
     },
     /// The hot-path loop in one command: profile the workload, bridge the top portable function,
     /// record it, hand the port to an agent, then build, diff and gate it, and switch it on only
-    /// when everything matches. `rust-anything go --agent claude -- python3 app.py`
+    /// when everything matches. `everything-rust go --agent claude -- python3 app.py`
     Go {
         /// Repository root, as `profile` takes it.
         #[arg(value_name = "ROOT", conflicts_with = "root")]
@@ -281,7 +281,7 @@ enum Cmd {
         function: Option<String>,
         /// Source language; detected from the repository when omitted.
         #[arg(long, value_enum)]
-        lang: Option<rust_anything::lang::Lang>,
+        lang: Option<everything_rust::lang::Lang>,
         /// Generated cases per function, on top of the calls the workload makes.
         #[arg(long, default_value_t = 200)]
         count: usize,
@@ -329,7 +329,7 @@ enum Cmd {
         node_args: Vec<String>,
     },
     /// Remove the build cache every port and bridge shares (CARGO_TARGET_DIR when set, else
-    /// rust-anything/target in your cache folder). Ports rebuild on their next build.
+    /// everything-rust/target in your cache folder). Ports rebuild on their next build.
     Clean {
         /// Only print the folder and its size.
         #[arg(long)]
@@ -395,20 +395,20 @@ enum Cmd {
     },
     /// Serve every step as MCP tools over stdio.
     Mcp,
-    /// Register rust-anything with your coding agents (Claude Code, Codex, Cursor, Gemini CLI,
+    /// Register everything-rust with your coding agents (Claude Code, Codex, Cursor, Gemini CLI,
     /// OpenCode): the MCP server and, where the agent reads skills, the workflow skill. Keeps your
     /// other settings; run it again any time.
     Setup {
         /// Agents to set up (repeatable); every agent found by default.
         #[arg(long = "agent", value_enum)]
-        agents: Vec<rust_anything::setup::Agent>,
-        /// Take the rust-anything entries out again.
+        agents: Vec<everything_rust::setup::Agent>,
+        /// Take the everything-rust entries out again.
         #[arg(long)]
         remove: bool,
         /// Show what would change, write nothing.
         #[arg(long)]
         dry_run: bool,
-        /// Change settings files in place without saving a `.rust-anything.bak` copy first.
+        /// Change settings files in place without saving a `.everything-rust.bak` copy first.
         #[arg(long)]
         no_backup: bool,
         #[arg(long)]
@@ -446,7 +446,7 @@ enum Cmd {
 enum AppCmd {
     /// Run the original CLI on cases (its own examples, `--inputs`, semantic traps), twice
     /// each, and store them as trycmd files in `<repo>/rust/app-cases/`.
-    /// `rust-anything app record . -- python3 cli.py`
+    /// `everything-rust app record . -- python3 cli.py`
     Record {
         /// Repository root.
         #[arg(default_value = ".")]
@@ -502,7 +502,7 @@ enum AppCmd {
         #[arg(long = "float-file", value_name = "PATH=FORMAT")]
         float_files: Vec<String>,
         /// Record what leaves the process too: `http` runs a local sink that answers every
-        /// request (set as HTTP_PROXY, http_proxy and RUST_ANYTHING_HTTP_SINK), `smtp` a local
+        /// request (set as HTTP_PROXY, http_proxy and EVERYTHING_RUST_HTTP_SINK), `smtp` a local
         /// mail server (SMTP_HOST, SMTP_PORT). Each case stores what reached them, in order,
         /// and replay compares it. Comma-separated or repeated. Saved with the cases.
         #[arg(long, value_name = "KINDS")]
@@ -569,7 +569,7 @@ enum AppCmd {
     },
     /// Hand commands to a unit's `port.rs` (after it passes gate): adds the crate to `rust/app`,
     /// a glue file to write once, the routing and a kill switch
-    /// (`RUST_ANYTHING_UNIT_<NAME>=original`), then builds and replays.
+    /// (`EVERYTHING_RUST_UNIT_<NAME>=original`), then builds and replays.
     Wire {
         /// Repository root.
         repo: PathBuf,
@@ -643,11 +643,11 @@ fn run() -> Result<ExitCode> {
             lang,
             whole_app,
         } => {
-            let lang = lang.unwrap_or_else(|| rust_anything::lang::Lang::detect(&root));
+            let lang = lang.unwrap_or_else(|| everything_rust::lang::Lang::detect(&root));
             let mut report = analyze::analyze_lang(&root, lang)
                 .with_context(|| format!("analyzing {}", root.display()))?;
             if whole_app {
-                report.whole_app = Some(rust_anything::whole_app::whole_app(&root, &report));
+                report.whole_app = Some(everything_rust::whole_app::whole_app(&root, &report));
             }
             let text = if json {
                 serde_json::to_string_pretty(&report)? + "\n"
@@ -726,7 +726,7 @@ fn run() -> Result<ExitCode> {
                 "a command after `--` is the test suite for `--from-tests`; add the flag"
             );
             let inputs = if from_tests {
-                let c = rust_anything::from_tests::capture(&crate_dir, &test_command)?;
+                let c = everything_rust::from_tests::capture(&crate_dir, &test_command)?;
                 say!(
                     "Captured {} call(s) from the tests{}:",
                     c.per_function.values().sum::<usize>(),
@@ -742,7 +742,7 @@ fn run() -> Result<ExitCode> {
                 for s in &c.skipped {
                     say!("  not captured: {s}");
                 }
-                Some(rust_anything::from_tests::with_own_inputs(
+                Some(everything_rust::from_tests::with_own_inputs(
                     &crate_dir,
                     inputs.as_deref(),
                     &c.inputs,
@@ -752,11 +752,11 @@ fn run() -> Result<ExitCode> {
             };
             if let Some(t) = float_tolerance {
                 let mut manifest = bridge::Manifest::load(&crate_dir)?;
-                manifest.float_tolerance = (rust_anything::tolerance::check(t)? > 0.0).then_some(t);
+                manifest.float_tolerance = (everything_rust::tolerance::check(t)? > 0.0).then_some(t);
                 manifest.save(&crate_dir)?;
             }
             if (pin_clock || no_pin_clock)
-                && let Some(helper) = rust_anything::pin::set(&crate_dir, pin_clock)?
+                && let Some(helper) = everything_rust::pin::set(&crate_dir, pin_clock)?
             {
                 say!(
                     "Wrote {}: add `mod pinned;` to port.rs and call `pinned::now_ms()` and \
@@ -795,7 +795,7 @@ fn run() -> Result<ExitCode> {
                     "Clock pinned at {} ms (UTC), random numbers from seed {} ({})",
                     pin.now_ms,
                     pin.seed,
-                    rust_anything::pin::FILE
+                    everything_rust::pin::FILE
                 );
             }
             if !outcome.regex_functions.is_empty() {
@@ -807,7 +807,7 @@ fn run() -> Result<ExitCode> {
             if !outcome.timed_out.is_empty() {
                 say!(
                     "Left out {} input(s) the original ran too long on (over the per-case limit, \
-                     RUST_ANYTHING_CASE_TIMEOUT seconds, 10 by default). The original does this \
+                     EVERYTHING_RUST_CASE_TIMEOUT seconds, 10 by default). The original does this \
                      itself, so the port need not match it there:",
                     outcome.timed_out.len()
                 );
@@ -818,7 +818,7 @@ fn run() -> Result<ExitCode> {
             if let Some(line) = outcome
                 .coverage
                 .as_ref()
-                .and_then(rust_anything::recording::coverage_line)
+                .and_then(everything_rust::recording::coverage_line)
             {
                 say!("Coverage: {line}");
             }
@@ -854,9 +854,9 @@ fn run() -> Result<ExitCode> {
             Profile::Android => {
                 let report = harness::build_android(
                     &crate_dir,
-                    &rust_anything::android::Options {
+                    &everything_rust::android::Options {
                         abis: abi,
-                        api: api.unwrap_or(rust_anything::android::DEFAULT_API),
+                        api: api.unwrap_or(everything_rust::android::DEFAULT_API),
                         ndk,
                         out: jni_libs,
                     },
@@ -900,9 +900,9 @@ fn run() -> Result<ExitCode> {
                     harness::diff_android(&opts, device.as_deref(), jni_libs.as_deref())?
                 }
             };
-            let stale = rust_anything::bridge::Manifest::load(&crate_dir)
+            let stale = everything_rust::bridge::Manifest::load(&crate_dir)
                 .ok()
-                .and_then(|m| rust_anything::recording::stale(&crate_dir, &m));
+                .and_then(|m| everything_rust::recording::stale(&crate_dir, &m));
             if json {
                 say!("{}", serde_json::to_string_pretty(&d)?);
             } else {
@@ -915,7 +915,7 @@ fn run() -> Result<ExitCode> {
                         d.passed,
                         d.total,
                         d.accepted,
-                        rust_anything::recording::KNOWN_DIFFS
+                        everything_rust::recording::KNOWN_DIFFS
                     );
                 } else {
                     say!("{}/{} cases match", d.passed, d.total);
@@ -926,7 +926,7 @@ fn run() -> Result<ExitCode> {
                         "Stalled: the last {} changes to port.rs gained no matching case ({} of {}). \
                          Stop and look at the remaining mismatches with a person, or keep these \
                          functions in the original for now.",
-                        rust_anything::recording::STALL_AFTER,
+                        everything_rust::recording::STALL_AFTER,
                         shown.join(", "),
                         t.total
                     );
@@ -934,7 +934,7 @@ fn run() -> Result<ExitCode> {
                 for e in &d.stale_known {
                     say!(
                         "Known diff no longer happens, remove it from {}: {}({})",
-                        rust_anything::recording::KNOWN_DIFFS,
+                        everything_rust::recording::KNOWN_DIFFS,
                         e["fn"].as_str().unwrap_or_default(),
                         e["args"]
                     );
@@ -979,7 +979,7 @@ fn run() -> Result<ExitCode> {
                     Ok(std::time::Duration::from_secs_f64(t))
                 })
                 .transpose()?;
-            let f = rust_anything::fuzz::fuzz(&rust_anything::fuzz::FuzzOptions {
+            let f = everything_rust::fuzz::fuzz(&everything_rust::fuzz::FuzzOptions {
                 crate_dir: &crate_dir,
                 cases,
                 seed,
@@ -1083,11 +1083,11 @@ fn run() -> Result<ExitCode> {
             lang,
             command,
         } => {
-            let report = rust_anything::profile::profile(&root, &command, lang)?;
+            let report = everything_rust::profile::profile(&root, &command, lang)?;
             if json {
                 say!("{}", serde_json::to_string_pretty(&report)?);
             } else {
-                say!("{}", rust_anything::profile::markdown(&report));
+                say!("{}", everything_rust::profile::markdown(&report));
             }
         }
         Cmd::Go {
@@ -1102,7 +1102,7 @@ fn run() -> Result<ExitCode> {
             command,
         } => {
             let root = path.or(root).unwrap_or_else(|| PathBuf::from("."));
-            let outcome = rust_anything::go::go(&rust_anything::go::Options {
+            let outcome = everything_rust::go::go(&everything_rust::go::Options {
                 root: &root,
                 command: &command,
                 lang,
@@ -1119,7 +1119,7 @@ fn run() -> Result<ExitCode> {
                 }
                 say!("{}", outcome.next);
             }
-            use rust_anything::go::Stage;
+            use everything_rust::go::Stage;
             return Ok(match outcome.stage {
                 Stage::On | Stage::Passed | Stage::WaitingForPort => ExitCode::SUCCESS,
                 Stage::Mismatch | Stage::GateFailed | Stage::Slower => ExitCode::FAILURE,
@@ -1141,13 +1141,13 @@ fn run() -> Result<ExitCode> {
                 })?;
                 if d.failed > 0 || !d.missing.is_empty() {
                     anyhow::bail!(
-                        "{}/{} recorded cases match; switch it on once they all do (`rust-anything diff` shows them), or pass --force",
+                        "{}/{} recorded cases match; switch it on once they all do (`everything-rust diff` shows them), or pass --force",
                         d.passed,
                         d.total
                     );
                 }
             }
-            let on = rust_anything::enable::enable(&crate_dir)?;
+            let on = everything_rust::enable::enable(&crate_dir)?;
             if json {
                 say!("{}", serde_json::to_string_pretty(&on)?);
             } else {
@@ -1167,14 +1167,14 @@ fn run() -> Result<ExitCode> {
                     say!("- {s}");
                 }
                 say!(
-                    "{}=original (or RUST_ANYTHING_MODE=old) runs the original for one run; `rust-anything disable {}` removes the block.",
+                    "{}=original (or EVERYTHING_RUST_MODE=old) runs the original for one run; `everything-rust disable {}` removes the block.",
                     on.switch,
                     crate_dir.display()
                 );
             }
         }
         Cmd::Disable { crate_dir, json } => {
-            let off = rust_anything::enable::disable(&crate_dir)?;
+            let off = everything_rust::enable::disable(&crate_dir)?;
             if json {
                 say!("{}", serde_json::to_string_pretty(&off)?);
             } else if off.files.is_empty() {
@@ -1201,7 +1201,7 @@ fn run() -> Result<ExitCode> {
             json,
             node_args,
         } => {
-            let card = rust_anything::card::report(&rust_anything::card::Options {
+            let card = everything_rust::card::report(&everything_rust::card::Options {
                 crate_dir: &crate_dir,
                 out: out.as_deref(),
                 min_ms,
@@ -1210,7 +1210,7 @@ fn run() -> Result<ExitCode> {
             if json {
                 say!("{}", serde_json::to_string_pretty(&card)?);
             } else {
-                say_raw!("{}", rust_anything::card::markdown(&card));
+                say_raw!("{}", everything_rust::card::markdown(&card));
                 say!(
                     "\nWrote {} and {}",
                     card.markdown.display(),
@@ -1223,26 +1223,26 @@ fn run() -> Result<ExitCode> {
             force,
             json,
         } => {
-            let c = rust_anything::cache::clean(dry_run, force)?;
+            let c = everything_rust::cache::clean(dry_run, force)?;
             if json {
                 say!("{}", serde_json::to_string_pretty(&c)?);
             } else if c.removed {
                 say!(
                     "Removed {} ({})",
                     c.dir.display(),
-                    rust_anything::cache::human(c.bytes)
+                    everything_rust::cache::human(c.bytes)
                 );
             } else if c.from_env && !dry_run {
                 say!(
                     "{} ({}) is CARGO_TARGET_DIR, which other cargo projects may share; pass --force to remove it",
                     c.dir.display(),
-                    rust_anything::cache::human(c.bytes)
+                    everything_rust::cache::human(c.bytes)
                 );
             } else {
                 say!(
                     "{} ({})",
                     c.dir.display(),
-                    rust_anything::cache::human(c.bytes)
+                    everything_rust::cache::human(c.bytes)
                 );
             }
         }
@@ -1255,15 +1255,15 @@ fn run() -> Result<ExitCode> {
             );
             if outcome.path.extension().is_some_and(|e| e == "java") {
                 say!(
-                    "Call the <Class>Shadow classes in place of the originals; compile them with the originals and java/rust-anything. -Drust-anything.mode=old|shadow|new switches at runtime."
+                    "Call the <Class>Shadow classes in place of the originals; compile them with the originals and java/everything-rust. -Deverything-rust.mode=old|shadow|new switches at runtime."
                 );
             } else if outcome.path.extension().is_some_and(|e| e == "rb") {
                 say!(
-                    "Require it after the original files. RUST_ANYTHING_MODE=old|shadow|new switches at runtime."
+                    "Require it after the original files. EVERYTHING_RUST_MODE=old|shadow|new switches at runtime."
                 );
             } else if outcome.path.extension().is_some_and(|e| e == "go") {
                 say!(
-                    "Import it in place of the original package (require and replace both modules in go.mod). RUST_ANYTHING_MODE=old|shadow|new switches at runtime."
+                    "Import it in place of the original package (require and replace both modules in go.mod). EVERYTHING_RUST_MODE=old|shadow|new switches at runtime."
                 );
             } else if outcome.path.extension().is_some_and(|e| e == "c") {
                 say!(
@@ -1271,7 +1271,7 @@ fn run() -> Result<ExitCode> {
                 );
             } else {
                 say!(
-                    "Import it in place of the original. RUST_ANYTHING_MODE=old|shadow|new switches at runtime."
+                    "Import it in place of the original. EVERYTHING_RUST_MODE=old|shadow|new switches at runtime."
                 );
             }
         }
@@ -1286,7 +1286,7 @@ fn run() -> Result<ExitCode> {
             dry_run,
             json,
         } => {
-            let outcome = rust_anything::package::package(&rust_anything::package::Options {
+            let outcome = everything_rust::package::package(&everything_rust::package::Options {
                 crate_dir: &crate_dir,
                 name,
                 version,
@@ -1363,11 +1363,11 @@ fn run() -> Result<ExitCode> {
             no_backup,
             json,
         } => {
-            let home = rust_anything::setup::home()?;
+            let home = everything_rust::setup::home()?;
             let command = std::env::current_exe()
                 .and_then(|p| p.canonical())
-                .context("finding the rust-anything executable")?;
-            let report = rust_anything::setup::setup(&rust_anything::setup::Options {
+                .context("finding the everything-rust executable")?;
+            let report = everything_rust::setup::setup(&everything_rust::setup::Options {
                 home: &home,
                 agents,
                 command,
@@ -1378,7 +1378,7 @@ fn run() -> Result<ExitCode> {
             if json {
                 println!("{}", serde_json::to_string_pretty(&report)?);
             } else {
-                print!("{}", rust_anything::setup::text(&report));
+                print!("{}", everything_rust::setup::text(&report));
             }
         }
         Cmd::Map {
@@ -1388,29 +1388,29 @@ fn run() -> Result<ExitCode> {
             check,
             json,
         } => {
-            let map = rust_anything::port_map::map(&repo, &crates)?;
+            let map = everything_rust::port_map::map(&repo, &crates)?;
             if json {
                 say!("{}", serde_json::to_string_pretty(&map)?);
             } else if write {
-                let path = map.root.join(rust_anything::port_map::MAP_FILE);
+                let path = map.root.join(everything_rust::port_map::MAP_FILE);
                 if let Some(dir) = path.parent() {
                     std::fs::create_dir_all(dir)?;
                 }
-                std::fs::write(&path, rust_anything::port_map::markdown(&map))?;
+                std::fs::write(&path, everything_rust::port_map::markdown(&map))?;
                 say!("Wrote {}", path.display());
             } else {
-                say_raw!("{}", rust_anything::port_map::markdown(&map));
+                say_raw!("{}", everything_rust::port_map::markdown(&map));
             }
             if check && map.changed() > 0 {
                 return Ok(ExitCode::FAILURE);
             }
         }
         Cmd::Doctor { json } => {
-            let report = rust_anything::doctor::run();
+            let report = everything_rust::doctor::run();
             if json {
                 say!("{}", serde_json::to_string_pretty(&report)?);
             } else {
-                say_raw!("{}", rust_anything::doctor::text(&report));
+                say_raw!("{}", everything_rust::doctor::text(&report));
             }
             if !report.ok() {
                 return Ok(ExitCode::FAILURE);
@@ -1443,7 +1443,7 @@ fn run_app(command: AppCmd) -> Result<ExitCode> {
             json,
             run,
         } => {
-            let effects = rust_anything::effects::EffectsConfig::from_args(
+            let effects = everything_rust::effects::EffectsConfig::from_args(
                 &effects,
                 &effect_env,
                 db_reset.as_deref(),
@@ -1585,17 +1585,17 @@ fn run_app(command: AppCmd) -> Result<ExitCode> {
                 }
                 if !outcome.api.is_empty() {
                     say!(
-                        "Every export is still only in the original. After a unit's crate (from `bridge`) passes gate: rust-anything app wire {} <unit crate>",
+                        "Every export is still only in the original. After a unit's crate (from `bridge`) passes gate: everything-rust app wire {} <unit crate>",
                         repo.display()
                     );
                 } else if outcome.routes.is_empty() {
                     say!(
-                        "Every command runs the original. After a unit passes gate: rust-anything app wire {} <unit> --command <name>",
+                        "Every command runs the original. After a unit passes gate: everything-rust app wire {} <unit> --command <name>",
                         repo.display()
                     );
                 } else {
                     say!(
-                        "Every request goes to the original. After a unit passes gate: rust-anything app wire {} <unit> --route 'GET /path/{{param}}'",
+                        "Every request goes to the original. After a unit passes gate: everything-rust app wire {} <unit> --route 'GET /path/{{param}}'",
                         repo.display()
                     );
                 }

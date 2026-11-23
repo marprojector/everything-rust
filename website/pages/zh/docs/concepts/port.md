@@ -5,7 +5,7 @@ description: 编写 port.rs（你或你的智能体唯一需要编写的文件�
 
 # 移植
 
-你或你的智能体在 `src/port.rs` 中编写移植代码。crate 中的其他一切都是生成的。修改 `port.rs` 中的签名之后，请运行 `rust-anything refresh <crate>`。
+你或你的智能体在 `src/port.rs` 中编写移植代码。crate 中的其他一切都是生成的。修改 `port.rs` 中的签名之后，请运行 `everything-rust refresh <crate>`。
 
 ## 能省掉一轮 diff 的规则
 
@@ -25,14 +25,14 @@ description: 编写 port.rs（你或你的智能体唯一需要编写的文件�
 ## 示例：移动了一个位置的 emoji
 
 来自 [x18n](https://github.com/x18n-dev/x18n) 的 `packages/core/src/fuzzy.ts`，在
-[`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo) 中用两种方式移植：
+[`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo) 中用两种方式移植：
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts：就绪，wasm-bindgen（core 在浏览器中运行）
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts：就绪，wasm-bindgen（core 在浏览器中运行）
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # 编写 src/port.rs
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 第一版移植按 Rust `char` 做索引，通过了简单测试，却没能通过 `diff`：
@@ -46,7 +46,7 @@ JS 的 `indexOf` 按 UTF-16 码元计数，所以一个 emoji 占两个位置。
 `demo/*/src/port.rs` 中的移植版使用生成的 `utf16` 辅助函数，通过了 2000/2000 条用例和门禁，
 包括 napi-rs 版（`demo/fuzzy-napi`）和 wasm-bindgen 版（`demo/fuzzy-rs`）。
 
-rust-anything 为整个 x18n 编写的规划：[`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md)。
+everything-rust 为整个 x18n 编写的规划：[`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md)。
 ## 应该写多大？
 
 `gate` 会比较移植版与原实现的行数，超过 3 倍（另加 50 行用于导入和签名）就会失败。超出通常意味着在手写某个 crate 已经提供的功能，或者在逐个处理各种情况。`analyze` 会列出应该使用的 crate。

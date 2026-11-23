@@ -57,7 +57,7 @@ A header folder holding a file named like a C standard header goes on `-iquote`;
 C project's originals compile before reading anything into a failed `record`.
 
 **A relative crate path pointed nowhere.** The compiler and cargo run in a scratch folder, so
-`rust-anything build .` looked for `./Cargo.toml` there. The CLI makes crate paths absolute;
+`everything-rust build .` looked for `./Cargo.toml` there. The CLI makes crate paths absolute;
 anything new that passes a path to a child process should take it absolute too.
 
 **A test runner in watch mode never ends.** Run every outside program through `crate::process`,
@@ -74,7 +74,7 @@ check that the `*.out` folders are not empty.
 
 **A front door could not find the original through a symlinked `rust/`.** The generated
 `original.rs` resolved the repository as `CARGO_MANIFEST_DIR/../..`, which is the link target's
-parent. Builds by rust-anything now set `RUST_ANYTHING_REPO`; set it yourself when you build such
+parent. Builds by everything-rust now set `EVERYTHING_RUST_REPO`; set it yourself when you build such
 a front door with `cargo`.
 
 **A server's recording carried state from its previous run.** json-server rewrites its database
@@ -214,7 +214,7 @@ check a small fixture's S-expression before trusting `node-types.json` child lis
 `companion object` live on the enclosing class. Emit prototypes in that Java shape, or the
 generated JNI symbol and the reflection driver look for a class that does not exist.
 
-**The generated Java runtime needs API 26, not API 21.** `RustAnythingError` resolves exception
+**The generated Java runtime needs API 26, not API 21.** `EverythingRustError` resolves exception
 constructors with plain reflection instead of `MethodHandle.invokeExact` (which Android only
 supports from API 26), but the runtime also uses `java.util.Optional` and `java.util.function`
 (API 24) and `ThreadLocal.withInitial` (API 26). `build --profile android` therefore rejects

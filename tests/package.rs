@@ -6,13 +6,13 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge::{self, Kind};
-use rust_anything::harness::{self, DiffOptions, RecordOptions};
-use rust_anything::package::{self, Options, STAMP};
+use everything_rust::bridge::{self, Kind};
+use everything_rust::harness::{self, DiffOptions, RecordOptions};
+use everything_rust::package::{self, Options, STAMP};
 
 fn project(name: &str, files: &[(&str, &str)]) -> PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-package-{name}-{}",
+        "everything-rust-package-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -325,7 +325,7 @@ fn wasm_package_needs_a_build() {
     let dir = bridged(&root, "src/shout.ts", Kind::Wasm);
     let err = package::package(&options(&dir)).unwrap_err();
     assert!(
-        format!("{err:#}").contains("rust-anything build"),
+        format!("{err:#}").contains("everything-rust build"),
         "{err:#}"
     );
     std::fs::remove_dir_all(root).unwrap();
@@ -345,8 +345,8 @@ fn cli_package_runs_the_front_door_and_falls_back_to_the_pinned_original() {
         "cli",
         &[
             (
-                "rust/app/rust-anything.json",
-                r#"{"schema":"rust-anything/front-door@1","name":"tool","commands":[],"units":[]}"#,
+                "rust/app/everything-rust.json",
+                r#"{"schema":"everything-rust/front-door@1","name":"tool","commands":[],"units":[]}"#,
             ),
             (
                 "rust/app/Cargo.toml",
@@ -367,7 +367,7 @@ fn cli_package_runs_the_front_door_and_falls_back_to_the_pinned_original() {
             ),
             (
                 "rust/app/target/release/tool",
-                "#!/bin/sh\necho \"rust $* base=$RUST_ANYTHING_ORIGINAL_BASE\"\n",
+                "#!/bin/sh\necho \"rust $* base=$EVERYTHING_RUST_ORIGINAL_BASE\"\n",
             ),
         ],
     );
@@ -404,7 +404,7 @@ fn cli_package_runs_the_front_door_and_falls_back_to_the_pinned_original() {
     );
     let old = Command::new("node")
         .args([launcher, "a"])
-        .env("RUST_ANYTHING_MODE", "old")
+        .env("EVERYTHING_RUST_MODE", "old")
         .output()
         .unwrap();
     assert_eq!(String::from_utf8_lossy(&old.stdout).trim(), "original a");

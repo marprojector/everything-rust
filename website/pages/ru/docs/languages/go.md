@@ -13,7 +13,7 @@ description: Портирование пакета Go на Rust через ти�
 | Требуется | Go 1.21+ |
 | Статус | Проверен на `path` из Go 1.24: 2,642/2,642 (542 из собственных тестовых таблиц Go), gate проходит |
 
-`profile` работает через `go test`: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Пакеты создаются как `NewFnBatch(items)`; закрывайте их, когда закончите.
+`profile` работает через `go test`: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Пакеты создаются как `NewFnBatch(items)`; закрывайте их, когда закончите.
 
 ## Что порт должен сделать правильно
 

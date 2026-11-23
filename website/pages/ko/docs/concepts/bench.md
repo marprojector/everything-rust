@@ -6,7 +6,7 @@ description: bench는 브리지 비용을 포함해 원본과 Rust에서 기록�
 # 벤치
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench`는 원본과 빌드된 Rust 모듈에서 브리지 비용을 포함해 기록된 케이스의 실행 시간을 재고, 결과 행과 조언이 담긴 판정을 반환합니다: 배포하기, 느린 함수는 원본 언어에 남기기, 또는 더 큰 유닛을 포팅하기. 속도 향상이 1 미만이면 호출하는 쪽이 호출하는 방식으로는 포트가 더 느리다는 뜻입니다. `--min-ms`는 함수와 측별 최소 측정 시간을 정합니다(기본값 200).
@@ -31,7 +31,7 @@ rust-anything bench <crate>
 | Java | 0.18x | 더 큰 유닛 포팅 |
 | Go | 0.04x | 더 큰 유닛 포팅 |
 
-x18n core에서 API 변경 없이 옮길 수 있는 함수 29개를 모두 포팅했습니다: 모든 게이트가 통과하고 기록된 케이스 7,925개가 정확히 일치했지만, `bench`는 JS에서 호출할 때 포트가 TS보다 느리다는 것을 보여 주었습니다. 브리지 비용이 실제 작업보다 크기 때문입니다([보고서](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms는 기록된 케이스에서 호출당 0.56x였습니다([사례 연구](/docs/real-world/vercel-ms)).
+x18n core에서 API 변경 없이 옮길 수 있는 함수 29개를 모두 포팅했습니다: 모든 게이트가 통과하고 기록된 케이스 7,925개가 정확히 일치했지만, `bench`는 JS에서 호출할 때 포트가 TS보다 느리다는 것을 보여 주었습니다. 브리지 비용이 실제 작업보다 크기 때문입니다([보고서](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms는 기록된 케이스에서 호출당 0.56x였습니다([사례 연구](/docs/real-world/vercel-ms)).
 
 ## 이기는 방법: 루프 옮기기
 

@@ -6,8 +6,8 @@ description: 数値計算のコードは移植するとビット単位で同一�
 # 浮動小数点の許容誤差
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 数値計算のコード（物理、統計、グラフィックス）は、移植するとビット単位で同一の浮動小数点数を返すことはまれです: 演算の順序、融合積和演算（FMA）、数学ライブラリがコンパイラごとに異なるためです。それを受け入れる場合は、`--float-tolerance` に数値を指定して記録してください。すると浮動小数点数は、大きい方の値に対するその割合の範囲内（1 未満では絶対値）で一致とみなされ、`diff` と `gate` もこれを使います。`0` を指定すると無効になります。

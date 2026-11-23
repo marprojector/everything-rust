@@ -7,7 +7,7 @@ description: Поиск по списку строк Fuse.js на Rust. 3,414/3,
 
 [Fuse.js](https://github.com/krisk/Fuse) (20k звёзд, около 20 миллионов загрузок из npm в неделю,
 коммит `edf2fb6`) это библиотека нечёткого поиска, на которой работают бесчисленные поля поиска. Портирована с помощью
-rust-anything 1.6 (не выпущен); крейт лежит в [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs).
+everything-rust 1.6 (не выпущен); крейт лежит в [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs).
 
 `analyze` поместил все каталоги `src/` в один цикл импортов, поэтому Fuse нельзя портировать файл за файлом.
 Вместо этого порт берёт путь, на который поиск тратит своё время: адаптер из 54 строк

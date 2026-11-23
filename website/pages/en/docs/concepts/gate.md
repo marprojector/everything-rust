@@ -6,7 +6,7 @@ description: gate is the definition of done for a port. Every check it runs, and
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Done means `gate` passes. It checks:

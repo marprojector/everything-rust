@@ -13,7 +13,7 @@ description: بىر Go بوغچىسىنى تىپلىق cgo چاقىرىقلىر�
 | كېرەكلىكى | Go 1.21+ |
 | ھالىتى | Go 1.24 تىكى `path` تا دەلىللەنگەن: 2,642/2,642 (542 سى Go نىڭ ئۆز سىناق جەدۋەللىرىدىن)، gate ئۆتىدۇ |
 
-`profile` `go test` ئارقىلىق ئىشلەيدۇ: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. توپلار `NewFnBatch(items)`؛ ئىش تۈگىگەندە ئۇلارنى يېپىڭ.
+`profile` `go test` ئارقىلىق ئىشلەيدۇ: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. توپلار `NewFnBatch(items)`؛ ئىش تۈگىگەندە ئۇلارنى يېپىڭ.
 
 ## كۆچۈرمە نېمىنى توغرا قىلىشى كېرەك
 

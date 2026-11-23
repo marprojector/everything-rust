@@ -65,8 +65,8 @@ export default defineMiddleware(async (c, next) => {
     return rebuild(html.replace(/<html lang="en"/, `<html lang="${info0.lang}"${'rtl' in info0 && info0.rtl ? ' dir="rtl"' : ''}`))
   const head = html.slice(0, headEnd)
   const title =
-    decode(head.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? '').replace(/\s+·\s+rust-anything\s*$/, '') ||
-    'rust-anything'
+    decode(head.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? '').replace(/\s+·\s+everything-rust\s*$/, '') ||
+    'everything-rust'
   const descMatch = head.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/i)
   const description = descMatch ? decode(descMatch[1]) : DESCRIPTION
   const tags = [

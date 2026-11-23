@@ -6,9 +6,9 @@ description: record orijinalı yaradılmış kənar hallar, semantik tələlər,
 # Qeyd
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # və ya: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # və ya: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` orijinal funksiyaları işə salır və hər birinin nə qaytardığını və ya hansı xətanı atdığını crate-in yanında `cases.jsonl`-də saxlayır: portun uyğun gəlməli olduğu davranış. Sonradan uyğunsuzluq davranış fərqidir: qeydi yox, portu düzəldin.

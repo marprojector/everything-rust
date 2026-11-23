@@ -1,0 +1,42 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/paginate.ts",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "paginate-rs",
+  "exports": [
+    {
+      "name": "paginate",
+      "file": "src/paginate.ts",
+      "line": 11,
+      "params": [
+        {
+          "name": "items",
+          "ts_type": "unknown[]",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "page",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "perPage",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "PaginationResult<unknown>",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

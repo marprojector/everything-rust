@@ -30,7 +30,7 @@ Rust 側に保持され、呼び出しのたびに全コアで全要素を処理
 PHP はプレビュー版です: `analyze` は PHP アプリを計画し（Composer パッケージと PSR-4 オートローディング、
 緩い比較や整数オーバーフローによる float 化などのリスク、Composer パッケージからクレートへの対応付け）、
 PHP の CLI やサーバーは記録・リプレイして Rust のフロントドアの背後に置けます。PHP の FFI を通じて
-ユニットを Rust に移植するのが次のステップです（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。
+ユニットを Rust に移植するのが次のステップです（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。
 
 C# も同様にプレビュー版です: `analyze` は `.csproj` プロジェクトとその NuGet パッケージ
 （クレートに対応付け）を読み取り、`using` ディレクティブをフォルダに解決し、C# の挙動が異なる点

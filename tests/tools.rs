@@ -8,7 +8,7 @@ use std::process::{Command, Stdio};
 
 use serde_json::Value;
 
-const CLI: &str = env!("CARGO_BIN_EXE_rust-anything");
+const CLI: &str = env!("CARGO_BIN_EXE_everything-rust");
 
 /// Options only the terminal needs: how output is printed, and `analyze`'s output file.
 fn cli_only(tool: &str, option: &str) -> bool {
@@ -100,7 +100,7 @@ fn every_tool_parameter_has_a_cli_option_and_back() {
             .collect();
         for missing in mcp.difference(&cli) {
             problems.push(format!(
-                "{name}: `{missing}` has no CLI option in `rust-anything {}`",
+                "{name}: `{missing}` has no CLI option in `everything-rust {}`",
                 sub.join(" ")
             ));
         }
@@ -123,7 +123,7 @@ fn doc(tools: &[Value]) -> String {
         let name = tool["name"].as_str().unwrap_or_default();
         let title = tool["title"].as_str().unwrap_or(name);
         out.push_str(&format!(
-            "\n## {title}\n\nTool `{name}` · CLI `rust-anything {}`\n\n{}\n",
+            "\n## {title}\n\nTool `{name}` · CLI `everything-rust {}`\n\n{}\n",
             subcommand(name).join(" "),
             tool["description"].as_str().unwrap_or_default()
         ));

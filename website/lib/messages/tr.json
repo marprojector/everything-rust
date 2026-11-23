@@ -17,8 +17,8 @@
     "closeMenu": "Menüyü kapat",
     "menu": "Menü",
     "language": "Dil",
-    "home": "rust-anything ana sayfa",
-    "github": "GitHub'da rust-anything",
+    "home": "everything-rust ana sayfa",
+    "github": "GitHub'da everything-rust",
     "onThisPage": "Bu sayfada",
     "editPage": "Bu sayfayı GitHub'da düzenleyin",
     "previous": "Önceki",
@@ -54,7 +54,7 @@
       "project": "Proje"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything nedir",
+      "/docs/introduction/what-is-everything-rust": "everything-rust nedir",
       "/docs/introduction/quick-start": "Hızlı başlangıç",
       "/docs/introduction/install": "Kurulum",
       "/docs/introduction/agents": "Ajanınızı kurun",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Uygulamanızı Rust ile yeniden yazın.",
     "title2": "Aynı davrandığını kanıtlayın.",
-    "sub": "rust-anything kodunuzun ne yaptığını kaydeder, ardından kaydedilen her vakayı Rust portuna karşı yeniden oynatır. Rust'ı ajanınız yazar. Çıktılar eşleşene kadar hiçbir şey yayınlanmaz.",
+    "sub": "everything-rust kodunuzun ne yaptığını kaydeder, ardından kaydedilen her vakayı Rust portuna karşı yeniden oynatır. Rust'ı ajanınız yazar. Çıktılar eşleşene kadar hiçbir şey yayınlanmaz.",
     "cta": "Hızlı başlangıcı okuyun",
     "source": "GitHub'daki kaynak kod",
     "sourceLanguage": "Kaynak dil",
@@ -138,10 +138,10 @@
     "installTitle": "Kurulum",
     "installDesc": "CLI'ı kurun, ardından MCP sunucusunu ve iş akışı skill'ini Claude Code, Codex, Cursor ve Gemini CLI'a kaydedin.",
     "installNote": "macOS, Linux ve Windows için hazır derlenmiş binary'ler her [GitHub release]({releases}) sayfasında bulunur.",
-    "agentPrompt": "rust-anything'i kur: `cargo install rust-anything`, ardından `rust-anything setup` çalıştır.",
+    "agentPrompt": "everything-rust'i kur: `cargo install everything-rust`, ardından `everything-rust setup` çalıştır.",
     "agentRestart": "Seni ne zaman yeniden başlatmam gerektiğini söyle.",
     "loopTitle": "Bir port nasıl tamamlanır",
-    "loopDesc": "Doğruluğun kaynağı orijinal kod olarak kalır. rust-anything kodu çevirmez: bir ajanın tahmin edemeyeceklerini ve bir portun ne zaman bittiğini söyleyen bir gate'i sağlar.",
+    "loopDesc": "Doğruluğun kaynağı orijinal kod olarak kalır. everything-rust kodu çevirmez: bir ajanın tahmin edemeyeceklerini ve bir portun ne zaman bittiğini söyleyen bir gate'i sağlar.",
     "steps": [
       {
         "title": "Kaydet",
@@ -272,7 +272,7 @@
       "csharp": "tüm uygulama kaydetme ve yeniden oynatma; birim köprüleri sırada"
     },
     "sponsorsTitle": "Sponsorlar",
-    "sponsorsDesc": "rust-anything ücretsiz ve açık kaynaktır. İşinize yarıyorsa lütfen sponsor olmayı düşünün. Desteğiniz geliştirmenin sürmesini sağlar.",
+    "sponsorsDesc": "everything-rust ücretsiz ve açık kaynaktır. İşinize yarıyorsa lütfen sponsor olmayı düşünün. Desteğiniz geliştirmenin sürmesini sağlar.",
     "companySponsor": "Şirket sponsoru",
     "becomeSponsor": "Sponsor olun"
   }

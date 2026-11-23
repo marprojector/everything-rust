@@ -6,9 +6,9 @@ description: diff язып алынган һәр очракны Rust'та каб
 # Diff һәм билгеле аермалар
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N булырга тиеш
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N булырга тиеш
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` файлын җыелган Rust модулендә, оригиналны аның чакыручылары чакырган рәвештә, кабат уйната һәм туры килмәүләрне күрсәтә. Туры килмәү ул тәртиптәге аерма: язманы түгел, портны төзәтегез.

@@ -17,12 +17,12 @@ description: PHP est en préversion. analyze planifie une application PHP, et un
 Une CLI ou un serveur PHP peut être enregistré, rejoué et placé derrière une porte d'entrée Rust :
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Porter ses unités en Rust via le FFI de PHP est la prochaine étape ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). D'ici là, `bridge` refuse les unités PHP avec un message clair.
+Porter ses unités en Rust via le FFI de PHP est la prochaine étape ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). D'ici là, `bridge` refuse les unités PHP avec un message clair.
 
 La CI n'installe pas PHP, donc les tests PHP ne tournent que sur une machine qui l'a.

@@ -8,7 +8,7 @@ description: app lift fait de rust/app une application 100 % Rust une fois que l
 Quand le replay passe avec un taux de fallback de 0 et que chaque unité passe le gate, faites-en une application 100 % Rust :
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` refuse tant que ces deux conditions ne sont pas réunies, et dit ce qui bloque : les cas qui retombent encore sur l'original, la glue encore à l'état de stub, les unités qui échouent au gate.

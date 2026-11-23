@@ -7,7 +7,7 @@ description: Die String-Listen-Suche von Fuse.js in Rust. 3,414/3,414 aufgezeich
 
 [Fuse.js](https://github.com/krisk/Fuse) (20k Sterne, etwa 20 Millionen npm-Downloads pro Woche,
 Commit `edf2fb6`) ist die Fuzzy-Search-Bibliothek hinter unzähligen Suchfeldern. Portiert mit
-rust-anything 1.6 (unveröffentlicht); das Crate liegt in [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs).
+everything-rust 1.6 (unveröffentlicht); das Crate liegt in [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs).
 
 `analyze` stellte jeden Ordner von `src/` in einen einzigen Import-Zyklus, daher lässt sich Fuse nicht Datei für Datei portieren.
 Die Portierung nimmt stattdessen den Pfad, auf dem eine Suche ihre Zeit verbringt: Ein Adapter mit 54 Zeilen

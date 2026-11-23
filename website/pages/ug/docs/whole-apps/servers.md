@@ -9,11 +9,11 @@ description: ئوخشاش بۇيرۇقلار HTTP مۇلازىمېتىرلىرى
 `PORT` تىن ياكى بۇيرۇقتىكى `{port}` تىن ئالىدۇ (ھەمىشە ئوخشاش ئېغىزدا ئاڭلايدىغان مۇلازىمېتىر ئۈچۈن `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: ھەر بىر يول ئۇلاپ يېتەكلىنىدۇ
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: ھەر بىر يول ئۇلاپ يېتەكلىنىدۇ
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - تەلەپلەر ئەپ ھۆججەتلىرىدىكى `curl` قۇرلىرىدىن (`curl -X POST -d ... http://localhost:8080/x`)،

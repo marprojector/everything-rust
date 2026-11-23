@@ -5,7 +5,7 @@ description: Kodumu otomatik olarak yeniden yazar mı? Rust her zaman daha mı h
 
 # SSS
 
-rust-anything hakkında sorulan sorular. [README](/)'ye dön.
+everything-rust hakkında sorulan sorular. [README](/)'ye dön.
 
 ## SSS
 
@@ -16,7 +16,7 @@ ajanınız yazar; ne zaman doğru olduğuna `diff` ve `gate` karar verir.
 **Uygulamamın API'si değişecek mi?** Hayır. Çağıranlar aynı fonksiyonları import eder (ya da siz güven
 kazanırken ikisini de çalıştırıp orijinalin sonucunu döndüren shadow modülünü).
 
-**Rust her zaman daha mı hızlı?** Hayır, ve rust-anything bunu söyler. Her öğe için bir kez çağrılan
+**Rust her zaman daha mı hızlı?** Hayır, ve everything-rust bunu söyler. Her öğe için bir kez çağrılan
 küçük bir fonksiyon Rust'ta çoğu zaman daha yavaştır, çünkü her çağrı bir köprüyü geçer; V8, JVM ve Go
 bu tür fonksiyonları nanosaniyeler içinde çalıştırır. `profile` onu çevreleyen döngüyü bulur, `--batch`
 döngünün tamamını taşır ve `bench` siz yayına almadan önce bir karar verir. numba, Cython veya JAX ile
@@ -61,7 +61,7 @@ yapılandırın, `app replay` davranışı hâlâ kanıtlar. Hiçbir şey orijin
 onu ayrı bir süreç olarak çalıştırır (ya da HTTP'yi ona iletir), köprülenmiş birimler orijinal tarafından
 çağrılır, asla tersi değil, ve callback'ler kaynak dilde kalır.
 
-**Kodum makinemden çıkar mı?** Hayır: rust-anything yerel olarak çalışır ve kodunuzun hiçbir kısmını
+**Kodum makinemden çıkar mı?** Hayır: everything-rust yerel olarak çalışır ve kodunuzun hiçbir kısmını
 hiçbir yere göndermez. Cargo crate'leri her zamanki gibi indirir ve ajanınızın model sağlayıcısı, kendi
 politikası çerçevesinde ajanınızın ona gönderdiklerini görür.
 

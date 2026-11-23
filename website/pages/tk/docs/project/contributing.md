@@ -10,13 +10,13 @@ Kömegiňiz üçin sag boluň. Ýalňyşlyk habarlary, düzedişler, täze dil g
 
 ## Başlamazdan öň
 
-- **Ýalňyşlyk:** işleden buýrugyňyz, onuň çykyşy, platformaňyz we rust-anything wersiýasy
-  (`rust-anything --version`) bilen [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose)
+- **Ýalňyşlyk:** işleden buýrugyňyz, onuň çykyşy, platformaňyz we everything-rust wersiýasy
+  (`everything-rust --version`) bilen [issue](https://github.com/marprojector/everything-rust/issues/new/choose)
   açyň. Ýalňyşlygy gaýtalaýan kiçijik taslama iň köp kömek edýär.
 - **Has uly üýtgeşme** (täze dil, täze buýruk, birligiň ýa-da ýazgynyň näme bolýandygyna üýtgeşme):
   ony ýazmazdan öň görnüşi barada ylalaşmak üçin ilki issue açyň. Öňki kararlaryň sebäpleri
-  [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md) içinde.
-- **Howpsuzlyk meselesi:** açyk issue açmaň; [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md) faýlyna serediň.
+  [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md) içinde.
+- **Howpsuzlyk meselesi:** açyk issue açmaň; [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md) faýlyna serediň.
 
 ## Gurşawy sazlamak
 
@@ -36,16 +36,16 @@ runtime-y ýok bölegi geçip gidýär, şonuň üçin degýän dilleriňiziňki
 | wasm bridge-leri | `rustup target add wasm32-unknown-unknown` we laýyk `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` bu runtime-laryň haýsylarynyň sizde bardygyny, olaryň wersiýalaryny we hersini
 gurnaýan ýa-da täzeleýän buýrugy sanaýar. Ýok runtime-yň testlerini geçip gitmegiň ýerine şowsuz
-etmek üçin (CI şeýle edýär), ony `RUST_ANYTHING_REQUIRE` içinde görkeziň, meselem
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+etmek üçin (CI şeýle edýär), ony `EVERYTHING_RUST_REQUIRE` içinde görkeziň, meselem
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Hook `scripts/check-secrets.sh` işledýär, ol commit edýän zadyňyzdaky açarlary, token-leri we şahsy
 öý bukjasynyň ýollaryny ret edýär. CI ony her faýlda işledýär.
@@ -66,7 +66,7 @@ Hook `scripts/check-secrets.sh` işledýär, ol commit edýän zadyňyzdaky aça
   şol bir buýruklary we marşrutlary durmuşa geçirýär (`tcli upper|len|div|words|copy|now`, `/hello`,
   `/upper`, `/div/{a}/{b}`, `/now`), şonuň üçin täzesini özüni alyp barşy boýunça beýlekiler bilen
   birmeňzeş saklaň.
-- **Döredilen kod** (rust-anything-iň ýazýan bridge-leri, draýwerleri we front door-lary) hem
+- **Döredilen kod** (everything-rust-iň ýazýan bridge-leri, draýwerleri we front door-lary) hem
   `clippy -D warnings`-den geçmeli, sebäbi `gate` ony ulanyjylaryň crate-lerinde işledýär.
 - **Stil:** töweregiňizdäki koda laýyk geliň. Teswirleri kodyň özi aýdyp bilmeýän zatlar üçin
   galdyryň, üýtgeşmäniň sebäbini bolsa pull request-e ýazyň.
@@ -82,8 +82,8 @@ goýuň. Tablisada ýok kitaphana `unknown` diýip habar berilýär; crate-i hi�
 ## Dil goşmak
 
 PHP we C# preview hökmünde iki commit-de goşuldy, olary ilki okamak peýdaly:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) we
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Täze dil hem şeýle başlaýar:
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) we
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Täze dil hem şeýle başlaýar:
 
 1. `src/lang/<name>.rs` içinde plugin: tapmak, skan etmek (importlar we töwekgelçilikler), çözmek we
    eksportlar, üstesine onuň kitaphanalarynyň crate-leri `src/crates.toml` içinde `[[<name>]]`
@@ -142,10 +142,10 @@ Pull request-ler commit-leri saklanyp birleşdirilýär, şonuň üçin taryhyň
 ## Hakyky port bilen paýlaşmak
 
 Hakyky taslamalaryň portlary nämäniň işleýändigine we nämäniň döwülýändigine iň gowy subutnama.
-Eger rust-anything-i hakyky bir zatda ulanan bolsaňyz, ony [docs/real-world.md](/docs/real-world/overview)
+Eger everything-rust-i hakyky bir zatda ulanan bolsaňyz, ony [docs/real-world.md](/docs/real-world/overview)
 faýlyna goşýan issue ýa-da pull request örän hoş görülýär. Taslamany, işleden buýruklaryňyzy, ýagdaý
 sanlaryny we sizi geň galdyran islendik zady görkeziň.
 
 ## Özüňi alyp barş kodeksi
 
-Gatnaşýanlaryň hemmesinden [özüňi alyp barş kodeksine](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md) eýermek garaşylýar.
+Gatnaşýanlaryň hemmesinden [özüňi alyp barş kodeksine](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md) eýermek garaşylýar.

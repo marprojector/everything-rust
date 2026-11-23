@@ -5,7 +5,7 @@ description: port.rs язу, сез яки агентыгыз яза торга�
 
 # Порт
 
-Портны сез яки агентыгыз `src/port.rs` эчендә яза. Crate'тагы калган һәрнәрсә ясалган. `port.rs` эчендә сигнатураны үзгәрткәннән соң `rust-anything refresh <crate>` җибәрегез.
+Портны сез яки агентыгыз `src/port.rs` эчендә яза. Crate'тагы калган һәрнәрсә ясалган. `port.rs` эчендә сигнатураны үзгәрткәннән соң `everything-rust refresh <crate>` җибәрегез.
 
 ## Diff'ның бер әйләнешен экономияләүче кагыйдәләр
 
@@ -25,14 +25,14 @@ description: port.rs язу, сез яки агентыгыз яза торга�
 ## Мисал: позициясен күчергән эмодзи
 
 [x18n](https://github.com/x18n-dev/x18n) эченнән `packages/core/src/fuzzy.ts`, ике ысул белән дә
-[`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo) эчендә күчерелгән:
+[`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo) эчендә күчерелгән:
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core браузерларда эшли)
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core браузерларда эшли)
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # src/port.rs языгыз
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 Rust `char` буенча индекслаган беренче порт гади тестларны узды, ләкин `diff`'ны узмады:
@@ -46,7 +46,7 @@ JS `indexOf` UTF-16 код берәмлекләрен саный, шуңа кү�
 `demo/*/src/port.rs` эчендәге порт ясалган `utf16` ярдәмчеләрен куллана һәм 2000/2000 очракны һәм gate'ны уза,
 napi-rs (`demo/fuzzy-napi`) һәм wasm-bindgen (`demo/fuzzy-rs`) итеп тә.
 
-rust-anything бөтен x18n өчен язган план: [`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md).
+everything-rust бөтен x18n өчен язган план: [`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md).
 ## Ул нинди зурлыкта булырга тиеш?
 
 `gate` порт юлларын оригиналныкы белән чагыштыра һәм 3x'тан артса (өстәвенә импортлар һәм сигнатуралар өчен 50 юл) узмый. Моннан артуы гадәттә crate инде эшләгән нәрсәне кулдан язуны яки очракларны берәм-берәм эшкәртүне аңлата. `analyze` кулланырга кирәкле crate'ларны күрсәтә.

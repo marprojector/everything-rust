@@ -1,7 +1,7 @@
-# x18n core, ported with rust-anything
+# x18n core, ported with everything-rust
 
 Every function of `packages/core` (x18n v0.1.2) that can move to Rust without changing its
-public API, ported, verified and measured with rust-anything. Rust is bridged with wasm-bindgen,
+public API, ported, verified and measured with everything-rust. Rust is bridged with wasm-bindgen,
 the plan's choice: core must keep running in browsers. Nothing in the x18n repository was changed.
 
 ## Result
@@ -39,7 +39,7 @@ V8 runs these string operations on its native UTF-16 strings; a bridge has to co
 
 ## What stays in TS, and why
 
-Decided by `rust-anything bridge` from the types, or with `--keep` where types cannot tell:
+Decided by `everything-rust bridge` from the types, or with `--keep` where types cannot tell:
 
 - **The engine** (`createProject`, `createPlanner`, `createAnalyzer`, `resolveConfig`,
   `createRegistry`, hosts, `define*`): it calls JS plugins and hosts through callbacks; values
@@ -54,7 +54,7 @@ Decided by `rust-anything bridge` from the types, or with `--keep` where types c
 
 ## What the port had to get right
 
-Every one of these was caught by `rust-anything diff` or the port's own tests, not by reading:
+Every one of these was caught by `everything-rust diff` or the port's own tests, not by reading:
 
 - `replaceKeyPrefix` and `diffText` can cut an emoji in half; JS keeps the half (a lone
   surrogate), a Rust `String` cannot. The ports return UTF-16 units where that can happen.
@@ -77,13 +77,13 @@ That is a rewrite of a layer, not a port of functions; it is x18n's maintainers'
 
 ```sh
 # each unit: record the TS behavior, then gate (fmt, clippy, tests, build, API, behavior)
-rust-anything record keys-rs --inputs keys-rs/inputs.jsonl
-rust-anything gate keys-rs
-rust-anything bench keys-rs
+everything-rust record keys-rs --inputs keys-rs/inputs.jsonl
+everything-rust gate keys-rs
+everything-rust bench keys-rs
 
 # x18n has no node_modules here: npm packages core imports come from a scratch folder
-rust-anything record schema-rs --inputs schema-rs/inputs.jsonl --resolve-from <dir with valibot, nostics>
+everything-rust record schema-rs --inputs schema-rs/inputs.jsonl --resolve-from <dir with valibot, nostics>
 
 # shadow mode across all units
-RUST_ANYTHING_MODE=shadow node --experimental-transform-types smoke/shadow-smoke.ts
+EVERYTHING_RUST_MODE=shadow node --experimental-transform-types smoke/shadow-smoke.ts
 ```

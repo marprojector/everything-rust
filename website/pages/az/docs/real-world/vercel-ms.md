@@ -6,9 +6,9 @@ description: vercel/ms başdan-başa port edilib. Qeydə alınmış hər halda d
 # vercel/ms
 
 [vercel/ms](https://github.com/vercel/ms) (5.5k ulduz, commit `4ff48ce`) `"2 days"`-i millisaniyələrə
-və geri çevirir; əksər Node layihələri onu hansısa asılılıq vasitəsilə gətirir. rust-anything 1.5.1 ilə
+və geri çevirir; əksər Node layihələri onu hansısa asılılıq vasitəsilə gətirir. everything-rust 1.5.1 ilə
 başdan-başa port edilib; crate
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs)-dədir.
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs)-dədir.
 
 | Addım | Nəticə |
 | --- | --- |

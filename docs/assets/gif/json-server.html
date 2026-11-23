@@ -32,7 +32,7 @@ function line(cls, who, [v, text], max, p) {
     (100 * v / max * ease(p)) + '%"></div></div><span class="val">' + (p >= 1 ? text : '') + '</span></div>'
 }
 window.render = i => {
-  let html = '<div class="title">json-server, a whole Node server, ported to one Rust binary with <span>rust-anything</span></div>'
+  let html = '<div class="title">json-server, a whole Node server, ported to one Rust binary with <span>everything-rust</span></div>'
   rows.forEach((r, k) => {
     const p = (i - k * (grow + gap)) / grow
     html += '<div class="row"><div class="label">' + r.label + '</div>' +

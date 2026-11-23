@@ -124,7 +124,7 @@ impl Sinks {
         let mut out = Vec::new();
         if let Some(h) = &self.http {
             let url = format!("http://127.0.0.1:{}", h.port);
-            for var in ["RUST_ANYTHING_HTTP_SINK", "HTTP_PROXY", "http_proxy"] {
+            for var in ["EVERYTHING_RUST_HTTP_SINK", "HTTP_PROXY", "http_proxy"] {
                 out.push((var.to_string(), url.clone()));
             }
         }
@@ -132,7 +132,7 @@ impl Sinks {
             out.push(("SMTP_HOST".into(), "127.0.0.1".into()));
             out.push(("SMTP_PORT".into(), s.port.to_string()));
             out.push((
-                "RUST_ANYTHING_SMTP_SINK".into(),
+                "EVERYTHING_RUST_SMTP_SINK".into(),
                 format!("smtp://127.0.0.1:{}", s.port),
             ));
         }
@@ -369,7 +369,7 @@ fn serve_smtp(stream: TcpStream, events: &Mutex<Vec<String>>) {
     };
     let mut reader = BufReader::new(stream);
     let mut say = |line: &str| out.write_all(format!("{line}\r\n").as_bytes()).is_ok();
-    if !say("220 rust-anything ESMTP") {
+    if !say("220 everything-rust ESMTP") {
         return;
     }
     let (mut from, mut to) = (String::new(), Vec::<String>::new());
@@ -381,9 +381,9 @@ fn serve_smtp(stream: TcpStream, events: &Mutex<Vec<String>>) {
         let cmd = line.trim_end();
         let upper = cmd.to_ascii_uppercase();
         let ok = if upper.starts_with("EHLO") {
-            say("250-rust-anything") && say("250 AUTH PLAIN LOGIN")
+            say("250-everything-rust") && say("250 AUTH PLAIN LOGIN")
         } else if upper.starts_with("HELO") {
-            say("250 rust-anything")
+            say("250 everything-rust")
         } else if upper.starts_with("MAIL FROM:") {
             from = cmd[10..].trim().to_string();
             say("250 OK")

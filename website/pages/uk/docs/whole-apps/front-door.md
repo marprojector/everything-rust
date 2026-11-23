@@ -8,10 +8,10 @@ description: app front-door ставить бінарник Rust перед ор
 Спершу перенесіть точку входу в Rust, а потім передавайте їй команди по одному модулю:
 
 ```sh
-rust-anything app front-door .                            # rust/app: кожна команда запускає оригінал
-rust-anything app wire . textkit --command upper          # після того як textkit-rs пройде gate
+everything-rust app front-door .                            # rust/app: кожна команда запускає оригінал
+everything-rust app wire . textkit --command upper          # після того як textkit-rs пройде gate
 # напишіть glue у rust/app/src/units/textkit.rs, потім:
-rust-anything app wire . textkit                          # знову 100%, нижча частка fallback
+everything-rust app wire . textkit                          # знову 100%, нижча частка fallback
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # знову 100%, н�
 3. один раз пише `src/units/<unit>.rs`, щоб ви чи ваш агент його заповнили: розібрати аргументи, викликати `<crate>::port`, надрукувати те, що друкує оригінал;
 4. спрямовує на нього команди, потім збирає і відтворює.
 
-Запустіть його знову після того, як напишете glue: 100% пройдених і нижча частка fallback. `RUST_ANYTHING_UNIT_<NAME>=original` повертає підключений модуль до оригіналу аж до lift.
+Запустіть його знову після того, як напишете glue: 100% пройдених і нижча частка fallback. `EVERYTHING_RUST_UNIT_<NAME>=original` повертає підключений модуль до оригіналу аж до lift.
 
 Підключіть власне ім'я застосунку як команду (`--command mytool`) для argv, що не називає жодної команди: без аргументів, невідомі команди, помилки використання.
 

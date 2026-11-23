@@ -6,7 +6,7 @@ description: 每個項目呼叫一次的移植版本會輸給 JIT。批次會把
 # 批次與熱路徑
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # 或：rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # 或：everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` 會產生一個類別，一次接收 `param` 的值並將它們保留在 Rust 中：`new FnBatch(items)`（TS、Python、Java）、`Mod::FnBatch.new(items)`（Ruby）、`NewFnBatch(items)`（Go）。每次查詢時，`run(<other args>)` 會以一個陣列回傳所有結果，而 `rank(<other args>, min)` 會回傳項目索引，最好的排在前面。它使用所有核心執行，錯誤則與原始版本相同。除了 C 以外，每種語言都支援批次。
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # 或：rust-anything ref
 並在每次呼叫時對所有項目執行該函式，使用所有核心，以 typed array 回傳結果。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore：佔執行時間的四分之一，由 `matched` 對每個 key 呼叫：做批次處理
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -57,7 +57,7 @@ x18n 側邊欄對 50,000 個 key 的搜尋上，逐字母輸入，結果完全�
 
 編譯式的原始版本受益較少：每個項目的工作本來就很快，所以批次勝出的幅度約等於
 核心數。批次 crate 使用 mimalloc 配置記憶體：使用系統配置器時，Go 的批次甚至比
-單一執行緒還慢。Demo：[`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+單一執行緒還慢。Demo：[`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 ## 撰寫快速的索引
 
 - 讓呼叫端只建立一次批次，而不是每次查詢都建立。用一般的迴圈將回傳的索引對應回項目。

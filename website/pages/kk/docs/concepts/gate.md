@@ -6,7 +6,7 @@ description: gate порттың дайын болуының анықтамас�
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Дайын дегеніміз `gate`-тің өтуі. Ол мыналарды тексереді:

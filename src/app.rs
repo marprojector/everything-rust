@@ -20,11 +20,11 @@ use serde_json::Value;
 use toml_edit::{DocumentMut, Item, Table, value};
 
 pub const CASES_DIR: &str = "rust/app-cases";
-pub const CONFIG_FILE: &str = "rust-anything.json";
+pub const CONFIG_FILE: &str = "everything-rust.json";
 pub const REPORT_FILE: &str = "replay-report.md";
-pub const FALLBACK_ENV: &str = "RUST_ANYTHING_FALLBACK_LOG";
+pub const FALLBACK_ENV: &str = "EVERYTHING_RUST_FALLBACK_LOG";
 pub const BUILTIN_NORMALIZERS: [&str; 3] = ["timestamps", "uuids", "key-order"];
-pub(crate) const SCHEMA: &str = "rust-anything/app-cases@1";
+pub(crate) const SCHEMA: &str = "everything-rust/app-cases@1";
 pub(crate) const MAX_TRAPS: usize = 300;
 pub(crate) const FRESH_DIR: &str = "files";
 const REMOVED_EXT: &str = "removed";
@@ -80,7 +80,7 @@ const NOT_APP_NAMES: [&str; 29] = [
     "bundle", "run", "exec", "env", "sudo", "php", "dotnet",
 ];
 
-/// `rust/app-cases/rust-anything.json`: how to run the original, and the normalizers.
+/// `rust/app-cases/everything-rust.json`: how to run the original, and the normalizers.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
     pub schema: String,
@@ -332,7 +332,7 @@ fn sort_json_text(text: &str) -> String {
 pub(crate) fn temp_dir(tag: &str) -> Result<PathBuf> {
     static NEXT: AtomicUsize = AtomicUsize::new(0);
     let dir = std::env::temp_dir().join(format!(
-        "rust-anything-app-{tag}-{}-{}",
+        "everything-rust-app-{tag}-{}-{}",
         std::process::id(),
         NEXT.fetch_add(1, Ordering::SeqCst)
     ));
@@ -1682,7 +1682,7 @@ pub fn record(opts: &RecordOptions) -> Result<RecordOutcome> {
         c.run.clone()
     } else {
         bail!(
-            "give the command that runs the original after `--`, e.g. `rust-anything app record . -- python3 cli.py`"
+            "give the command that runs the original after `--`, e.g. `everything-rust app record . -- python3 cli.py`"
         );
     };
     let mut normalize = existing
@@ -2146,7 +2146,7 @@ pub struct Failure {
 }
 
 /// Cases the build handed to the original: the front door appends a line to the file named by
-/// `RUST_ANYTHING_FALLBACK_LOG` for every fallback (and may create it empty to report none).
+/// `EVERYTHING_RUST_FALLBACK_LOG` for every fallback (and may create it empty to report none).
 #[derive(Debug, Serialize)]
 pub struct Fallback {
     pub cases: usize,
@@ -2282,8 +2282,8 @@ fn stable_paths(text: &str) -> String {
         text.to_string()
     };
     SANDBOX
-        .get_or_init(|| regex::Regex::new(r"rust-anything-app-(\w+)-\d+-\d+").expect("valid regex"))
-        .replace_all(&text, "rust-anything-app-$1")
+        .get_or_init(|| regex::Regex::new(r"everything-rust-app-(\w+)-\d+-\d+").expect("valid regex"))
+        .replace_all(&text, "everything-rust-app-$1")
         .into_owned()
 }
 
@@ -2341,7 +2341,7 @@ fn load_specs(dir: &Path) -> Result<Vec<Spec>> {
     let mut paths: Vec<PathBuf> = std::fs::read_dir(dir)
         .with_context(|| {
             format!(
-                "no cases in {}: run `rust-anything app record` first",
+                "no cases in {}: run `everything-rust app record` first",
                 dir.display()
             )
         })?
@@ -2356,7 +2356,7 @@ fn load_specs(dir: &Path) -> Result<Vec<Spec>> {
         .collect::<Result<Vec<_>>>()?;
     ensure!(
         !specs.is_empty(),
-        "no cases in {}: run `rust-anything app record` first",
+        "no cases in {}: run `everything-rust app record` first",
         dir.display()
     );
     Ok(specs)
@@ -2392,7 +2392,7 @@ pub fn replay(opts: &ReplayOptions) -> Result<ReplayOutcome> {
         (Some(build), _) => shell_split(build)?,
         (None, Some(c)) => c.run.clone(),
         (None, None) => bail!(
-            "no {} in {}: run `rust-anything app record` first, or pass --build",
+            "no {} in {}: run `everything-rust app record` first, or pass --build",
             CONFIG_FILE,
             dir.display()
         ),
@@ -2516,7 +2516,7 @@ mod tests {
         let tmp = std::env::temp_dir();
         let line = format!(
             "-cwd {}\n",
-            tmp.join("rust-anything-app-run-4242-7")
+            tmp.join("everything-rust-app-run-4242-7")
                 .join("cwd")
                 .display()
         );
@@ -2939,8 +2939,8 @@ mod tests {
         );
         #[cfg(windows)]
         assert_eq!(
-            shell_split(r"C:\tools\rust-anything\app.exe --flag").unwrap(),
-            [r"C:\tools\rust-anything\app.exe", "--flag"]
+            shell_split(r"C:\tools\everything-rust\app.exe --flag").unwrap(),
+            [r"C:\tools\everything-rust\app.exe", "--flag"]
         );
         #[cfg(windows)]
         assert_eq!(

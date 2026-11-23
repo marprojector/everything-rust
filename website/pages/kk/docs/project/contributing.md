@@ -10,13 +10,13 @@ description: Ортаны баптау, тесттер қайда орналас
 
 ## Бастамас бұрын
 
-- **Қате:** іске қосқан командаңыз, оның шығысы, платформаңыз және rust-anything нұсқасы
-  (`rust-anything --version`) көрсетілген [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) ашыңыз.
+- **Қате:** іске қосқан командаңыз, оның шығысы, платформаңыз және everything-rust нұсқасы
+  (`everything-rust --version`) көрсетілген [issue](https://github.com/marprojector/everything-rust/issues/new/choose) ашыңыз.
   Кішкентай қайталау жобасы ең көп көмектеседі.
 - **Үлкенірек өзгеріс** (жаңа тіл, жаңа команда, бірліктің немесе жазбаның не екенін өзгерту):
   жазбас бұрын пішіні туралы келісу үшін алдымен issue ашыңыз. Бұрынғы
-  шешімдердің себептері [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md) ішінде.
-- **Қауіпсіздік мәселесі:** ашық issue ашпаңыз; [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md) қараңыз.
+  шешімдердің себептері [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md) ішінде.
+- **Қауіпсіздік мәселесі:** ашық issue ашпаңыз; [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md) қараңыз.
 
 ## Баптау
 
@@ -36,16 +36,16 @@ runtime-ы жоқ бөлікті өткізіп жібереді, сондықт
 | wasm bridge-тері | `rustup target add wasm32-unknown-unknown` және сәйкес `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` осы runtime-дардың қайсысы сізде бар екенін, олардың нұсқаларын және әрқайсысын
 орнататын не жаңартатын команданы тізімдейді. Жоқ runtime тесттерін өткізіп жібермей, құлатуы үшін
-(CI осылай істейді), оны `RUST_ANYTHING_REQUIRE` ішінде атаңыз, мысалы
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+(CI осылай істейді), оны `EVERYTHING_RUST_REQUIRE` ішінде атаңыз, мысалы
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Hook `scripts/check-secrets.sh` іске қосады, ол commit жасайтын нәрсеңіздегі кілттерді, токендерді және жеке
 home-бума жолдарын қабылдамайды. CI оны әр файлда іске қосады.
@@ -64,7 +64,7 @@ home-бума жолдарын қабылдамайды. CI оны әр файл
 - **Fixture-лер** `tests/fixtures/` астындағы кішкентай қолданбалар. CLI және HTTP fixture-лері әр тілде бірдей
   командалар мен маршруттарды жүзеге асырады (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), сондықтан жаңасының мінез-құлқын басқаларымен бірдей етіп сақтаңыз.
-- **Генерацияланған код** (rust-anything жазатын bridge-тер, драйверлер және front door-лар) да
+- **Генерацияланған код** (everything-rust жазатын bridge-тер, драйверлер және front door-лар) да
   `clippy -D warnings` тексерісінен өтуі керек, өйткені `gate` оны пайдаланушылардың crate-терінде іске қосады.
 - **Стиль:** айналаңыздағы кодқа сәйкес жазыңыз. Түсініктемелерді код өзі айта алмайтын нәрсе үшін қалдырыңыз, ал
   өзгерістің себебін оның орнына pull request ішінде жазыңыз.
@@ -80,8 +80,8 @@ Java мен C# үшін), `crates`, `fit` (`good`, `partial` немесе `none`
 ## Тіл қосу
 
 PHP мен C# preview ретінде алдымен оқуға тұрарлық екі commit-те қосылды:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) және
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Жаңа тіл де
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) және
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Жаңа тіл де
 солай басталады:
 
 1. `src/lang/<name>.rs` ішіндегі плагин: табу, сканерлеу (импорттар мен тәуекелдер), шешу және экспорттар,
@@ -138,10 +138,10 @@ Pull request-тер commit-тері сақталып біріктіріледі,
 ## Нақты портпен бөлісу
 
 Нақты жобалардың порттары нені жұмыс істейтінін және нені бұзатынын көрсететін ең жақсы дәлел. Егер
-rust-anything-ті нақты бір нәрседе қолдансаңыз, оны [docs/real-world.md](/docs/real-world/overview)
+everything-rust-ті нақты бір нәрседе қолдансаңыз, оны [docs/real-world.md](/docs/real-world/overview)
 файлына қосатын issue немесе pull request өте құпталады. Жобаны, іске қосқан командаларыңызды,
 кейстер санын және сізді таңғалдырған кез келген нәрсені көрсетіңіз.
 
 ## Мінез-құлық кодексі
 
-Қатысушылардың бәрі [мінез-құлық кодексін](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md) ұстануы тиіс.
+Қатысушылардың бәрі [мінез-құлық кодексін](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md) ұстануы тиіс.

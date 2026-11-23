@@ -2,7 +2,7 @@ mod common;
 
 use std::path::Path;
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 #[test]
 fn record_resolves_versioned_go_modules_in_directories_with_spaces() {
@@ -11,7 +11,7 @@ fn record_resolves_versioned_go_modules_in_directories_with_spaces() {
     }
 
     let temp = std::env::temp_dir().join(format!(
-        "rust-anything go module paths {}",
+        "everything-rust go module paths {}",
         std::process::id()
     ));
     let result = ["example.com/textkit/v2", "gopkg.in/textkit.v1"]

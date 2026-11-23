@@ -7,7 +7,7 @@ description: profile, analyze, bridge, record, port, diff, bench, shadow, gate. 
 
 핫 함수 하나부터 앱 전체까지, 모든 포팅은 유닛 하나씩 같은 단계를 거칩니다. 포팅은 `gate`가 통과해야만 완료됩니다.
 
-rust-anything이 포트를 검증하는 방법, 각 명령이 결정하는 것, 그리고 한계가 어디인지 설명합니다. [README](/)로 돌아가기.
+everything-rust이 포트를 검증하는 방법, 각 명령이 결정하는 것, 그리고 한계가 어디인지 설명합니다. [README](/)로 돌아가기.
 
 ## 동작 방식
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | 단계 | 명령 | 하는 일 |
 | --- | --- | --- |
-| 0. 프로파일링 | `rust-anything profile <repo> -- node bench.mjs` | 실제 워크로드를 언어별 프로파일러(node, cProfile, `go test` pprof, JFR, Ruby 트레이서)로 실행: 포함 시간 기준 핫 함수, 그 호출자, 배치로 만들 루프. Rust로 얻는 것이 적은 이미 컴파일된 코드(numba, Cython, JAX)를 표시 |
-| 1. 계획 | `rust-anything analyze <repo>` | 유닛, 포팅 순서, `file:line`이 붙은 위험 요소, 유닛별 브리지, 의존성과 crate의 적합도, 가장 좋은 첫 포팅 대상. `--whole-app`은 진입점과 형태, 모든 의존성(import했거나 선언한 것)과 그 crate, 조각(서로 import하는 유닛은 함께 옮김), 권장 답이 붙은 번호 매긴 결정 사항을 추가 |
-| 2. 브리지 | `rust-anything bridge <repo> <unit>` | 바인딩(`lib.rs`와 원본 언어가 불러오는 래퍼)과 포팅할 스텁(`port.rs`)이 담긴 crate. `--batch fn:param`은 많은 `param` 값을 Rust 안에 유지하는 클래스를 추가. `--as-json T`는 앱이 데이터로만 채우는 타입 매개변수를 JSON 값으로 브리지 |
-| 3. 기록 | `rust-anything record <crate>` | 생성된 엣지 케이스(ASCII가 아닌 문자, 이모지, `-0`, `NaN`, 부동소수점 자리에 들어간 정수 등)와 모든 매개변수에 대한 모든 의미상의 함정(문자열 길이와 대소문자, 부호 있는 나눗셈, 오버플로 경계, 부동소수점 출력, 맵과 정렬 순서)으로 원본을 실행하고 `cases.jsonl`을 저장. `--from-tests -- npx jest`(또는 `-- pytest`)는 원본의 자체 테스트 스위트가 하는 모든 호출도 기록. `--float-tolerance 1e-9`는 수치 코드에서 부동소수점이 그 비율 이내로 일치하도록 허용 |
-| 3. 빌드 | `rust-anything build <crate>` | Rust 쪽을 빌드: `.node`, wasm 패키지, Python 확장 또는 공유 라이브러리 |
-| 3. Diff | `rust-anything diff <crate>` | 원본의 호출자가 호출하는 방식 그대로 Rust를 호출해 기록된 케이스를 재생하고, 불일치를 나열 |
-| 3. 벤치 | `rust-anything bench <crate>` | 브리지 비용을 포함해 원본과 Rust에서 기록된 케이스의 실행 시간 측정 |
-| 4. 섀도 | `rust-anything shadow <crate>` | 둘 다 실행해 원본의 결과를 반환하고 불일치를 보고하는 대체 모듈. `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 게이트 | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, 테스트, `unsafe` 감사, 포팅되지 않은 것 없음, 원본의 모든 오류 경로에 대한 기록된 실패 케이스, 원본이 오류를 반환하는 곳에 `unwrap`/`expect`/`panic!` 없음(`// INFALLIBLE: <why>` 표시가 없는 한), 빌드, API, 동작 |
-| 에이전트 | `rust-anything setup` | MCP 서버(`rust-anything mcp`, 모든 단계를 도구로 제공)와 워크플로 스킬([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md))을 코딩 에이전트에 등록 |
+| 0. 프로파일링 | `everything-rust profile <repo> -- node bench.mjs` | 실제 워크로드를 언어별 프로파일러(node, cProfile, `go test` pprof, JFR, Ruby 트레이서)로 실행: 포함 시간 기준 핫 함수, 그 호출자, 배치로 만들 루프. Rust로 얻는 것이 적은 이미 컴파일된 코드(numba, Cython, JAX)를 표시 |
+| 1. 계획 | `everything-rust analyze <repo>` | 유닛, 포팅 순서, `file:line`이 붙은 위험 요소, 유닛별 브리지, 의존성과 crate의 적합도, 가장 좋은 첫 포팅 대상. `--whole-app`은 진입점과 형태, 모든 의존성(import했거나 선언한 것)과 그 crate, 조각(서로 import하는 유닛은 함께 옮김), 권장 답이 붙은 번호 매긴 결정 사항을 추가 |
+| 2. 브리지 | `everything-rust bridge <repo> <unit>` | 바인딩(`lib.rs`와 원본 언어가 불러오는 래퍼)과 포팅할 스텁(`port.rs`)이 담긴 crate. `--batch fn:param`은 많은 `param` 값을 Rust 안에 유지하는 클래스를 추가. `--as-json T`는 앱이 데이터로만 채우는 타입 매개변수를 JSON 값으로 브리지 |
+| 3. 기록 | `everything-rust record <crate>` | 생성된 엣지 케이스(ASCII가 아닌 문자, 이모지, `-0`, `NaN`, 부동소수점 자리에 들어간 정수 등)와 모든 매개변수에 대한 모든 의미상의 함정(문자열 길이와 대소문자, 부호 있는 나눗셈, 오버플로 경계, 부동소수점 출력, 맵과 정렬 순서)으로 원본을 실행하고 `cases.jsonl`을 저장. `--from-tests -- npx jest`(또는 `-- pytest`)는 원본의 자체 테스트 스위트가 하는 모든 호출도 기록. `--float-tolerance 1e-9`는 수치 코드에서 부동소수점이 그 비율 이내로 일치하도록 허용 |
+| 3. 빌드 | `everything-rust build <crate>` | Rust 쪽을 빌드: `.node`, wasm 패키지, Python 확장 또는 공유 라이브러리 |
+| 3. Diff | `everything-rust diff <crate>` | 원본의 호출자가 호출하는 방식 그대로 Rust를 호출해 기록된 케이스를 재생하고, 불일치를 나열 |
+| 3. 벤치 | `everything-rust bench <crate>` | 브리지 비용을 포함해 원본과 Rust에서 기록된 케이스의 실행 시간 측정 |
+| 4. 섀도 | `everything-rust shadow <crate>` | 둘 다 실행해 원본의 결과를 반환하고 불일치를 보고하는 대체 모듈. `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 게이트 | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, 테스트, `unsafe` 감사, 포팅되지 않은 것 없음, 원본의 모든 오류 경로에 대한 기록된 실패 케이스, 원본이 오류를 반환하는 곳에 `unwrap`/`expect`/`panic!` 없음(`// INFALLIBLE: <why>` 표시가 없는 한), 빌드, API, 동작 |
+| 에이전트 | `everything-rust setup` | MCP 서버(`everything-rust mcp`, 모든 단계를 도구로 제공)와 워크플로 스킬([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md))을 코딩 에이전트에 등록 |
 
 ## 핫 패스: 데이터를 Rust 안에 두기
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 호출마다 모든 항목에 함수를 실행하는 클래스를 생성합니다. 모든 코어에서 실행되며 결과는 typed array로 돌려줍니다.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: a quarter of the run, called per key by `matched`: batch it
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ x18n 사이드바에서 키 50,000개를 한 글자씩 입력하며 검색했을
 
 컴파일 언어 원본은 이득이 적습니다. 항목당 작업이 이미 빠르므로 배치는 코어 수만큼 이깁니다.
 배치 crate는 mimalloc으로 메모리를 할당합니다. 시스템 할당자를 쓰면 Go 배치가 단일 스레드보다
-느렸습니다. 데모: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+느렸습니다. 데모: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## `bridge`가 결정하는 것
 
@@ -175,16 +175,16 @@ x18n 사이드바에서 키 50,000개를 한 글자씩 입력하며 검색했을
 
 | 단계 | 명령 | 하는 일 |
 | --- | --- | --- |
-| 0. 프로파일링 | `rust-anything profile <repo> -- node bench.mjs` | 실제 워크로드를 언어별 프로파일러(node, cProfile, `go test` pprof, JFR, Ruby 트레이서)로 실행: 포함 시간 기준 핫 함수, 그 호출자, 배치로 만들 루프. Rust로 얻는 것이 적은 이미 컴파일된 코드(numba, Cython, JAX)를 표시 |
-| 1. 계획 | `rust-anything analyze <repo>` | 유닛, 포팅 순서, `file:line`이 붙은 위험 요소, 유닛별 브리지, 의존성과 crate의 적합도, 가장 좋은 첫 포팅 대상. `--whole-app`은 진입점과 형태, 모든 의존성(import했거나 선언한 것)과 그 crate, 조각(서로 import하는 유닛은 함께 옮김), 권장 답이 붙은 번호 매긴 결정 사항을 추가 |
-| 2. 브리지 | `rust-anything bridge <repo> <unit>` | 바인딩(`lib.rs`와 원본 언어가 불러오는 래퍼)과 포팅할 스텁(`port.rs`)이 담긴 crate. `--batch fn:param`은 많은 `param` 값을 Rust 안에 유지하는 클래스를 추가. `--as-json T`는 앱이 데이터로만 채우는 타입 매개변수를 JSON 값으로 브리지 |
-| 3. 기록 | `rust-anything record <crate>` | 생성된 엣지 케이스(ASCII가 아닌 문자, 이모지, `-0`, `NaN`, 부동소수점 자리에 들어간 정수 등)와 모든 매개변수에 대한 모든 의미상의 함정(문자열 길이와 대소문자, 부호 있는 나눗셈, 오버플로 경계, 부동소수점 출력, 맵과 정렬 순서)으로 원본을 실행하고 `cases.jsonl`을 저장. `--from-tests -- npx jest`(또는 `-- pytest`)는 원본의 자체 테스트 스위트가 하는 모든 호출도 기록. `--float-tolerance 1e-9`는 수치 코드에서 부동소수점이 그 비율 이내로 일치하도록 허용 |
-| 3. 빌드 | `rust-anything build <crate>` | Rust 쪽을 빌드: `.node`, wasm 패키지, Python 확장 또는 공유 라이브러리 |
-| 3. Diff | `rust-anything diff <crate>` | 원본의 호출자가 호출하는 방식 그대로 Rust를 호출해 기록된 케이스를 재생하고, 불일치를 나열 |
-| 3. 벤치 | `rust-anything bench <crate>` | 브리지 비용을 포함해 원본과 Rust에서 기록된 케이스의 실행 시간 측정 |
-| 4. 섀도 | `rust-anything shadow <crate>` | 둘 다 실행해 원본의 결과를 반환하고 불일치를 보고하는 대체 모듈. `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 게이트 | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, 테스트, `unsafe` 감사, 포팅되지 않은 것 없음, 원본의 모든 오류 경로에 대한 기록된 실패 케이스, 원본이 오류를 반환하는 곳에 `unwrap`/`expect`/`panic!` 없음(`// INFALLIBLE: <why>` 표시가 없는 한), 빌드, API, 동작 |
-| 에이전트 | `rust-anything setup` | MCP 서버(`rust-anything mcp`, 모든 단계를 도구로 제공)와 워크플로 스킬([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md))을 코딩 에이전트에 등록 |
+| 0. 프로파일링 | `everything-rust profile <repo> -- node bench.mjs` | 실제 워크로드를 언어별 프로파일러(node, cProfile, `go test` pprof, JFR, Ruby 트레이서)로 실행: 포함 시간 기준 핫 함수, 그 호출자, 배치로 만들 루프. Rust로 얻는 것이 적은 이미 컴파일된 코드(numba, Cython, JAX)를 표시 |
+| 1. 계획 | `everything-rust analyze <repo>` | 유닛, 포팅 순서, `file:line`이 붙은 위험 요소, 유닛별 브리지, 의존성과 crate의 적합도, 가장 좋은 첫 포팅 대상. `--whole-app`은 진입점과 형태, 모든 의존성(import했거나 선언한 것)과 그 crate, 조각(서로 import하는 유닛은 함께 옮김), 권장 답이 붙은 번호 매긴 결정 사항을 추가 |
+| 2. 브리지 | `everything-rust bridge <repo> <unit>` | 바인딩(`lib.rs`와 원본 언어가 불러오는 래퍼)과 포팅할 스텁(`port.rs`)이 담긴 crate. `--batch fn:param`은 많은 `param` 값을 Rust 안에 유지하는 클래스를 추가. `--as-json T`는 앱이 데이터로만 채우는 타입 매개변수를 JSON 값으로 브리지 |
+| 3. 기록 | `everything-rust record <crate>` | 생성된 엣지 케이스(ASCII가 아닌 문자, 이모지, `-0`, `NaN`, 부동소수점 자리에 들어간 정수 등)와 모든 매개변수에 대한 모든 의미상의 함정(문자열 길이와 대소문자, 부호 있는 나눗셈, 오버플로 경계, 부동소수점 출력, 맵과 정렬 순서)으로 원본을 실행하고 `cases.jsonl`을 저장. `--from-tests -- npx jest`(또는 `-- pytest`)는 원본의 자체 테스트 스위트가 하는 모든 호출도 기록. `--float-tolerance 1e-9`는 수치 코드에서 부동소수점이 그 비율 이내로 일치하도록 허용 |
+| 3. 빌드 | `everything-rust build <crate>` | Rust 쪽을 빌드: `.node`, wasm 패키지, Python 확장 또는 공유 라이브러리 |
+| 3. Diff | `everything-rust diff <crate>` | 원본의 호출자가 호출하는 방식 그대로 Rust를 호출해 기록된 케이스를 재생하고, 불일치를 나열 |
+| 3. 벤치 | `everything-rust bench <crate>` | 브리지 비용을 포함해 원본과 Rust에서 기록된 케이스의 실행 시간 측정 |
+| 4. 섀도 | `everything-rust shadow <crate>` | 둘 다 실행해 원본의 결과를 반환하고 불일치를 보고하는 대체 모듈. `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 게이트 | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, 테스트, `unsafe` 감사, 포팅되지 않은 것 없음, 원본의 모든 오류 경로에 대한 기록된 실패 케이스, 원본이 오류를 반환하는 곳에 `unwrap`/`expect`/`panic!` 없음(`// INFALLIBLE: <why>` 표시가 없는 한), 빌드, API, 동작 |
+| 에이전트 | `everything-rust setup` | MCP 서버(`everything-rust mcp`, 모든 단계를 도구로 제공)와 워크플로 스킬([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md))을 코딩 에이전트에 등록 |
 ## 다음
 
 각 단계마다 별도 페이지가 있습니다: [프로파일링과 분석](/docs/concepts/analyze), [브리지](/docs/concepts/bridge), [기록](/docs/concepts/record), [포팅](/docs/concepts/port), [Diff](/docs/concepts/diff), [벤치](/docs/concepts/bench), [섀도](/docs/concepts/shadow), [게이트](/docs/concepts/gate).

@@ -8,8 +8,8 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge;
-use rust_anything::harness::{self, DiffOptions, RecordOptions};
+use everything_rust::bridge;
+use everything_rust::harness::{self, DiffOptions, RecordOptions};
 
 const RATIONAL_H: &str = "#include <stdint.h>\ntypedef int32_t Int;\n\
 typedef struct Rational { Int num, den; } Rational;\n\
@@ -169,7 +169,7 @@ const INPUTS: &str = r#"{"fn": "mul_q", "args": [{"num": 1, "den": 2}, {"num": 2
 "#;
 
 fn project() -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("rust-anything-c-structs-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-c-structs-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(dir.join("src")).unwrap();
     std::fs::write(dir.join("src/rational.h"), RATIONAL_H).unwrap();
@@ -186,7 +186,7 @@ fn bridged(repo: &Path) -> PathBuf {
         name: None,
         force: true,
         keep: Vec::new(),
-        lang: Some(rust_anything::lang::Lang::C),
+        lang: Some(everything_rust::lang::Lang::C),
         batch: Vec::new(),
         as_json: Vec::new(),
         allocator: Default::default(),
@@ -196,7 +196,7 @@ fn bridged(repo: &Path) -> PathBuf {
 }
 
 fn build(dir: &Path) {
-    let built = Command::new(env!("CARGO_BIN_EXE_rust-anything"))
+    let built = Command::new(env!("CARGO_BIN_EXE_everything-rust"))
         .args(["build", "."])
         .current_dir(dir)
         .output()
@@ -355,7 +355,7 @@ fn structs_by_value_and_pointers_into_strings_cross_the_c_bridge() {
     .unwrap();
     assert_eq!(rows.len(), 5, "every function benchmarked");
 
-    let gate = rust_anything::gate::gate(&dir, &[]).unwrap();
+    let gate = everything_rust::gate::gate(&dir, &[]).unwrap();
     assert!(gate.passed, "{:?}", gate.checks);
 
     let wrong = PORT

@@ -1,8 +1,8 @@
 {
-  "name": "rust-anything",
+  "name": "everything-rust",
   "plugins": [
     {
-      "name": "rust-anything",
+      "name": "everything-rust",
       "source": {
         "source": "local",
         "path": "./plugin"

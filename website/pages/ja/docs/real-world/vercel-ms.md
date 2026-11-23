@@ -6,9 +6,9 @@ description: vercel/ms をエンドツーエンドで移植。すべての記録
 # vercel/ms
 
 [vercel/ms](https://github.com/vercel/ms)（5.5k スター、コミット `4ff48ce`）は `"2 days"` をミリ秒に変換し、
-その逆も行います。ほとんどの Node プロジェクトは何らかの依存関係を通じてこれを取り込んでいます。rust-anything 1.5.1 で
+その逆も行います。ほとんどの Node プロジェクトは何らかの依存関係を通じてこれを取り込んでいます。everything-rust 1.5.1 で
 エンドツーエンドに移植しました。クレートは
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs) にあります。
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs) にあります。
 
 | ステップ | 結果 |
 | --- | --- |

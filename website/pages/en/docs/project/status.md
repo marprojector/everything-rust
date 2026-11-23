@@ -1,6 +1,6 @@
 ---
 title: Status
-description: What works in rust-anything today, and how each part was last checked.
+description: What works in everything-rust today, and how each part was last checked.
 source: docs/STATUS.md
 ---
 

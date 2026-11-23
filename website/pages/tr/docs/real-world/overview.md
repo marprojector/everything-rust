@@ -1,11 +1,11 @@
 ---
 title: Gerçek dünya portları
-description: rust-anything gerçek kodla karşılaştığında ne oldu, yavaş sonuçlar hızlıların yanında, ve bu yüzden araçta ne değişti.
+description: everything-rust gerçek kodla karşılaştığında ne oldu, yavaş sonuçlar hızlıların yanında, ve bu yüzden araçta ne değişti.
 ---
 
 # Gerçek dünya portları
 
-rust-anything gerçek kodla karşılaştığında ne oldu ve bu yüzden araçta ne değişti. Aşağıdaki her sayı, önce sonuçların aynı olduğunu kontrol eden bir benchmark'tan gelir ve yavaş vakalar hızlıların yanında listelenir.
+everything-rust gerçek kodla karşılaştığında ne oldu ve bu yüzden araçta ne değişti. Aşağıdaki her sayı, önce sonuçların aynı olduğunu kontrol eden bir benchmark'tan gelir ve yavaş vakalar hızlıların yanında listelenir.
 
 | Port | Ne olduğu | Sonuç |
 | --- | --- | --- |

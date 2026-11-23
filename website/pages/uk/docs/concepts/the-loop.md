@@ -7,7 +7,7 @@ description: profile, analyze, bridge, record, port, diff, bench, shadow і gate
 
 Кожне портування, від однієї гарячої функції до цілого застосунку, проходить ті самі кроки, по одному модулю за раз. Порт готовий лише тоді, коли проходить `gate`.
 
-Як rust-anything перевіряє порт, що вирішують його команди і де пролягають його межі. Назад до [README](/).
+Як everything-rust перевіряє порт, що вирішують його команди і де пролягають його межі. Назад до [README](/).
 
 ## Як це працює
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | Крок | Команда | Що робить |
 | --- | --- | --- |
-| 0. Профілювання | `rust-anything profile <repo> -- node bench.mjs` | Запускає реальне навантаження під профайлером мови (node, cProfile, pprof через `go test`, JFR, трейсер Ruby): гарячі функції за інклюзивним часом, код, що їх викликає, і цикли, які варто запакетувати; позначає вже скомпільований код (numba, Cython, JAX), де Rust мало що виграє |
-| 1. План | `rust-anything analyze <repo>` | Модулі, порядок портування, ризики з `file:line`, міст для кожного модуля, відповідність залежностей крейтам, найкращі перші порти; `--whole-app` додає точки входу і форму, кожну залежність (імпортовану чи оголошену) з її крейтом, частини (модулі, що імпортують один одного, переносяться разом) і пронумеровані рішення з рекомендованою відповіддю |
-| 2. Міст | `rust-anything bridge <repo> <unit>` | Крейт із прив'язками (`lib.rs` плюс обгортка, яку завантажує мова оригіналу) і заглушками для портування (`port.rs`); `--batch fn:param` додає клас, що тримає багато значень `param` у Rust; `--as-json T` передає через міст як значення JSON параметр типу, який застосунок заповнює лише даними |
-| 3. Запис | `rust-anything record <crate>` | Запускає оригінал на згенерованих граничних випадках (не-ASCII, емодзі, `-0`, `NaN`, int там, де очікуються float, ...) і на кожній семантичній пастці в кожному параметрі (довжина і регістр рядків, ділення зі знаком, межі переповнення, друк float, порядок у мапах і сортуванні) і зберігає `cases.jsonl`; `--from-tests -- npx jest` (або `-- pytest`) також записує кожен виклик, який робить власний набір тестів оригіналу; `--float-tolerance 1e-9` дозволяє float збігатися в межах цієї частки для числового коду |
-| 3. Збірка | `rust-anything build <crate>` | Збирає сторону Rust: `.node`, пакет wasm, розширення Python або спільну бібліотеку |
-| 3. Diff | `rust-anything diff <crate>` | Відтворює записані випадки на Rust, викликаючи його так, як його викликає код оригіналу; перелічує розбіжності |
-| 3. Bench | `rust-anything bench <crate>` | Вимірює час записаних випадків на оригіналі та на Rust, включно з мостом |
-| 4. Shadow | `rust-anything shadow <crate>` | Заміна, що запускає обидва, повертає результат оригіналу, повідомляє про розбіжності; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, тести, аудит `unsafe`, нічого непортованого, записаний провальний випадок для кожного шляху помилки оригіналу, жодних `unwrap`/`expect`/`panic!` там, де оригінал повертає помилку (якщо не позначено `// INFALLIBLE: <why>`), збірка, API, поведінка |
-| Агенти | `rust-anything setup` | Реєструє сервер MCP (`rust-anything mcp`, кожен крок як інструмент) і навичку робочого процесу ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) у ваших агентах для програмування |
+| 0. Профілювання | `everything-rust profile <repo> -- node bench.mjs` | Запускає реальне навантаження під профайлером мови (node, cProfile, pprof через `go test`, JFR, трейсер Ruby): гарячі функції за інклюзивним часом, код, що їх викликає, і цикли, які варто запакетувати; позначає вже скомпільований код (numba, Cython, JAX), де Rust мало що виграє |
+| 1. План | `everything-rust analyze <repo>` | Модулі, порядок портування, ризики з `file:line`, міст для кожного модуля, відповідність залежностей крейтам, найкращі перші порти; `--whole-app` додає точки входу і форму, кожну залежність (імпортовану чи оголошену) з її крейтом, частини (модулі, що імпортують один одного, переносяться разом) і пронумеровані рішення з рекомендованою відповіддю |
+| 2. Міст | `everything-rust bridge <repo> <unit>` | Крейт із прив'язками (`lib.rs` плюс обгортка, яку завантажує мова оригіналу) і заглушками для портування (`port.rs`); `--batch fn:param` додає клас, що тримає багато значень `param` у Rust; `--as-json T` передає через міст як значення JSON параметр типу, який застосунок заповнює лише даними |
+| 3. Запис | `everything-rust record <crate>` | Запускає оригінал на згенерованих граничних випадках (не-ASCII, емодзі, `-0`, `NaN`, int там, де очікуються float, ...) і на кожній семантичній пастці в кожному параметрі (довжина і регістр рядків, ділення зі знаком, межі переповнення, друк float, порядок у мапах і сортуванні) і зберігає `cases.jsonl`; `--from-tests -- npx jest` (або `-- pytest`) також записує кожен виклик, який робить власний набір тестів оригіналу; `--float-tolerance 1e-9` дозволяє float збігатися в межах цієї частки для числового коду |
+| 3. Збірка | `everything-rust build <crate>` | Збирає сторону Rust: `.node`, пакет wasm, розширення Python або спільну бібліотеку |
+| 3. Diff | `everything-rust diff <crate>` | Відтворює записані випадки на Rust, викликаючи його так, як його викликає код оригіналу; перелічує розбіжності |
+| 3. Bench | `everything-rust bench <crate>` | Вимірює час записаних випадків на оригіналі та на Rust, включно з мостом |
+| 4. Shadow | `everything-rust shadow <crate>` | Заміна, що запускає обидва, повертає результат оригіналу, повідомляє про розбіжності; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, тести, аудит `unsafe`, нічого непортованого, записаний провальний випадок для кожного шляху помилки оригіналу, жодних `unwrap`/`expect`/`panic!` там, де оригінал повертає помилку (якщо не позначено `// INFALLIBLE: <why>`), збірка, API, поведінка |
+| Агенти | `everything-rust setup` | Реєструє сервер MCP (`everything-rust mcp`, кожен крок як інструмент) і навичку робочого процесу ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) у ваших агентах для програмування |
 
 ## Гарячі шляхи: тримайте дані в Rust
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 і на кожен виклик проганяє функцію по всіх них, на всіх ядрах, з результатами у типізованих масивах.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: чверть прогону, викликається для кожного ключа з `matched`: запакетуйте
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 Скомпільовані оригінали виграють менше: робота на елемент і так швидка, тож пакет виграє приблизно на кількість
 ядер. Пакетні крейти виділяють пам'ять через mimalloc: із системним алокатором пакет Go був повільнішим за
-один потік. Демо: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+один потік. Демо: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## Що вирішує `bridge`
 
@@ -176,16 +176,16 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 | Крок | Команда | Що робить |
 | --- | --- | --- |
-| 0. Профілювання | `rust-anything profile <repo> -- node bench.mjs` | Запускає реальне навантаження під профайлером мови (node, cProfile, pprof через `go test`, JFR, трейсер Ruby): гарячі функції за інклюзивним часом, код, що їх викликає, і цикли, які варто запакетувати; позначає вже скомпільований код (numba, Cython, JAX), де Rust мало що виграє |
-| 1. План | `rust-anything analyze <repo>` | Модулі, порядок портування, ризики з `file:line`, міст для кожного модуля, відповідність залежностей крейтам, найкращі перші порти; `--whole-app` додає точки входу і форму, кожну залежність (імпортовану чи оголошену) з її крейтом, частини (модулі, що імпортують один одного, переносяться разом) і пронумеровані рішення з рекомендованою відповіддю |
-| 2. Міст | `rust-anything bridge <repo> <unit>` | Крейт із прив'язками (`lib.rs` плюс обгортка, яку завантажує мова оригіналу) і заглушками для портування (`port.rs`); `--batch fn:param` додає клас, що тримає багато значень `param` у Rust; `--as-json T` передає через міст як значення JSON параметр типу, який застосунок заповнює лише даними |
-| 3. Запис | `rust-anything record <crate>` | Запускає оригінал на згенерованих граничних випадках (не-ASCII, емодзі, `-0`, `NaN`, int там, де очікуються float, ...) і на кожній семантичній пастці в кожному параметрі (довжина і регістр рядків, ділення зі знаком, межі переповнення, друк float, порядок у мапах і сортуванні) і зберігає `cases.jsonl`; `--from-tests -- npx jest` (або `-- pytest`) також записує кожен виклик, який робить власний набір тестів оригіналу; `--float-tolerance 1e-9` дозволяє float збігатися в межах цієї частки для числового коду |
-| 3. Збірка | `rust-anything build <crate>` | Збирає сторону Rust: `.node`, пакет wasm, розширення Python або спільну бібліотеку |
-| 3. Diff | `rust-anything diff <crate>` | Відтворює записані випадки на Rust, викликаючи його так, як його викликає код оригіналу; перелічує розбіжності |
-| 3. Bench | `rust-anything bench <crate>` | Вимірює час записаних випадків на оригіналі та на Rust, включно з мостом |
-| 4. Shadow | `rust-anything shadow <crate>` | Заміна, що запускає обидва, повертає результат оригіналу, повідомляє про розбіжності; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, тести, аудит `unsafe`, нічого непортованого, записаний провальний випадок для кожного шляху помилки оригіналу, жодних `unwrap`/`expect`/`panic!` там, де оригінал повертає помилку (якщо не позначено `// INFALLIBLE: <why>`), збірка, API, поведінка |
-| Агенти | `rust-anything setup` | Реєструє сервер MCP (`rust-anything mcp`, кожен крок як інструмент) і навичку робочого процесу ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) у ваших агентах для програмування |
+| 0. Профілювання | `everything-rust profile <repo> -- node bench.mjs` | Запускає реальне навантаження під профайлером мови (node, cProfile, pprof через `go test`, JFR, трейсер Ruby): гарячі функції за інклюзивним часом, код, що їх викликає, і цикли, які варто запакетувати; позначає вже скомпільований код (numba, Cython, JAX), де Rust мало що виграє |
+| 1. План | `everything-rust analyze <repo>` | Модулі, порядок портування, ризики з `file:line`, міст для кожного модуля, відповідність залежностей крейтам, найкращі перші порти; `--whole-app` додає точки входу і форму, кожну залежність (імпортовану чи оголошену) з її крейтом, частини (модулі, що імпортують один одного, переносяться разом) і пронумеровані рішення з рекомендованою відповіддю |
+| 2. Міст | `everything-rust bridge <repo> <unit>` | Крейт із прив'язками (`lib.rs` плюс обгортка, яку завантажує мова оригіналу) і заглушками для портування (`port.rs`); `--batch fn:param` додає клас, що тримає багато значень `param` у Rust; `--as-json T` передає через міст як значення JSON параметр типу, який застосунок заповнює лише даними |
+| 3. Запис | `everything-rust record <crate>` | Запускає оригінал на згенерованих граничних випадках (не-ASCII, емодзі, `-0`, `NaN`, int там, де очікуються float, ...) і на кожній семантичній пастці в кожному параметрі (довжина і регістр рядків, ділення зі знаком, межі переповнення, друк float, порядок у мапах і сортуванні) і зберігає `cases.jsonl`; `--from-tests -- npx jest` (або `-- pytest`) також записує кожен виклик, який робить власний набір тестів оригіналу; `--float-tolerance 1e-9` дозволяє float збігатися в межах цієї частки для числового коду |
+| 3. Збірка | `everything-rust build <crate>` | Збирає сторону Rust: `.node`, пакет wasm, розширення Python або спільну бібліотеку |
+| 3. Diff | `everything-rust diff <crate>` | Відтворює записані випадки на Rust, викликаючи його так, як його викликає код оригіналу; перелічує розбіжності |
+| 3. Bench | `everything-rust bench <crate>` | Вимірює час записаних випадків на оригіналі та на Rust, включно з мостом |
+| 4. Shadow | `everything-rust shadow <crate>` | Заміна, що запускає обидва, повертає результат оригіналу, повідомляє про розбіжності; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, тести, аудит `unsafe`, нічого непортованого, записаний провальний випадок для кожного шляху помилки оригіналу, жодних `unwrap`/`expect`/`panic!` там, де оригінал повертає помилку (якщо не позначено `// INFALLIBLE: <why>`), збірка, API, поведінка |
+| Агенти | `everything-rust setup` | Реєструє сервер MCP (`everything-rust mcp`, кожен крок як інструмент) і навичку робочого процесу ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) у ваших агентах для програмування |
 ## Далі
 
 Кожен крок має власну сторінку: [Профілювання й аналіз](/docs/concepts/analyze), [Bridge](/docs/concepts/bridge), [Record](/docs/concepts/record), [Портування](/docs/concepts/port), [Diff](/docs/concepts/diff), [Bench](/docs/concepts/bench), [Shadow](/docs/concepts/shadow) і [Gate](/docs/concepts/gate).

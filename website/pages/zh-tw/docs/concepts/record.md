@@ -6,9 +6,9 @@ description: record 會以自動產生的邊界案例、語意陷阱、原始版
 # 錄製
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # 或：-- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # 或：-- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` 會執行原始的函式，並將每個函式回傳的值或擲出的例外儲存在 crate 旁的 `cases.jsonl` 中：這就是移植版本必須符合的行為。之後出現的不一致就是行為差異：請修正移植版本，絕對不要修改錄製內容。

@@ -1,18 +1,18 @@
 ---
 title: Référence CLI
-description: Chaque commande et option de rust-anything, d'après rust-anything --help et le --help de chaque sous-commande.
+description: Chaque commande et option de everything-rust, d'après everything-rust --help et le --help de chaque sous-commande.
 ---
 
 # Référence CLI
 
-Généré à partir de `rust-anything --help` et du `--help` de chaque sous-commande (rust-anything 1.5.1). Le texte d'aide reste en anglais, tel que la CLI l'affiche.
+Généré à partir de `everything-rust --help` et du `--help` de chaque sous-commande (everything-rust 1.5.1). Le texte d'aide reste en anglais, tel que la CLI l'affiche.
 
-## `rust-anything`
+## `everything-rust`
 
 ```text
 Rewrite TypeScript/JavaScript, Python, C, Go, Ruby or Java apps in Rust, one verified piece at a time
 
-Usage: rust-anything <COMMAND>
+Usage: everything-rust <COMMAND>
 
 Commands:
   analyze  1. Map a repository and write a ranked, ordered migration plan
@@ -22,12 +22,12 @@ Commands:
   build    3b. Build the crate's JS module (napi-rs `.node` or wasm-bindgen output)
   diff     3c. Replay recorded cases against the Rust module
   bench    3d. Time the recorded cases on the TS original and on Rust, bridge included
-  profile  Run a real workload under the language's profiler and say what to port: hot functions, their callers, and loops to batch. `rust-anything profile <repo> -- node bench.mjs` (also `python3 x.py`, `go test -bench . ./pkg`, `java ...`, `ruby x.rb`)
+  profile  Run a real workload under the language's profiler and say what to port: hot functions, their callers, and loops to batch. `everything-rust profile <repo> -- node bench.mjs` (also `python3 x.py`, `go test -bench . ./pkg`, `java ...`, `ruby x.rb`)
   shadow   4. Generate a drop-in module that runs TS and Rust side by side
   gate     5. Check the definition of done for a port
   app      Record the whole app's behavior and replay any build against it (CLIs)
   mcp      Serve every step as MCP tools over stdio
-  setup    Register rust-anything with your coding agents (Claude Code, Codex, Cursor, Gemini CLI): the MCP server and, where the agent reads skills, the workflow skill. Keeps your other settings; run it again any time
+  setup    Register everything-rust with your coding agents (Claude Code, Codex, Cursor, Gemini CLI): the MCP server and, where the agent reads skills, the workflow skill. Keeps your other settings; run it again any time
   doctor   Check the language runtimes, the agent setup and the MCP server, with the command that fixes each problem. Exits 1 when something required is missing
   help     Print this message or the help of the given subcommand(s)
 
@@ -38,30 +38,30 @@ Options:
 Loop per unit: analyze -> bridge -> record -> port src/port.rs -> build -> diff -> shadow -> gate
 ```
 
-## `rust-anything analyze`
+## `everything-rust analyze`
 
 ```text
 1. Map a repository and write a ranked, ordered migration plan
 
-Usage: rust-anything analyze [OPTIONS] [ROOT]
+Usage: everything-rust analyze [OPTIONS] [ROOT]
 
 Arguments:
   [ROOT]  Repository root [default: .]
 
 Options:
-      --json         Print the machine-readable report (schema `rust-anything/analyze@1`) instead of Markdown
+      --json         Print the machine-readable report (schema `everything-rust/analyze@1`) instead of Markdown
   -o, --out <OUT>    Write to this file instead of stdout
       --lang <LANG>  Source language; detected from the repository when omitted [possible values: ts, python, c, go, ruby, java, php, csharp]
       --whole-app    Plan a whole-app port: entry points and shape, every dependency (imported or declared) with its crate, pieces in port order, and decisions for the user
   -h, --help         Print help
 ```
 
-## `rust-anything bridge`
+## `everything-rust bridge`
 
 ```text
 2. Scaffold a Rust crate with JS bindings for one unit
 
-Usage: rust-anything bridge [OPTIONS] <ROOT> <UNIT>
+Usage: everything-rust bridge [OPTIONS] <ROOT> <UNIT>
 
 Arguments:
   <ROOT>  Repository root
@@ -78,12 +78,12 @@ Options:
   -h, --help                  Print help
 ```
 
-## `rust-anything refresh`
+## `everything-rust refresh`
 
 ```text
 2b. Regenerate the bindings (`lib.rs`, `index.cjs`, `js.rs`) from the signatures in `port.rs`
 
-Usage: rust-anything refresh [OPTIONS] [CRATE_DIR]
+Usage: everything-rust refresh [OPTIONS] [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -93,12 +93,12 @@ Options:
   -h, --help           Print help
 ```
 
-## `rust-anything record`
+## `everything-rust record`
 
 ```text
 3a. Record what the TS functions return on generated and given inputs
 
-Usage: rust-anything record [OPTIONS] [CRATE_DIR] [-- <TEST_COMMAND>...]
+Usage: everything-rust record [OPTIONS] [CRATE_DIR] [-- <TEST_COMMAND>...]
 
 Arguments:
   [CRATE_DIR]        Crate folder made by `bridge` [default: .]
@@ -123,12 +123,12 @@ Options:
           Print help
 ```
 
-## `rust-anything build`
+## `everything-rust build`
 
 ```text
 3b. Build the crate's JS module (napi-rs `.node` or wasm-bindgen output)
 
-Usage: rust-anything build [CRATE_DIR]
+Usage: everything-rust build [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -137,12 +137,12 @@ Options:
   -h, --help  Print help
 ```
 
-## `rust-anything diff`
+## `everything-rust diff`
 
 ```text
 3c. Replay recorded cases against the Rust module
 
-Usage: rust-anything diff [OPTIONS] [CRATE_DIR]
+Usage: everything-rust diff [OPTIONS] [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -162,12 +162,12 @@ Options:
           Print help
 ```
 
-## `rust-anything bench`
+## `everything-rust bench`
 
 ```text
 3d. Time the recorded cases on the TS original and on Rust, bridge included
 
-Usage: rust-anything bench [OPTIONS] [CRATE_DIR]
+Usage: everything-rust bench [OPTIONS] [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -180,12 +180,12 @@ Options:
   -h, --help                         Print help
 ```
 
-## `rust-anything profile`
+## `everything-rust profile`
 
 ```text
-Run a real workload under the language's profiler and say what to port: hot functions, their callers, and loops to batch. `rust-anything profile <repo> -- node bench.mjs` (also `python3 x.py`, `go test -bench . ./pkg`, `java ...`, `ruby x.rb`)
+Run a real workload under the language's profiler and say what to port: hot functions, their callers, and loops to batch. `everything-rust profile <repo> -- node bench.mjs` (also `python3 x.py`, `go test -bench . ./pkg`, `java ...`, `ruby x.rb`)
 
-Usage: rust-anything profile [OPTIONS] <ROOT> -- <COMMAND>...
+Usage: everything-rust profile [OPTIONS] <ROOT> -- <COMMAND>...
 
 Arguments:
   <ROOT>        Repository root
@@ -197,12 +197,12 @@ Options:
   -h, --help         Print help
 ```
 
-## `rust-anything shadow`
+## `everything-rust shadow`
 
 ```text
 4. Generate a drop-in module that runs TS and Rust side by side
 
-Usage: rust-anything shadow [OPTIONS] [CRATE_DIR]
+Usage: everything-rust shadow [OPTIONS] [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -212,12 +212,12 @@ Options:
   -h, --help       Print help
 ```
 
-## `rust-anything gate`
+## `everything-rust gate`
 
 ```text
 5. Check the definition of done for a port
 
-Usage: rust-anything gate [OPTIONS] [CRATE_DIR]
+Usage: everything-rust gate [OPTIONS] [CRATE_DIR]
 
 Arguments:
   [CRATE_DIR]  [default: .]
@@ -228,18 +228,18 @@ Options:
   -h, --help                  Print help
 ```
 
-## `rust-anything app`
+## `everything-rust app`
 
 ```text
 Record the whole app's behavior and replay any build against it (CLIs)
 
-Usage: rust-anything app <COMMAND>
+Usage: everything-rust app <COMMAND>
 
 Commands:
-  record      Run the original CLI on cases (its own examples, `--inputs`, semantic traps), twice each, and store them as trycmd files in `<repo>/rust/app-cases/`. `rust-anything app record . -- python3 cli.py`
+  record      Run the original CLI on cases (its own examples, `--inputs`, semantic traps), twice each, and store them as trycmd files in `<repo>/rust/app-cases/`. `everything-rust app record . -- python3 cli.py`
   replay      Run a build against `<repo>/rust/app-cases/`, print passed/total, write a report with a diff per failing case; exits non-zero on any mismatch
   front-door  Scaffold `<repo>/rust/app`, the Rust binary that owns the CLI's entry point: a clap parser for the recorded commands and flags, every command running the original until a unit is wired. Builds it and replays the cases (100% passed, 100% fallback)
-  wire        Hand commands to a unit's `port.rs` (after it passes gate): adds the crate to `rust/app`, a glue file to write once, the routing and a kill switch (`RUST_ANYTHING_UNIT_<NAME>=original`), then builds and replays
+  wire        Hand commands to a unit's `port.rs` (after it passes gate): adds the crate to `rust/app`, a glue file to write once, the routing and a kill switch (`EVERYTHING_RUST_UNIT_<NAME>=original`), then builds and replays
   lift        Make `rust/app` a pure Rust app, once replay passes with fallback rate 0 and every unit passes gate: removes the fallback and the kill switches, turns the units into plain libraries, runs the lift checklist and replays the pure binary. Checked on a copy first; the original stays in place
   help        Print this message or the help of the given subcommand(s)
 
@@ -247,12 +247,12 @@ Options:
   -h, --help  Print help
 ```
 
-## `rust-anything app record`
+## `everything-rust app record`
 
 ```text
-Run the original CLI on cases (its own examples, `--inputs`, semantic traps), twice each, and store them as trycmd files in `<repo>/rust/app-cases/`. `rust-anything app record . -- python3 cli.py`
+Run the original CLI on cases (its own examples, `--inputs`, semantic traps), twice each, and store them as trycmd files in `<repo>/rust/app-cases/`. `everything-rust app record . -- python3 cli.py`
 
-Usage: rust-anything app record [OPTIONS] [REPO] [-- <RUN>...]
+Usage: everything-rust app record [OPTIONS] [REPO] [-- <RUN>...]
 
 Arguments:
   [REPO]    Repository root [default: .]
@@ -287,12 +287,12 @@ Options:
           Print help
 ```
 
-## `rust-anything app replay`
+## `everything-rust app replay`
 
 ```text
 Run a build against `<repo>/rust/app-cases/`, print passed/total, write a report with a diff per failing case; exits non-zero on any mismatch
 
-Usage: rust-anything app replay [OPTIONS] [REPO]
+Usage: everything-rust app replay [OPTIONS] [REPO]
 
 Arguments:
   [REPO]  Repository root [default: .]
@@ -306,12 +306,12 @@ Options:
   -h, --help               Print help
 ```
 
-## `rust-anything app front-door`
+## `everything-rust app front-door`
 
 ```text
 Scaffold `<repo>/rust/app`, the Rust binary that owns the CLI's entry point: a clap parser for the recorded commands and flags, every command running the original until a unit is wired. Builds it and replays the cases (100% passed, 100% fallback)
 
-Usage: rust-anything app front-door [OPTIONS] [REPO]
+Usage: everything-rust app front-door [OPTIONS] [REPO]
 
 Arguments:
   [REPO]  Repository root [default: .]
@@ -323,12 +323,12 @@ Options:
   -h, --help      Print help
 ```
 
-## `rust-anything app wire`
+## `everything-rust app wire`
 
 ```text
-Hand commands to a unit's `port.rs` (after it passes gate): adds the crate to `rust/app`, a glue file to write once, the routing and a kill switch (`RUST_ANYTHING_UNIT_<NAME>=original`), then builds and replays
+Hand commands to a unit's `port.rs` (after it passes gate): adds the crate to `rust/app`, a glue file to write once, the routing and a kill switch (`EVERYTHING_RUST_UNIT_<NAME>=original`), then builds and replays
 
-Usage: rust-anything app wire [OPTIONS] <REPO> <UNIT>
+Usage: everything-rust app wire [OPTIONS] <REPO> <UNIT>
 
 Arguments:
   <REPO>  Repository root
@@ -343,12 +343,12 @@ Options:
   -h, --help                Print help
 ```
 
-## `rust-anything app lift`
+## `everything-rust app lift`
 
 ```text
 Make `rust/app` a pure Rust app, once replay passes with fallback rate 0 and every unit passes gate: removes the fallback and the kill switches, turns the units into plain libraries, runs the lift checklist and replays the pure binary. Checked on a copy first; the original stays in place
 
-Usage: rust-anything app lift [OPTIONS] [REPO]
+Usage: everything-rust app lift [OPTIONS] [REPO]
 
 Arguments:
   [REPO]  Repository root [default: .]
@@ -358,23 +358,23 @@ Options:
   -h, --help  Print help
 ```
 
-## `rust-anything mcp`
+## `everything-rust mcp`
 
 ```text
 Serve every step as MCP tools over stdio
 
-Usage: rust-anything mcp
+Usage: everything-rust mcp
 
 Options:
   -h, --help  Print help
 ```
 
-## `rust-anything setup`
+## `everything-rust setup`
 
 ```text
-Register rust-anything with your coding agents (Claude Code, Codex, Cursor, Gemini CLI): the MCP server and, where the agent reads skills, the workflow skill. Keeps your other settings; run it again any time
+Register everything-rust with your coding agents (Claude Code, Codex, Cursor, Gemini CLI): the MCP server and, where the agent reads skills, the workflow skill. Keeps your other settings; run it again any time
 
-Usage: rust-anything setup [OPTIONS]
+Usage: everything-rust setup [OPTIONS]
 
 Options:
       --agent <AGENTS>
@@ -387,7 +387,7 @@ Options:
           - gemini: Gemini CLI: `~/.gemini/settings.json`
 
       --remove
-          Take the rust-anything entries out again
+          Take the everything-rust entries out again
 
       --dry-run
           Show what would change, write nothing
@@ -399,12 +399,12 @@ Options:
           Print help (see a summary with '-h')
 ```
 
-## `rust-anything doctor`
+## `everything-rust doctor`
 
 ```text
 Check the language runtimes, the agent setup and the MCP server, with the command that fixes each problem. Exits 1 when something required is missing
 
-Usage: rust-anything doctor [OPTIONS]
+Usage: everything-rust doctor [OPTIONS]
 
 Options:
       --json  

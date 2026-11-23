@@ -9,11 +9,11 @@ description: У библиотеки нет процесса, который м�
 кейсы каждого модуля служат доказательством.
 
 ```sh
-rust-anything app front-door .        # rust/app: a Rust crate with the public API
+everything-rust app front-door .        # rust/app: a Rust crate with the public API
 # каждый модуль проходит цикл: bridge, record, port.rs, build, diff, gate; затем:
-rust-anything app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
-rust-anything app replay .            # every wired unit's cases; fallback = exports still in the original
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
+everything-rust app replay .            # every wired unit's cases; fallback = exports still in the original
+everything-rust app lift .
 ```
 
 - `app front-door` находит публичный API (экспорты всех модулей), когда в репозитории нет `main`
@@ -21,7 +21,7 @@ rust-anything app lift .
   модуль становится его модулем: `pub use textkit_rs::port as textkit;`.
 - `app wire` берёт крейт, созданный `bridge`, запускает `gate` и пишет теневую замену модуля:
   исходный пакет импортирует её вместо модуля, так что вызывающий код сохраняет исходный API и
-  попадает в Rust. `RUST_ANYTHING_UNIT_<NAME>=original` возвращает модуль обратно (C: собрать без
+  попадает в Rust. `EVERYTHING_RUST_UNIT_<NAME>=original` возвращает модуль обратно (C: собрать без
   флагов теневого модуля).
 - `app replay` прогоняет записанные кейсы каждого подключённого модуля через его привязки. Доля фолбэка
   означает долю публичных экспортов, на которые Rust пока не отвечает: неподключённые модули и экспорты, которые `bridge` оставляет

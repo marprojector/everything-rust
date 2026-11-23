@@ -17,10 +17,10 @@ description: "C# у стадії попереднього перегляду. an
 Запишіть зібраний застосунок:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Наступним кроком буде портування модулів через P/Invoke. Доти `bridge` відхиляє модулі C# із зрозумілим повідомленням.

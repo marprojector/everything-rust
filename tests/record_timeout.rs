@@ -8,7 +8,7 @@ use std::process::Command;
 
 fn project(name: &str, files: &[(&str, &str)]) -> PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-timeout-{name}-{}",
+        "everything-rust-timeout-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -23,7 +23,7 @@ fn project(name: &str, files: &[(&str, &str)]) -> PathBuf {
 /// Bridges and records `unit` with the CLI, with a one-second limit per case. Returns what
 /// `record` printed and the recorded cases.
 fn record_stuck(root: &Path, unit: &str) -> (String, Vec<serde_json::Value>) {
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let crate_dir = root.join("port");
     let bridged = Command::new(cli)
         .arg("bridge")
@@ -37,7 +37,7 @@ fn record_stuck(root: &Path, unit: &str) -> (String, Vec<serde_json::Value>) {
     let recorded = Command::new(cli)
         .arg("record")
         .arg(&crate_dir)
-        .env("RUST_ANYTHING_CASE_TIMEOUT", "1")
+        .env("EVERYTHING_RUST_CASE_TIMEOUT", "1")
         .output()
         .unwrap();
     assert!(recorded.status.success(), "{recorded:?}");

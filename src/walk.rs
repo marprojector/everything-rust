@@ -194,7 +194,7 @@ mod tests {
         std::fs::create_dir_all(tmp.join("src")).unwrap();
         std::fs::create_dir_all(tmp.join("rust/x-rs/java")).unwrap();
         std::fs::write(tmp.join("src/A.java"), "").unwrap();
-        std::fs::write(tmp.join("rust/x-rs/rust-anything.json"), "{}").unwrap();
+        std::fs::write(tmp.join("rust/x-rs/everything-rust.json"), "{}").unwrap();
         std::fs::write(tmp.join("rust/x-rs/java/A.java"), "").unwrap();
         assert_eq!(files(&tmp), ["src/A.java"]);
         assert!(

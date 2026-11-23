@@ -6,7 +6,7 @@ description: Eine Portierung, die einmal pro Element aufgerufen wird, verliert g
 # Batches und Hot Paths
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # oder: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # oder: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` erzeugt eine Klasse, die die `param`-Werte einmal entgegennimmt und in Rust hält: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Pro Anfrage liefert `run(<other args>)` jedes Ergebnis als ein Array, und `rank(<other args>, min)` liefert die Indizes der Elemente, die besten zuerst. Es läuft auf allen Kernen, und die Fehler sind die des Originals. Jede Sprache außer C bekommt Batches.
@@ -16,9 +16,9 @@ die Schleife zu verlagern: `profile` findet sie, und `--batch` erzeugt eine Klas
 und die Funktion pro Aufruf über alle ausführt, auf allen Kernen, mit Ergebnissen als Typed Arrays.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: ein Viertel des Laufs, pro Key von `matched` aufgerufen: als Batch ausführen
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ Arbeit auf 4 Kernen, identische Ergebnisse und Fehler (Benchmarks in jedem Demo-
 
 Kompilierte Originale gewinnen weniger: Die Arbeit pro Element ist bereits schnell, also gewinnt der Batch um die Anzahl der
 Kerne. Batch-Crates allozieren mit mimalloc: Mit dem System-Allocator war der Go-Batch langsamer als
-ein einzelner Thread. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+ein einzelner Thread. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Einen schnellen Index schreiben
 
 - Lass den Aufrufer den Batch einmal bauen, nicht pro Anfrage. Bilde zurückgegebene Indizes mit einer einfachen Schleife auf Elemente ab.

@@ -1,8 +1,8 @@
 {
-  "name": "rust-anything-website",
+  "name": "everything-rust-website",
   "version": "0.0.0",
   "private": true,
-  "description": "Documentation website for rust-anything",
+  "description": "Documentation website for everything-rust",
   "license": "MIT",
   "type": "module",
   "scripts": {

@@ -6,7 +6,7 @@ description: 逐条数据调用一次的移植版会输给 JIT。批处理把整
 # 批处理与热点路径
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # 或：rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # 或：everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` 生成一个类，它只接收一次 `param` 值并把它们留在 Rust 中：`new FnBatch(items)`（TS、Python、Java）、`Mod::FnBatch.new(items)`（Ruby）、`NewFnBatch(items)`（Go）。每次查询时，`run(<other args>)` 以一个数组返回所有结果，`rank(<other args>, min)` 返回按得分从高到低排列的数据项索引。它在全部核心上运行，错误与原实现一致。除 C 以外的每种语言都支持批处理。
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # 或：rust-anything ref
 每次调用都在全部核心上对所有数据运行该函数，并返回类型化数组结果。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore：占整个运行时间的四分之一，由 `matched` 按键逐个调用：将其批处理化
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ x18n 的侧边栏搜索中，对 50,000 个键逐字母输入，结果完全一�
 
 编译型原实现获益较少：逐条数据的处理本来就快，所以批处理的优势约等于核心
 数。批处理 crate 使用 mimalloc 分配内存：使用系统分配器时，Go 批处理比
-单线程还慢。示例：[`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+单线程还慢。示例：[`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 ## 编写快速索引
 
 - 让调用方只构建一次批处理对象，而不是每次查询都构建。用普通循环把返回的索引映射回数据项。

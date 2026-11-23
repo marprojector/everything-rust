@@ -1,6 +1,6 @@
 ---
 title: Durum
-description: rust-anything'te bugün neyin çalıştığı ve her parçanın en son nasıl kontrol edildiği.
+description: everything-rust'te bugün neyin çalıştığı ve her parçanın en son nasıl kontrol edildiği.
 ---
 
 # Durum
@@ -16,7 +16,7 @@ kısmı için çalışır.
 
 | Dil | Durum | Son gerçek çalıştırma | Sonuç |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Doğrulandı | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'in `packages/core`'u | Prettier: `doc-printer-rs` 2,848/2,848 ve `js-format-rs` 1,279/1,279, ikisinde de gate geçiyor; json-server: altı birim, 3,399 vaka, her birinde gate geçiyor; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 ve 9,000+ vaka eşleşiyor |
+| TypeScript/JavaScript | Doğrulandı | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), x18n'in `packages/core`'u | Prettier: `doc-printer-rs` 2,848/2,848 ve `js-format-rs` 1,279/1,279, ikisinde de gate geçiyor; json-server: altı birim, 3,399 vaka, her birinde gate geçiyor; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 ve 9,000+ vaka eşleşiyor |
 | Python | Doğrulandı | CPython 3.13'ten `colorsys.py` (2026-11-16) | 2,400/2,400; gate geçiyor |
 | Go | Doğrulandı | Go 1.24'ten `path` (2026-11-16) | 2,642/2,642; gate geçiyor |
 | Ruby | Doğrulandı | Ruby 3.3'ten `shellwords.rb` (2026-11-16) | 1,617/1,617; gate geçiyor |

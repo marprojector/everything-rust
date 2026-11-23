@@ -9,11 +9,11 @@ description: 程序库没有可以回放的进程。它的公共 API 就是前�
 用例就是证明。
 
 ```sh
-rust-anything app front-door .        # rust/app：包含公共 API 的 Rust crate
+everything-rust app front-door .        # rust/app：包含公共 API 的 Rust crate
 # 每个单元走一遍核心闭环：bridge、record、port.rs、build、diff、gate；然后：
-rust-anything app wire . textkit-rs   # 从 rust/app 重新导出；原实现导入它的影子模块
-rust-anything app replay .            # 所有已接入单元的用例；回退 = 仍在原实现中的导出项
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # 从 rust/app 重新导出；原实现导入它的影子模块
+everything-rust app replay .            # 所有已接入单元的用例；回退 = 仍在原实现中的导出项
+everything-rust app lift .
 ```
 
 - 当仓库既没有 `main` 也没有服务端时（否则使用 `--library`），`app front-door` 会找出公共 API（每个单元的导出项），
@@ -21,7 +21,7 @@ rust-anything app lift .
   单元都会成为它的一个模块：`pub use textkit_rs::port as textkit;`。
 - `app wire` 接收由 `bridge` 生成的 crate，运行 `gate`，并写出该单元可直接替换的影子模块：
   原包会导入它来代替该单元，这样调用方继续使用原有 API，
-  并调用到 Rust。`RUST_ANYTHING_UNIT_<NAME>=original` 可以把该单元切回原实现（C：构建时不加
+  并调用到 Rust。`EVERYTHING_RUST_UNIT_<NAME>=original` 可以把该单元切回原实现（C：构建时不加
   影子模块的编译参数）。
 - `app replay` 通过绑定代码运行所有已接入单元的录制用例。回退率是
   Rust 尚未接管的公共导出项所占的比例：未接入的单元，以及 `bridge` 保留在

@@ -16,7 +16,7 @@ use serde_json::Value;
 
 use crate::lang::Lang;
 
-pub const SCHEMA: &str = "rust-anything/profile@1";
+pub const SCHEMA: &str = "everything-rust/profile@1";
 
 #[derive(Debug, Serialize)]
 pub struct Caller {
@@ -219,14 +219,14 @@ type Key = (String, String, u32);
 pub fn profile(root: &Path, command: &[String], lang: Option<Lang>) -> Result<Report> {
     if command.is_empty() {
         bail!(
-            "give the workload to run after `--`, e.g. `rust-anything profile . -- node bench.mjs`"
+            "give the workload to run after `--`, e.g. `everything-rust profile . -- node bench.mjs`"
         );
     }
     let root = root
         .canonical()
         .with_context(|| format!("resolving {}", root.display()))?;
     let lang = lang.unwrap_or_else(|| Lang::detect(&root));
-    let work = std::env::temp_dir().join(format!("rust-anything-profile-{}", std::process::id()));
+    let work = std::env::temp_dir().join(format!("everything-rust-profile-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&work);
     std::fs::create_dir_all(&work)?;
     let (functions, total_ms) = match lang {
@@ -482,7 +482,7 @@ fn python(root: &Path, command: &[String], work: &Path) -> Result<(HashMap<Key, 
         .unwrap_or_default();
     if !program.starts_with("python") {
         bail!(
-            "for Python, give the interpreter and script: `rust-anything profile . -- python3 bench.py`"
+            "for Python, give the interpreter and script: `everything-rust profile . -- python3 bench.py`"
         );
     }
     let stats = work.join("profile.pstats");
@@ -695,7 +695,7 @@ fn go(root: &Path, command: &[String], work: &Path) -> Result<(HashMap<Key, Acc>
         .unwrap_or_default();
     if program != "go" || command.get(1).map(String::as_str) != Some("test") {
         bail!(
-            "for Go, profile a benchmark or test: `rust-anything profile . -- go test -run XXX -bench . ./pkg` \
+            "for Go, profile a benchmark or test: `everything-rust profile . -- go test -run XXX -bench . ./pkg` \
              (Go profiles only from inside the process; `go test` adds -cpuprofile)"
         );
     }
@@ -898,7 +898,7 @@ fn java(root: &Path, command: &[String], work: &Path) -> Result<(HashMap<Key, Ac
 const RUBY_TRACER: &str = r#"
 require "json"
 
-module RustAnythingProfile
+module EverythingRustProfile
   STATS = Hash.new { |h, k| h[k] = { calls: 0, self: 0.0, total: 0.0, callers: Hash.new { |c, ck| c[ck] = [0, 0.0] } } }
   STACK = []
   ACTIVE = Hash.new(0)
@@ -937,14 +937,14 @@ module RustAnythingProfile
       { file: file, line: line, name: name, calls: s[:calls], self: s[:self] * 1000, total: s[:total] * 1000,
         callers: s[:callers].map { |(f, l, n), (calls, total)| { file: f, line: l, name: n, calls: calls, total: total * 1000 } } }
     end
-    File.write(ENV.fetch("RUST_ANYTHING_PROFILE_OUT"), JSON.generate(out))
+    File.write(ENV.fetch("EVERYTHING_RUST_PROFILE_OUT"), JSON.generate(out))
   end
 end
 "#;
 
 /// Ruby: the tracer above, loaded into any Ruby command through `RUBYOPT`.
 fn ruby(root: &Path, command: &[String], work: &Path) -> Result<(HashMap<Key, Acc>, f64)> {
-    let tracer = work.join("rust_anything_profile.rb");
+    let tracer = work.join("everything_rust_profile.rb");
     std::fs::write(&tracer, RUBY_TRACER)?;
     let out = work.join("profile.json");
     let mut rubyopt = std::env::var("RUBYOPT").unwrap_or_default();
@@ -956,7 +956,7 @@ fn ruby(root: &Path, command: &[String], work: &Path) -> Result<(HashMap<Key, Ac
             .args(&command[1..])
             .current_dir(root)
             .env("RUBYOPT", rubyopt.trim())
-            .env("RUST_ANYTHING_PROFILE_OUT", &out),
+            .env("EVERYTHING_RUST_PROFILE_OUT", &out),
         crate::process::TESTS,
     )
     .with_context(|| format!("running {}", command[0]))?;
@@ -1209,7 +1209,7 @@ fn report(
                         Some(param) => format!(
                             "Called in a loop by `{}` ({}:{}{calls}): a call per item would cost more than the work. \
                              Batch it, keeping the items in Rust and using all cores: \
-                             `rust-anything bridge {} {u} --batch {name}:{param}`, then prepare the items once in a \
+                             `everything-rust bridge {} {u} --batch {name}:{param}`, then prepare the items once in a \
                              `{}Index` in port.rs. Better still, port `{}` with it.",
                             c.name, c.file, c.line, root.display(), crate::codegen_batch::pascal(&name), c.name
                         ),
@@ -1220,11 +1220,11 @@ fn report(
                     }
                 }
                 (Some((u, true)), Some(_)) => format!(
-                    "Hot and exported by `{u}`: port it (`rust-anything bridge {} {u}`), then check `rust-anything bench`.",
+                    "Hot and exported by `{u}`: port it (`everything-rust bridge {} {u}`), then check `everything-rust bench`.",
                     root.display()
                 ),
                 (Some((u, true)), None) => format!("Hot inside `{u}`: port the exported function that calls it, with it."),
-                (Some((u, false)), _) => format!("Hot, but `{u}` must stay in the source language (see `rust-anything analyze`)."),
+                (Some((u, false)), _) => format!("Hot, but `{u}` must stay in the source language (see `everything-rust analyze`)."),
                 (None, _) => "Hot, outside the analyzed units.".into(),
             };
             Hot {
@@ -1326,7 +1326,7 @@ mod tests {
 
     #[test]
     fn compiled_code_changes_the_advice() {
-        let root = std::env::temp_dir().join(format!("rust-anything-numba-{}", std::process::id()));
+        let root = std::env::temp_dir().join(format!("everything-rust-numba-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("sim")).unwrap();
         std::fs::write(root.join("pyproject.toml"), "[project]\nname = \"sim\"\n").unwrap();
@@ -1379,7 +1379,7 @@ mod tests {
     #[test]
     fn functions_bridge_keeps_in_js_are_not_offered_for_porting() {
         let root =
-            std::env::temp_dir().join(format!("rust-anything-js-only-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-js-only-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(&root).unwrap();
         std::fs::write(
@@ -1457,7 +1457,7 @@ mod tests {
     #[test]
     fn a_python_generator_is_not_offered_for_porting() {
         let root =
-            std::env::temp_dir().join(format!("rust-anything-py-js-only-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-py-js-only-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("demo")).unwrap();
         std::fs::write(
@@ -1520,7 +1520,7 @@ mod tests {
     #[test]
     fn a_redefined_python_function_is_judged_by_the_definition_that_ran() {
         let root =
-            std::env::temp_dir().join(format!("rust-anything-py-redef-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-py-redef-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("demo")).unwrap();
         std::fs::write(
@@ -1670,7 +1670,7 @@ mod tests {
     #[test]
     fn finds_the_argument_that_varies_per_item() {
         let root =
-            std::env::temp_dir().join(format!("rust-anything-profile-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-profile-{}", std::process::id()));
         std::fs::create_dir_all(&root).unwrap();
         std::fs::write(
             root.join("search.ts"),

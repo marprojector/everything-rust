@@ -9,11 +9,11 @@ description: Китапханәнең кабат уйнатырлык проце
 очраклары исбат.
 
 ```sh
-rust-anything app front-door .        # rust/app: ачык API'лы Rust crate
+everything-rust app front-door .        # rust/app: ачык API'лы Rust crate
 # һәр берәмлек цикл аша: bridge, record, port.rs, build, diff, gate; аннары:
-rust-anything app wire . textkit-rs   # rust/app'тан кабат экспортлана; оригинал аның shadow'ын импортлый
-rust-anything app replay .            # һәр тоташтырылган берәмлекнең очраклары; fallback = әле оригиналда калган экспортлар
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app'тан кабат экспортлана; оригинал аның shadow'ын импортлый
+everything-rust app replay .            # һәр тоташтырылган берәмлекнең очраклары; fallback = әле оригиналда калган экспортлар
+everything-rust app lift .
 ```
 
 - Репозиторийда `main` һәм сервер булмаса, `app front-door` ачык API'ны (һәр берәмлекнең экспортларын) таба
@@ -21,7 +21,7 @@ rust-anything app lift .
   берәмлек аның модуленә әйләнә: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` ясаган crate'ны ала, `gate` җибәрә һәм берәмлекнең shadow алмаштыргычын яза:
   оригинал пакет аны берәмлек урынына импортлый, шуңа күрә аны чакыручылар оригинал API'ны саклый һәм
-  Rust'ка барып җитә. `RUST_ANYTHING_UNIT_<NAME>=original` берәмлекне кире җибәрә (C: shadow флагларыннан
+  Rust'ка барып җитә. `EVERYTHING_RUST_UNIT_<NAME>=original` берәмлекне кире җибәрә (C: shadow флагларыннан
   башка җыегыз).
 - `app replay` һәр тоташтырылган берәмлекнең язып алынган очракларын аның binding'лары аша җибәрә. Fallback өлеше
   ул Rust әле җавап бирмәгән ачык экспортлар өлеше: тоташтырылмаган берәмлекләр һәм `bridge` оригинал телдә

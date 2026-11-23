@@ -5,7 +5,7 @@ description: あなたかエージェントが書く唯一のファイル port.r
 
 # 移植
 
-移植版は、あなたかエージェントが `src/port.rs` に書きます。クレートのそれ以外はすべて生成されます。`port.rs` のシグネチャを変更したら、`rust-anything refresh <crate>` を実行してください。
+移植版は、あなたかエージェントが `src/port.rs` に書きます。クレートのそれ以外はすべて生成されます。`port.rs` のシグネチャを変更したら、`everything-rust refresh <crate>` を実行してください。
 
 ## diff の手戻りを 1 回減らすルール
 
@@ -25,14 +25,14 @@ description: あなたかエージェントが書く唯一のファイル port.r
 ## 例: 位置が 1 つずれた絵文字
 
 [x18n](https://github.com/x18n-dev/x18n) の `packages/core/src/fuzzy.ts` を、
-[`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo) で 2 通りの方法で移植しました:
+[`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo) で 2 通りの方法で移植しました:
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core runs in browsers)
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core runs in browsers)
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # src/port.rs を書く
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 Rust の `char` でインデックスした最初の移植版は、簡単なテストには合格しましたが `diff` で失敗しました:
@@ -46,7 +46,7 @@ JS の `indexOf` は UTF-16 コードユニットで数えるので、絵文字�
 `demo/*/src/port.rs` の移植版は生成された `utf16` ヘルパーを使い、2000/2000 ケースとゲートに合格しています。
 napi-rs 版（`demo/fuzzy-napi`）と wasm-bindgen 版（`demo/fuzzy-rs`）の両方です。
 
-rust-anything が x18n 全体について書いた計画: [`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md)。
+everything-rust が x18n 全体について書いた計画: [`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md)。
 ## どのくらいの大きさにすべきか
 
 `gate` は移植版の行数を元の実装の行数と比較し、3 倍（インポートとシグネチャのために 50 行の余裕あり）を超えると失敗します。それを超えるのは、たいていクレートがすでにやっていることを手書きしているか、ケースを 1 つずつ処理しているからです。使うべきクレートは `analyze` が一覧表示します。

@@ -17,8 +17,8 @@
     "closeMenu": "Менюны ябу",
     "menu": "Меню",
     "language": "Тел",
-    "home": "rust-anything баш бите",
-    "github": "GitHub'та rust-anything",
+    "home": "everything-rust баш бите",
+    "github": "GitHub'та everything-rust",
     "onThisPage": "Бу биттә",
     "editPage": "Бу битне GitHub'та төзәтү",
     "previous": "Алдагы",
@@ -54,7 +54,7 @@
       "project": "Проект"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything нәрсә ул",
+      "/docs/introduction/what-is-everything-rust": "everything-rust нәрсә ул",
       "/docs/introduction/quick-start": "Тиз башлау",
       "/docs/introduction/install": "Урнаштыру",
       "/docs/introduction/agents": "Агентны көйләү",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Кушымтагызны Rust телендә яңадан языгыз.",
     "title2": "Аның шулай ук эшләвен исбатлагыз.",
-    "sub": "rust-anything кодыгыз нәрсә эшләгәнен язып ала, аннары язып алынган һәр очракны Rust портында кабат уйната. Rust кодын агентыгыз яза. Чыгышлар туры килмичә, бернәрсә дә чыгарылмый.",
+    "sub": "everything-rust кодыгыз нәрсә эшләгәнен язып ала, аннары язып алынган һәр очракны Rust портында кабат уйната. Rust кодын агентыгыз яза. Чыгышлар туры килмичә, бернәрсә дә чыгарылмый.",
     "cta": "Тиз башлауны уку",
     "source": "GitHub'тагы чыганак код",
     "sourceLanguage": "Чыганак тел",
@@ -138,10 +138,10 @@
     "installTitle": "Урнаштыру",
     "installDesc": "CLI'ны урнаштырыгыз, аннары MCP серверны һәм workflow skill'ны Claude Code, Codex, Cursor һәм Gemini CLI'да теркәгез.",
     "installNote": "macOS, Linux һәм Windows өчен әзер бинар файллар һәр [GitHub релизында]({releases}).",
-    "agentPrompt": "rust-anything урнаштыр: `cargo install rust-anything` җибәр, аннары `rust-anything setup`.",
+    "agentPrompt": "everything-rust урнаштыр: `cargo install everything-rust` җибәр, аннары `everything-rust setup`.",
     "agentRestart": "Сине кайчан яңадан җибәрергә кирәклеген әйт.",
     "loopTitle": "Порт ничек эшләнә",
-    "loopDesc": "Оригинал дөреслек чыганагы булып кала. rust-anything кодны тәрҗемә итми: ул агент чамалый алмаган нәрсәләрне һәм порт кайчан әзер икәнен әйтүче gate бирә.",
+    "loopDesc": "Оригинал дөреслек чыганагы булып кала. everything-rust кодны тәрҗемә итми: ул агент чамалый алмаган нәрсәләрне һәм порт кайчан әзер икәнен әйтүче gate бирә.",
     "steps": [
       {
         "title": "Язып алу",
@@ -272,7 +272,7 @@
       "csharp": "бөтен кушымтаны язып алу һәм кабат уйнату; берәмлек bridge'лары киләсе адымда"
     },
     "sponsorsTitle": "Спонсорлар",
-    "sponsorsDesc": "rust-anything бушлай һәм ачык чыганаклы. Әгәр ул эшегездә ярдәм итсә, зинһар, аңа спонсорлык итүне уйлап карагыз. Сезнең ярдәм эшләнмәне дәвам итәргә мөмкинлек бирә.",
+    "sponsorsDesc": "everything-rust бушлай һәм ачык чыганаклы. Әгәр ул эшегездә ярдәм итсә, зинһар, аңа спонсорлык итүне уйлап карагыз. Сезнең ярдәм эшләнмәне дәвам итәргә мөмкинлек бирә.",
     "companySponsor": "Компания спонсоры",
     "becomeSponsor": "Спонсор булу"
   }

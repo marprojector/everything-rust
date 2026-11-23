@@ -8,10 +8,10 @@ description: app front-door は元の実装の前に Rust バイナリを置き�
 まずエントリポイントを Rust に移し、それから 1 ユニットずつコマンドを引き渡します:
 
 ```sh
-rust-anything app front-door .                            # rust/app: すべてのコマンドが元の実装を実行する
-rust-anything app wire . textkit --command upper          # textkit-rs が gate に合格した後
+everything-rust app front-door .                            # rust/app: すべてのコマンドが元の実装を実行する
+everything-rust app wire . textkit --command upper          # textkit-rs が gate に合格した後
 # rust/app/src/units/textkit.rs にグルーコードを書き、その後:
-rust-anything app wire . textkit                          # 再び 100%、フォールバック率は下がる
+everything-rust app wire . textkit                          # 再び 100%、フォールバック率は下がる
 ```
 
 ## フロントドア
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 再び 100%、フォ
 3. `src/units/<unit>.rs` を一度だけ書き出します。中身はあなたかエージェントが埋めます: 引数をパースし、`<crate>::port` を呼び、元の実装が出力するものを出力します。
 4. コマンドをそこにルーティングし、ビルドしてリプレイします。
 
-グルーコードを書いた後にもう一度実行すると、100% 合格でフォールバック率が下がります。`RUST_ANYTHING_UNIT_<NAME>=original` を指定すると、リフトまでの間、ワイヤリングしたユニットを元の実装に戻せます。
+グルーコードを書いた後にもう一度実行すると、100% 合格でフォールバック率が下がります。`EVERYTHING_RUST_UNIT_<NAME>=original` を指定すると、リフトまでの間、ワイヤリングしたユニットを元の実装に戻せます。
 
 コマンド名のない argv（引数なし、未知のコマンド、使い方のエラー）のために、アプリ自身の名前をコマンドとしてワイヤリングしてください（`--command mytool`）。
 

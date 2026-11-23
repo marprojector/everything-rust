@@ -13,7 +13,7 @@ description: Migre um pacote Go para Rust através de chamadas cgo tipadas e de 
 | Requisitos | Go 1.21+ |
 | Estado | Verificado em `path` do Go 1.24: 2,642/2,642 (542 das próprias tabelas de testes do Go), o gate passa |
 
-O `profile` funciona através de `go test`: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Os lotes são `NewFnBatch(items)`; feche-os quando terminar.
+O `profile` funciona através de `go test`: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Os lotes são `NewFnBatch(items)`; feche-os quando terminar.
 
 ## O que uma migração tem de acertar
 

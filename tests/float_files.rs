@@ -15,7 +15,7 @@ fn float_files_match_within_the_tolerance_and_report_real_differences() {
     let Some(python) = common::python() else {
         return;
     };
-    let repo = std::env::temp_dir().join(format!("rust-anything-floats-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!("everything-rust-floats-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     std::fs::create_dir_all(&repo).unwrap();
     std::fs::write(repo.join("wave.py"), WAVE).unwrap();
@@ -24,7 +24,7 @@ fn float_files_match_within_the_tolerance_and_report_real_differences() {
         "{\"name\": \"wave\", \"args\": [\"1000\", \"out.f32\"]}\n",
     )
     .unwrap();
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let recorded = Command::new(cli)
         .args([
             "app",

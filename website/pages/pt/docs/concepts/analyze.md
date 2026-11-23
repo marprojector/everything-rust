@@ -10,7 +10,7 @@ description: Descubra para onde vai o tempo com o profile e depois planeie unida
 Quando o objetivo é velocidade, meça antes de escolher qualquer coisa:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # ou: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # ou: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ O `profile` executa uma carga de trabalho real sob o profiler da linguagem (node
 ## Analyze: planear a migração
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # para pessoas
-rust-anything analyze <repo> --json            # para agentes: schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # mais pontos de entrada, forma, dependências, decisões
+everything-rust analyze <repo> -o plan.md        # para pessoas
+everything-rust analyze <repo> --json            # para agentes: schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # mais pontos de entrada, forma, dependências, decisões
 ```
 
 O `analyze` lista as unidades, a ordem de migração, os riscos com `file:line`, a bridge por unidade, o grau de correspondência de cada dependência a uma crate e `start_here`: as melhores primeiras migrações. `--whole-app` acrescenta a forma da aplicação (CLI, servidor ou biblioteca) e os pontos de entrada, todas as dependências (importadas ou declaradas) com a respetiva crate, as peças (unidades que se importam mutuamente movem-se em conjunto) e decisões numeradas com uma resposta recomendada. Consulte [Migrar uma aplicação inteira](/docs/whole-apps/overview).

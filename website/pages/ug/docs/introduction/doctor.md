@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor تىل ئىجرا مۇھىتلىرى، ۋاكالەتچى تەڭشىكى ۋە MCP مۇلازىمېتىرىنى تەكشۈرىدۇ، ھەر بىر مەسىلىنى تۈزىتىدىغان بۇيرۇقنى كۆرسىتىدۇ.
+description: everything-rust doctor تىل ئىجرا مۇھىتلىرى، ۋاكالەتچى تەڭشىكى ۋە MCP مۇلازىمېتىرىنى تەكشۈرىدۇ، ھەر بىر مەسىلىنى تۈزىتىدىغان بۇيرۇقنى كۆرسىتىدۇ.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` تىل ئىجرا مۇھىتلىرى، ۋاكالەتچى تەڭشىكى ۋە MCP مۇلازىمېتىرىنى تەكشۈرىدۇ، ھەمدە ھەر بىر مەسىلىنى تۈزىتىدىغان بۇيرۇقنى بېسىپ چىقىرىدۇ. زۆرۈر بىر نەرسە كەم بولسا، 1 بىلەن چېكىنىدۇ.

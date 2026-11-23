@@ -8,9 +8,9 @@ description: app record 在应用文档中的示例、你的输入和语义陷�
 `record` 和 `diff` 验证一个单元；`app record` 和 `app replay` 验证整个应用，适用于六种语言中任意一种的 CLI 和服务端。应用被当作黑盒。
 
 ```sh
-rust-anything app record . -- python3 cli.py          # 运行原实现的命令
-rust-anything app replay .                            # 原实现必须 100% 通过
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # 运行原实现的命令
+everything-rust app replay .                            # 原实现必须 100% 通过
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## 用例从哪里来
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## 回放
 
 - `app replay` 让任意构建产物跑一遍这些用例，打印 `passed/total`，写出 `rust/app-cases/replay-report.md`（每条失败用例附一份 diff），并在出现任何不一致时以非零状态码退出。
-- 如果构建产物会向 `RUST_ANYTHING_FALLBACK_LOG` 指定的文件追加内容（每次回退到原实现记一行），就像[前门](/docs/whole-apps/front-door)那样，那么它的回退率也会被报告。
+- 如果构建产物会向 `EVERYTHING_RUST_FALLBACK_LOG` 指定的文件追加内容（每次回退到原实现记一行），就像[前门](/docs/whole-apps/front-door)那样，那么它的回退率也会被报告。
 - `app replay --case <name>` 按报告中给出的名称重跑单条用例：这是在全部重跑之前修复某个不一致的快速、可重复的循环。
 
 ## 在 CI 中回放
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 报告中没有耗时或临时路径：同一个构建产物回放两次，写出的文件完全相同。提交它，然后在 CI 中运行：
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

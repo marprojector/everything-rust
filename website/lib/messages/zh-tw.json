@@ -17,8 +17,8 @@
     "closeMenu": "關閉選單",
     "menu": "選單",
     "language": "語言",
-    "home": "rust-anything 首頁",
-    "github": "GitHub 上的 rust-anything",
+    "home": "everything-rust 首頁",
+    "github": "GitHub 上的 everything-rust",
     "onThisPage": "本頁內容",
     "editPage": "在 GitHub 上編輯此頁",
     "previous": "上一頁",
@@ -54,7 +54,7 @@
       "project": "專案"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "什麼是 rust-anything",
+      "/docs/introduction/what-is-everything-rust": "什麼是 everything-rust",
       "/docs/introduction/quick-start": "快速開始",
       "/docs/introduction/install": "安裝",
       "/docs/introduction/agents": "設定你的 AI 代理",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "用 Rust 重寫你的應用程式。",
     "title2": "並證明它的行為完全相同。",
-    "sub": "rust-anything 會錄製你的程式碼做了什麼，再將每個已錄製的案例拿來重播比對 Rust 移植版本。Rust 程式碼由你的 AI 代理撰寫。在輸出完全一致之前，什麼都不會出貨。",
+    "sub": "everything-rust 會錄製你的程式碼做了什麼，再將每個已錄製的案例拿來重播比對 Rust 移植版本。Rust 程式碼由你的 AI 代理撰寫。在輸出完全一致之前，什麼都不會出貨。",
     "cta": "閱讀快速開始",
     "source": "GitHub 原始碼",
     "sourceLanguage": "來源語言",
@@ -138,10 +138,10 @@
     "installTitle": "安裝",
     "installDesc": "安裝 CLI，接著在 Claude Code、Codex、Cursor 與 Gemini CLI 中註冊 MCP 伺服器與工作流程技能。",
     "installNote": "macOS、Linux 與 Windows 的預先建置執行檔可在每個 [GitHub release]({releases}) 下載。",
-    "agentPrompt": "安裝 rust-anything：執行 `cargo install rust-anything`，然後執行 `rust-anything setup`。",
+    "agentPrompt": "安裝 everything-rust：執行 `cargo install everything-rust`，然後執行 `everything-rust setup`。",
     "agentRestart": "需要重新啟動你的時候告訴我。",
     "loopTitle": "一次移植如何完成",
-    "loopDesc": "原始版本始終是唯一可信來源。rust-anything 不翻譯程式碼：它提供 AI 代理猜不到的資訊，以及一道判定移植何時完成的閘門。",
+    "loopDesc": "原始版本始終是唯一可信來源。everything-rust 不翻譯程式碼：它提供 AI 代理猜不到的資訊，以及一道判定移植何時完成的閘門。",
     "steps": [
       {
         "title": "錄製",
@@ -272,7 +272,7 @@
       "csharp": "整個應用程式的錄製與重播；單元橋接即將推出"
     },
     "sponsorsTitle": "贊助者",
-    "sponsorsDesc": "rust-anything 是免費的開源軟體。如果它對你的工作有幫助，請考慮贊助。你的支持能讓開發持續下去。",
+    "sponsorsDesc": "everything-rust 是免費的開源軟體。如果它對你的工作有幫助，請考慮贊助。你的支持能讓開發持續下去。",
     "companySponsor": "企業贊助者",
     "becomeSponsor": "成為贊助者"
   }

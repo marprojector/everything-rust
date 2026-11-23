@@ -1,6 +1,6 @@
 # Porting a whole application to pure Rust: research notes
 
-Question: how should rust-anything help a coding agent port a whole application (TypeScript/JavaScript,
+Question: how should everything-rust help a coding agent port a whole application (TypeScript/JavaScript,
 Python, C, Go, Ruby, Java) to a standalone Rust binary, piece by piece, while proving behavior did not
 change, with the original kept only as a reference at the end?
 
@@ -23,7 +23,7 @@ semantic probes in section 4 were run locally (rustc 1.99.0, Node, CPython 3, Go
    ([Vercel](https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust)). Mercurial's `rhg`
    is a Rust binary that silently falls back to Python `hg` for anything unsupported
    ([D10093](https://phab.mercurial-scm.org/D10093)). With a Rust front door, the final "lift" is
-   deleting the fallback rather than a risky flip. rust-anything needs a second mode besides today's
+   deleting the fallback rather than a risky flip. everything-rust needs a second mode besides today's
    "host calls Rust": "Rust calls host for what is not ported yet".
 3. **The behavior oracle must move up to the process boundary.** Unit-level recordings do not cover
    config load order, CLI parsing edge cases, globbing or log output, which Turborepo names as the
@@ -166,7 +166,7 @@ Source: [Deliveroo Engineering](https://deliveroo.engineering/2019/02/14/moving-
   external service was rejected because call overhead would cancel the gain.
 - Each migrated class kept its Ruby version; feature flags chose per class, plus a master switch. One
   shared RSpec suite ran against both implementations. Near 1:1 port.
-- This is a hot-path port (today's rust-anything use case), not a whole-app port.
+- This is a hot-path port (today's everything-rust use case), not a whole-app port.
 
 ### Datadog static analyzer (Java to Rust, big-bang)
 
@@ -223,7 +223,7 @@ could not be fetched (TLS error). Details of how it was rolled out are **unverif
 
 ## 2. Behavior-equivalence techniques for whole apps
 
-| Technique | What it proves | Primary source | Fit for rust-anything |
+| Technique | What it proves | Primary source | Fit for everything-rust |
 | --- | --- | --- | --- |
 | End-to-end suite kept green at every step | No regressions in covered scenarios | [fish](https://fishshell.com/blog/rustport/) | Gate step "app e2e" after each unit |
 | Dual-path CI with output/hash comparison | Old and new paths agree on real workloads | [Turborepo](https://vercel.com/blog/finishing-turborepos-migration-from-go-to-rust) | App-level `diff`: run original and Rust binaries on the same cases |
@@ -328,7 +328,7 @@ Takeaways for the tool:
 
 Documented approaches, in the order they would occur:
 
-1. **Inside-out (today's rust-anything model).** Host program calls Rust units through bindings. Good
+1. **Inside-out (today's everything-rust model).** Host program calls Rust units through bindings. Good
    for hot paths; Deliveroo, pyca/cryptography and librsvg stayed here or ended with a thin host-facing
    shell ([Deliveroo](https://deliveroo.engineering/2019/02/14/moving-from-ruby-to-rust.html),
    [librsvg](https://lists.gnome.org/archives/ftp-release-list/2019-September/msg00117.html)). It never
@@ -357,7 +357,7 @@ Documented approaches, in the order they would occur:
    ([fish](https://fishshell.com/blog/rustport/)). The original is kept as the reference oracle for the
    app-level replay suite, not as a runtime dependency.
 
-Implications for rust-anything (design proposals, not sourced claims):
+Implications for everything-rust (design proposals, not sourced claims):
 
 - Add a `lift` plan that tracks three states per app: host-main (bindings), rust-main with fallback,
   pure. Each state has its own gate.

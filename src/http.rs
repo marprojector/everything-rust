@@ -36,7 +36,7 @@ const SKIP_HEADERS: [&str; 12] = [
 ];
 const LOCAL_HOSTS: [&str; 4] = ["localhost", "127.0.0.1", "0.0.0.0", "[::1]"];
 
-/// `http` in `rust/app-cases/rust-anything.json`: the app is a server.
+/// `http` in `rust/app-cases/everything-rust.json`: the app is a server.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct HttpConfig {
     /// A port the original always listens on. When unset, every start gets a free port through
@@ -763,7 +763,7 @@ fn traps(bases: &[Req]) -> Vec<Req> {
     }
     out.push(Req {
         method: "GET".to_string(),
-        path: "/rust-anything-missing".to_string(),
+        path: "/everything-rust-missing".to_string(),
         headers: BTreeMap::new(),
         body: None,
     });
@@ -1084,7 +1084,7 @@ fn load_specs(dir: &Path) -> Result<Vec<Spec>> {
     let mut paths: Vec<PathBuf> = std::fs::read_dir(dir)
         .with_context(|| {
             format!(
-                "no HTTP cases in {}: run `rust-anything app record` first",
+                "no HTTP cases in {}: run `everything-rust app record` first",
                 dir.display()
             )
         })?
@@ -1367,7 +1367,7 @@ mod tests {
         );
         assert!(
             t.iter()
-                .all(|r| r.path.starts_with("/div/") || r.path == "/rust-anything-missing")
+                .all(|r| r.path.starts_with("/div/") || r.path == "/everything-rust-missing")
         );
         assert!(
             t.iter()

@@ -2,7 +2,7 @@ mod common;
 
 use std::path::Path;
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 #[test]
 fn record_reads_tabbed_go_mod_directives_with_comments() {
@@ -11,7 +11,7 @@ fn record_reads_tabbed_go_mod_directives_with_comments() {
     }
 
     let temp = std::env::temp_dir().join(format!(
-        "rust-anything-go-mod-directives {}",
+        "everything-rust-go-mod-directives {}",
         std::process::id()
     ));
     let result = record(&temp);
@@ -45,7 +45,7 @@ fn record(root: &Path) -> anyhow::Result<()> {
     })?;
     let manifest = bridge::Manifest::load(&out)?;
     assert_eq!(
-        rust_anything::harness_go::import_path(&manifest)?,
+        everything_rust::harness_go::import_path(&manifest)?,
         "example.com/textkit"
     );
     let recording = harness::record(&harness::RecordOptions {
@@ -57,7 +57,7 @@ fn record(root: &Path) -> anyhow::Result<()> {
         node_args: &[],
     })?;
     assert!(recording.cases > 0);
-    let driver_mod = std::fs::read_to_string(out.join(".rust-anything/go-original/go.mod"))?;
+    let driver_mod = std::fs::read_to_string(out.join(".everything-rust/go-original/go.mod"))?;
     assert!(
         driver_mod.lines().any(|line| line == "go 1.22"),
         "{driver_mod}"

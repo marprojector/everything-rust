@@ -1,5 +1,5 @@
 /* One-shot entry points over libavutil's CRC API, so a single recorded call covers a table
- * lookup or a table build plus the checksum. Part of rust-anything's ffmpeg
+ * lookup or a table build plus the checksum. Part of everything-rust's ffmpeg
  * case study; LGPL-2.1-or-later like the libavutil code it calls (see ../LICENSE). */
 #include <stdint.h>
 #include <stddef.h>

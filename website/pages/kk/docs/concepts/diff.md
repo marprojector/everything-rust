@@ -6,9 +6,9 @@ description: diff әр жазылған кейсті Rust-қа қарсы қай
 # Diff және known diffs
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N болуы керек
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N болуы керек
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` файлын құрастырылған Rust модуліне қарсы, түпнұсқаның шақырушылары шақыратындай етіп қайта ойнатады және сәйкессіздіктерді тізімдейді. Сәйкессіздік мінез-құлық айырмашылығы: жазбаны емес, портты түзетіңіз.

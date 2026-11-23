@@ -10,7 +10,7 @@ description: Find where the time goes with profile, then plan units, port order,
 When the goal is speed, measure before choosing anything:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # or: python3 bench.py, ruby
 ## Analyze: plan the port
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # for people
-rust-anything analyze <repo> --json            # for agents: schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
+everything-rust analyze <repo> -o plan.md        # for people
+everything-rust analyze <repo> --json            # for agents: schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # plus entry points, shape, dependencies, decisions
 ```
 
 `analyze` lists units, the port order, risks with `file:line`, the bridge per unit, how well each dependency maps to a crate, and `start_here`: the best first ports. `--whole-app` adds the app's shape (CLI, server or library) and entry points, every dependency (imported or declared) with its crate, pieces (units that import each other move together) and numbered decisions with a recommended answer. See [Port a whole app](/docs/whole-apps/overview).

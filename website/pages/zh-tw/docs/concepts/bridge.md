@@ -6,8 +6,8 @@ description: bridge 會為單一單元建立 Rust crate 的骨架，包含綁定
 # 橋接
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate 放在 <repo>/rust/<name>；絕不覆寫
-rust-anything refresh <crate>                  # 在修改 port.rs 中的簽章之後
+everything-rust bridge <repo> <unit-id>          # crate 放在 <repo>/rust/<name>；絕不覆寫
+everything-rust refresh <crate>                  # 在修改 port.rs 中的簽章之後
 ```
 
 `bridge` 會建立一個 crate，包含綁定（`lib.rs`，以及來源語言載入的包裝層）與待移植的空殼（`port.rs`）。你只需要在 `src/port.rs` 中撰寫移植版本；`src/lib.rs` 與包裝層都是自動產生的，而 `refresh` 會根據 `port.rs` 中的簽章重新產生它們，並加入任何新的批次類別。它從不更動 `port.rs`。

@@ -9,7 +9,7 @@ O [json-server](https://github.com/typicode/json-server) (75k estrelas, MIT, com
 1.0.0-beta.15) disponibiliza uma API REST a partir de um ficheiro JSON: Node, tinyhttp e lowdb. É a primeira
 aplicação completa migrada do princípio ao fim com o fluxo de aplicação completa (`app record`, `front-door`, `wire`, `lift`):
 o resultado é um único binário Rust que responde o mesmo que o servidor Node. Está tudo em
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs).
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs).
 
 | Etapa | Resultado |
 | --- | --- |
@@ -53,7 +53,7 @@ Benchmark: Apple M4 (10 núcleos, 16 GB), macOS 27.3, Node 24.15.0 a executar `l
 `tsc` o compila para o npm, o binário Rust compilado com `--release`. Ambos servem uma cópia da mesma
 base de dados em loopback; o `ab -k` envia os mesmos pedidos, 20,000 por linha (40 para o embed lento na
 base de dados grande) depois de um aquecimento. Duas execuções, cada uma iniciada com a carga média de 1 minuto abaixo de 3;
-as células indicam execução 1 / execução 2 em pedidos por segundo. O [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+as células indicam execução 1 / execução 2 em pedidos por segundo. O [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 é o script.
 
 A base de dados das fixtures (6 posts, 3 comentários):

@@ -1,0 +1,16 @@
+{
+  "schema": "everything-rust/front-door@1",
+  "name": "prettier",
+  "commands": [],
+  "units": [
+    {
+      "name": "js-format",
+      "crate": "js-format-rs",
+      "path": "../js-format-rs",
+      "commands": [
+        "prettier"
+      ],
+      "switch": "EVERYTHING_RUST_UNIT_JS_FORMAT"
+    }
+  ]
+}

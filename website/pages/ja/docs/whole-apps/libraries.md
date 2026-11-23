@@ -9,11 +9,11 @@ description: ライブラリにはリプレイするプロセスがありませ�
 ケースが証明になります。
 
 ```sh
-rust-anything app front-door .        # rust/app: 公開 API を持つ Rust クレート
+everything-rust app front-door .        # rust/app: 公開 API を持つ Rust クレート
 # 各ユニットでループを実行: bridge、record、port.rs、build、diff、gate。その後:
-rust-anything app wire . textkit-rs   # rust/app から再エクスポート。元の実装はそのシャドウをインポートする
-rust-anything app replay .            # ワイヤリングした全ユニットのケース。フォールバック = まだ元の実装にあるエクスポート
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app から再エクスポート。元の実装はそのシャドウをインポートする
+everything-rust app replay .            # ワイヤリングした全ユニットのケース。フォールバック = まだ元の実装にあるエクスポート
+everything-rust app lift .
 ```
 
 - `app front-door` は、リポジトリに `main` もサーバーもない場合（それ以外の場合は `--library`）に公開 API（全ユニットのエクスポート）を見つけ、
@@ -21,7 +21,7 @@ rust-anything app lift .
   ユニットはそのモジュールになります: `pub use textkit_rs::port as textkit;`。
 - `app wire` は `bridge` で作られたクレートを受け取り、`gate` を実行し、ユニットのシャドウの差し替え用モジュールを書き出します:
   元のパッケージはユニットの代わりにそれをインポートするので、呼び出し元は元の API のまま
-  Rust に到達します。`RUST_ANYTHING_UNIT_<NAME>=original` でユニットを元に戻せます（C: シャドウのフラグなしで
+  Rust に到達します。`EVERYTHING_RUST_UNIT_<NAME>=original` でユニットを元に戻せます（C: シャドウのフラグなしで
   ビルド）。
 - `app replay` は、ワイヤリングした全ユニットの記録ケースをそのバインディング経由で実行します。フォールバック率は、
   Rust がまだ応答していない公開エクスポートの割合です: ワイヤリングされていないユニットと、`bridge` が元の言語に

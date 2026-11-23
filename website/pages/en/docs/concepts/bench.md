@@ -6,7 +6,7 @@ description: bench times the recorded cases on the original and on the Rust, bri
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` times the recorded cases on the original and on the built Rust module, bridge included, and returns the rows and a verdict with advice: ship, keep the slower functions in the source language, or port a bigger unit. A speedup below 1 means the port is slower as its callers call it. `--min-ms` sets the minimum measured time per function and side (default 200).
@@ -31,7 +31,7 @@ Measured per call on real code ([six languages](/docs/real-world/six-languages))
 | Java | 0.18x | port bigger units |
 | Go | 0.04x | port bigger units |
 
-All 29 functions of x18n's core that can move without an API change were ported: every gate passes and 7,925 recorded cases match exactly, and `bench` showed the ports are slower than the TS as called from JS, because the bridge costs more than the work ([report](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms ran at 0.56x per call over its recorded cases ([case study](/docs/real-world/vercel-ms)).
+All 29 functions of x18n's core that can move without an API change were ported: every gate passes and 7,925 recorded cases match exactly, and `bench` showed the ports are slower than the TS as called from JS, because the bridge costs more than the work ([report](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms ran at 0.56x per call over its recorded cases ([case study](/docs/real-world/vercel-ms)).
 
 ## What wins: moving the loop
 

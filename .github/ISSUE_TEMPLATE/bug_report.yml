@@ -1,5 +1,5 @@
 name: Bug report
-description: Something rust-anything did wrong, or a port it got wrong
+description: Something everything-rust did wrong, or a port it got wrong
 labels: [bug]
 body:
   - type: markdown
@@ -34,8 +34,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: rust-anything version
-      description: Output of `rust-anything --version`.
+      label: everything-rust version
+      description: Output of `everything-rust --version`.
     validations:
       required: true
   - type: dropdown
@@ -58,7 +58,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Output of `rust-anything doctor` (1.6+), or your OS, Node/Python/etc. versions. Check it for paths or names you'd rather not share.
+      description: Output of `everything-rust doctor` (1.6+), or your OS, Node/Python/etc. versions. Check it for paths or names you'd rather not share.
       render: text
       placeholder: macOS 26 arm64, Node 22
     validations:

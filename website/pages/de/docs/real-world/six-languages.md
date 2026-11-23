@@ -1,17 +1,17 @@
 ---
 title: Sechs Sprachen
-description: rust-anything durchgehend auf echtem Code in Go, Ruby, Python, Java und C ausgeführt, mit Geschwindigkeit pro Aufruf und als Batch, und den Fehlern, die die Läufe gefunden haben.
+description: everything-rust durchgehend auf echtem Code in Go, Ruby, Python, Java und C ausgeführt, mit Geschwindigkeit pro Aufruf und als Batch, und den Fehlern, die die Läufe gefunden haben.
 ---
 
 # Echter Code in sechs Sprachen
 
-rust-anything wurde durchgehend (analyze, bridge, record, port, diff, gate, bench) auf echtem Code in
+everything-rust wurde durchgehend (analyze, bridge, record, port, diff, gate, bench) auf echtem Code in
 jeder unterstützten Sprache ausgeführt. Der Code musste bereits auf diesem Rechner liegen: Aus dem
 Internet heruntergeladener Code wurde nicht ausgeführt. Daher sind die Ziele Module der Standardbibliotheken, die mit den
 installierten Toolchains mitkommen, und für Java und C, wo kein passender Bibliotheksquellcode auf der Platte lag, dienen das JDK
 und glibc selbst als Orakel hinter einer dünnen Fassade.
 
-Die Portierungen, aufgezeichneten Fälle und zusätzlichen Eingaben liegen in [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md).
+Die Portierungen, aufgezeichneten Fälle und zusätzlichen Eingaben liegen in [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md).
 
 | Sprache | Code | Funktionen | Aufgezeichnete Fälle | Ergebnis |
 | --- | --- | ---: | ---: | --- |
@@ -61,7 +61,7 @@ Was entscheidet:
 ### Batches: die Suche von x18n
 
 Die Blatt-Portierungen oben werden pro Aufruf gemessen. Bei der Sidebar-Suche von x18n (50,000 Keys, Buchstabe
-für Buchstabe getippt) zeigte `rust-anything profile`, dass `fuzzyScore` etwa ein Viertel des Laufs ausmacht, einmal pro Key aufgerufen von
+für Buchstabe getippt) zeigte `everything-rust profile`, dass `fuzzyScore` etwa ein Viertel des Laufs ausmacht, einmal pro Key aufgerufen von
 `matched`, und schlug `--batch fuzzyScore:text` vor. Der generierte `FuzzyScoreBatch` hält die
 Keys in Rust; ein `FuzzyScoreIndex` in `port.rs` wandelt sie einmal in UTF-16-Kleinbuchstaben um und hält eine 64-Bit-Maske
 der Codeeinheiten in jedem Key, sodass die meisten Keys, die nicht passen können, ungelesen übersprungen werden. Die Ergebnisse
@@ -112,12 +112,12 @@ Pro Aufruf ging die Go-Portierung von 0.73x auf 0.93x, die Java-Portierung von 0
 
 ## Was die Läufe gefunden haben
 
-### Fehler in rust-anything, behoben
+### Fehler in everything-rust, behoben
 
 - **Floats um eine ULP verändert** (Java-Lauf). Der Standard-Float-Parser von `serde_json` rundet nicht immer
-  korrekt. rust-anything verfälschte aufgezeichnete Eingaben beim Lesen, und generierte Crates
+  korrekt. everything-rust verfälschte aufgezeichnete Eingaben beim Lesen, und generierte Crates
   verfälschten sie erneut. 43 `Double.toString`-Fälle schlugen bei einer korrekten Portierung fehl. Behoben mit dem
-  Feature `float_roundtrip` von `serde_json` in rust-anything und in jedem Crate, das es erzeugt (napi-rs,
+  Feature `float_roundtrip` von `serde_json` in everything-rust und in jedem Crate, das es erzeugt (napi-rs,
   wasm und der JSON-Dispatcher).
 - **C-Abstürze beendeten die Aufzeichnung** (C-Lauf). Eingaben außerhalb des Vertrags einer C-Funktion (`isalpha(INT_MAX)`)
   lassen glibc mit einem Segfault abstürzen. Der C-Treiber führt jetzt jeden Fall in einem geforkten Kindprozess aus und zeichnet
@@ -195,4 +195,4 @@ In der ersten Portierung behandelt und durch die aufgezeichneten Fälle bestäti
 | Ruby | generierter Treiber lädt die Originaldateien | derselbe Treiber lädt den Fiddle-Wrapper | JSON-Dispatcher + Fiddle-Wrapper, der dieselben Module definiert | Datei, die nach dem Original per require geladen wird: `prepend`et beide |
 | Java | Reflection-Treiber, kompiliert mit den Originalquellen | derselbe Treiber, kompiliert mit den JNI-Wrapper-Klassen | JSON-Dispatcher über JNI + Wrapper-Klassen mit den ursprünglichen statischen Methoden | `<Class>Shadow`-Klassen |
 | Python | prozessinterner Treiber importiert das Original | derselbe Treiber importiert das PyO3-Paket | PyO3 | Modul mit der ursprünglichen API |
-| C | `cc -shared` des Originals, aufgerufen über ctypes, ein Fork pro Fall | ctypes über dem Rust-`cdylib` | `extern "C"`-Funktionen mit den ursprünglichen Namen und einem Header | Shadow-`.c` mit `-D`-Umbenennungen; das Feature `shadow` des Crates exportiert nur `rust_anything_`-Namen |
+| C | `cc -shared` des Originals, aufgerufen über ctypes, ein Fork pro Fall | ctypes über dem Rust-`cdylib` | `extern "C"`-Funktionen mit den ursprünglichen Namen und einem Header | Shadow-`.c` mit `-D`-Umbenennungen; das Feature `shadow` des Crates exportiert nur `everything_rust_`-Namen |

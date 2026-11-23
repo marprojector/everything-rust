@@ -9,7 +9,7 @@ description: 第一个端到端迁移的整个应用。一个与 Node 服务端�
 1.0.0-beta.15）基于一个 JSON 文件提供 REST API：Node、tinyhttp 和 lowdb。它是第一个
 用整应用流程（`app record`、`front-door`、`wire`、`lift`）端到端迁移的应用：
 结果是一个与 Node 服务端应答完全一致的 Rust 二进制。全部内容位于
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs)。
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs)。
 
 | 步骤 | 结果 |
 | --- | --- |
@@ -53,7 +53,7 @@ description: 第一个端到端迁移的整个应用。一个与 Node 服务端�
 `tsc` 为 npm 构建的 `lib/bin.js`，Rust 二进制使用 `--release` 构建。两者都在回环地址上提供同一个
 数据库的副本；`ab -k` 在预热之后发送相同的请求，每行 20,000 个（大数据库上较慢的嵌入请求为 40 个）。
 共运行两次，每次都在 1 分钟平均负载低于 3 时开始；
-单元格给出第 1 次 / 第 2 次运行的每秒请求数。[`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+单元格给出第 1 次 / 第 2 次运行的每秒请求数。[`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 是所用的脚本。
 
 测试夹具数据库（6 篇帖子，3 条评论）：

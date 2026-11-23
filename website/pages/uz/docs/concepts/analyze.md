@@ -10,7 +10,7 @@ description: profile bilan vaqt qayerga ketishini toping, so'ng analyze bilan bi
 Maqsad tezlik bo'lsa, biror narsani tanlashdan oldin o'lchang:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # yoki: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # yoki: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # yoki: python3 bench.py, ru
 ## Analyze: portni rejalashtiring
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # odamlar uchun
-rust-anything analyze <repo> --json            # agentlar uchun: rust-anything/analyze@1 sxemasi
-rust-anything analyze <repo> --whole-app       # qo'shimcha: kirish nuqtalari, shakl, bog'liqliklar, qarorlar
+everything-rust analyze <repo> -o plan.md        # odamlar uchun
+everything-rust analyze <repo> --json            # agentlar uchun: everything-rust/analyze@1 sxemasi
+everything-rust analyze <repo> --whole-app       # qo'shimcha: kirish nuqtalari, shakl, bog'liqliklar, qarorlar
 ```
 
 `analyze` birliklarni, port tartibini, `file:line` bilan xavflarni, har bir birlik uchun ko'prikni, har bir bog'liqlik crate'ga qanchalik yaxshi moslashishini va `start_here` ni ro'yxatlaydi: eng yaxshi birinchi portlar. `--whole-app` ilovaning shaklini (CLI, server yoki kutubxona) va kirish nuqtalarini, har bir bog'liqlikni (import qilingan yoki e'lon qilingan) uning crate'i bilan, qismlarni (bir-birini import qiladigan birliklar birga ko'chadi) va tavsiya etilgan javobli raqamlangan qarorlarni qo'shadi. [Butun ilovani port qilish](/docs/whole-apps/overview) sahifasiga qarang.

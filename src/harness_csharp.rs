@@ -13,7 +13,7 @@ use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 use crate::ts::discover::FileKind;
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn quiet(cmd: &mut Command) -> &mut Command {
     cmd.env("DOTNET_CLI_TELEMETRY_OPTOUT", "1")
@@ -110,7 +110,7 @@ fn prepare(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<Driver> {
             crate_dir
                 .join(crate::codegen_csharp::wrapper_path(m))
                 .canonicalize()
-                .context("the C# wrapper is missing (run `rust-anything refresh`)")?,
+                .context("the C# wrapper is missing (run `everything-rust refresh`)")?,
         );
     }
     std::fs::write(dir.join("Driver.cs"), crate::codegen_csharp::driver())?;
@@ -140,7 +140,7 @@ fn prepare(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<Driver> {
         },
     )?;
     Ok(Driver {
-        dll: out.join("RustAnythingDriver.dll"),
+        dll: out.join("EverythingRustDriver.dll"),
         rust,
     })
 }
@@ -174,7 +174,7 @@ fn driver_command(
     if driver.rust {
         let lib = built_file(crate_dir, m).with_context(|| {
             format!(
-                "no built library in {} (run `rust-anything build {}` first)",
+                "no built library in {} (run `everything-rust build {}` first)",
                 crate_dir.join("cs").display(),
                 crate_dir.display()
             )
@@ -217,7 +217,7 @@ fn need_cases(crate_dir: &Path) -> Result<PathBuf> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -240,7 +240,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = need_cases(crate_dir)?;
     if built_file(crate_dir, m).is_none() {
         bail!(
-            "no built library in {} (run `rust-anything build {}` first)",
+            "no built library in {} (run `everything-rust build {}` first)",
             crate_dir.join("cs").display(),
             crate_dir.display()
         );

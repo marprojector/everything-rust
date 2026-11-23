@@ -361,7 +361,7 @@ fn lazy(port: &crate::codegen::PortApi, f: &ExportedFn, p: &Param) -> bool {
 const C_CHARS: &str = r#"
 /// A `const char *` read one byte at a time up to its NUL, without measuring it first: for ports
 /// where `strlen` would cost more than the work (`av_strcasecmp` on short words). A port opts in
-/// by typing the parameter `Option<crate::CChars<'_>>`; `rust-anything refresh` then passes it.
+/// by typing the parameter `Option<crate::CChars<'_>>`; `everything-rust refresh` then passes it.
 #[derive(Clone, Debug)]
 pub struct CChars<'a> {
     ptr: std::ptr::NonNull<std::ffi::c_char>,
@@ -427,7 +427,7 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
     let any_len = all().any(|k| matches!(k, CKind::Len(_)));
     let mut out = format!(
         "//! C ABI for `{}`: drop-in replacements with the original names and signatures, generated\n\
-         //! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.\n\n",
+         //! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.\n\n",
         m.unit
     );
     out.push_str("pub mod port;\n");
@@ -441,7 +441,7 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
         out.push_str(C_CHARS);
     }
     if any_string || any_bytes || any_buffer || any_out || any_outptr || any_len {
-        out.push_str("\nmod __rust_anything_c_abi {\n");
+        out.push_str("\nmod __everything_rust_c_abi {\n");
         if any_lazy {
             out.push_str(
                 r#"    /// A `const char *` argument read as the port goes; `None` for `NULL`.
@@ -574,7 +574,7 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
                 .find(|p| kind(p) == CKind::Len(i))
                 .map_or_else(
                     || "0".to_string(),
-                    |p| format!("crate::__rust_anything_c_abi::len({})", ident(&p.name)),
+                    |p| format!("crate::__everything_rust_c_abi::len({})", ident(&p.name)),
                 )
         };
         let args: Vec<String> = f
@@ -585,18 +585,18 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
                 let name = ident(&p.name);
                 Some(match kind(p) {
                     CKind::Str if lazy(&port, f, p) => {
-                        format!("crate::__rust_anything_c_abi::c_chars({name})")
+                        format!("crate::__everything_rust_c_abi::c_chars({name})")
                     }
-                    CKind::Str => format!("crate::__rust_anything_c_abi::c_str({name})"),
+                    CKind::Str => format!("crate::__everything_rust_c_abi::c_str({name})"),
                     CKind::Bytes => format!(
-                        "crate::__rust_anything_c_abi::bytes({name}.cast::<u8>(), {})",
+                        "crate::__everything_rust_c_abi::bytes({name}.cast::<u8>(), {})",
                         len_of(i)
                     ),
                     CKind::Buffer => format!(
-                        "crate::__rust_anything_c_abi::bytes_mut({name}.cast::<u8>(), {})",
+                        "crate::__everything_rust_c_abi::bytes_mut({name}.cast::<u8>(), {})",
                         len_of(i)
                     ),
-                    CKind::Out => format!("crate::__rust_anything_c_abi::out({name})"),
+                    CKind::Out => format!("crate::__everything_rust_c_abi::out({name})"),
                     CKind::OutPtr(_) => format!("{}_offset.as_mut()", p.name),
                     CKind::Len(_) => return None,
                     CKind::Struct | CKind::Scalar => name,
@@ -645,7 +645,7 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
                 .iter()
                 .map(|(name, base)| {
                     format!(
-                        "let mut {}_offset = crate::__rust_anything_c_abi::offset_in({name}, {base});\n    ",
+                        "let mut {}_offset = crate::__everything_rust_c_abi::offset_in({name}, {base});\n    ",
                         name.trim_start_matches("r#")
                     )
                 })
@@ -654,7 +654,7 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
                 .iter()
                 .map(|(name, base)| {
                     format!(
-                        "\n    crate::__rust_anything_c_abi::set_offset({name}, {base}, {}_offset);",
+                        "\n    crate::__everything_rust_c_abi::set_offset({name}, {base}, {}_offset);",
                         name.trim_start_matches("r#")
                     )
                 })
@@ -672,9 +672,9 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
              #[cfg(not(feature = \"shadow\"))]\n\
              // SAFETY: exported under the C name it replaces: link it instead of the original object.\n\
              #[unsafe(no_mangle)]\npub extern \"C\" fn {name}({params}){ret} {{\n    {body}\n}}\n\n\
-             /// `{name}` as `rust_anything_{name}`, for shadow builds beside the original.\n\
+             /// `{name}` as `everything_rust_{name}`, for shadow builds beside the original.\n\
              // SAFETY: a name no C code defines.\n\
-             #[unsafe(no_mangle)]\npub extern \"C\" fn rust_anything_{name}({params}){ret} {{\n    {body}\n}}",
+             #[unsafe(no_mangle)]\npub extern \"C\" fn everything_rust_{name}({params}){ret} {{\n    {body}\n}}",
             f.file,
             f.line,
             name = f.name,
@@ -684,11 +684,11 @@ pub fn lib_rs(m: &Manifest, port: &str) -> String {
     out
 }
 
-/// `include/<lib>.h`: the prototypes, and the `rust_anything_` aliases.
+/// `include/<lib>.h`: the prototypes, and the `everything_rust_` aliases.
 pub fn header(m: &Manifest) -> String {
     let guard = format!("{}_H", m.lib_name().to_uppercase());
     let mut out = format!(
-        "/* C API of the Rust port of `{}`, generated by rust-anything. */\n#ifndef {guard}\n#define {guard}\n\n\
+        "/* C API of the Rust port of `{}`, generated by everything-rust. */\n#ifndef {guard}\n#define {guard}\n\n\
          #include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n#include <sys/types.h>\n\n",
         m.unit
     );
@@ -699,12 +699,12 @@ pub fn header(m: &Manifest) -> String {
     for f in &m.exports {
         let _ = writeln!(out, "{};", c_prototype(f, &f.name));
     }
-    out.push_str("\n/* The same functions under `rust_anything_` names, for shadow runs. */\n");
+    out.push_str("\n/* The same functions under `everything_rust_` names, for shadow runs. */\n");
     for f in &m.exports {
         let _ = writeln!(
             out,
             "{};",
-            c_prototype(f, &format!("rust_anything_{}", f.name))
+            c_prototype(f, &format!("everything_rust_{}", f.name))
         );
     }
     let _ = writeln!(out, "\n#endif /* {guard} */");
@@ -727,14 +727,14 @@ fn c_len_of(f: &ExportedFn, i: usize) -> String {
 /// once, and both are compared.
 pub fn shadow_c(m: &Manifest) -> String {
     let mut out = String::from(
-        "/* Generated by rust-anything: runs the C original and the Rust port side by side.\n\
+        "/* Generated by everything-rust: runs the C original and the Rust port side by side.\n\
          *\n * Build: compile the original sources with `-D<name>=<name>__original` for each function\n\
          * below (see `shadow/flags.txt`), then link this file, those objects and the Rust library.\n\
          * Build the Rust library with `cargo build --release --features shadow`, so it exports only the\n\
-         * `rust_anything_` names. Callers get the original's results; differences are counted and reported\n\
+         * `everything_rust_` names. Callers get the original's results; differences are counted and reported\n\
          * on stderr.\n */\n\
          #include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <sys/types.h>\n\n\
-         long rust_anything_shadow_calls = 0;\nlong rust_anything_shadow_mismatches = 0;\n\n",
+         long everything_rust_shadow_calls = 0;\nlong everything_rust_shadow_mismatches = 0;\n\n",
     );
     let defs = c_struct_defs(m);
     if !defs.is_empty() {
@@ -746,7 +746,7 @@ pub fn shadow_c(m: &Manifest) -> String {
             out,
             "{};\n{};\n",
             c_prototype(f, &format!("{}__original", f.name)),
-            c_prototype(f, &format!("rust_anything_{}", f.name))
+            c_prototype(f, &format!("everything_rust_{}", f.name))
         );
         let mut before = String::new();
         let mut after = String::new();
@@ -843,7 +843,7 @@ pub fn shadow_c(m: &Manifest) -> String {
         let (call_original, call_rust, give) = if void {
             (
                 format!("    {}__original({args});\n", f.name),
-                format!("    rust_anything_{}({rust_args});\n", f.name),
+                format!("    everything_rust_{}({rust_args});\n", f.name),
                 String::new(),
             )
         } else {
@@ -854,7 +854,7 @@ pub fn shadow_c(m: &Manifest) -> String {
                     f.name
                 ),
                 format!(
-                    "    {} = rust_anything_{}({rust_args});\n",
+                    "    {} = everything_rust_{}({rust_args});\n",
                     c_decl(ret, "actual"),
                     f.name
                 ),
@@ -864,9 +864,9 @@ pub fn shadow_c(m: &Manifest) -> String {
         let _ = writeln!(
             out,
             "{prototype} {{\n    int differ = 0;\n{before}{call_original}{call_rust}{compare_ret}{after}\
-             \x20   rust_anything_shadow_calls++;\n    if (differ) {{\n\
-             \x20       rust_anything_shadow_mismatches++;\n        if (rust_anything_shadow_mismatches <= 10)\n\
-             \x20           fprintf(stderr, \"[rust-anything] mismatch in {name}\\n\");\n    }}\n{give}}}\n",
+             \x20   everything_rust_shadow_calls++;\n    if (differ) {{\n\
+             \x20       everything_rust_shadow_mismatches++;\n        if (everything_rust_shadow_mismatches <= 10)\n\
+             \x20           fprintf(stderr, \"[everything-rust] mismatch in {name}\\n\");\n    }}\n{give}}}\n",
             name = f.name
         );
     }
@@ -886,9 +886,9 @@ pub fn shadow_flags(m: &Manifest) -> String {
 pub fn cargo_toml(m: &Manifest) -> String {
     format!(
         "[package]\nname = \"{}\"\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"{MIN_RUST}\"\npublish = false\n\
-         description = \"Rust port of `{}`, generated by rust-anything\"\n\n\
+         description = \"Rust port of `{}`, generated by everything-rust\"\n\n\
          [lib]\ncrate-type = [\"cdylib\", \"staticlib\", \"rlib\"]\n\n\
-         [features]\n# Export only the `rust_anything_` names, to link beside the original C code.\nshadow = []\n\n[dependencies]\n\n\
+         [features]\n# Export only the `everything_rust_` names, to link beside the original C code.\nshadow = []\n\n[dependencies]\n\n\
          [profile.release]\nlto = true\n\n[lints.clippy]\nall = {{ level = \"warn\", priority = -1 }}\n\n[lints.rust]\nunused_lifetimes = \"warn\"\ntrivial_numeric_casts = \"warn\"\n",
         m.crate_name, m.unit
     )

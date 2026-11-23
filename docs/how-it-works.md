@@ -1,6 +1,6 @@
 # How it works
 
-How rust-anything checks a port, what its commands decide, and where its limits are. Back to the [README](../README.md).
+How everything-rust checks a port, what its commands decide, and where its limits are. Back to the [README](../README.md).
 
 ## How it works
 
@@ -29,21 +29,21 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | Step | Command | What it does |
 | --- | --- | --- |
-| All in one | `rust-anything go --agent claude -- python3 app.py` | The hot-path loop end to end: profile, pick the outermost portable function (batched where `profile` says so), bridge it into `rust/<function>-rs`, record generated cases plus the calls the run makes, hand `src/port.rs` to the agent (`claude`, `codex`, or any command reading a prompt on stdin; without `--agent` it writes `TASK.md` and stops), then build, diff, gate and bench, and `enable` only when all pass and the port is not slower as its callers call it (otherwise it says where the speed is: the batch class to call from the loop, or the caller to port with it). Run it again after porting by hand: finished steps are kept |
-| 0. Profile | `rust-anything profile <repo> -- node bench.mjs` | Runs a real workload under the language's profiler (node, cProfile, `go test` pprof, JFR, a Ruby tracer): hot functions by inclusive time, their callers, and which loops to batch; flags code that is already compiled (numba, Cython, JAX), where Rust gains little |
-| 1. Plan | `rust-anything analyze <repo>` | Units, port order, risks with `file:line`, bridge per unit, dependency-to-crate fit, best first ports; `--whole-app` adds entry points and shape, every dependency (imported or declared) with its crate, pieces (units that import each other move together) and numbered decisions with a recommended answer |
-| 2. Bridge | `rust-anything bridge <repo> <unit>` | Crate with the bindings (`lib.rs`, plus the wrapper the source language loads) and stubs to port (`port.rs`); `--batch fn:param` adds a class that keeps many `param` values in Rust; `--as-json T` bridges a type parameter the app only fills with data as JSON values |
-| 3. Record | `rust-anything record <crate>` | Runs the original on generated edge cases (non-ASCII, emoji, `-0`, `NaN`, ints where floats are expected, ...) and on every semantic trap in every parameter (string length and case, signed division, overflow edges, float printing, map and sort order), and saves `cases.jsonl`; `--from-tests -- npx jest` (or `-- pytest`) also records every call the original's own test suite makes; `--float-tolerance 1e-9` lets floats match within that share for numeric code; `--pin-clock` (TS/JS, Python) fixes the clock and random numbers during record and diff, and `src/port/pinned.rs` gives the port the same ones |
-| 3. Build | `rust-anything build <crate>` | Builds the Rust side: `.node`, wasm package, Python extension or shared library |
-| 3. Diff | `rust-anything diff <crate>` | Replays the recorded cases against Rust, called the way the original's callers call it; lists mismatches |
-| 3. Fuzz | `rust-anything fuzz <crate>` | Fresh inputs from a new seed (`--seed`, `--cases`, `--time`) through the original and Rust; reports what the recording missed, and `--keep` adds those cases to it |
-| 3. Bench | `rust-anything bench <crate>` | Times the recorded cases on the original and on Rust, bridge included |
-| 4. Shadow | `rust-anything shadow <crate>` | Drop-in that runs both, returns the original's result, reports mismatches; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, tests, `unsafe` audit, nothing unported, a recorded failing case for every error path of the original, no `unwrap`/`expect`/`panic!` where the original returns an error (unless marked `// INFALLIBLE: <why>`), build, API, behavior |
-| 6. Switch | `rust-anything enable <crate>` / `disable <crate>` | Turns a gated TS/JS or Python port on for every caller, and off again byte for byte ([Switch a port on and off](#switch-a-port-on-and-off)) |
-| 7. Report | `rust-anything report <crate>` | `report/REPORT.md` and `report/card.svg` for a pull request: recorded cases matched, speedup from `bench`, fallback rate, on or off, the machine and its cores |
-| Cache | `rust-anything clean` | Removes the build folder every port and bridge shares ([One build cache](#one-build-cache)) |
-| Agents | `rust-anything setup` | Registers the MCP server (`rust-anything mcp`, every step as a tool) and the workflow skill ([`skills/rust-anything/SKILL.md`](../skills/rust-anything/SKILL.md)) with your coding agents |
+| All in one | `everything-rust go --agent claude -- python3 app.py` | The hot-path loop end to end: profile, pick the outermost portable function (batched where `profile` says so), bridge it into `rust/<function>-rs`, record generated cases plus the calls the run makes, hand `src/port.rs` to the agent (`claude`, `codex`, or any command reading a prompt on stdin; without `--agent` it writes `TASK.md` and stops), then build, diff, gate and bench, and `enable` only when all pass and the port is not slower as its callers call it (otherwise it says where the speed is: the batch class to call from the loop, or the caller to port with it). Run it again after porting by hand: finished steps are kept |
+| 0. Profile | `everything-rust profile <repo> -- node bench.mjs` | Runs a real workload under the language's profiler (node, cProfile, `go test` pprof, JFR, a Ruby tracer): hot functions by inclusive time, their callers, and which loops to batch; flags code that is already compiled (numba, Cython, JAX), where Rust gains little |
+| 1. Plan | `everything-rust analyze <repo>` | Units, port order, risks with `file:line`, bridge per unit, dependency-to-crate fit, best first ports; `--whole-app` adds entry points and shape, every dependency (imported or declared) with its crate, pieces (units that import each other move together) and numbered decisions with a recommended answer |
+| 2. Bridge | `everything-rust bridge <repo> <unit>` | Crate with the bindings (`lib.rs`, plus the wrapper the source language loads) and stubs to port (`port.rs`); `--batch fn:param` adds a class that keeps many `param` values in Rust; `--as-json T` bridges a type parameter the app only fills with data as JSON values |
+| 3. Record | `everything-rust record <crate>` | Runs the original on generated edge cases (non-ASCII, emoji, `-0`, `NaN`, ints where floats are expected, ...) and on every semantic trap in every parameter (string length and case, signed division, overflow edges, float printing, map and sort order), and saves `cases.jsonl`; `--from-tests -- npx jest` (or `-- pytest`) also records every call the original's own test suite makes; `--float-tolerance 1e-9` lets floats match within that share for numeric code; `--pin-clock` (TS/JS, Python) fixes the clock and random numbers during record and diff, and `src/port/pinned.rs` gives the port the same ones |
+| 3. Build | `everything-rust build <crate>` | Builds the Rust side: `.node`, wasm package, Python extension or shared library |
+| 3. Diff | `everything-rust diff <crate>` | Replays the recorded cases against Rust, called the way the original's callers call it; lists mismatches |
+| 3. Fuzz | `everything-rust fuzz <crate>` | Fresh inputs from a new seed (`--seed`, `--cases`, `--time`) through the original and Rust; reports what the recording missed, and `--keep` adds those cases to it |
+| 3. Bench | `everything-rust bench <crate>` | Times the recorded cases on the original and on Rust, bridge included |
+| 4. Shadow | `everything-rust shadow <crate>` | Drop-in that runs both, returns the original's result, reports mismatches; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, tests, `unsafe` audit, nothing unported, a recorded failing case for every error path of the original, no `unwrap`/`expect`/`panic!` where the original returns an error (unless marked `// INFALLIBLE: <why>`), build, API, behavior |
+| 6. Switch | `everything-rust enable <crate>` / `disable <crate>` | Turns a gated TS/JS or Python port on for every caller, and off again byte for byte ([Switch a port on and off](#switch-a-port-on-and-off)) |
+| 7. Report | `everything-rust report <crate>` | `report/REPORT.md` and `report/card.svg` for a pull request: recorded cases matched, speedup from `bench`, fallback rate, on or off, the machine and its cores |
+| Cache | `everything-rust clean` | Removes the build folder every port and bridge shares ([One build cache](#one-build-cache)) |
+| Agents | `everything-rust setup` | Registers the MCP server (`everything-rust mcp`, every step as a tool) and the workflow skill ([`skills/everything-rust/SKILL.md`](../skills/everything-rust/SKILL.md)) with your coding agents |
 
 ## Hot paths: keep the data in Rust
 
@@ -52,9 +52,9 @@ moving the loop: `profile` finds it, and `--batch` generates a class that takes 
 and runs the function over all of them per call, on all cores, with typed-array results.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: a quarter of the run, called per key by `matched`: batch it
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -92,7 +92,7 @@ folder):
 | Ruby | `shellescape` (stdlib), 50,000 mixed values | 88 ms | - | **11.8x** |
 
 Go and Java are left out: they can run the original on 4 threads just as easily, and measured
-that way the Java original beats the Rust batch ([#110](https://github.com/erkamyaman/rust-anything/issues/110)). Batch crates allocate with
+that way the Java original beats the Rust batch ([#110](https://github.com/marprojector/everything-rust/issues/110)). Batch crates allocate with
 mimalloc: with the system allocator the Go batch was slower than one thread. `bridge --allocator
 rusty_alloc` opts into a pure-Rust allocator instead. Demo: [`demo/x18n-search`](../demo/x18n-search/README.md).
 
@@ -102,24 +102,24 @@ Every way to switch, in one place:
 
 | What | On | Off |
 | --- | --- | --- |
-| A TS/JS or Python unit, in place | `rust-anything enable <crate>`: one marked block in each original file rebinds the ported functions to the Rust module, so every caller gets Rust and no import changes. It refuses while a recorded case differs (`--force` skips that check); `go` runs it only after diff and gate pass | `rust-anything disable <crate>`: removes exactly the lines `enable` added, so the files are byte for byte what they were |
-| That unit, for one run | (on by default once enabled) | `RUST_ANYTHING_UNIT_<NAME>=original` (`<NAME>` is the crate name without `-rs`, upper case: `RUST_ANYTHING_UNIT_DEDUPE`), or `RUST_ANYTHING_MODE=old` for every unit |
-| A shadow module (any language) | Import it where the app imported the original; `RUST_ANYTHING_MODE=new` runs only Rust | `RUST_ANYTHING_MODE=old`; the default, `shadow`, returns the original's result and compares Rust |
-| A unit wired into a front door (`app wire`) | Wired units answer in Rust | `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit's commands to the original |
-| An installed package (`package`) | The platform's binary | `RUST_ANYTHING_MODE=old` runs the original it depends on |
+| A TS/JS or Python unit, in place | `everything-rust enable <crate>`: one marked block in each original file rebinds the ported functions to the Rust module, so every caller gets Rust and no import changes. It refuses while a recorded case differs (`--force` skips that check); `go` runs it only after diff and gate pass | `everything-rust disable <crate>`: removes exactly the lines `enable` added, so the files are byte for byte what they were |
+| That unit, for one run | (on by default once enabled) | `EVERYTHING_RUST_UNIT_<NAME>=original` (`<NAME>` is the crate name without `-rs`, upper case: `EVERYTHING_RUST_UNIT_DEDUPE`), or `EVERYTHING_RUST_MODE=old` for every unit |
+| A shadow module (any language) | Import it where the app imported the original; `EVERYTHING_RUST_MODE=new` runs only Rust | `EVERYTHING_RUST_MODE=old`; the default, `shadow`, returns the original's result and compares Rust |
+| A unit wired into a front door (`app wire`) | Wired units answer in Rust | `EVERYTHING_RUST_UNIT_<NAME>=original` sends that unit's commands to the original |
+| An installed package (`package`) | The platform's binary | `EVERYTHING_RUST_MODE=old` runs the original it depends on |
 
 The `enable` block names the crate by a path relative to the source file, so it holds no path
 of your machine, and it falls back to the original when the module does not load (with
-`RUST_ANYTHING_MODE=new` that is an error instead). `record`, `diff`, `bench` and `fuzz` set the
+`EVERYTHING_RUST_MODE=new` that is an error instead). `record`, `diff`, `bench` and `fuzz` set the
 unit's switch to `original` for the original's side, so an enabled unit is still measured
 against the original. Other languages switch through the shadow module.
 
 ## One build cache
 
 Ports and bridges build into one cargo target folder: `CARGO_TARGET_DIR` when it is set, else
-`rust-anything/target` in your cache folder (`~/Library/Caches` on macOS, `$XDG_CACHE_HOME` or
+`everything-rust/target` in your cache folder (`~/Library/Caches` on macOS, `$XDG_CACHE_HOME` or
 `~/.cache` on Linux, `%LOCALAPPDATA%` on Windows). napi-rs, PyO3, serde and the rest compile once
-for every crate instead of once per crate. `rust-anything clean` removes the folder
+for every crate instead of once per crate. `everything-rust clean` removes the folder
 (`--dry-run` prints its size; a folder named by `CARGO_TARGET_DIR` needs `--force`, since other
 projects may build there).
 
@@ -230,7 +230,7 @@ What helps:
   most of the gain is often one loop.
 - **Give it real inputs.** Generated cases find edge cases; `--inputs` with real traffic or real
   files finds what users actually send.
-- **Keep a map** (`rust-anything map`, below) so a long port can stop and resume, and so you can
+- **Keep a map** (`everything-rust map`, below) so a long port can stop and resume, and so you can
   see what is left.
 
 ## Keep the original's shape
@@ -247,7 +247,7 @@ The original keeps changing after a port starts. `record` saves a fingerprint of
 files; when they change, `diff` reports a stale recording (and exits non-zero) and `gate` fails,
 so an upstream change cannot pass silently.
 
-`rust-anything map` shows the whole port at once: every unit of the original, the crate that
+`everything-rust map` shows the whole port at once: every unit of the original, the crate that
 ports it, the functions in Rust and kept in the original, the cases and the last `diff`, the
 whole app's glue (Rust only, or still handing cases to the original), the units not ported yet,
 and every port whose original changed since it was recorded. `map --write` saves it as

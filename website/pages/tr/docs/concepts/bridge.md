@@ -6,8 +6,8 @@ description: bridge, tek bir birim için binding'leri ve bir wrapper'ı olan bir
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate <repo>/rust/<name> içinde; asla üzerine yazmaz
-rust-anything refresh <crate>                  # port.rs'te bir imzayı değiştirdikten sonra
+everything-rust bridge <repo> <unit-id>          # crate <repo>/rust/<name> içinde; asla üzerine yazmaz
+everything-rust refresh <crate>                  # port.rs'te bir imzayı değiştirdikten sonra
 ```
 
 `bridge`, binding'leri (`lib.rs` ve kaynak dilin yüklediği wrapper) ve port edilecek stub'ları (`port.rs`) içeren bir crate oluşturur. Portu yalnızca `src/port.rs` içinde yazarsınız; `src/lib.rs` ve wrapper'lar üretilir ve `refresh` bunları `port.rs`'teki imzalardan, yeni batch sınıflarını da ekleyerek yeniden üretir. `port.rs`'e asla dokunmaz.

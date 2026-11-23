@@ -1,6 +1,6 @@
 /* One-shot entry point over libavutil's SHA-1/SHA-2 (224, 256) context API: init with `bits`,
  * update in `chunk`-byte pieces (one piece when `chunk` <= 0), final. Returns the digest length
- * or av_sha_init's error. Part of rust-anything's ffmpeg
+ * or av_sha_init's error. Part of everything-rust's ffmpeg
  * case study; LGPL-2.1-or-later like the libavutil code it calls (see ../LICENSE). */
 #include <stdint.h>
 #include <stddef.h>

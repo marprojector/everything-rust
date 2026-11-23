@@ -47,7 +47,7 @@ window.render = i => {
     ? 'Same output, byte for byte, on all 59 files: <b>18x faster</b>'
     : elapsed >= RUST ? 'Rust is done. Prettier is still going…' : 'Formatting the real files of ms, Fuse.js and json-server'
   document.getElementById('f').innerHTML =
-    '<div class="title">Prettier, ported to Rust with <span>rust-anything</span></div><div class="cols">' +
+    '<div class="title">Prettier, ported to Rust with <span>everything-rust</span></div><div class="cols">' +
     panel('ts', 'Prettier', 'Node 24', 'prettier &lt;file&gt;', elapsed, PRETTIER) +
     panel('rs', 'Rust port', 'one binary', 'prettier-rs &lt;file&gt;', elapsed, RUST) +
     '</div><div class="foot">' + foot + '</div>'

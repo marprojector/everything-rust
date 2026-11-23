@@ -12,7 +12,7 @@ use serde_json::Value;
 use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -51,14 +51,14 @@ fn java_files(dir: &Path) -> Vec<PathBuf> {
 /// Compiles the driver with the original sources (`rust: false`) or the wrapper classes.
 fn compile(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<PathBuf> {
     let work = crate_dir.canonical()?.join(WORK_DIR);
-    let support = work.join("java-support/rust-anything");
+    let support = work.join("java-support/everything-rust");
     std::fs::create_dir_all(&support)?;
     std::fs::write(
-        support.join("RustAnythingJson.java"),
+        support.join("EverythingRustJson.java"),
         crate::codegen_java::JSON_JAVA,
     )?;
     std::fs::write(
-        support.join("RustAnythingDriver.java"),
+        support.join("EverythingRustDriver.java"),
         crate::codegen_java::DRIVER_JAVA,
     )?;
     let classes = work.join(if rust { "java-rust" } else { "java-original" });
@@ -71,7 +71,7 @@ fn compile(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<PathBuf> {
         sources.extend(
             java_files(&crate_dir.join("java"))
                 .into_iter()
-                .filter(|p| !p.ends_with("rustanything/RustAnythingJson.java")),
+                .filter(|p| !p.ends_with("everythingrust/EverythingRustJson.java")),
         );
     } else {
         // The whole source tree: the unit's classes may use others from the same module.
@@ -141,14 +141,14 @@ fn driver_command(
     if rust {
         let lib = crate::harness_c::built_library(crate_dir, m)?;
         cmd.arg(format!(
-            "-Drust-anything.lib.{}={}",
+            "-Deverything-rust.lib.{}={}",
             m.lib_name(),
             lib.canonical()?.display()
         ));
     }
     cmd.arg("-cp")
         .arg(&classes)
-        .arg("rustanything.RustAnythingDriver")
+        .arg("everythingrust.EverythingRustDriver")
         .arg(mode)
         .arg(&targets)
         .arg(cases)
@@ -174,7 +174,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -187,7 +187,7 @@ pub fn bench(crate_dir: &Path, m: &Manifest, min_ms: u64) -> Result<Vec<BenchRow
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }

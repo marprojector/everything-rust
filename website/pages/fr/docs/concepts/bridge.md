@@ -6,8 +6,8 @@ description: bridge crée une crate Rust pour une unité, avec les bindings et u
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate dans <repo>/rust/<name> ; n'écrase jamais rien
-rust-anything refresh <crate>                  # après avoir changé une signature dans port.rs
+everything-rust bridge <repo> <unit-id>          # crate dans <repo>/rust/<name> ; n'écrase jamais rien
+everything-rust refresh <crate>                  # après avoir changé une signature dans port.rs
 ```
 
 `bridge` crée une crate avec les bindings (`lib.rs`, plus le wrapper que charge le langage source) et des stubs à porter (`port.rs`). Vous écrivez le portage uniquement dans `src/port.rs` ; `src/lib.rs` et les wrappers sont générés, et `refresh` les régénère à partir des signatures de `port.rs`, en ajoutant les nouvelles classes de lot. Il ne touche jamais à `port.rs`.

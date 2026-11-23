@@ -9,11 +9,11 @@ Bir kütüphanenin yeniden oynatılacak bir süreci yoktur: public API'si front 
 kayıtlı vakaları kanıttır.
 
 ```sh
-rust-anything app front-door .        # rust/app: public API'ye sahip bir Rust crate'i
+everything-rust app front-door .        # rust/app: public API'ye sahip bir Rust crate'i
 # her birim döngüden geçer: bridge, record, port.rs, build, diff, gate; ardından:
-rust-anything app wire . textkit-rs   # rust/app'ten yeniden export edilir; orijinal onun shadow'unu import eder
-rust-anything app replay .            # bağlanmış her birimin vakaları; fallback = hâlâ orijinalde olan export'lar
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app'ten yeniden export edilir; orijinal onun shadow'unu import eder
+everything-rust app replay .            # bağlanmış her birimin vakaları; fallback = hâlâ orijinalde olan export'lar
+everything-rust app lift .
 ```
 
 - `app front-door`, depoda `main` ve sunucu olmadığında public API'yi (her birimin export'ları)
@@ -21,7 +21,7 @@ rust-anything app lift .
   birim onun bir modülü olur: `pub use textkit_rs::port as textkit;`.
 - `app wire`, `bridge` ile yapılmış bir crate alır, `gate` çalıştırır ve birimin shadow drop-in'ini yazar:
   orijinal paket birim yerine onu import eder, böylece çağıranlar orijinal API'yi korur ve Rust'a
-  ulaşır. `RUST_ANYTHING_UNIT_<NAME>=original` birimi geri gönderir (C: shadow'un bayrakları olmadan derleyin).
+  ulaşır. `EVERYTHING_RUST_UNIT_<NAME>=original` birimi geri gönderir (C: shadow'un bayrakları olmadan derleyin).
 - `app replay`, bağlanmış her birimin kayıtlı vakalarını binding'leri üzerinden çalıştırır. Fallback oranı,
   Rust'ın henüz yanıtlamadığı public export'ların oranıdır: bağlanmamış birimler ve `bridge`'in
   orijinal dilde tuttuğu export'lar.

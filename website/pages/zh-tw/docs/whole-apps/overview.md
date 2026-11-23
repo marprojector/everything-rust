@@ -5,7 +5,7 @@ description: 從第一次錄製到純 Rust 執行檔。目標是一個行為與�
 
 # 移植整個應用程式
 
-目標是一個行為與原始版本相同的純 Rust 應用程式，並保留原始版本作為參考。Rust 程式碼由你的 AI 代理撰寫；rust-anything 負責安排工作順序、建立骨架，並證明每一步都正確。適用於 CLI、HTTP 伺服器與函式庫。
+目標是一個行為與原始版本相同的純 Rust 應用程式，並保留原始版本作為參考。Rust 程式碼由你的 AI 代理撰寫；everything-rust 負責安排工作順序、建立骨架，並證明每一步都正確。適用於 CLI、HTTP 伺服器與函式庫。
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. 規劃
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` 會加上應用程式的型態（CLI、伺服器或函式庫）與進入點、每個外部相依套件（已匯入或已宣告）及其 Rust crate 與適配程度、以區塊表示的移植順序（互相匯入的單元會一起搬移），以及附有建議答案的編號決策：保留的單元、受阻的單元、沒有對應 crate 或只有部分對應的相依套件。
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## AI 代理如何進行
 
-[整個應用程式技能](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md)會引導 AI 代理完成整個流程，從只有你能做的決策開始：
+[整個應用程式技能](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md)會引導 AI 代理完成整個流程，從只有你能做的決策開始：
 
 - **連番提問**：AI 代理會分輪次提問，每個問題都附上建議答案，直到移植所依賴的每個決策都定案為止，並將每個決策以 ADR 的形式寫入 `rust/DECISIONS.md`，同時以 `rust/GLOSSARY.md` 將原始版本的術語對應到 Rust 名稱。
 - **研究**：背景 AI 代理會閱讀每個相依套件的第一手資料，並撰寫 `rust/research/<topic>.md`，記錄它們找到的每個語意陷阱。

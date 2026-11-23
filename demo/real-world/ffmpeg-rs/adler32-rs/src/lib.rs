@@ -1,9 +1,9 @@
 //! C ABI for `adler32.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
 
     /// A `const` byte pointer and its length as a slice; empty for `NULL` or a zero length.
     pub(super) fn bytes<'a>(ptr: *const u8, len: usize) -> &'a [u8] {
@@ -29,22 +29,22 @@ mod __rust_anything_c_abi {
 pub extern "C" fn av_adler32_update(adler: u32, buf: *const u8, len: usize) -> u32 {
     port::av_adler32_update(
         adler,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }
 
-/// `av_adler32_update` as `rust_anything_av_adler32_update`, for shadow builds beside the original.
+/// `av_adler32_update` as `everything_rust_av_adler32_update`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_adler32_update(adler: u32, buf: *const u8, len: usize) -> u32 {
+pub extern "C" fn everything_rust_av_adler32_update(adler: u32, buf: *const u8, len: usize) -> u32 {
     port::av_adler32_update(
         adler,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }

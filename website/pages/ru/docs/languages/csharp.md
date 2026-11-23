@@ -17,10 +17,10 @@ description: "C# находится в превью. analyze читает про
 Запись собранного приложения:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Портирование модулей через P/Invoke появится следующим. До тех пор `bridge` отклоняет модули C# с понятным сообщением.

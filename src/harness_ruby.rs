@@ -12,7 +12,7 @@ use serde_json::Value;
 use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -129,7 +129,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -142,7 +142,7 @@ pub fn bench(crate_dir: &Path, m: &Manifest, min_ms: u64) -> Result<Vec<BenchRow
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -228,7 +228,7 @@ fn old_ruby_note(err: anyhow::Error, banner: Option<&str>, ruby_var: bool) -> an
         ""
     };
     anyhow::anyhow!(
-        "{err}\n\n{banner}: rust-anything needs Ruby {}.{}+{system}{fix}{ruby_var}",
+        "{err}\n\n{banner}: everything-rust needs Ruby {}.{}+{system}{fix}{ruby_var}",
         min.0,
         min.1
     )
@@ -251,7 +251,7 @@ mod tests {
         let explained = old_ruby_note(failed(), Some(banner), false).to_string();
         assert!(explained.starts_with("cargo build failed"), "{explained}");
         assert!(
-            explained.contains(&format!("\n\n{banner}: rust-anything needs Ruby 3.0+")),
+            explained.contains(&format!("\n\n{banner}: everything-rust needs Ruby 3.0+")),
             "{explained}"
         );
         let fix = crate::doctor::install_command("ruby").unwrap();

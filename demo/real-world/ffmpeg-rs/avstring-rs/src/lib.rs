@@ -1,5 +1,5 @@
 //! C ABI for `avstring.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
@@ -7,7 +7,7 @@ use std::ffi::c_char;
 
 /// A `const char *` read one byte at a time up to its NUL, without measuring it first: for ports
 /// where `strlen` would cost more than the work (`av_strcasecmp` on short words). A port opts in
-/// by typing the parameter `Option<crate::CChars<'_>>`; `rust-anything refresh` then passes it.
+/// by typing the parameter `Option<crate::CChars<'_>>`; `everything-rust refresh` then passes it.
 #[derive(Clone, Debug)]
 pub struct CChars<'a> {
     ptr: std::ptr::NonNull<std::ffi::c_char>,
@@ -52,7 +52,7 @@ impl Iterator for CChars<'_> {
 
 impl std::iter::FusedIterator for CChars<'_> {}
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
     /// A `const char *` argument read as the port goes; `None` for `NULL`.
     pub(super) fn c_chars<'a>(ptr: *const std::ffi::c_char) -> Option<super::CChars<'a>> {
         std::ptr::NonNull::new(ptr.cast_mut()).map(|ptr| super::CChars {
@@ -121,31 +121,31 @@ pub extern "C" fn av_strstart(
     pfx: *const c_char,
     ptr: *mut *const std::ffi::c_char,
 ) -> std::ffi::c_int {
-    let mut ptr_offset = crate::__rust_anything_c_abi::offset_in(ptr, str.cast::<u8>());
+    let mut ptr_offset = crate::__everything_rust_c_abi::offset_in(ptr, str.cast::<u8>());
     let result = port::av_strstart(
-        crate::__rust_anything_c_abi::c_chars(str),
-        crate::__rust_anything_c_abi::c_chars(pfx),
+        crate::__everything_rust_c_abi::c_chars(str),
+        crate::__everything_rust_c_abi::c_chars(pfx),
         ptr_offset.as_mut(),
     );
-    crate::__rust_anything_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
+    crate::__everything_rust_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
     result
 }
 
-/// `av_strstart` as `rust_anything_av_strstart`, for shadow builds beside the original.
+/// `av_strstart` as `everything_rust_av_strstart`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strstart(
+pub extern "C" fn everything_rust_av_strstart(
     str: *const c_char,
     pfx: *const c_char,
     ptr: *mut *const std::ffi::c_char,
 ) -> std::ffi::c_int {
-    let mut ptr_offset = crate::__rust_anything_c_abi::offset_in(ptr, str.cast::<u8>());
+    let mut ptr_offset = crate::__everything_rust_c_abi::offset_in(ptr, str.cast::<u8>());
     let result = port::av_strstart(
-        crate::__rust_anything_c_abi::c_chars(str),
-        crate::__rust_anything_c_abi::c_chars(pfx),
+        crate::__everything_rust_c_abi::c_chars(str),
+        crate::__everything_rust_c_abi::c_chars(pfx),
         ptr_offset.as_mut(),
     );
-    crate::__rust_anything_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
+    crate::__everything_rust_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
     result
 }
 
@@ -158,31 +158,31 @@ pub extern "C" fn av_stristart(
     pfx: *const c_char,
     ptr: *mut *const std::ffi::c_char,
 ) -> std::ffi::c_int {
-    let mut ptr_offset = crate::__rust_anything_c_abi::offset_in(ptr, str.cast::<u8>());
+    let mut ptr_offset = crate::__everything_rust_c_abi::offset_in(ptr, str.cast::<u8>());
     let result = port::av_stristart(
-        crate::__rust_anything_c_abi::c_chars(str),
-        crate::__rust_anything_c_abi::c_chars(pfx),
+        crate::__everything_rust_c_abi::c_chars(str),
+        crate::__everything_rust_c_abi::c_chars(pfx),
         ptr_offset.as_mut(),
     );
-    crate::__rust_anything_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
+    crate::__everything_rust_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
     result
 }
 
-/// `av_stristart` as `rust_anything_av_stristart`, for shadow builds beside the original.
+/// `av_stristart` as `everything_rust_av_stristart`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_stristart(
+pub extern "C" fn everything_rust_av_stristart(
     str: *const c_char,
     pfx: *const c_char,
     ptr: *mut *const std::ffi::c_char,
 ) -> std::ffi::c_int {
-    let mut ptr_offset = crate::__rust_anything_c_abi::offset_in(ptr, str.cast::<u8>());
+    let mut ptr_offset = crate::__everything_rust_c_abi::offset_in(ptr, str.cast::<u8>());
     let result = port::av_stristart(
-        crate::__rust_anything_c_abi::c_chars(str),
-        crate::__rust_anything_c_abi::c_chars(pfx),
+        crate::__everything_rust_c_abi::c_chars(str),
+        crate::__everything_rust_c_abi::c_chars(pfx),
         ptr_offset.as_mut(),
     );
-    crate::__rust_anything_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
+    crate::__everything_rust_c_abi::set_offset(ptr, str.cast::<u8>(), ptr_offset);
     result
 }
 
@@ -192,24 +192,24 @@ pub extern "C" fn rust_anything_av_stristart(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_stristr(s1: *const c_char, s2: *const c_char) -> *mut std::ffi::c_char {
     match port::av_stristr(
-        crate::__rust_anything_c_abi::c_chars(s1),
-        crate::__rust_anything_c_abi::c_chars(s2),
+        crate::__everything_rust_c_abi::c_chars(s1),
+        crate::__everything_rust_c_abi::c_chars(s2),
     ) {
         Some(offset) => s1.cast_mut().cast::<u8>().wrapping_add(offset).cast(),
         None => std::ptr::null_mut::<std::ffi::c_char>(),
     }
 }
 
-/// `av_stristr` as `rust_anything_av_stristr`, for shadow builds beside the original.
+/// `av_stristr` as `everything_rust_av_stristr`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_stristr(
+pub extern "C" fn everything_rust_av_stristr(
     s1: *const c_char,
     s2: *const c_char,
 ) -> *mut std::ffi::c_char {
     match port::av_stristr(
-        crate::__rust_anything_c_abi::c_chars(s1),
-        crate::__rust_anything_c_abi::c_chars(s2),
+        crate::__everything_rust_c_abi::c_chars(s1),
+        crate::__everything_rust_c_abi::c_chars(s2),
     ) {
         Some(offset) => s1.cast_mut().cast::<u8>().wrapping_add(offset).cast(),
         None => std::ptr::null_mut::<std::ffi::c_char>(),
@@ -226,8 +226,8 @@ pub extern "C" fn av_strnstr(
     hay_length: usize,
 ) -> *mut std::ffi::c_char {
     match port::av_strnstr(
-        crate::__rust_anything_c_abi::c_str(haystack),
-        crate::__rust_anything_c_abi::c_str(needle),
+        crate::__everything_rust_c_abi::c_str(haystack),
+        crate::__everything_rust_c_abi::c_str(needle),
         hay_length,
     ) {
         Some(offset) => haystack.cast_mut().cast::<u8>().wrapping_add(offset).cast(),
@@ -235,17 +235,17 @@ pub extern "C" fn av_strnstr(
     }
 }
 
-/// `av_strnstr` as `rust_anything_av_strnstr`, for shadow builds beside the original.
+/// `av_strnstr` as `everything_rust_av_strnstr`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strnstr(
+pub extern "C" fn everything_rust_av_strnstr(
     haystack: *const c_char,
     needle: *const c_char,
     hay_length: usize,
 ) -> *mut std::ffi::c_char {
     match port::av_strnstr(
-        crate::__rust_anything_c_abi::c_str(haystack),
-        crate::__rust_anything_c_abi::c_str(needle),
+        crate::__everything_rust_c_abi::c_str(haystack),
+        crate::__everything_rust_c_abi::c_str(needle),
         hay_length,
     ) {
         Some(offset) => haystack.cast_mut().cast::<u8>().wrapping_add(offset).cast(),
@@ -259,28 +259,28 @@ pub extern "C" fn rust_anything_av_strnstr(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_strlcpy(dst: *mut std::ffi::c_char, src: *const c_char, size: usize) -> usize {
     port::av_strlcpy(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(size),
+            crate::__everything_rust_c_abi::len(size),
         ),
-        crate::__rust_anything_c_abi::c_str(src),
+        crate::__everything_rust_c_abi::c_str(src),
     )
 }
 
-/// `av_strlcpy` as `rust_anything_av_strlcpy`, for shadow builds beside the original.
+/// `av_strlcpy` as `everything_rust_av_strlcpy`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strlcpy(
+pub extern "C" fn everything_rust_av_strlcpy(
     dst: *mut std::ffi::c_char,
     src: *const c_char,
     size: usize,
 ) -> usize {
     port::av_strlcpy(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(size),
+            crate::__everything_rust_c_abi::len(size),
         ),
-        crate::__rust_anything_c_abi::c_str(src),
+        crate::__everything_rust_c_abi::c_str(src),
     )
 }
 
@@ -290,28 +290,28 @@ pub extern "C" fn rust_anything_av_strlcpy(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_strlcat(dst: *mut std::ffi::c_char, src: *const c_char, size: usize) -> usize {
     port::av_strlcat(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(size),
+            crate::__everything_rust_c_abi::len(size),
         ),
-        crate::__rust_anything_c_abi::c_str(src),
+        crate::__everything_rust_c_abi::c_str(src),
     )
 }
 
-/// `av_strlcat` as `rust_anything_av_strlcat`, for shadow builds beside the original.
+/// `av_strlcat` as `everything_rust_av_strlcat`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strlcat(
+pub extern "C" fn everything_rust_av_strlcat(
     dst: *mut std::ffi::c_char,
     src: *const c_char,
     size: usize,
 ) -> usize {
     port::av_strlcat(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             dst.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(size),
+            crate::__everything_rust_c_abi::len(size),
         ),
-        crate::__rust_anything_c_abi::c_str(src),
+        crate::__everything_rust_c_abi::c_str(src),
     )
 }
 
@@ -321,21 +321,21 @@ pub extern "C" fn rust_anything_av_strlcat(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_strcasecmp(a: *const c_char, b: *const c_char) -> std::ffi::c_int {
     port::av_strcasecmp(
-        crate::__rust_anything_c_abi::c_chars(a),
-        crate::__rust_anything_c_abi::c_chars(b),
+        crate::__everything_rust_c_abi::c_chars(a),
+        crate::__everything_rust_c_abi::c_chars(b),
     )
 }
 
-/// `av_strcasecmp` as `rust_anything_av_strcasecmp`, for shadow builds beside the original.
+/// `av_strcasecmp` as `everything_rust_av_strcasecmp`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strcasecmp(
+pub extern "C" fn everything_rust_av_strcasecmp(
     a: *const c_char,
     b: *const c_char,
 ) -> std::ffi::c_int {
     port::av_strcasecmp(
-        crate::__rust_anything_c_abi::c_chars(a),
-        crate::__rust_anything_c_abi::c_chars(b),
+        crate::__everything_rust_c_abi::c_chars(a),
+        crate::__everything_rust_c_abi::c_chars(b),
     )
 }
 
@@ -345,23 +345,23 @@ pub extern "C" fn rust_anything_av_strcasecmp(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_strncasecmp(a: *const c_char, b: *const c_char, n: usize) -> std::ffi::c_int {
     port::av_strncasecmp(
-        crate::__rust_anything_c_abi::c_chars(a),
-        crate::__rust_anything_c_abi::c_chars(b),
+        crate::__everything_rust_c_abi::c_chars(a),
+        crate::__everything_rust_c_abi::c_chars(b),
         n,
     )
 }
 
-/// `av_strncasecmp` as `rust_anything_av_strncasecmp`, for shadow builds beside the original.
+/// `av_strncasecmp` as `everything_rust_av_strncasecmp`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_strncasecmp(
+pub extern "C" fn everything_rust_av_strncasecmp(
     a: *const c_char,
     b: *const c_char,
     n: usize,
 ) -> std::ffi::c_int {
     port::av_strncasecmp(
-        crate::__rust_anything_c_abi::c_chars(a),
-        crate::__rust_anything_c_abi::c_chars(b),
+        crate::__everything_rust_c_abi::c_chars(a),
+        crate::__everything_rust_c_abi::c_chars(b),
         n,
     )
 }
@@ -372,21 +372,21 @@ pub extern "C" fn rust_anything_av_strncasecmp(
 #[unsafe(no_mangle)]
 pub extern "C" fn av_match_name(name: *const c_char, names: *const c_char) -> std::ffi::c_int {
     port::av_match_name(
-        crate::__rust_anything_c_abi::c_str(name),
-        crate::__rust_anything_c_abi::c_str(names),
+        crate::__everything_rust_c_abi::c_str(name),
+        crate::__everything_rust_c_abi::c_str(names),
     )
 }
 
-/// `av_match_name` as `rust_anything_av_match_name`, for shadow builds beside the original.
+/// `av_match_name` as `everything_rust_av_match_name`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_match_name(
+pub extern "C" fn everything_rust_av_match_name(
     name: *const c_char,
     names: *const c_char,
 ) -> std::ffi::c_int {
     port::av_match_name(
-        crate::__rust_anything_c_abi::c_str(name),
-        crate::__rust_anything_c_abi::c_str(names),
+        crate::__everything_rust_c_abi::c_str(name),
+        crate::__everything_rust_c_abi::c_str(names),
     )
 }
 
@@ -400,23 +400,23 @@ pub extern "C" fn av_match_list(
     separator: std::ffi::c_char,
 ) -> std::ffi::c_int {
     port::av_match_list(
-        crate::__rust_anything_c_abi::c_str(name),
-        crate::__rust_anything_c_abi::c_str(list),
+        crate::__everything_rust_c_abi::c_str(name),
+        crate::__everything_rust_c_abi::c_str(list),
         separator,
     )
 }
 
-/// `av_match_list` as `rust_anything_av_match_list`, for shadow builds beside the original.
+/// `av_match_list` as `everything_rust_av_match_list`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_match_list(
+pub extern "C" fn everything_rust_av_match_list(
     name: *const c_char,
     list: *const c_char,
     separator: std::ffi::c_char,
 ) -> std::ffi::c_int {
     port::av_match_list(
-        crate::__rust_anything_c_abi::c_str(name),
-        crate::__rust_anything_c_abi::c_str(list),
+        crate::__everything_rust_c_abi::c_str(name),
+        crate::__everything_rust_c_abi::c_str(list),
         separator,
     )
 }

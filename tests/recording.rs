@@ -5,15 +5,15 @@ mod common;
 
 use std::process::Command;
 
-use rust_anything::bridge::Manifest;
-use rust_anything::recording;
+use everything_rust::bridge::Manifest;
+use everything_rust::recording;
 
 #[test]
 fn a_changed_original_makes_the_recording_stale() {
     if !common::have("python3") {
         return;
     }
-    let root = std::env::temp_dir().join(format!("rust-anything-stale-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-stale-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(&root).unwrap();
     std::fs::write(
@@ -26,7 +26,7 @@ fn a_changed_original_makes_the_recording_stale() {
         "def twice(n: int) -> int:\n    return n * 2\n",
     )
     .unwrap();
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let crate_dir = root.join("port");
     let run = |args: &[&std::ffi::OsStr]| {
         let out = Command::new(cli).args(args).output().unwrap();
@@ -56,7 +56,7 @@ fn a_changed_original_makes_the_recording_stale() {
 
 fn project(name: &str, files: &[(&str, &str)]) -> std::path::PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-from-tests-{name}-{}",
+        "everything-rust-from-tests-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -71,7 +71,7 @@ fn project(name: &str, files: &[(&str, &str)]) -> std::path::PathBuf {
 /// Bridges `unit`, records with `--from-tests -- <test>`, and returns what `record` printed and
 /// the captured inputs.
 fn from_tests(root: &std::path::Path, unit: &str, test: &[&str]) -> (String, String) {
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let crate_dir = root.join("port");
     let bridged = Command::new(cli)
         .arg("bridge")
@@ -225,7 +225,7 @@ fn diff_replays_python_keyword_arguments_by_their_binding_names() {
          def pad(s, width=4, fill=' '):\n    return s.ljust(width, ' ' if fill == '*' else fill)\n",
     )
     .unwrap();
-    let outcome = rust_anything::harness::diff(&rust_anything::harness::DiffOptions {
+    let outcome = everything_rust::harness::diff(&everything_rust::harness::DiffOptions {
         crate_dir: &crate_dir,
         module: None,
         ignore_key_order: false,
@@ -379,7 +379,7 @@ fn record_reports_lines_of_the_original_no_case_reached() {
             ),
         ],
     );
-    let cli = env!("CARGO_BIN_EXE_rust-anything");
+    let cli = env!("CARGO_BIN_EXE_everything-rust");
     let crate_dir = root.join("port");
     let run = |args: &[&std::ffi::OsStr]| {
         let out = Command::new(cli).args(args).output().unwrap();

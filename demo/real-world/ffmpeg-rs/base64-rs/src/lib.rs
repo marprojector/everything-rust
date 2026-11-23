@@ -1,11 +1,11 @@
 //! C ABI for `base64.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
 use std::ffi::c_char;
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
     use std::ffi::{CStr, c_char};
 
     /// A `const char *` argument as bytes; `None` for `NULL`.
@@ -57,28 +57,28 @@ pub extern "C" fn av_base64_decode(
     out_size: std::ffi::c_int,
 ) -> std::ffi::c_int {
     port::av_base64_decode(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             out.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(out_size),
+            crate::__everything_rust_c_abi::len(out_size),
         ),
-        crate::__rust_anything_c_abi::c_str(in_str),
+        crate::__everything_rust_c_abi::c_str(in_str),
     )
 }
 
-/// `av_base64_decode` as `rust_anything_av_base64_decode`, for shadow builds beside the original.
+/// `av_base64_decode` as `everything_rust_av_base64_decode`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_base64_decode(
+pub extern "C" fn everything_rust_av_base64_decode(
     out: *mut u8,
     in_str: *const c_char,
     out_size: std::ffi::c_int,
 ) -> std::ffi::c_int {
     port::av_base64_decode(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             out.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(out_size),
+            crate::__everything_rust_c_abi::len(out_size),
         ),
-        crate::__rust_anything_c_abi::c_str(in_str),
+        crate::__everything_rust_c_abi::c_str(in_str),
     )
 }
 
@@ -93,13 +93,13 @@ pub extern "C" fn av_base64_encode(
     in_size: std::ffi::c_int,
 ) -> *mut std::ffi::c_char {
     match port::av_base64_encode(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             out.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(out_size),
+            crate::__everything_rust_c_abi::len(out_size),
         ),
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             r#in.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(in_size),
+            crate::__everything_rust_c_abi::len(in_size),
         ),
     ) {
         Some(offset) => out.cast::<u8>().wrapping_add(offset).cast(),
@@ -107,23 +107,23 @@ pub extern "C" fn av_base64_encode(
     }
 }
 
-/// `av_base64_encode` as `rust_anything_av_base64_encode`, for shadow builds beside the original.
+/// `av_base64_encode` as `everything_rust_av_base64_encode`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_base64_encode(
+pub extern "C" fn everything_rust_av_base64_encode(
     out: *mut std::ffi::c_char,
     out_size: std::ffi::c_int,
     r#in: *const u8,
     in_size: std::ffi::c_int,
 ) -> *mut std::ffi::c_char {
     match port::av_base64_encode(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             out.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(out_size),
+            crate::__everything_rust_c_abi::len(out_size),
         ),
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             r#in.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(in_size),
+            crate::__everything_rust_c_abi::len(in_size),
         ),
     ) {
         Some(offset) => out.cast::<u8>().wrapping_add(offset).cast(),

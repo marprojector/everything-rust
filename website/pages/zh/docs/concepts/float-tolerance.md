@@ -6,8 +6,8 @@ description: 数值代码迁移后很少能得到逐位一致的浮点数。--fl
 # 浮点容差
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 数值代码（物理、统计、图形）迁移后很少能得到逐位一致的浮点数：不同编译器之间的运算顺序、乘加融合（FMA）和数学库都不同。如果你接受这一点，请用 `--float-tolerance` 加上你的数值来录制。之后浮点数只要在较大值的该比例之内（绝对值小于 1 时按绝对误差）即可视为一致，`diff` 和 `gate` 都会使用它。设为 `0` 则取消容差。

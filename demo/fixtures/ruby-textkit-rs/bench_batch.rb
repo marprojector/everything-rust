@@ -1,5 +1,5 @@
 # `SlugifyBatch`, `PageCountBatch` and `WordCountBatch` against the Ruby originals: same results,
-# same errors, and the time for 20,000 slugs. Run after `rust-anything build .`: ruby bench_batch.rb
+# same errors, and the time for 20,000 slugs. Run after `everything-rust build .`: ruby bench_batch.rb
 crate = __dir__
 fixture = File.expand_path("../../../tests/fixtures/ruby", __dir__)
 require File.join(fixture, "lib/textkit")

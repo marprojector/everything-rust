@@ -8,7 +8,7 @@ description: 當重播以 0 回退率通過且每個單元都通過 gate 時，a
 當重播以 0 回退率通過且每個單元都通過 gate 時，就把它變成純 Rust 應用程式：
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - 在兩個條件都成立之前，`app lift` 會拒絕執行，並說明阻擋它的原因：仍在回退的案例、仍是空殼的膠合程式碼、未通過 gate 的單元。

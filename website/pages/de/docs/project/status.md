@@ -1,6 +1,6 @@
 ---
 title: Status
-description: Was in rust-anything heute funktioniert und wie jeder Teil zuletzt geprüft wurde.
+description: Was in everything-rust heute funktioniert und wie jeder Teil zuletzt geprüft wurde.
 ---
 
 # Status
@@ -15,7 +15,7 @@ auf einem echten Projekt ausgeführt. **Vorschau**: funktioniert für einen Teil
 
 | Sprache | Status | Letzter echter Lauf | Ergebnis |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Verifiziert | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` von x18n | Prettier: `doc-printer-rs` 2,848/2,848 und `js-format-rs` 1,279/1,279, gate besteht bei beiden; json-server: sechs Units, 3,399 Fälle, gate besteht bei jeder; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 und 9,000+ Fälle stimmen überein |
+| TypeScript/JavaScript | Verifiziert | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` von x18n | Prettier: `doc-printer-rs` 2,848/2,848 und `js-format-rs` 1,279/1,279, gate besteht bei beiden; json-server: sechs Units, 3,399 Fälle, gate besteht bei jeder; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 und 9,000+ Fälle stimmen überein |
 | Python | Verifiziert | `colorsys.py` aus CPython 3.13 (2026-11-16) | 2,400/2,400; gate besteht |
 | Go | Verifiziert | `path` aus Go 1.24 (2026-11-16) | 2,642/2,642; gate besteht |
 | Ruby | Verifiziert | `shellwords.rb` aus Ruby 3.3 (2026-11-16) | 1,617/1,617; gate besteht |

@@ -7,10 +7,10 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge::{self, Manifest};
-use rust_anything::front_door::{self, AppKind, FrontDoorOptions, State, WireOptions};
-use rust_anything::harness::{self, RecordOptions};
-use rust_anything::lift::{self, LiftOptions};
+use everything_rust::bridge::{self, Manifest};
+use everything_rust::front_door::{self, AppKind, FrontDoorOptions, State, WireOptions};
+use everything_rust::harness::{self, RecordOptions};
+use everything_rust::lift::{self, LiftOptions};
 
 fn copy_dir(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
@@ -27,7 +27,7 @@ fn copy_dir(from: &Path, to: &Path) {
 fn fixture(name: &str) -> PathBuf {
     static NEXT: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
     let repo = std::env::temp_dir().join(format!(
-        "rust-anything-library-{}-{}-{}",
+        "everything-rust-library-{}-{}-{}",
         name.replace('/', "-"),
         std::process::id(),
         NEXT.fetch_add(1, std::sync::atomic::Ordering::SeqCst)
@@ -149,7 +149,7 @@ fn shadows_honor_the_unit_kill_switch() {
         let repo = fixture(name);
         let dir = bridged(&repo, unit);
         let manifest = Manifest::load(&dir).unwrap();
-        let shadow = rust_anything::shadow::shadow(&dir, None).unwrap();
+        let shadow = everything_rust::shadow::shadow(&dir, None).unwrap();
         let text = std::fs::read_to_string(&shadow.path).unwrap();
         let switch = front_door::kill_switch(&manifest.crate_name);
         assert!(text.contains(&switch), "{name}: no {switch} in\n{text}");
@@ -180,7 +180,7 @@ fn a_ts_library_moves_unit_by_unit() {
     let shadow = wired.shadow.clone().unwrap();
     let shadow_text = std::fs::read_to_string(&shadow).unwrap();
     assert!(
-        shadow_text.contains("RUST_ANYTHING_UNIT_TEXT"),
+        shadow_text.contains("EVERYTHING_RUST_UNIT_TEXT"),
         "{shadow_text}"
     );
     let replay = wired.replay.unwrap();
@@ -196,7 +196,7 @@ fn a_ts_library_moves_unit_by_unit() {
     );
 
     std::fs::write(dir.join("index.cjs"), STAND_IN.replace("+ '!'", "+ '?'")).unwrap();
-    let broken = rust_anything::app::replay(&rust_anything::app::ReplayOptions {
+    let broken = everything_rust::app::replay(&everything_rust::app::ReplayOptions {
         case: None,
         repo: &repo,
         build: None,
@@ -313,7 +313,7 @@ fn a_c_library_lifts_to_one_pure_rust_crate() {
     );
     assert!(lifted.binary.is_none());
     let lib = std::fs::read_to_string(repo.join("rust/app/src/lib.rs")).unwrap();
-    assert!(lib.contains("Written by `rust-anything app lift`"), "{lib}");
+    assert!(lib.contains("Written by `everything-rust app lift`"), "{lib}");
     assert!(lib.contains("pub use text_rs::port as text;"), "{lib}");
     let cargo = std::fs::read_to_string(dir.join("Cargo.toml")).unwrap();
     assert!(!cargo.contains("cdylib"), "{cargo}");

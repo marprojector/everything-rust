@@ -6,9 +6,9 @@ description: diff ýazga alnan her ýagdaýy Rust-a garşy gaýtadan işledýär
 # Diff we belli tapawutlar
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N bolmaly
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N bolmaly
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` faýlyny gurlan Rust moduluna garşy, asyl nusganyň çagyryjylary nähili çagyrýan bolsa, şeýle gaýtadan işledýär we gabat gelmezlikleri sanaýar. Gabat gelmezlik özüni alyp barşdaky tapawutdyr: porty düzediň, hiç haçan ýazgyny däl.

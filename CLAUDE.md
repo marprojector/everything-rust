@@ -1,4 +1,4 @@
-# rust-anything
+# everything-rust
 
 @docs/pitfalls.md
 

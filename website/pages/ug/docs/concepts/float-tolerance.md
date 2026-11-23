@@ -6,8 +6,8 @@ description: سان ھېسابلاش كودى كۆچۈرۈلگەندىن كېي�
 # لەيلىمە چېكىت يول قويۇشى
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 سان ھېسابلاش كودى (فىزىكا، ستاتىستىكا، گرافىكا) كۆچۈرۈلگەندىن كېيىن bit ى بىلەن ئوخشاش لەيلىمە سان بېرىشى ناھايىتى ئاز: مەشغۇلات تەرتىپى، بىرلەشتۈرۈلگەن كۆپەيتىش-قوشۇش ۋە ماتېماتىكا كۇتۇپخانىسى تەرجىمانلار ئارىسىدا پەرقلىنىدۇ. بۇنى قوبۇل قىلسىڭىز، `--float-tolerance` ۋە ئۆزىڭىزنىڭ سانى بىلەن خاتىرىلەڭ. ئاندىن لەيلىمە سانلار چوڭراق قىممەتنىڭ شۇ ئۈلۈشى ئىچىدە ماس كېلىدۇ (1 دىن تۆۋەندە مۇتلەق)، `diff` ۋە `gate` ئۇنى ئىشلىتىدۇ. `0` ئۇنى چىقىرىۋېتىدۇ.

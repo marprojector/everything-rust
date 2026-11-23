@@ -5,7 +5,7 @@ description: Birinchi yozuvdan toza Rust binary'sigacha. Maqsad asl nusxa kabi i
 
 # Butun ilovani port qilish
 
-Maqsad asl nusxa kabi ishlaydigan toza Rust ilovasi, asl nusxa esa namuna sifatida saqlanadi. Rust kodini agentingiz yozadi; rust-anything ishni tartibga soladi, karkasini yaratadi va har bir qadamni isbotlaydi. CLI'lar, HTTP serverlar va kutubxonalar.
+Maqsad asl nusxa kabi ishlaydigan toza Rust ilovasi, asl nusxa esa namuna sifatida saqlanadi. Rust kodini agentingiz yozadi; everything-rust ishni tartibga soladi, karkasini yaratadi va har bir qadamni isbotlaydi. CLI'lar, HTTP serverlar va kutubxonalar.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Rejalashtirish
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` ilovaning shaklini (CLI, server yoki kutubxona) va kirish nuqtalarini, har bir tashqi bog'liqlikni (import qilingan yoki e'lon qilingan) uning Rust crate'i va mosligi bilan, port tartibini qismlar sifatida (bir-birini import qiladigan birliklar birga ko'chadi) va tavsiya etilgan javobli raqamlangan qarorlarni qo'shadi: qoldiriladigan birliklar, bloklangan birliklar, crate'i yo'q yoki qisman bo'lgan bog'liqliklar.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## Agent buni qanday bajaradi
 
-[Butun ilova skill'i](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) agentni bosqichma-bosqich olib boradi, faqat siz qabul qila oladigan qarorlardan boshlab:
+[Butun ilova skill'i](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) agentni bosqichma-bosqich olib boradi, faqat siz qabul qila oladigan qarorlardan boshlab:
 
 - **Grilling (savolga tutish)**: agent bosqichma-bosqich, har bir savolni tavsiya etilgan javobi bilan so'raydi, toki port bog'liq bo'lgan har bir qaror hal bo'lmaguncha, va har birini `rust/DECISIONS.md` ga ADR sifatida yozadi, `rust/GLOSSARY.md` esa asl nusxa atamalarini Rust nomlariga moslaydi.
 - **Tadqiqot**: fon agentlari har bir bog'liqlikning asosiy manbalarini o'qiydi va topgan har bir semantik tuzoq bilan `rust/research/<topic>.md` ni yozadi.

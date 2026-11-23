@@ -17,8 +17,8 @@
     "closeMenu": "메뉴 닫기",
     "menu": "메뉴",
     "language": "언어",
-    "home": "rust-anything 홈",
-    "github": "GitHub의 rust-anything",
+    "home": "everything-rust 홈",
+    "github": "GitHub의 everything-rust",
     "onThisPage": "이 페이지의 내용",
     "editPage": "GitHub에서 이 페이지 편집",
     "previous": "이전",
@@ -54,7 +54,7 @@
       "project": "프로젝트"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything이란",
+      "/docs/introduction/what-is-everything-rust": "everything-rust이란",
       "/docs/introduction/quick-start": "빠른 시작",
       "/docs/introduction/install": "설치",
       "/docs/introduction/agents": "에이전트 설정",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "앱을 Rust로 다시 작성하세요.",
     "title2": "똑같이 동작한다는 것을 증명하세요.",
-    "sub": "rust-anything은 코드가 하는 일을 기록한 뒤, 기록된 모든 케이스를 Rust 포트에 대해 재생합니다. Rust 코드는 에이전트가 작성합니다. 출력이 일치하기 전까지는 아무것도 배포되지 않습니다.",
+    "sub": "everything-rust은 코드가 하는 일을 기록한 뒤, 기록된 모든 케이스를 Rust 포트에 대해 재생합니다. Rust 코드는 에이전트가 작성합니다. 출력이 일치하기 전까지는 아무것도 배포되지 않습니다.",
     "cta": "빠른 시작 읽기",
     "source": "GitHub에서 소스 보기",
     "sourceLanguage": "원본 언어",
@@ -138,10 +138,10 @@
     "installTitle": "설치",
     "installDesc": "CLI를 설치한 다음 MCP 서버와 워크플로 스킬을 Claude Code, Codex, Cursor, Gemini CLI에 등록하세요.",
     "installNote": "macOS, Linux, Windows용 사전 빌드 바이너리는 각 [GitHub 릴리스]({releases})에 있습니다.",
-    "agentPrompt": "rust-anything을 설치해 주세요: `cargo install rust-anything`을 실행한 다음 `rust-anything setup`을 실행하세요.",
+    "agentPrompt": "everything-rust을 설치해 주세요: `cargo install everything-rust`을 실행한 다음 `everything-rust setup`을 실행하세요.",
     "agentRestart": "언제 다시 시작하면 되는지 알려 주세요.",
     "loopTitle": "포팅이 완료되는 과정",
-    "loopDesc": "원본이 계속 기준(source of truth)으로 남습니다. rust-anything은 코드를 번역하지 않습니다. 에이전트가 추측할 수 없는 정보와, 포팅이 언제 끝났는지 알려 주는 게이트를 제공합니다.",
+    "loopDesc": "원본이 계속 기준(source of truth)으로 남습니다. everything-rust은 코드를 번역하지 않습니다. 에이전트가 추측할 수 없는 정보와, 포팅이 언제 끝났는지 알려 주는 게이트를 제공합니다.",
     "steps": [
       {
         "title": "기록",
@@ -272,7 +272,7 @@
       "csharp": "앱 전체 기록과 재생, 유닛 브리지는 다음 단계"
     },
     "sponsorsTitle": "후원사",
-    "sponsorsDesc": "rust-anything은 무료 오픈 소스입니다. 작업에 도움이 된다면 후원을 고려해 주세요. 여러분의 후원이 개발을 이어 가게 합니다.",
+    "sponsorsDesc": "everything-rust은 무료 오픈 소스입니다. 작업에 도움이 된다면 후원을 고려해 주세요. 여러분의 후원이 개발을 이어 가게 합니다.",
     "companySponsor": "기업 후원사",
     "becomeSponsor": "후원하기"
   }

@@ -1,6 +1,6 @@
 ---
 title: ئورنىتىش
-description: rust-anything نى crates.io، npm ياكى release ئىككىلىك ھۆججىتىدىن ئورنىتىش، ۋە ھەر بىر تىلغا كېرەكلىك ئىجرا مۇھىتلىرى.
+description: everything-rust نى crates.io، npm ياكى release ئىككىلىك ھۆججىتىدىن ئورنىتىش، ۋە ھەر بىر تىلغا كېرەكلىك ئىجرا مۇھىتلىرى.
 ---
 
 # ئورنىتىش
@@ -10,22 +10,22 @@ description: rust-anything نى crates.io، npm ياكى release ئىككىلى�
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm ئوخشاش ئىككىلىك ھۆججەتنى JavaScript تۈرلىرى ئۈچۈن ئورنىتىدۇ.
 
-macOS، Linux ۋە Windows ئۈچۈن ئالدىن تۈزۈلگەن ئىككىلىك ھۆججەتلەر ھەر بىر [GitHub release](https://github.com/erkamyaman/rust-anything/releases) غا قوشۇلغان. Claude Code دا ئۇنى قىستۇرما سۈپىتىدىمۇ ئورناتقىلى بولىدۇ (MCP مۇلازىمېتىرى ۋە ماھارەت؛ CLI چوقۇم `PATH` تا بولۇشى كېرەك):
+macOS، Linux ۋە Windows ئۈچۈن ئالدىن تۈزۈلگەن ئىككىلىك ھۆججەتلەر ھەر بىر [GitHub release](https://github.com/marprojector/everything-rust/releases) غا قوشۇلغان. Claude Code دا ئۇنى قىستۇرما سۈپىتىدىمۇ ئورناتقىلى بولىدۇ (MCP مۇلازىمېتىرى ۋە ماھارەت؛ CLI چوقۇم `PATH` تا بولۇشى كېرەك):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## مەنبە كودىدىن
@@ -46,7 +46,7 @@ Windows تىكى يەرلىك CI `x86_64-pc-windows-msvc` Rust نىشانىنى 
 قورال زەنجىرى ۋە **Desktop development with C++** خىزمەت يۈكى بىلەن Visual Studio Build Tools نى ئورنىتىڭ؛
 C تەرجىمانى ۋە ئۇلىغۇچ (linker) C كۆۋرۈكلىرى ۋە يەرلىك Rust كېڭەيتمىلىرى ئۈچۈن زۆرۈر. كۆچۈرۈۋاتقان مەنبە تىلنىڭ
 ئىجرا مۇھىتىنى ئورنىتىڭ. Python `python3` ياكى `python` بولۇپ مەۋجۇت بولۇشى مۇمكىن؛
-rust-anything ھەر ئىككىسىنى بايقايدۇ. GNU Windows نىشانى CI دا سىنالمايدۇ.
+everything-rust ھەر ئىككىسىنى بايقايدۇ. GNU Windows نىشانى CI دا سىنالمايدۇ.
 
 يەرلىك كۆۋرۈك بىرىكتۈرۈش سىناق توپلىمىنى Developer PowerShell كۆزنىكىدىن ئىجرا قىلىڭ:
 
@@ -63,11 +63,11 @@ Cargo، ئاكتىپ Rust ئۆلچەملىك كۇتۇپخانىسى ۋە MSVC ئ
 PowerShell دىن ئىجرا قىلىپ، `where.exe link` نىڭ MSVC ئۇلىغۇچىنى تاپىدىغانلىقىنى جەزملەڭ. سىناقلار ۋاقىتلىق قىسقۇچلارنى ئىشلىتىدۇ،
 بۇنىڭ ئىچىدە بوشلۇق ۋە Unicode ھەرپلىرى بار يولمۇ بار، ھەمدە مۇۋەپپەقىيەتلىك ئىجرادىن كېيىن ھاسىل قىلىنغان نەرسىلەرنى ئۆچۈرىدۇ.
 
-ۋاكالەتچىلەر ئۈچۈن `rust-anything setup` ھەممىنى تىزىملىتىدۇ (تېز باشلاشنى كۆرۈڭ). MCP مۇلازىمېتىرىنى ئۇنىڭ ئورنىغا
+ۋاكالەتچىلەر ئۈچۈن `everything-rust setup` ھەممىنى تىزىملىتىدۇ (تېز باشلاشنى كۆرۈڭ). MCP مۇلازىمېتىرىنى ئۇنىڭ ئورنىغا
 بىر تۈرگىلا قولدا قوشۇش ئۈچۈن (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 ھەر بىر قورال، ئۇنىڭ پارامېتىرلىرى ۋە نېمىگە تېگىشى مۇمكىنلىكى: [docs/tools.md](/docs/reference/mcp-tools). مۇلازىمېتىر يەنە
@@ -75,12 +75,12 @@ PowerShell دىن ئىجرا قىلىپ، `where.exe link` نىڭ MSVC ئۇلى�
 ## يېڭىلاش ياكى ئۆچۈرۈش
 
 ```sh
-cargo install rust-anything                                    # يېڭىلاش (Cargo)
-npm install -g rust-anything@latest                            # يېڭىلاش (npm)
-rust-anything setup                                            # ۋاكالەتچى تەڭشەكلىرىنى يېڭىلاش
-rust-anything setup --remove && cargo uninstall rust-anything  # ئۆچۈرۈش (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # ئۆچۈرۈش (npm)
+cargo install everything-rust                                    # يېڭىلاش (Cargo)
+npm install -g everything-rust@latest                            # يېڭىلاش (npm)
+everything-rust setup                                            # ۋاكالەتچى تەڭشەكلىرىنى يېڭىلاش
+everything-rust setup --remove && cargo uninstall everything-rust  # ئۆچۈرۈش (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # ئۆچۈرۈش (npm)
 ```
 
-`setup --remove` پەقەت rust-anything نىڭ تۈرلىرىنىلا چىقىرىۋېتىدۇ؛ ئۇ ساقلىغان نۇسخىلار
-(`<file>.rust-anything.bak`) سىز ئۆچۈرمىگۈچە قالىدۇ.
+`setup --remove` پەقەت everything-rust نىڭ تۈرلىرىنىلا چىقىرىۋېتىدۇ؛ ئۇ ساقلىغان نۇسخىلار
+(`<file>.everything-rust.bak`) سىز ئۆچۈرمىگۈچە قالىدۇ.

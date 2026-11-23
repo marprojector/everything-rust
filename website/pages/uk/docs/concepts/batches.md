@@ -6,7 +6,7 @@ description: Порт, який викликають раз на елемент,
 # Пакети й гарячі шляхи
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # або: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # або: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` генерує клас, що приймає значення `param` один раз і тримає їх у Rust: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). На кожен запит `run(<other args>)` повертає всі результати одним масивом, а `rank(<other args>, min)` повертає індекси елементів, найкращі першими. Він працює на всіх ядрах, а помилки такі самі, як в оригіналу. Пакети отримує кожна мова, крім C.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # або: rust-anything r
 і на кожен виклик проганяє функцію по всіх них, на всіх ядрах, з результатами у типізованих масивах.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: чверть прогону, викликається для кожного ключа з `matched`: запакетуйте
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 Скомпільовані оригінали виграють менше: робота на елемент і так швидка, тож пакет виграє приблизно на кількість
 ядер. Пакетні крейти виділяють пам'ять через mimalloc: із системним алокатором пакет Go був повільнішим за
-один потік. Демо: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+один потік. Демо: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Як написати швидкий індекс
 
 - Нехай код, що викликає, будує пакет один раз, а не на кожен запит. Перетворюйте повернені індекси назад на елементи звичайним циклом.

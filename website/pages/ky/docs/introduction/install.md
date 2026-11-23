@@ -1,6 +1,6 @@
 ---
 title: Орнотуу
-description: rust-anything'ти crates.io, npm же release бинардык файлынан орнотуу жана ар бир тилге керектүү runtime'дар.
+description: everything-rust'ти crates.io, npm же release бинардык файлынан орнотуу жана ар бир тилге керектүү runtime'дар.
 ---
 
 # Орнотуу
@@ -10,22 +10,22 @@ description: rust-anything'ти crates.io, npm же release бинардык ф�
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm JavaScript долбоорлору үчүн ошол эле бинардык файлды орнотот.
 
-macOS, Linux жана Windows үчүн даяр бинардык файлдар ар бир [GitHub release](https://github.com/erkamyaman/rust-anything/releases) барагына тиркелген. Claude Code ичинде аны плагин катары да орнотсоңуз болот (MCP сервер жана skill; CLI сиздин `PATH` ичинде болушу керек):
+macOS, Linux жана Windows үчүн даяр бинардык файлдар ар бир [GitHub release](https://github.com/marprojector/everything-rust/releases) барагына тиркелген. Claude Code ичинде аны плагин катары да орнотсоңуз болот (MCP сервер жана skill; CLI сиздин `PATH` ичинде болушу керек):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## Баштапкы коддон
@@ -46,7 +46,7 @@ Windows'тогу нативдик CI `x86_64-pc-windows-msvc` Rust target'ин �
 toolchain'ин жана **Desktop development with C++** workload'у менен Visual Studio Build Tools'ту орнотуңуз;
 C компилятору жана linker C bridge'дери жана нативдик Rust кеңейтүүлөрү үчүн милдеттүү. Көчүрүп жаткан
 баштапкы тилиңиздин runtime'ын орнотуңуз. Python `python3` же
-`python` катары жеткиликтүү болушу мүмкүн; rust-anything экөөн тең табат. Windows'тун GNU target'и CI'да текшерилбейт.
+`python` катары жеткиликтүү болушу мүмкүн; everything-rust экөөн тең табат. Windows'тун GNU target'и CI'да текшерилбейт.
 
 Нативдик bridge интеграция тесттерин Developer PowerShell терезесинен иштетиңиз:
 
@@ -65,11 +65,11 @@ PowerShell'ден иштетип, `where.exe link` MSVC linker'ин тапкан
 анын ичинде боштуктары жана Unicode символдору бар жолду колдонот жана ийгиликтүү иштетүүдөн кийин
 генерацияланган артефакттарды өчүрөт.
 
-Агенттер үчүн `rust-anything setup` баарын каттайт (Тез баштоо барагын караңыз). Анын ордуна MCP серверди
+Агенттер үчүн `everything-rust setup` баарын каттайт (Тез баштоо барагын караңыз). Анын ордуна MCP серверди
 бир долбоорго кол менен кошуу үчүн (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Ар бир курал, анын параметрлери жана ал эмнеге тие алары: [docs/tools.md](/docs/reference/mcp-tools). Сервер ошондой эле
@@ -77,12 +77,12 @@ skill'ден курулган эки prompt сунуштайт: `port_unit` жа
 ## Жаңыртуу же өчүрүү
 
 ```sh
-cargo install rust-anything                                    # update (Cargo)
-npm install -g rust-anything@latest                            # update (npm)
-rust-anything setup                                            # refresh agent settings
-rust-anything setup --remove && cargo uninstall rust-anything  # remove (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # remove (npm)
+cargo install everything-rust                                    # update (Cargo)
+npm install -g everything-rust@latest                            # update (npm)
+everything-rust setup                                            # refresh agent settings
+everything-rust setup --remove && cargo uninstall everything-rust  # remove (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # remove (npm)
 ```
 
-`setup --remove` rust-anything'тин жазууларын гана алып салат; ал сактаган көчүрмөлөр
-(`<file>.rust-anything.bak`) сиз өчүрмөйүнчө калат.
+`setup --remove` everything-rust'тин жазууларын гана алып салат; ал сактаган көчүрмөлөр
+(`<file>.everything-rust.bak`) сиз өчүрмөйүнчө калат.

@@ -17,10 +17,10 @@ description: "C#은 프리뷰 단계입니다. analyze는 .csproj 프로젝트�
 빌드된 앱을 기록합니다:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 P/Invoke를 통한 유닛 포팅이 다음 단계입니다. 그때까지 `bridge`는 명확한 메시지와 함께 C# 유닛을 거부합니다.

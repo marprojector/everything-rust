@@ -10,7 +10,7 @@ description: profile بىلەن ۋاقىتنىڭ قەيەرگە كېتىدىغا
 نىشان سۈرئەت بولسا، ھەر قانداق نەرسىنى تاللاشتىن بۇرۇن ئۆلچەڭ:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # ياكى: python3 bench.py، ruby bench.rb،
+everything-rust profile <repo> -- node bench.mjs      # ياكى: python3 bench.py، ruby bench.rb،
                                                     #     java -cp out Main، go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # ياكى: python3 bench.py
 ## Analyze: كۆچۈرۈشنى پىلانلاش
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # ئادەملەر ئۈچۈن
-rust-anything analyze <repo> --json            # ۋاكالەتچىلەر ئۈچۈن: schema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # قوشۇمچە كىرىش نۇقتىلىرى، شەكىل، بېقىنىشلار، قارارلار
+everything-rust analyze <repo> -o plan.md        # ئادەملەر ئۈچۈن
+everything-rust analyze <repo> --json            # ۋاكالەتچىلەر ئۈچۈن: schema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # قوشۇمچە كىرىش نۇقتىلىرى، شەكىل، بېقىنىشلار، قارارلار
 ```
 
 `analyze` بىرلىكلەرنى، كۆچۈرۈش تەرتىپىنى، `file:line` بىلەن خەتەرلەرنى، ھەر بىر بىرلىكنىڭ كۆۋرۈكىنى، ھەر بىر بېقىنىشنىڭ crate قا قانچىلىك ماس كېلىدىغانلىقىنى، ۋە `start_here` نى (ئەڭ ياخشى تۇنجى كۆچۈرمىلەر) كۆرسىتىدۇ. `--whole-app` ئەپنىڭ شەكلى (CLI، مۇلازىمېتىر ياكى كۇتۇپخانا) ۋە كىرىش نۇقتىلىرىنى، ھەر بىر بېقىنىشنى (import قىلىنغان ياكى ئېلان قىلىنغان) ئۇنىڭ crate ى بىلەن، پارچىلارنى (بىر-بىرىنى import قىلىدىغان بىرلىكلەر بىللە يۆتكىلىدۇ) ۋە تەۋسىيە جاۋابى بار نومۇرلانغان قارارلارنى قوشىدۇ. [پۈتۈن ئەپنى كۆچۈرۈش](/docs/whole-apps/overview) نى كۆرۈڭ.

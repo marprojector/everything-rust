@@ -20,7 +20,7 @@ Les lots s'écrivent `new FnBatch(items)` ; fermez-les une fois terminé. `profi
 - `Integer.parseInt` accepte n'importe quel chiffre décimal Unicode (`١٢`, `２`) via `Character.digit`.
 - `Double.toString` (JDK 19+) affiche la plus courte représentation décimale, mais jamais moins de deux chiffres : `4.9E-324`, là où la forme la plus courte de Rust est `5e-324`.
 - `\s` est ASCII uniquement ; le `split_whitespace` de Rust coupe aussi sur U+00A0.
-- Les flottants doivent survivre à l'aller-retour : l'analyseur de flottants par défaut de `serde_json` n'arrondit pas toujours correctement, donc rust-anything et chaque crate qu'il génère utilisent sa feature `float_roundtrip`.
+- Les flottants doivent survivre à l'aller-retour : l'analyseur de flottants par défaut de `serde_json` n'arrondit pas toujours correctement, donc everything-rust et chaque crate qu'il génère utilisent sa feature `float_roundtrip`.
 
 ## Vitesse
 

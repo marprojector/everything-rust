@@ -6,12 +6,12 @@ description: shadow generates a drop-in module that runs the original and the Ru
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow` generates a drop-in with the original's API: a TS or Python module, a Go package, a Ruby file, Java classes or a C file. Load it where the app loaded the original. It runs both, returns the original's result, and reports Rust mismatches while you build confidence in production.
 
-| `RUST_ANYTHING_MODE` | Behavior |
+| `EVERYTHING_RUST_MODE` | Behavior |
 | --- | --- |
 | `shadow` (default) | runs both, returns the original's result, reports mismatches |
 | `new` | switches to Rust |

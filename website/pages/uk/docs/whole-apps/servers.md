@@ -10,11 +10,11 @@ description: Ті самі команди доводять HTTP-сервери. 
 порт):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: кожен маршрут проксіюється
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: кожен маршрут проксіюється
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Запити беруться з рядків `curl` у документації застосунку (`curl -X POST -d ... http://localhost:8080/x`),

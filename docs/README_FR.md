@@ -1,35 +1,30 @@
 <p align="center">
-  <img src="assets/logo.png" width="160" height="160" alt="Le crabe de rust-anything">
+  <img src="assets/logo.png" width="160" height="160" alt="Le crabe de everything-rust">
 </p>
 
-<h1 align="center">rust-anything</h1>
+<h1 align="center">everything-rust</h1>
 
 <p align="center"><sub><a href="../README.md">English</a> · <a href="README_TR.md">Türkçe</a> · <a href="README_UK.md">Українська</a> · <a href="README_ZH.md">简体中文</a> · <a href="README_ZH-TW.md">繁體中文</a> · <a href="README_DE.md">Deutsch</a> · Français · <a href="README_RU.md">Русский</a> · <a href="README_JA.md">日本語</a> · <a href="README_KO.md">한국어</a> · <a href="README_AZ.md">Azərbaycanca</a> · <a href="README_UZ.md">Oʻzbekcha</a> · <a href="README_KK.md">Қазақша</a> · <a href="README_KY.md">Кыргызча</a> · <a href="README_TK.md">Türkmençe</a> · <a href="README_TT.md">Татарча</a> · <a href="README_UG.md">ئۇيغۇرچە</a> · <a href="README_PT.md">Português</a> · <a href="README_VI.md">Tiếng Việt</a> · <a href="README_ES.md">Español</a> · <a href="README_IT.md">Italiano</a></sub></p>
 <p align="center"><sub>Cette traduction est maintenue par la communauté et peut être en retard sur le <a href="../README.md">README anglais</a>.</sub></p>
 
 <p align="center"><b>Réécrivez votre application en Rust, et prouvez qu'elle se comporte toujours de la même façon.</b><br>
-Il ne traduit pas le code : votre agent de code (ou vous) écrit le Rust, et rust-anything le vérifie face à l'original.</p>
+Il ne traduit pas le code : votre agent de code (ou vous) écrit le Rust, et everything-rust le vérifie face à l'original.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
+  <img src="https://img.shields.io/github/languages/top/marprojector/everything-rust?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
   <img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20Windows-native-2563EB" alt="Native binaries for macOS, Linux and Windows">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-555" alt="MIT license"></a>
-  <a href="https://crates.io/crates/rust-anything"><img src="https://img.shields.io/crates/v/rust-anything?color=E2862A&label=crates.io" alt="crates.io version"></a>
-  <a href="https://www.npmjs.com/package/rust-anything"><img src="https://img.shields.io/npm/v/rust-anything?color=E2862A&label=npm" alt="npm version"></a>
   <br>
-  <a href="https://coderabbit.link/erkamyaman"><img src="https://img.shields.io/coderabbit/prs/github/erkamyaman/rust-anything?labelColor=171717&color=FF570A&label=Reviewed+by+CodeRabbit" alt="Pull requests reviewed by CodeRabbit"></a>
   <a href="https://github.com/rust-unofficial/awesome-rust#development-tools"><img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Rust"></a>
   <a href="https://github.com/AIshihzong/awesome-reverse-engineer-anything"><img src="https://img.shields.io/badge/Featured%20in-Awesome%20REA-f0b429" alt="Featured in Awesome REA"></a>
-  <a href="https://github.com/erkamyaman/rust-anything"><img src="https://img.shields.io/github/stars/erkamyaman/rust-anything?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/marprojector/everything-rust"><img src="https://img.shields.io/github/stars/marprojector/everything-rust?style=social" alt="GitHub stars"></a>
 </p>
 
-<p align="center"><a href="https://github.com/erkamyaman/rust-anything/discussions/127"><img src="https://img.shields.io/badge/Join%20the%20discussion-6E40C9?style=for-the-badge&logo=github&logoColor=white" alt="Join the discussion"></a></p>
 
-<p align="center"><a href="https://trendshift.io/repositories/363468" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/363468/daily?language=Rust" alt="erkamyaman/rust-anything: #1 Rust repository of the day on Trendshift" width="250" height="55"/></a></p>
 
-<p align="center"><b><a href="#démarrage-rapide">Démarrage rapide</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Releases</a> · <a href="#démarrage-rapide">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">Portages réels</a> · <a href="faq.md#faq">FAQ</a><br>
+<p align="center"><b><a href="#démarrage-rapide">Démarrage rapide</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#démarrage-rapide">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Portages réels</a> · <a href="faq.md#faq">FAQ</a><br>
 <sub><a href="#langages">Langages</a> · <a href="how-it-works.md#how-it-works">Fonctionnement</a> · <a href="whole-apps.md#port-a-whole-app">Applications complètes</a> · <a href="../LICENSE">MIT</a></sub><br>
-Fait en Turquie 🇹🇷 par <a href="https://github.com/erkamyaman">erKam Yaman</a> · <a href="../LICENSE">MIT</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ Me sponsoriser</a> · Sponsorisé par <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
 
 <p align="center">Nouveau dans la 2.0 : <a href="real-world.md#prettier">Prettier, porté en Rust</a>. 19x plus rapide · 15,861 exécutions enregistrées sur 17,224 entièrement en Rust · toutes identiques octet pour octet</p>
 
@@ -62,7 +57,7 @@ Fait en Turquie 🇹🇷 par <a href="https://github.com/erkamyaman">erKam Yaman
   </tr>
 </table>
 
-**Réécrivez toute votre application en Rust, un morceau à la fois.** rust-anything enregistre ce que
+**Réécrivez toute votre application en Rust, un morceau à la fois.** everything-rust enregistre ce que
 fait aujourd'hui votre application Node.js (TypeScript/JavaScript), Python, C, Go, Ruby ou Java, puis
 vérifie chaque morceau de la réécriture Rust par rapport à cet enregistrement avant de passer à la
 suite, jusqu'à ce que l'application soit entièrement en Rust. CLI, serveurs HTTP et bibliothèques ;
@@ -70,7 +65,7 @@ votre agent de programmation (ou vous) écrit le code Rust. Il ne peut détecter
 l'enregistrement couvre : voir [Ce qui lui échappe](how-it-works.md#what-it-cant-catch). Des outils et
 serveurs entiers, ou seulement la partie lente, un chemin chaud à la fois :
 
-| Projet réel, même sortie que l'original | Original | Avec rust-anything |
+| Projet réel, même sortie que l'original | Original | Avec everything-rust |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2, 2,360 fichiers JS/TS en ligne de commande | 128.6 s | **6.9 s : 19x plus rapide** |
 | Prettier, 6,305 fichiers Markdown en ligne de commande | 352 s | **22.5 s : 15.6x plus rapide** |
@@ -84,7 +79,7 @@ correspondent toutes à Prettier octet par octet, car tout ce qui n'est pas enco
 Prettier. json-server : 514/514 cas HTTP enregistrés correspondent sur un binaire entièrement en Rust.
 Mesuré sur un Apple M4, deux exécutions chacun, chaque sortie comparée avant la mesure du temps
 ([détails](real-world.md)). Appeler Rust une fois par petite fonction est généralement *plus lent*
-qu'un JIT ; rust-anything identifie la boucle qui vaut la peine d'être déplacée, et la déplace.
+qu'un JIT ; everything-rust identifie la boucle qui vaut la peine d'être déplacée, et la déplace.
 
 ## Seulement la partie lente
 
@@ -92,7 +87,7 @@ Inutile de porter toute l'application. Pointez `go` vers une commande trop lente
 fonction qui prend le temps :
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 Il profile l'exécution, choisit la fonction la plus externe qui vaut la peine d'être déplacée (la
@@ -103,8 +98,8 @@ agent (`claude`, `codex` ou toute commande qui lit un prompt sur stdin ; sans `-
 et que `gate` passe. Ensuite :
 
 ```sh
-rust-anything report rust/dedupe-rs     # REPORT.md et card.svg pour la pull request
-rust-anything disable rust/dedupe-rs    # retour à l'original, octet par octet
+everything-rust report rust/dedupe-rs     # REPORT.md et card.svg pour la pull request
+everything-rust disable rust/dedupe-rs    # retour à l'original, octet par octet
 ```
 
 La ligne [Fuse.js](real-world.md#fusejs) ci-dessus suit ce schéma : le score de Fuse pour une chaîne,
@@ -119,7 +114,7 @@ façons d'activer et de désactiver un portage : [Switch a port on and off](how-
   <sub>json-server, un serveur Node entier, transformé en binaire entièrement en Rust (Apple M4). <a href="real-world.md#json-server">Comment c'est mesuré</a>.</sub>
 </p>
 
-> rust-anything est un projet indépendant, qui n'est ni affilié au Rust Project ou à la Rust Foundation,
+> everything-rust est un projet indépendant, qui n'est ni affilié au Rust Project ou à la Rust Foundation,
 > ni approuvé par eux. « Rust » est une marque déposée de la Rust Foundation.
 
 > [!WARNING]
@@ -134,59 +129,59 @@ façons d'activer et de désactiver un portage : [Switch a port on and off](how-
 Collez ceci dans Claude Code, Codex, Cursor, Gemini CLI ou OpenCode et laissez votre agent l'installer :
 
 ```text
-Installe rust-anything : exécute `cargo install rust-anything`, puis `rust-anything setup`.
+Installe everything-rust : exécute `cargo install everything-rust`, puis `everything-rust setup`.
 Dis-moi quand je dois te redémarrer.
 ```
 
 Ou faites-le vous-même :
 
 ```sh
-cargo install rust-anything   # depuis crates.io
-rust-anything setup           # l'enregistre auprès de Claude Code, Codex, Cursor, Gemini CLI et OpenCode
+cargo install everything-rust   # depuis crates.io
+everything-rust setup           # l'enregistre auprès de Claude Code, Codex, Cursor, Gemini CLI et OpenCode
 ```
 
 Pas encore de chaîne d'outils Rust ? Des binaires précompilés pour macOS, Linux et Windows sont joints
-à chaque [release GitHub](https://github.com/erkamyaman/rust-anything/releases), et pour les projets
-JavaScript, `npm install -g rust-anything` installe le même binaire.
+à chaque [release GitHub](https://github.com/marprojector/everything-rust/releases), et pour les projets
+JavaScript, `npm install -g everything-rust` installe le même binaire.
 
 Dans Claude Code, vous pouvez aussi l'installer en tant que plugin (le serveur MCP et le skill ; le CLI
 ci-dessus doit se trouver dans votre `PATH`) :
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 `setup` ajoute le serveur MCP à chaque agent détecté et installe le skill de workflow là où l'agent
 lit ses skills. Il conserve vos autres paramètres, peut être relancé sans risque, et `--remove` l'annule.
 Demandez ensuite à votre agent, par exemple :
 
-- *« Réécris ce CLI en Rust avec rust-anything, de bout en bout, et prouve qu'il se comporte à l'identique. »*
-- *« Cette recherche semble lente. Profile-la avec rust-anything et déplace la boucle critique vers Rust. »*
-- *« Planifie une migration de `src/parser/` vers Rust avec rust-anything ; porte la première unité et prouve-la. »*
+- *« Réécris ce CLI en Rust avec everything-rust, de bout en bout, et prouve qu'il se comporte à l'identique. »*
+- *« Cette recherche semble lente. Profile-la avec everything-rust et déplace la boucle critique vers Rust. »*
+- *« Planifie une migration de `src/parser/` vers Rust avec everything-rust ; porte la première unité et prouve-la. »*
 - *« Compare les performances du portage Rust dans `rust/text-rs` face à l'original et dis-moi s'il faut le livrer. »*
 
 ### Fonctionne avec
 
-| Agent | Ce que `rust-anything setup` ajoute |
+| Agent | Ce que `everything-rust setup` ajoute |
 | --- | --- |
 | Claude Code | Serveur MCP dans `~/.claude.json`, skill dans `~/.claude/skills/` |
 | Codex | Serveur MCP dans `~/.codex/config.toml`, skill dans `~/.codex/skills/` |
 | Cursor | Serveur MCP dans `~/.cursor/mcp.json` |
 | Gemini CLI | Serveur MCP dans `~/.gemini/settings.json` |
 | OpenCode | Serveur MCP dans `~/.config/opencode/opencode.json` (`mcp.servers`), skill dans `~/.config/opencode/skills/` |
-| Tout autre client MCP | ajouter `rust-anything mcp` manuellement comme serveur stdio (voir [Installation](install.md#install)) |
+| Tout autre client MCP | ajouter `everything-rust mcp` manuellement comme serveur stdio (voir [Installation](install.md#install)) |
 
-Avant de modifier un fichier existant, `setup` en enregistre une copie à côté (`<file>.rust-anything.bak`).
+Avant de modifier un fichier existant, `setup` en enregistre une copie à côté (`<file>.everything-rust.bak`).
 
 Pour configurer OpenCode à la main, placez le serveur dans `~/.config/opencode/opencode.json` (`command`
-contient l'argv complet) et copiez [`skills/rust-anything/`](../skills/rust-anything) vers
-`~/.config/opencode/skills/rust-anything/` :
+contient l'argv complet) et copiez [`skills/everything-rust/`](../skills/everything-rust) vers
+`~/.config/opencode/skills/everything-rust/` :
 
 ```json
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
@@ -195,17 +190,17 @@ contient l'argv complet) et copiez [`skills/rust-anything/`](../skills/rust-anyt
 Ou exécutez les étapes vous-même :
 
 ```sh
-rust-anything profile . -- node bench.mjs              # ce qui consomme du temps, et qui l'appelle
-rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile . -- node bench.mjs              # ce qui consomme du temps, et qui l'appelle
+everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text
 # écrivez src/port.rs (ou laissez votre agent le faire), puis :
-rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
-rust-anything diff rust/fuzzy-rs                       # chaque cas enregistré doit correspondre
-rust-anything bench rust/fuzzy-rs                      # plus rapide ? le verdict tranche
-rust-anything gate rust/fuzzy-rs                       # terminé signifie que ce contrôle passe
+everything-rust record rust/fuzzy-rs && everything-rust build rust/fuzzy-rs
+everything-rust diff rust/fuzzy-rs                       # chaque cas enregistré doit correspondre
+everything-rust bench rust/fuzzy-rs                      # plus rapide ? le verdict tranche
+everything-rust gate rust/fuzzy-rs                       # terminé signifie que ce contrôle passe
 ```
 
-rust-anything ne traduit pas le code : votre agent de programmation (Claude Code, Codex,
-Cursor, OpenCode, ...) ou vous-même écrivez le Rust. rust-anything fournit ce qu'un agent ne peut pas deviner de
+everything-rust ne traduit pas le code : votre agent de programmation (Claude Code, Codex,
+Cursor, OpenCode, ...) ou vous-même écrivez le Rust. everything-rust fournit ce qu'un agent ne peut pas deviner de
 manière fiable : où passe le temps, quoi porter en premier et dans quel ordre, un pont pour que le reste
 du code appelle le Rust sans changer son API, le comportement exact que le portage doit reproduire, un
 moyen sûr de le déployer et un contrôle final indiquant quand un portage est terminé.
@@ -245,7 +240,7 @@ Pour PHP, `analyze` planifie une application PHP (paquets Composer et chargement
 PSR-4, risques tels que la comparaison souple et le débordement d'entiers en flottants, paquets Composer
 mappés vers des crates), et un CLI ou serveur PHP peut être enregistré, rejoué et placé derrière une porte
 d'entrée Rust. Le portage de ses unités en Rust via la FFI de PHP est l'étape suivante
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# fonctionne de la même manière : `analyze` lit les projets `.csproj` et leurs paquets NuGet (mappés
 vers des crates), résout les directives `using` vers les dossiers correspondants et signale ce que C# gère
@@ -262,35 +257,6 @@ d'unités via P/Invoke viendra ensuite.
 - [Installer, mettre à jour et développer](install.md) : toutes les méthodes d'installation, Windows, et la compilation depuis les sources
 - [FAQ](faq.md) · [État](STATUS.md) · [Outils MCP](tools.md)
 
-## Sponsors
-
-<p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> est gratuit et open source. S'il vous aide dans votre travail, envisagez de le sponsoriser.<br>
-  Votre soutien permet de poursuivre le développement.
-</p>
-
-<p align="center">
-  <a href="https://coderabbit.link/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/company-dark.svg">
-      <img src="assets/sponsors/company-light.svg" width="800" alt="Sponsor entreprise : CodeRabbit">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/sponsors-dark.svg">
-      <img src="assets/sponsors/sponsors-light.svg" width="800" alt="Sponsors : Santosh Yadav, Hakan Soytürk, Ali Yilmaz, Ashley Hunter, Fatih Uzuntaş">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman"><img src="https://img.shields.io/badge/Devenir_sponsor-%E2%9D%A4-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Devenir sponsor"></a>
-  <a href="https://buymeacoffee.com/erkamyaman"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
-</p>
 
 ## Contribuer
 
@@ -302,4 +268,4 @@ consulter le [code de conduite](../CODE_OF_CONDUCT.md).
 
 ## Licence
 
-[MIT](../LICENSE) © [Erkam Yaman](https://github.com/erkamyaman). Les portages et le code généré dans votre dépôt vous appartiennent.
+[MIT](../LICENSE) © [M. Ammar R. Arief](https://github.com/marprojector). Les portages et le code généré dans votre dépôt vous appartiennent.

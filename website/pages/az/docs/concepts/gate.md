@@ -6,7 +6,7 @@ description: gate port üçün hazırlığın tərifidir. İşə saldığı hər
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Hazırdır, yəni `gate` keçir. O, bunları yoxlayır:

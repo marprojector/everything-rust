@@ -7,7 +7,7 @@ description: Rust-da Fuse.js string siyahısı axtarışı. 3,414/3,414 qeydə a
 
 [Fuse.js](https://github.com/krisk/Fuse) (20k ulduz, həftədə təxminən 20 milyon npm endirmə,
 commit `edf2fb6`) saysız-hesabsız axtarış qutusunun arxasındakı qeyri-dəqiq axtarış kitabxanasıdır.
-rust-anything 1.6 (buraxılmamış) ilə port edilib; crate [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs)-dədir.
+everything-rust 1.6 (buraxılmamış) ilə port edilib; crate [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs)-dədir.
 
 `analyze` `src/`-in hər qovluğunu bir import dövrünə yerləşdirdi, buna görə Fuse fayl-fayl port edilə bilməz.
 Port bunun əvəzinə axtarışın vaxt sərf etdiyi yolu götürür: 54 sətirlik adapter

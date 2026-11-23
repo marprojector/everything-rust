@@ -5,7 +5,7 @@ description: Reescreve o meu código automaticamente? O Rust é sempre mais ráp
 
 # Perguntas frequentes
 
-Perguntas que as pessoas fazem sobre o rust-anything. Voltar ao [README](/).
+Perguntas que as pessoas fazem sobre o everything-rust. Voltar ao [README](/).
 
 ## Perguntas frequentes
 
@@ -16,7 +16,7 @@ em `port.rs`; `diff` e `gate` decidem quando está correto.
 **A API da minha aplicação vai mudar?** Não. Quem a chama importa as mesmas funções (ou o módulo shadow, que
 executa ambas e devolve o resultado do original enquanto ganha confiança).
 
-**O Rust é sempre mais rápido?** Não, e o rust-anything di-lo. Uma pequena função chamada uma vez por item
+**O Rust é sempre mais rápido?** Não, e o everything-rust di-lo. Uma pequena função chamada uma vez por item
 é muitas vezes mais lenta em Rust, porque cada chamada atravessa uma bridge; o V8, a JVM e o Go executam essas funções
 em nanossegundos. O `profile` encontra o ciclo à volta dela, o `--batch` migra o ciclo inteiro e o `bench`
 dá um veredicto antes de publicar. O código já compilado por numba, Cython ou JAX também é executado como código
@@ -60,7 +60,7 @@ livremente, e o `app replay` continua a provar o comportamento. Nada chama de vo
 a porta de entrada executa-o como um processo separado (ou encaminha-lhe o HTTP), as unidades com bridge são chamadas
 pelo original e nunca ao contrário, e os callbacks ficam na linguagem de origem.
 
-**O meu código sai da minha máquina?** Não: o rust-anything é executado localmente e não envia o seu código
+**O meu código sai da minha máquina?** Não: o everything-rust é executado localmente e não envia o seu código
 para lado nenhum. O Cargo descarrega crates como habitualmente, e o fornecedor do modelo do seu agente vê o que o seu agente
 lhe envia, segundo a sua própria política.
 

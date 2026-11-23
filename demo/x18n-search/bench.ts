@@ -1,6 +1,6 @@
 // x18n's KeySidebar search over 50,000 keys, as typed letter by letter: the TS pipeline
 // (score every key, keep matches, sort) against `FuzzyScoreBatch`, which keeps the keys in Rust.
-// Run after `rust-anything build .`:
+// Run after `everything-rust build .`:
 //   node --experimental-strip-types bench.ts <path to the x18n checkout>
 import { createRequire } from 'node:module'
 import { resolve } from 'node:path'

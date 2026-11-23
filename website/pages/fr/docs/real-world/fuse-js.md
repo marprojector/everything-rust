@@ -7,7 +7,7 @@ description: La recherche dans une liste de chaînes de Fuse.js en Rust. 3,414/3
 
 [Fuse.js](https://github.com/krisk/Fuse) (20k étoiles, environ 20 millions de téléchargements npm par semaine,
 commit `edf2fb6`) est la bibliothèque de recherche floue derrière d'innombrables champs de recherche. Portée avec
-rust-anything 1.6 (non publié) ; la crate se trouve dans [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs).
+everything-rust 1.6 (non publié) ; la crate se trouve dans [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs).
 
 `analyze` a placé chaque dossier de `src/` dans un même cycle d'import, donc Fuse ne peut pas être porté fichier par fichier.
 Le portage prend plutôt le chemin où une recherche passe son temps : un adaptateur de 54 lignes

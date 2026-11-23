@@ -6,8 +6,8 @@ description: bridge створює каркас крейта Rust для одн�
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # крейт у <repo>/rust/<name>; ніколи не перезаписує
-rust-anything refresh <crate>                  # після зміни сигнатури в port.rs
+everything-rust bridge <repo> <unit-id>          # крейт у <repo>/rust/<name>; ніколи не перезаписує
+everything-rust refresh <crate>                  # після зміни сигнатури в port.rs
 ```
 
 `bridge` створює крейт із прив'язками (`lib.rs` плюс обгортка, яку завантажує мова оригіналу) і заглушками для портування (`port.rs`). Порт ви пишете лише в `src/port.rs`; `src/lib.rs` та обгортки генеруються, а `refresh` перегенеровує їх із сигнатур у `port.rs`, додаючи нові пакетні класи. `port.rs` він ніколи не чіпає.

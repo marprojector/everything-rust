@@ -7,7 +7,7 @@ description: profile, analyze, bridge, record, port, diff, bench, shadow ve gate
 
 Tek bir sıcak fonksiyondan tüm bir uygulamaya kadar her port, birim birim aynı adımlardan geçer. Bir port ancak `gate` geçtiğinde biter.
 
-rust-anything bir portu nasıl kontrol eder, komutları neye karar verir ve sınırları nerededir. [README](/)'ye dön.
+everything-rust bir portu nasıl kontrol eder, komutları neye karar verir ve sınırları nerededir. [README](/)'ye dön.
 
 ## Nasıl çalışır
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | Adım | Komut | Ne yapar |
 | --- | --- | --- |
-| 0. Profil | `rust-anything profile <repo> -- node bench.mjs` | Gerçek bir iş yükünü dilin profiler'ı altında çalıştırır (node, cProfile, `go test` pprof, JFR, bir Ruby tracer): kapsayıcı süreye göre sıcak fonksiyonlar, onları çağıranlar ve hangi döngülerin batch'leneceği; Rust'ın pek kazandırmadığı, zaten derlenmiş kodu (numba, Cython, JAX) işaretler |
-| 1. Plan | `rust-anything analyze <repo>` | Birimler, port sırası, `file:line` ile riskler, birim başına köprü, bağımlılığın crate'e uyumu, en iyi ilk portlar; `--whole-app` giriş noktalarını ve yapıyı, crate'iyle birlikte her bağımlılığı (import edilen ya da bildirilen), parçaları (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler |
-| 2. Köprü | `rust-anything bridge <repo> <unit>` | Binding'leri (`lib.rs` ve kaynak dilin yüklediği wrapper) ve port edilecek stub'ları (`port.rs`) içeren crate; `--batch fn:param` birçok `param` değerini Rust'ta tutan bir sınıf ekler; `--as-json T` uygulamanın yalnızca veriyle doldurduğu bir tip parametresini JSON değerleri olarak köprüler |
-| 3. Kayıt | `rust-anything record <crate>` | Orijinali üretilmiş uç durumlarla (ASCII olmayan karakterler, emoji, `-0`, `NaN`, float beklenen yerde int'ler, ...) ve her parametredeki her anlamsal tuzakla (string uzunluğu ve büyük/küçük harf, işaretli bölme, taşma sınırları, float yazdırma, map ve sıralama düzeni) çalıştırır ve `cases.jsonl`'i kaydeder; `--from-tests -- npx jest` (ya da `-- pytest`) orijinalin kendi test takımının yaptığı her çağrıyı da kaydeder; `--float-tolerance 1e-9` sayısal kodda float'ların bu oran içinde eşleşmesine izin verir |
-| 3. Derleme | `rust-anything build <crate>` | Rust tarafını derler: `.node`, wasm paketi, Python eklentisi ya da paylaşımlı kütüphane |
-| 3. Diff | `rust-anything diff <crate>` | Kaydedilen vakaları, orijinali çağıranların çağırdığı şekilde Rust'a karşı yeniden oynatır; uyuşmazlıkları listeler |
-| 3. Bench | `rust-anything bench <crate>` | Kaydedilen vakaları orijinal ve Rust üzerinde köprü dahil ölçer |
-| 4. Shadow | `rust-anything shadow <crate>` | İkisini de çalıştıran, orijinalin sonucunu döndüren ve uyuşmazlıkları raporlayan drop-in; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, testler, `unsafe` denetimi, port edilmemiş bir şey kalmaması, orijinalin her hata yolu için kayıtlı başarısız bir vaka, orijinalin hata döndürdüğü yerde `unwrap`/`expect`/`panic!` olmaması (`// INFALLIBLE: <why>` ile işaretlenmedikçe), derleme, API, davranış |
-| Ajanlar | `rust-anything setup` | MCP sunucusunu (`rust-anything mcp`, her adım bir araç olarak) ve iş akışı skill'ini ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) kodlama ajanlarınıza kaydeder |
+| 0. Profil | `everything-rust profile <repo> -- node bench.mjs` | Gerçek bir iş yükünü dilin profiler'ı altında çalıştırır (node, cProfile, `go test` pprof, JFR, bir Ruby tracer): kapsayıcı süreye göre sıcak fonksiyonlar, onları çağıranlar ve hangi döngülerin batch'leneceği; Rust'ın pek kazandırmadığı, zaten derlenmiş kodu (numba, Cython, JAX) işaretler |
+| 1. Plan | `everything-rust analyze <repo>` | Birimler, port sırası, `file:line` ile riskler, birim başına köprü, bağımlılığın crate'e uyumu, en iyi ilk portlar; `--whole-app` giriş noktalarını ve yapıyı, crate'iyle birlikte her bağımlılığı (import edilen ya da bildirilen), parçaları (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler |
+| 2. Köprü | `everything-rust bridge <repo> <unit>` | Binding'leri (`lib.rs` ve kaynak dilin yüklediği wrapper) ve port edilecek stub'ları (`port.rs`) içeren crate; `--batch fn:param` birçok `param` değerini Rust'ta tutan bir sınıf ekler; `--as-json T` uygulamanın yalnızca veriyle doldurduğu bir tip parametresini JSON değerleri olarak köprüler |
+| 3. Kayıt | `everything-rust record <crate>` | Orijinali üretilmiş uç durumlarla (ASCII olmayan karakterler, emoji, `-0`, `NaN`, float beklenen yerde int'ler, ...) ve her parametredeki her anlamsal tuzakla (string uzunluğu ve büyük/küçük harf, işaretli bölme, taşma sınırları, float yazdırma, map ve sıralama düzeni) çalıştırır ve `cases.jsonl`'i kaydeder; `--from-tests -- npx jest` (ya da `-- pytest`) orijinalin kendi test takımının yaptığı her çağrıyı da kaydeder; `--float-tolerance 1e-9` sayısal kodda float'ların bu oran içinde eşleşmesine izin verir |
+| 3. Derleme | `everything-rust build <crate>` | Rust tarafını derler: `.node`, wasm paketi, Python eklentisi ya da paylaşımlı kütüphane |
+| 3. Diff | `everything-rust diff <crate>` | Kaydedilen vakaları, orijinali çağıranların çağırdığı şekilde Rust'a karşı yeniden oynatır; uyuşmazlıkları listeler |
+| 3. Bench | `everything-rust bench <crate>` | Kaydedilen vakaları orijinal ve Rust üzerinde köprü dahil ölçer |
+| 4. Shadow | `everything-rust shadow <crate>` | İkisini de çalıştıran, orijinalin sonucunu döndüren ve uyuşmazlıkları raporlayan drop-in; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, testler, `unsafe` denetimi, port edilmemiş bir şey kalmaması, orijinalin her hata yolu için kayıtlı başarısız bir vaka, orijinalin hata döndürdüğü yerde `unwrap`/`expect`/`panic!` olmaması (`// INFALLIBLE: <why>` ile işaretlenmedikçe), derleme, API, davranış |
+| Ajanlar | `everything-rust setup` | MCP sunucusunu (`everything-rust mcp`, her adım bir araç olarak) ve iş akışı skill'ini ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) kodlama ajanlarınıza kaydeder |
 
 ## Hot path'ler: veriyi Rust'ta tutun
 
@@ -54,9 +54,9 @@ yenilir. Kazandıran, döngüyü taşımaktır: `profile` onu bulur ve `--batch`
 her çağrıda fonksiyonu hepsinin üzerinde, tüm çekirdeklerde, typed array sonuçlarla çalıştıran bir sınıf üretir.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: çalışmanın dörtte biri, `matched` tarafından anahtar başına çağrılıyor: batch'leyin
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -97,7 +97,7 @@ Her dil batch alır ve çağrı başına portların kaybettiği yerde bile oriji
 
 Derlenen orijinaller daha az kazanır: öğe başına iş zaten hızlıdır, bu yüzden batch çekirdek sayısı
 kadar kazanır. Batch crate'leri bellek ayırmayı mimalloc ile yapar: sistem ayırıcısıyla Go batch'i
-tek thread'den daha yavaştı. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+tek thread'den daha yavaştı. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## `bridge` neye karar verir
 
@@ -178,16 +178,16 @@ vuran şeyler genellikle kaydın dışında yaşar, bu yüzden sınırların ner
 
 | Adım | Komut | Ne yapar |
 | --- | --- | --- |
-| 0. Profil | `rust-anything profile <repo> -- node bench.mjs` | Gerçek bir iş yükünü dilin profiler'ı altında çalıştırır (node, cProfile, `go test` pprof, JFR, bir Ruby tracer): kapsayıcı süreye göre sıcak fonksiyonlar, onları çağıranlar ve hangi döngülerin batch'leneceği; Rust'ın pek kazandırmadığı, zaten derlenmiş kodu (numba, Cython, JAX) işaretler |
-| 1. Plan | `rust-anything analyze <repo>` | Birimler, port sırası, `file:line` ile riskler, birim başına köprü, bağımlılığın crate'e uyumu, en iyi ilk portlar; `--whole-app` giriş noktalarını ve yapıyı, crate'iyle birlikte her bağımlılığı (import edilen ya da bildirilen), parçaları (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler |
-| 2. Köprü | `rust-anything bridge <repo> <unit>` | Binding'leri (`lib.rs` ve kaynak dilin yüklediği wrapper) ve port edilecek stub'ları (`port.rs`) içeren crate; `--batch fn:param` birçok `param` değerini Rust'ta tutan bir sınıf ekler; `--as-json T` uygulamanın yalnızca veriyle doldurduğu bir tip parametresini JSON değerleri olarak köprüler |
-| 3. Kayıt | `rust-anything record <crate>` | Orijinali üretilmiş uç durumlarla (ASCII olmayan karakterler, emoji, `-0`, `NaN`, float beklenen yerde int'ler, ...) ve her parametredeki her anlamsal tuzakla (string uzunluğu ve büyük/küçük harf, işaretli bölme, taşma sınırları, float yazdırma, map ve sıralama düzeni) çalıştırır ve `cases.jsonl`'i kaydeder; `--from-tests -- npx jest` (ya da `-- pytest`) orijinalin kendi test takımının yaptığı her çağrıyı da kaydeder; `--float-tolerance 1e-9` sayısal kodda float'ların bu oran içinde eşleşmesine izin verir |
-| 3. Derleme | `rust-anything build <crate>` | Rust tarafını derler: `.node`, wasm paketi, Python eklentisi ya da paylaşımlı kütüphane |
-| 3. Diff | `rust-anything diff <crate>` | Kaydedilen vakaları, orijinali çağıranların çağırdığı şekilde Rust'a karşı yeniden oynatır; uyuşmazlıkları listeler |
-| 3. Bench | `rust-anything bench <crate>` | Kaydedilen vakaları orijinal ve Rust üzerinde köprü dahil ölçer |
-| 4. Shadow | `rust-anything shadow <crate>` | İkisini de çalıştıran, orijinalin sonucunu döndüren ve uyuşmazlıkları raporlayan drop-in; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, testler, `unsafe` denetimi, port edilmemiş bir şey kalmaması, orijinalin her hata yolu için kayıtlı başarısız bir vaka, orijinalin hata döndürdüğü yerde `unwrap`/`expect`/`panic!` olmaması (`// INFALLIBLE: <why>` ile işaretlenmedikçe), derleme, API, davranış |
-| Ajanlar | `rust-anything setup` | MCP sunucusunu (`rust-anything mcp`, her adım bir araç olarak) ve iş akışı skill'ini ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) kodlama ajanlarınıza kaydeder |
+| 0. Profil | `everything-rust profile <repo> -- node bench.mjs` | Gerçek bir iş yükünü dilin profiler'ı altında çalıştırır (node, cProfile, `go test` pprof, JFR, bir Ruby tracer): kapsayıcı süreye göre sıcak fonksiyonlar, onları çağıranlar ve hangi döngülerin batch'leneceği; Rust'ın pek kazandırmadığı, zaten derlenmiş kodu (numba, Cython, JAX) işaretler |
+| 1. Plan | `everything-rust analyze <repo>` | Birimler, port sırası, `file:line` ile riskler, birim başına köprü, bağımlılığın crate'e uyumu, en iyi ilk portlar; `--whole-app` giriş noktalarını ve yapıyı, crate'iyle birlikte her bağımlılığı (import edilen ya da bildirilen), parçaları (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler |
+| 2. Köprü | `everything-rust bridge <repo> <unit>` | Binding'leri (`lib.rs` ve kaynak dilin yüklediği wrapper) ve port edilecek stub'ları (`port.rs`) içeren crate; `--batch fn:param` birçok `param` değerini Rust'ta tutan bir sınıf ekler; `--as-json T` uygulamanın yalnızca veriyle doldurduğu bir tip parametresini JSON değerleri olarak köprüler |
+| 3. Kayıt | `everything-rust record <crate>` | Orijinali üretilmiş uç durumlarla (ASCII olmayan karakterler, emoji, `-0`, `NaN`, float beklenen yerde int'ler, ...) ve her parametredeki her anlamsal tuzakla (string uzunluğu ve büyük/küçük harf, işaretli bölme, taşma sınırları, float yazdırma, map ve sıralama düzeni) çalıştırır ve `cases.jsonl`'i kaydeder; `--from-tests -- npx jest` (ya da `-- pytest`) orijinalin kendi test takımının yaptığı her çağrıyı da kaydeder; `--float-tolerance 1e-9` sayısal kodda float'ların bu oran içinde eşleşmesine izin verir |
+| 3. Derleme | `everything-rust build <crate>` | Rust tarafını derler: `.node`, wasm paketi, Python eklentisi ya da paylaşımlı kütüphane |
+| 3. Diff | `everything-rust diff <crate>` | Kaydedilen vakaları, orijinali çağıranların çağırdığı şekilde Rust'a karşı yeniden oynatır; uyuşmazlıkları listeler |
+| 3. Bench | `everything-rust bench <crate>` | Kaydedilen vakaları orijinal ve Rust üzerinde köprü dahil ölçer |
+| 4. Shadow | `everything-rust shadow <crate>` | İkisini de çalıştıran, orijinalin sonucunu döndüren ve uyuşmazlıkları raporlayan drop-in; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, testler, `unsafe` denetimi, port edilmemiş bir şey kalmaması, orijinalin her hata yolu için kayıtlı başarısız bir vaka, orijinalin hata döndürdüğü yerde `unwrap`/`expect`/`panic!` olmaması (`// INFALLIBLE: <why>` ile işaretlenmedikçe), derleme, API, davranış |
+| Ajanlar | `everything-rust setup` | MCP sunucusunu (`everything-rust mcp`, her adım bir araç olarak) ve iş akışı skill'ini ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) kodlama ajanlarınıza kaydeder |
 
 ## Sonraki
 

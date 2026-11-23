@@ -1,9 +1,9 @@
 # Real-world ports
 
-The crates rust-anything produced in the runs described in
+The crates everything-rust produced in the runs described in
 [`docs/real-world-languages.md`](../../docs/real-world-languages.md): each holds the Rust port
 (`src/port.rs`), the generated bridge, `cases.jsonl` (the recorded behavior of the original) and,
-where used, `inputs.jsonl` (extra inputs passed to `rust-anything record --inputs`).
+where used, `inputs.jsonl` (extra inputs passed to `everything-rust record --inputs`).
 
 | Crate | Original | Where it came from |
 | --- | --- | --- |
@@ -23,10 +23,10 @@ where used, `inputs.jsonl` (extra inputs passed to `rust-anything record --input
 
 The originals are not copied here: the standard-library sources keep their own licenses, and the
 ports name theirs in `src/port.rs`. To rerun one, put the original in place as described, point
-`rust-anything.json`'s `root` at that project, and run:
+`everything-rust.json`'s `root` at that project, and run:
 
 ```sh
-rust-anything record <crate> --inputs <crate>/inputs.jsonl   # or keep the recorded cases.jsonl
-rust-anything gate <crate>
-rust-anything bench <crate>
+everything-rust record <crate> --inputs <crate>/inputs.jsonl   # or keep the recorded cases.jsonl
+everything-rust gate <crate>
+everything-rust bench <crate>
 ```

@@ -1,5 +1,5 @@
-export const SITE_NAME = 'rust-anything'
-export const REPO = 'erkamyaman/rust-anything'
+export const SITE_NAME = 'everything-rust'
+export const REPO = 'marprojector/everything-rust'
 export const REPO_URL = `https://github.com/${REPO}`
 export const EDIT_BASE = `${REPO_URL}/edit/main`
 export const TAGLINE = 'Rewrite your whole app in Rust. Keep it working the whole way.'

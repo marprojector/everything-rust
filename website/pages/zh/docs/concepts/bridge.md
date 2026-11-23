@@ -6,8 +6,8 @@ description: bridge 为一个单元搭建 Rust crate，生成绑定代码和包�
 # 桥接层
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate 位于 <repo>/rust/<name>；从不覆盖
-rust-anything refresh <crate>                  # 修改 port.rs 中的签名之后运行
+everything-rust bridge <repo> <unit-id>          # crate 位于 <repo>/rust/<name>；从不覆盖
+everything-rust refresh <crate>                  # 修改 port.rs 中的签名之后运行
 ```
 
 `bridge` 会创建一个 crate，其中包含绑定代码（`lib.rs`，以及源语言加载的包装层）和待移植的桩函数（`port.rs`）。你只需要在 `src/port.rs` 中编写移植代码；`src/lib.rs` 和各种包装层都是生成的，`refresh` 会根据 `port.rs` 中的签名重新生成它们，并加入新的批处理类。它从不改动 `port.rs`。

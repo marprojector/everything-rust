@@ -17,12 +17,12 @@ description: PHP önizləmədədir. analyze PHP tətbiqini planlaşdırır, PHP 
 PHP CLI və ya serveri qeydə alına, təkrar oynadıla və Rust front door-unun arxasına qoyula bilər:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Onun vahidlərini PHP-nin FFI-ı vasitəsilə Rust-a port etmək növbəti addımdır ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). O vaxta qədər `bridge` PHP vahidlərini aydın mesajla rədd edir.
+Onun vahidlərini PHP-nin FFI-ı vasitəsilə Rust-a port etmək növbəti addımdır ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). O vaxta qədər `bridge` PHP vahidlərini aydın mesajla rədd edir.
 
 CI PHP quraşdırmır, buna görə PHP testləri yalnız PHP olan maşında işləyir.

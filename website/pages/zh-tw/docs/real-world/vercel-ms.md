@@ -7,8 +7,8 @@ description: 端對端移植 vercel/ms。在每個已錄製的案例上都正確
 
 [vercel/ms](https://github.com/vercel/ms)（5.5k 顆星，commit `4ff48ce`）會把 `"2 days"` 轉成
 毫秒，也能反向轉換；大多數 Node 專案都會透過某個相依套件引入它。以
-rust-anything 1.5.1 端對端移植；crate 位於
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs)。
+everything-rust 1.5.1 端對端移植；crate 位於
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs)。
 
 | 步驟 | 結果 |
 | --- | --- |

@@ -6,8 +6,8 @@ description: Rust로 옮긴 Fuse.js 문자열 목록 검색. 기록된 케이스
 # Fuse.js
 
 [Fuse.js](https://github.com/krisk/Fuse)(스타 20k, 주간 npm 다운로드 약 2천만 회,
-커밋 `edf2fb6`)는 수많은 검색창 뒤에 있는 퍼지 검색 라이브러리입니다. rust-anything 1.6(미출시)으로
-포팅했으며, crate는 [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs)에 있습니다.
+커밋 `edf2fb6`)는 수많은 검색창 뒤에 있는 퍼지 검색 라이브러리입니다. everything-rust 1.6(미출시)으로
+포팅했으며, crate는 [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs)에 있습니다.
 
 `analyze`는 `src/`의 모든 폴더를 하나의 import 순환에 넣었으므로, Fuse는 파일 단위로 포팅할 수 없습니다.
 대신 포트는 검색이 시간을 쓰는 경로를 택합니다: 54줄짜리 어댑터

@@ -10,11 +10,11 @@ description: Те же команды доказывают корректнос�
 порт):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: every route proxied
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: every route proxied
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Запросы берутся из строк `curl` в документации приложения (`curl -X POST -d ... http://localhost:8080/x`),

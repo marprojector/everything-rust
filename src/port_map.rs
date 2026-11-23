@@ -282,7 +282,7 @@ fn render(out: &mut String, map: &PortMap) -> std::fmt::Result {
         writeln!(out, "## Crate folders that could not be read\n")?;
         writeln!(
             out,
-            "A folder under `rust/` whose manifest does not parse: fix its `rust-anything.json` and run `map` again. A unit the file still names is not listed as unported, so it does not read as work to do:\n"
+            "A folder under `rust/` whose manifest does not parse: fix its `everything-rust.json` and run `map` again. A unit the file still names is not listed as unported, so it does not read as work to do:\n"
         )?;
         for e in &map.crate_errors {
             writeln!(out, "- {e}")?;
@@ -292,7 +292,7 @@ fn render(out: &mut String, map: &PortMap) -> std::fmt::Result {
 
     writeln!(out, "## Ports\n")?;
     if map.ports.is_empty() {
-        writeln!(out, "None yet: `rust-anything bridge` starts one.\n")?;
+        writeln!(out, "None yet: `everything-rust bridge` starts one.\n")?;
     } else {
         writeln!(
             out,
@@ -311,7 +311,7 @@ fn render(out: &mut String, map: &PortMap) -> std::fmt::Result {
                 p.last_diff
                     .map_or("not run".into(), |(m, t)| format!("{m}/{t}")),
                 if p.changed_upstream.is_some() {
-                    format!("**changed**: `rust-anything record {}`", p.crate_dir)
+                    format!("**changed**: `everything-rust record {}`", p.crate_dir)
                 } else {
                     "unchanged".into()
                 }
@@ -359,7 +359,7 @@ fn render(out: &mut String, map: &PortMap) -> std::fmt::Result {
     }
     writeln!(
         out,
-        "Regenerate with `rust-anything map --write`. Commit this file: when the original changes \
+        "Regenerate with `everything-rust map --write`. Commit this file: when the original changes \
          upstream, the next map marks every port whose recording it outdated."
     )
 }

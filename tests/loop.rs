@@ -8,9 +8,9 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge::{self, Kind, Manifest};
-use rust_anything::harness::{self, DiffOptions, RecordOptions};
-use rust_anything::shadow;
+use everything_rust::bridge::{self, Kind, Manifest};
+use everything_rust::harness::{self, DiffOptions, RecordOptions};
+use everything_rust::shadow;
 
 fn fixture() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini")
@@ -18,7 +18,7 @@ fn fixture() -> PathBuf {
 
 /// A fresh crate for `util.ts` in a temp folder.
 fn bridged(name: &str) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("rust-anything-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-{name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &fixture(),
@@ -274,7 +274,7 @@ fn shadow_returns_the_original_and_reports_mismatches() {
     let run = |mode: &str| {
         let o = Command::new("node")
             .arg(&script)
-            .env("RUST_ANYTHING_MODE", mode)
+            .env("EVERYTHING_RUST_MODE", mode)
             .output()
             .unwrap();
         assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
@@ -290,7 +290,7 @@ fn shadow_returns_the_original_and_reports_mismatches() {
 
 #[test]
 fn mcp_runs_analyze() {
-    let response = rust_anything::mcp::handle(&serde_json::json!({
+    let response = everything_rust::mcp::handle(&serde_json::json!({
         "jsonrpc": "2.0",
         "id": 7,
         "method": "tools/call",
@@ -300,7 +300,7 @@ fn mcp_runs_analyze() {
     assert_eq!(response["result"]["isError"], false);
     assert_eq!(
         response["result"]["structuredContent"]["schema"],
-        "rust-anything/analyze@1"
+        "everything-rust/analyze@1"
     );
 }
 
@@ -310,7 +310,7 @@ fn record_follows_bundler_style_imports() {
         return;
     }
     // `fs.ts` imports `./util.js`, a file that only exists as `util.ts`.
-    let dir = std::env::temp_dir().join(format!("rust-anything-resolve-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-resolve-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &fixture(),
@@ -366,7 +366,7 @@ fn async_functions_get_async_bindings() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/async");
     for kind in [Kind::Napi, Kind::Wasm] {
         let dir = std::env::temp_dir().join(format!(
-            "rust-anything-async-{kind:?}-{}",
+            "everything-rust-async-{kind:?}-{}",
             std::process::id()
         ));
         let _ = std::fs::remove_dir_all(&dir);
@@ -416,7 +416,7 @@ fn benchmark_awaits_async_typescript_calls_and_counts_rejections() {
         return;
     }
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-ts-async-bench-{}",
+        "everything-rust-ts-async-bench-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -470,7 +470,7 @@ fn classes_are_bridged_recorded_and_replayed() {
         return;
     }
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/classes");
-    let dir = std::env::temp_dir().join(format!("rust-anything-classes-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-classes-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -543,7 +543,7 @@ fn recording_substitutes_typescript_extensions_from_emitted_module_imports() {
         return;
     }
     let root = std::env::temp_dir().join(format!(
-        "rust-anything-ts-extensions-{}",
+        "everything-rust-ts-extensions-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&root);
@@ -591,7 +591,7 @@ fn recording_substitutes_typescript_extensions_from_emitted_module_imports() {
 #[test]
 fn tsconfig_aliases_are_followed() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/aliases");
-    let report = rust_anything::analyze::analyze(&root).unwrap();
+    let report = everything_rust::analyze::analyze(&root).unwrap();
     let greet = report
         .units
         .iter()
@@ -601,7 +601,7 @@ fn tsconfig_aliases_are_followed() {
     if !common::have("node") {
         return;
     }
-    let dir = std::env::temp_dir().join(format!("rust-anything-alias-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-alias-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &root,
@@ -636,7 +636,7 @@ fn record_prefers_an_exact_tsconfig_alias_to_a_matching_wildcard() {
         return;
     }
     let root =
-        std::env::temp_dir().join(format!("rust-anything-exact-alias-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-exact-alias-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src")).unwrap();
     std::fs::write(root.join("package.json"), r#"{"type":"module"}"#).unwrap();
@@ -688,7 +688,7 @@ fn record_resolves_workspace_packages_to_source() {
     }
     // `@m/b` imports `@m/a` by name; `@m/a` has no build output (`dist/` does not exist).
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/monorepo");
-    let dir = std::env::temp_dir().join(format!("rust-anything-monorepo-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-monorepo-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &root,
@@ -721,7 +721,7 @@ fn record_resolves_workspace_packages_to_source() {
 fn python_required_optional_port_local_type_compiles() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/python");
     let dir =
-        std::env::temp_dir().join(format!("rust-anything-python-local-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-python-local-{}", std::process::id()));
     bridge::bridge(&bridge::Options {
         root: &root,
         unit: "src/textkit/",
@@ -765,8 +765,8 @@ fn python_required_optional_port_local_type_compiles() {
     std::fs::remove_dir_all(&dir).unwrap();
 }
 
-fn error_checks(dir: &Path, fails: &str) -> Vec<rust_anything::gate::Check> {
-    let checks = rust_anything::error_paths::checks(dir, &Manifest::load(dir).unwrap());
+fn error_checks(dir: &Path, fails: &str) -> Vec<everything_rust::gate::Check> {
+    let checks = everything_rust::error_paths::checks(dir, &Manifest::load(dir).unwrap());
     let errors = &checks[0];
     assert_eq!(errors.name, "error cases");
     assert!(errors.passed, "{errors:?}");
@@ -780,7 +780,7 @@ fn error_checks(dir: &Path, fails: &str) -> Vec<rust_anything::gate::Check> {
 #[test]
 fn python_modules_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/python");
-    let dir = std::env::temp_dir().join(format!("rust-anything-python-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-python-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -878,7 +878,7 @@ fn python_modules_bridge_record_and_diff() {
 
 #[test]
 fn c_bridge_string_helper_does_not_collide_with_source_names() {
-    let root = std::env::temp_dir().join(format!("rust-anything-c-names-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-c-names-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(&root).unwrap();
     std::fs::write(
@@ -895,7 +895,7 @@ fn c_bridge_string_helper_does_not_collide_with_source_names() {
         name: None,
         force: false,
         keep: Vec::new(),
-        lang: Some(rust_anything::lang::Lang::C),
+        lang: Some(everything_rust::lang::Lang::C),
         batch: Vec::new(),
         as_json: Vec::new(),
         allocator: Default::default(),
@@ -913,7 +913,7 @@ fn c_bridge_string_helper_does_not_collide_with_source_names() {
 #[test]
 fn c_units_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/c");
-    let dir = std::env::temp_dir().join(format!("rust-anything-c-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-c-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -986,7 +986,7 @@ fn c_units_bridge_record_and_diff() {
 #[test]
 fn go_packages_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/go");
-    let dir = std::env::temp_dir().join(format!("rust-anything-go-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-go-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -1070,7 +1070,7 @@ fn go_packages_bridge_record_and_diff() {
 #[test]
 fn ruby_modules_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/ruby");
-    let dir = std::env::temp_dir().join(format!("rust-anything-ruby-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-ruby-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -1147,7 +1147,7 @@ fn ruby_modules_bridge_record_and_diff() {
 #[test]
 fn java_classes_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/java");
-    let dir = std::env::temp_dir().join(format!("rust-anything-java-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-java-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -1171,7 +1171,7 @@ fn java_classes_bridge_record_and_diff() {
     );
     let lib = std::fs::read_to_string(dir.join("src/lib.rs")).unwrap();
     assert!(
-        lib.contains("fn Java_rustanything_TextRsNative_call"),
+        lib.contains("fn Java_everythingrust_TextRsNative_call"),
         "{lib}"
     );
     let wrapper = std::fs::read_to_string(dir.join("java/com/example/text/Strings.java")).unwrap();
@@ -1233,7 +1233,7 @@ fn java_classes_bridge_record_and_diff() {
 #[test]
 fn kotlin_functions_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/kotlin");
-    let dir = std::env::temp_dir().join(format!("rust-anything-kotlin-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-kotlin-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -1257,7 +1257,7 @@ fn kotlin_functions_bridge_record_and_diff() {
     );
     let lib = std::fs::read_to_string(dir.join("src/lib.rs")).unwrap();
     assert!(
-        lib.contains("fn Java_rustanything_TextRsNative_call"),
+        lib.contains("fn Java_everythingrust_TextRsNative_call"),
         "{lib}"
     );
     // Kotlin type names must become Java ones, or javac rejects the wrapper.
@@ -1310,7 +1310,7 @@ fn kotlin_functions_bridge_record_and_diff() {
 /// Skips when there is no NDK or the Rust target is missing, as CI usually has neither.
 #[test]
 fn android_build_installs_a_jni_library() {
-    let Ok(ndk) = rust_anything::android::ndk_root(None) else {
+    let Ok(ndk) = everything_rust::android::ndk_root(None) else {
         return;
     };
     let installed = Command::new("rustup")
@@ -1320,7 +1320,7 @@ fn android_build_installs_a_jni_library() {
         .filter(|o| o.status.success())
         .map(|o| String::from_utf8_lossy(&o.stdout).into_owned())
         .unwrap_or_default();
-    let Some(abi) = rust_anything::android::DEFAULT_ABIS
+    let Some(abi) = everything_rust::android::DEFAULT_ABIS
         .iter()
         .find(|abi| installed.lines().any(|l| l.trim() == abi.triple()))
     else {
@@ -1328,7 +1328,7 @@ fn android_build_installs_a_jni_library() {
     };
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/kotlin");
     let dir = std::env::temp_dir().join(format!(
-        "rust-anything-android-{}-{}",
+        "everything-rust-android-{}-{}",
         std::process::id(),
         abi.name()
     ));
@@ -1351,9 +1351,9 @@ fn android_build_installs_a_jni_library() {
     let jni_libs = dir.join("libs");
     let report = harness::build_android(
         &dir,
-        &rust_anything::android::Options {
+        &everything_rust::android::Options {
             abis: vec![abi.name().into(), abi.name().into()], // duplicate ABIs build once
-            api: rust_anything::android::DEFAULT_API,
+            api: everything_rust::android::DEFAULT_API,
             ndk: None,
             out: Some(jni_libs),
         },
@@ -1470,7 +1470,7 @@ fn diff_compares_own_proto_named_properties_in_arguments_and_results() {
 
 /// A crate for `util.ts` with a `count:text` batch, bridged as `kind` with `allocator`.
 fn batch_crate(name: &str, kind: Kind, allocator: bridge::Allocator) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("rust-anything-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-{name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &fixture(),
@@ -1503,7 +1503,7 @@ fn batches_use_the_chosen_allocator() {
     let dir = batch_crate("alloc-mi", Kind::Napi, bridge::Allocator::Mimalloc);
     assert!(read(&dir, "src/lib.rs").contains("static GLOBAL: mimalloc::MiMalloc"));
     assert!(read(&dir, "Cargo.toml").contains("mimalloc = \"0.1\""));
-    assert!(!read(&dir, "rust-anything.json").contains("allocator"));
+    assert!(!read(&dir, "everything-rust.json").contains("allocator"));
     std::fs::remove_dir_all(&dir).unwrap();
 
     // rusty_alloc replaces it, and `refresh` keeps the choice from the manifest.
@@ -1520,7 +1520,7 @@ fn batches_use_the_chosen_allocator() {
         let cargo = read(&dir, "Cargo.toml");
         assert!(cargo.contains("rusty_alloc-api = \"2.6\""), "{cargo}");
         assert!(!cargo.contains("mimalloc"), "{cargo}");
-        assert!(read(&dir, "rust-anything.json").contains("\"allocator\": \"rusty_alloc\""));
+        assert!(read(&dir, "everything-rust.json").contains("\"allocator\": \"rusty_alloc\""));
         assert_eq!(
             Manifest::load(&dir).unwrap().allocator,
             bridge::Allocator::RustyAlloc
@@ -1540,7 +1540,7 @@ fn batches_use_the_chosen_allocator() {
     std::fs::remove_dir_all(&dir).unwrap();
 
     // Without batches there is no global allocator to choose.
-    let dir = std::env::temp_dir().join(format!("rust-anything-alloc-none-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-alloc-none-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     bridge::bridge(&bridge::Options {
         root: &fixture(),
@@ -1564,7 +1564,7 @@ fn batches_use_the_chosen_allocator() {
 #[test]
 fn php_functions_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/php-functions");
-    let dir = std::env::temp_dir().join(format!("rust-anything-php-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-php-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let outcome = bridge::bridge(&bridge::Options {
         root: &root,
@@ -1608,7 +1608,7 @@ fn php_functions_bridge_record_and_diff() {
     assert!(
         wrapper.contains(
             "function slugify(string $text, string $sep = '-', ?int $max = null)\n    {\n        \
-             return \\RustAnything\\NativeTextfnsRs::call('slugify', [$text, $sep, $max]);"
+             return \\EverythingRust\\NativeTextfnsRs::call('slugify', [$text, $sep, $max]);"
         ),
         "{wrapper}"
     );
@@ -1741,7 +1741,7 @@ fn php_functions_bridge_record_and_diff() {
 #[test]
 fn csharp_static_methods_bridge_record_and_diff() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/csharp-units");
-    let dir = std::env::temp_dir().join(format!("rust-anything-csharp-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-csharp-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     let options = |batch: Vec<String>| bridge::Options {
         root: &root,
@@ -1796,7 +1796,7 @@ fn csharp_static_methods_bridge_record_and_diff() {
     for expected in [
         "namespace Acme.Geo.Rust\n{\n    public static class Geometry",
         "public static int Clamp(int value, int lo = 0, int hi = 100) =>\n            \
-         global::RustAnything.GeoRsNative.Call<int>(\"Clamp\", new object?[] { value, lo, hi });",
+         global::EverythingRust.GeoRsNative.Call<int>(\"Clamp\", new object?[] { value, lo, hi });",
         "public static Point Midpoint(Point a, Point b) =>",
         "using System.Collections.Generic;",
     ] {
@@ -1936,7 +1936,7 @@ fn python_float_subclass_records_as_its_float_value() {
     let Some(_) = common::python() else {
         return;
     };
-    let root = std::env::temp_dir().join(format!("rust-anything-pyfloat-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-pyfloat-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     std::fs::create_dir_all(root.join("src/floatkit")).unwrap();
     std::fs::write(

@@ -9,7 +9,7 @@ description: Перший цілий застосунок, портований 
 1.0.0-beta.15) надає REST API з файлу JSON: Node, tinyhttp і lowdb. Це перший цілий
 застосунок, портований від початку до кінця через процес для цілого застосунку (`app record`, `front-door`, `wire`, `lift`):
 результатом є один бінарник Rust, що відповідає так само, як сервер на Node. Усе лежить у
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs).
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs).
 
 | Крок | Результат |
 | --- | --- |
@@ -53,7 +53,7 @@ description: Перший цілий застосунок, портований 
 його збирає `tsc` для npm, бінарник Rust зібрано з `--release`. Обидва обслуговують копію тієї самої
 бази даних на loopback; `ab -k` надсилає однакові запити, 20,000 на рядок (40 для повільного вкладення на
 великій базі) після прогріву. Два прогони, кожен запущено при середньому навантаженні за 1 хвилину нижче 3;
-у клітинках прогін 1 / прогін 2 у запитах на секунду. [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+у клітинках прогін 1 / прогін 2 у запитах на секунду. [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 є скриптом.
 
 База даних фікстури (6 постів, 3 коментарі):

@@ -1,6 +1,6 @@
 # FAQ
 
-Questions people ask about rust-anything. Back to the [README](../README.md).
+Questions people ask about everything-rust. Back to the [README](../README.md).
 
 ## FAQ
 
@@ -19,7 +19,7 @@ sends an email twice, or writes different rows, fails the case. See
 **Will my app's API change?** No. Callers import the same functions (or the shadow module, which
 runs both and returns the original's result while you build confidence).
 
-**Is Rust always faster?** No, and rust-anything says so. A small function called once per item
+**Is Rust always faster?** No, and everything-rust says so. A small function called once per item
 is often slower in Rust, because each call crosses a bridge; V8, the JVM and Go run such functions
 in nanoseconds. `profile` finds the loop around it, `--batch` moves the whole loop, and `bench`
 gives a verdict before you ship. Code already compiled by numba, Cython or JAX runs as machine
@@ -37,7 +37,7 @@ the time goes to starting the process, often more than the command itself, and t
 in Rust still waits for that start. Keep one shell open and send it the commands, batch them into
 one call, or call the API the command wraps (the file system, the registry, HTTP) from your code
 directly. Shell scripts themselves are not a supported language; PowerShell is on the list in
-[issue #200](https://github.com/erkamyaman/rust-anything/issues/200). The code around the calls
+[issue #200](https://github.com/marprojector/everything-rust/issues/200). The code around the calls
 (an Electron main process, a Node or Python tool runner) can be ported as usual.
 
 **My code is numeric; will the floats match exactly?** Often not: operation order, fused
@@ -81,12 +81,12 @@ freely, and `app replay` still proves the behavior. Nothing calls back into the 
 the front door runs it as a separate process (or forwards HTTP to it), bridged units are called
 by the original and never the other way round, and callbacks stay in the source language.
 
-**Does my code leave my machine?** No: rust-anything runs locally and sends none of your code
+**Does my code leave my machine?** No: everything-rust runs locally and sends none of your code
 anywhere. Cargo downloads crates as usual, and your agent's model provider sees what your agent
 sends it, under its own policy.
 
 **What does it need installed?** Rust, plus the runtime of the language you port, and a few extras
-that only matter for some languages, which `rust-anything doctor` lists with the command that
+that only matter for some languages, which `everything-rust doctor` lists with the command that
 installs each one:
 
 | Piece | Needed for |
@@ -98,7 +98,7 @@ installs each one:
 | Node 24 | `profile` (22.6+ runs everything else on the JS side) |
 | PHP, the .NET SDK | the PHP and C# whole-app paths |
 
-A missing optional runtime skips its tests instead of failing them; `RUST_ANYTHING_REQUIRE` makes
+A missing optional runtime skips its tests instead of failing them; `EVERYTHING_RUST_REQUIRE` makes
 them fail. See [Install](install.md#install).
 
 **Something broke.** Open an issue with the command, its output and your platform.

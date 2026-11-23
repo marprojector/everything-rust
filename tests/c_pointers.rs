@@ -9,8 +9,8 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::bridge;
-use rust_anything::harness::{self, DiffOptions, RecordOptions};
+use everything_rust::bridge;
+use everything_rust::harness::{self, DiffOptions, RecordOptions};
 
 const TYPES_H: &str = "#include <stdint.h>\n#include <stddef.h>\ntypedef uint32_t Sum;\n\
 typedef enum { MODE_LOW, MODE_HIGH } Mode;\n";
@@ -144,7 +144,7 @@ const INPUTS: &str = r#"{"fn": "sum_update", "args": [7, "00ff10"]}
 "#;
 
 fn project() -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("rust-anything-c-pointers-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("everything-rust-c-pointers-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(dir.join("src")).unwrap();
     std::fs::write(dir.join("src/types.h"), TYPES_H).unwrap();
@@ -162,7 +162,7 @@ fn bridged(repo: &Path) -> PathBuf {
         name: None,
         force: true,
         keep: Vec::new(),
-        lang: Some(rust_anything::lang::Lang::C),
+        lang: Some(everything_rust::lang::Lang::C),
         batch: Vec::new(),
         as_json: Vec::new(),
         allocator: Default::default(),
@@ -213,10 +213,10 @@ fn pointer_arguments_cross_the_c_bridge() {
         .status()
         .unwrap();
     assert!(fmt.success());
-    rust_anything::bridge::refresh(&dir).unwrap();
+    everything_rust::bridge::refresh(&dir).unwrap();
     let lib = std::fs::read_to_string(dir.join("src/lib.rs")).unwrap();
     assert!(
-        lib.contains("port::casecmp(\n        crate::__rust_anything_c_abi::c_chars(a),"),
+        lib.contains("port::casecmp(\n        crate::__everything_rust_c_abi::c_chars(a),"),
         "{lib}"
     );
     assert!(
@@ -251,7 +251,7 @@ fn pointer_arguments_cross_the_c_bridge() {
         "{cases}"
     );
 
-    let built = Command::new(env!("CARGO_BIN_EXE_rust-anything"))
+    let built = Command::new(env!("CARGO_BIN_EXE_everything-rust"))
         .args(["build", "."])
         .current_dir(&dir)
         .output()
@@ -281,7 +281,7 @@ fn pointer_arguments_cross_the_c_bridge() {
     .unwrap();
     assert_eq!(rows.len(), 5, "every function benchmarked");
 
-    let gate = rust_anything::gate::gate(&dir, &[]).unwrap();
+    let gate = everything_rust::gate::gate(&dir, &[]).unwrap();
     assert!(gate.passed, "{:?}", gate.checks);
     std::fs::remove_dir_all(&repo).unwrap();
 }

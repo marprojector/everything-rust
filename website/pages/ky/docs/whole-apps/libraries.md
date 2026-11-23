@@ -9,11 +9,11 @@ description: Китепкананын кайра ойното турган пр�
 бирдиктин жазылган кейстери далил.
 
 ```sh
-rust-anything app front-door .        # rust/app: a Rust crate with the public API
+everything-rust app front-door .        # rust/app: a Rust crate with the public API
 # each unit through the loop: bridge, record, port.rs, build, diff, gate; then:
-rust-anything app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
-rust-anything app replay .            # every wired unit's cases; fallback = exports still in the original
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
+everything-rust app replay .            # every wired unit's cases; fallback = exports still in the original
+everything-rust app lift .
 ```
 
 - Репозиторийде `main` жана сервер жок болгондо (болбосо `--library`), `app front-door` public API'ни
@@ -21,7 +21,7 @@ rust-anything app lift .
   бирдик анын модулу болуп калат: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` түзгөн crate'ти алат, `gate` иштетет жана бирдиктин shadow drop-in модулун жазат:
   түп нуска пакет аны бирдиктин ордуна импорттойт, ошентип анын чакыруучулары түп нуска API'син
-  сактап, Rust'ка жетишет. `RUST_ANYTHING_UNIT_<NAME>=original` бирдикти артка кайтарат (C: shadow'дун
+  сактап, Rust'ка жетишет. `EVERYTHING_RUST_UNIT_<NAME>=original` бирдикти артка кайтарат (C: shadow'дун
   желектерисиз куруңуз).
 - `app replay` ар бир туташтырылган бирдиктин жазылган кейстерин анын байланыштары аркылуу иштетет. Fallback rate
   Rust азырынча жооп бербеген public экспорттордун үлүшү: туташтырылбаган бирдиктер жана `bridge` түп

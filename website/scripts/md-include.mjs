@@ -3,7 +3,7 @@ import { join, posix, resolve } from 'node:path'
 
 export const WEBSITE_ROOT = resolve(import.meta.dirname, '..')
 export const REPO_ROOT = resolve(WEBSITE_ROOT, '..')
-const REPO_URL = 'https://github.com/erkamyaman/rust-anything'
+const REPO_URL = 'https://github.com/marprojector/everything-rust'
 const INCLUDE_RE = /^<!--\s*include:\s*(\S+)\s*-->\s*$/gm
 
 const LINK_MAP = {
@@ -111,7 +111,7 @@ export function rewriteTarget(target, sourceFile, image = false) {
     if (!hash && LINK_MAP[repoPath]) return LINK_MAP[repoPath]
     if (hash && sourceFile === repoPath && !p) return `#${hash}`
   }
-  if (image) return `https://raw.githubusercontent.com/erkamyaman/rust-anything/main/${repoPath}`
+  if (image) return `https://raw.githubusercontent.com/marprojector/everything-rust/main/${repoPath}`
   const abs = join(REPO_ROOT, repoPath)
   const kind = existsSync(abs) && statSync(abs).isDirectory() ? 'tree' : 'blob'
   return `${REPO_URL}/${kind}/main/${repoPath}${hash ? '#' + hash : ''}`
@@ -134,10 +134,10 @@ function readCliHelp() {
 export function renderCliHelp() {
   const { version, commands } = readCliHelp()
   const parts = [
-    `Generated from \`rust-anything --help\` and each subcommand's \`--help\` (rust-anything ${version}).`,
+    `Generated from \`everything-rust --help\` and each subcommand's \`--help\` (everything-rust ${version}).`,
   ]
   for (const { command, help } of commands) {
-    const title = command ? `rust-anything ${command}` : 'rust-anything'
+    const title = command ? `everything-rust ${command}` : 'everything-rust'
     parts.push(`## \`${title}\``, '```text\n' + help.trimEnd() + '\n```')
   }
   return parts.join('\n\n')
@@ -191,7 +191,7 @@ export function markCodeFilenames(markdown) {
 
 export function mdIncludePlugin() {
   return {
-    name: 'rust-anything-md-include',
+    name: 'everything-rust-md-include',
     enforce: 'pre',
     transform(code, id) {
       if (!id.endsWith('.md')) return

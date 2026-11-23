@@ -8,9 +8,9 @@ description: app record butun ilovani uning hujjatlashtirilgan misollari, siznin
 `record` va `diff` bitta birlikni isbotlaydi; `app record` va `app replay` esa oltita tilning istalganidagi CLI'lar va serverlar uchun ilovani isbotlaydi. Ilova qora quti hisoblanadi.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # asl nusxani ishga tushiradigan buyruq
-rust-anything app replay .                            # asl nusxa 100% o'tishi kerak
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # asl nusxani ishga tushiradigan buyruq
+everything-rust app replay .                            # asl nusxa 100% o'tishi kerak
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Holatlar qayerdan keladi
@@ -40,7 +40,7 @@ Ularni qo'lda o'qing va tahrirlang; port'da binary paydo bo'lgach, Rust testi ul
 ## Qayta ijro
 
 - `app replay` istalgan build'ni holatlarga qarshi ishga tushiradi, `passed/total` ni chiqaradi, har bir muvaffaqiyatsiz holat uchun diff bilan `rust/app-cases/replay-report.md` ni yozadi va har qanday nomuvofiqlikda noldan farqli kod bilan tugaydi.
-- [Front door](/docs/whole-apps/front-door) kabi `RUST_ANYTHING_FALLBACK_LOG` nomlagan faylga yozib boradigan build (asl nusxaga har bir fallback uchun bitta qator) o'zining fallback ulushini ham hisobotda oladi.
+- [Front door](/docs/whole-apps/front-door) kabi `EVERYTHING_RUST_FALLBACK_LOG` nomlagan faylga yozib boradigan build (asl nusxaga har bir fallback uchun bitta qator) o'zining fallback ulushini ham hisobotda oladi.
 - `app replay --case <name>` hisobot bergan nom bo'yicha bitta holatni qayta ishga tushiradi: hammasini qayta ishga tushirishdan oldin nomuvofiqlikni tuzatish uchun tez va takrorlanadigan sikl.
 
 ## CI'da qayta ijro
@@ -48,7 +48,7 @@ Ularni qo'lda o'qing va tahrirlang; port'da binary paydo bo'lgach, Rust testi ul
 Hisobotda vaqt o'lchovlari yoki vaqtinchalik yo'llar yo'q: bir xil build'ning ikki marta qayta ijrosi bir xil faylni yozadi. Uni commit qiling, so'ng CI'da ishga tushiring:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

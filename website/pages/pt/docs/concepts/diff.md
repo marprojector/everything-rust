@@ -6,9 +6,9 @@ description: O diff reproduz cada caso registado contra o Rust. O known-diffs.js
 # Diff e diferenças conhecidas
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # tem de dar N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # tem de dar N/N
+everything-rust diff <crate> --json
 ```
 
 O `diff` reproduz o `cases.jsonl` contra o módulo Rust compilado, chamado da mesma forma que os chamadores do original o chamam, e lista as divergências. Uma divergência é uma diferença de comportamento: corrija a migração, nunca o registo.

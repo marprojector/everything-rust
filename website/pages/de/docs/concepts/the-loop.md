@@ -7,7 +7,7 @@ description: profile, analyze, bridge, record, port, diff, bench, shadow und gat
 
 Jede Portierung, von einer heißen Funktion bis zu einer ganzen App, durchläuft dieselben Schritte, eine Unit nach der anderen. Eine Portierung ist erst fertig, wenn `gate` besteht.
 
-Wie rust-anything eine Portierung prüft, was seine Befehle entscheiden und wo seine Grenzen liegen. Zurück zur [README](/).
+Wie everything-rust eine Portierung prüft, was seine Befehle entscheiden und wo seine Grenzen liegen. Zurück zur [README](/).
 
 ## Wie es funktioniert
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | Schritt | Befehl | Was er tut |
 | --- | --- | --- |
-| 0. Profilieren | `rust-anything profile <repo> -- node bench.mjs` | Führt eine echte Arbeitslast unter dem Profiler der Sprache aus (node, cProfile, `go test` pprof, JFR, ein Ruby-Tracer): heiße Funktionen nach inklusiver Zeit, ihre Aufrufer und welche Schleifen als Batch laufen sollten; markiert bereits kompilierten Code (numba, Cython, JAX), bei dem Rust wenig bringt |
-| 1. Planen | `rust-anything analyze <repo>` | Units, Portierungsreihenfolge, Risiken mit `file:line`, Bridge pro Unit, Passung von Abhängigkeiten zu Crates, beste erste Portierungen; `--whole-app` ergänzt Einstiegspunkte und Form, jede Abhängigkeit (importiert oder deklariert) mit ihrem Crate, Stücke (Units, die sich gegenseitig importieren, wandern zusammen) und nummerierte Entscheidungen mit einer empfohlenen Antwort |
-| 2. Bridge | `rust-anything bridge <repo> <unit>` | Crate mit den Bindings (`lib.rs`, plus dem Wrapper, den die Quellsprache lädt) und Stubs zum Portieren (`port.rs`); `--batch fn:param` fügt eine Klasse hinzu, die viele `param`-Werte in Rust hält; `--as-json T` bridget einen Typparameter, den die App nur mit Daten füllt, als JSON-Werte |
-| 3. Aufzeichnen | `rust-anything record <crate>` | Führt das Original mit generierten Randfällen aus (Nicht-ASCII, Emoji, `-0`, `NaN`, Ints, wo Floats erwartet werden, ...) und mit jeder semantischen Falle in jedem Parameter (Stringlänge und Groß-/Kleinschreibung, vorzeichenbehaftete Division, Überlaufgrenzen, Float-Ausgabe, Map- und Sortierreihenfolge) und speichert `cases.jsonl`; `--from-tests -- npx jest` (oder `-- pytest`) zeichnet zusätzlich jeden Aufruf auf, den die eigene Testsuite des Originals macht; `--float-tolerance 1e-9` lässt Floats bei numerischem Code innerhalb dieses Anteils übereinstimmen |
-| 3. Bauen | `rust-anything build <crate>` | Baut die Rust-Seite: `.node`, wasm-Paket, Python-Erweiterung oder Shared Library |
-| 3. Diff | `rust-anything diff <crate>` | Spielt die aufgezeichneten Fälle gegen Rust ab, aufgerufen so, wie die Aufrufer des Originals es aufrufen; listet Abweichungen |
-| 3. Bench | `rust-anything bench <crate>` | Misst die aufgezeichneten Fälle auf dem Original und auf Rust, Bridge eingeschlossen |
-| 4. Shadow | `rust-anything shadow <crate>` | Direkter Ersatz, der beide ausführt, das Ergebnis des Originals zurückgibt und Abweichungen meldet; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, Tests, `unsafe`-Prüfung, nichts unportiert, ein aufgezeichneter Fehlerfall für jeden Fehlerpfad des Originals, kein `unwrap`/`expect`/`panic!`, wo das Original einen Fehler zurückgibt (außer markiert mit `// INFALLIBLE: <why>`), Build, API, Verhalten |
-| Agents | `rust-anything setup` | Registriert den MCP-Server (`rust-anything mcp`, jeder Schritt als Tool) und den Workflow-Skill ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) bei deinen Coding-Agents |
+| 0. Profilieren | `everything-rust profile <repo> -- node bench.mjs` | Führt eine echte Arbeitslast unter dem Profiler der Sprache aus (node, cProfile, `go test` pprof, JFR, ein Ruby-Tracer): heiße Funktionen nach inklusiver Zeit, ihre Aufrufer und welche Schleifen als Batch laufen sollten; markiert bereits kompilierten Code (numba, Cython, JAX), bei dem Rust wenig bringt |
+| 1. Planen | `everything-rust analyze <repo>` | Units, Portierungsreihenfolge, Risiken mit `file:line`, Bridge pro Unit, Passung von Abhängigkeiten zu Crates, beste erste Portierungen; `--whole-app` ergänzt Einstiegspunkte und Form, jede Abhängigkeit (importiert oder deklariert) mit ihrem Crate, Stücke (Units, die sich gegenseitig importieren, wandern zusammen) und nummerierte Entscheidungen mit einer empfohlenen Antwort |
+| 2. Bridge | `everything-rust bridge <repo> <unit>` | Crate mit den Bindings (`lib.rs`, plus dem Wrapper, den die Quellsprache lädt) und Stubs zum Portieren (`port.rs`); `--batch fn:param` fügt eine Klasse hinzu, die viele `param`-Werte in Rust hält; `--as-json T` bridget einen Typparameter, den die App nur mit Daten füllt, als JSON-Werte |
+| 3. Aufzeichnen | `everything-rust record <crate>` | Führt das Original mit generierten Randfällen aus (Nicht-ASCII, Emoji, `-0`, `NaN`, Ints, wo Floats erwartet werden, ...) und mit jeder semantischen Falle in jedem Parameter (Stringlänge und Groß-/Kleinschreibung, vorzeichenbehaftete Division, Überlaufgrenzen, Float-Ausgabe, Map- und Sortierreihenfolge) und speichert `cases.jsonl`; `--from-tests -- npx jest` (oder `-- pytest`) zeichnet zusätzlich jeden Aufruf auf, den die eigene Testsuite des Originals macht; `--float-tolerance 1e-9` lässt Floats bei numerischem Code innerhalb dieses Anteils übereinstimmen |
+| 3. Bauen | `everything-rust build <crate>` | Baut die Rust-Seite: `.node`, wasm-Paket, Python-Erweiterung oder Shared Library |
+| 3. Diff | `everything-rust diff <crate>` | Spielt die aufgezeichneten Fälle gegen Rust ab, aufgerufen so, wie die Aufrufer des Originals es aufrufen; listet Abweichungen |
+| 3. Bench | `everything-rust bench <crate>` | Misst die aufgezeichneten Fälle auf dem Original und auf Rust, Bridge eingeschlossen |
+| 4. Shadow | `everything-rust shadow <crate>` | Direkter Ersatz, der beide ausführt, das Ergebnis des Originals zurückgibt und Abweichungen meldet; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, Tests, `unsafe`-Prüfung, nichts unportiert, ein aufgezeichneter Fehlerfall für jeden Fehlerpfad des Originals, kein `unwrap`/`expect`/`panic!`, wo das Original einen Fehler zurückgibt (außer markiert mit `// INFALLIBLE: <why>`), Build, API, Verhalten |
+| Agents | `everything-rust setup` | Registriert den MCP-Server (`everything-rust mcp`, jeder Schritt als Tool) und den Workflow-Skill ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) bei deinen Coding-Agents |
 
 ## Hot Paths: die Daten in Rust halten
 
@@ -54,9 +54,9 @@ die Schleife zu verlagern: `profile` findet sie, und `--batch` erzeugt eine Klas
 und die Funktion pro Aufruf über alle ausführt, auf allen Kernen, mit Ergebnissen als Typed Arrays.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: ein Viertel des Laufs, pro Key von `matched` aufgerufen: als Batch ausführen
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ Arbeit auf 4 Kernen, identische Ergebnisse und Fehler (Benchmarks in jedem Demo-
 
 Kompilierte Originale gewinnen weniger: Die Arbeit pro Element ist bereits schnell, also gewinnt der Batch um die Anzahl der
 Kerne. Batch-Crates allozieren mit mimalloc: Mit dem System-Allocator war der Go-Batch langsamer als
-ein einzelner Thread. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+ein einzelner Thread. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## Was `bridge` entscheidet
 
@@ -176,16 +176,16 @@ liegt meist außerhalb der Aufzeichnung, also kenne die Grenzen:
 
 | Schritt | Befehl | Was er tut |
 | --- | --- | --- |
-| 0. Profilieren | `rust-anything profile <repo> -- node bench.mjs` | Führt eine echte Arbeitslast unter dem Profiler der Sprache aus (node, cProfile, `go test` pprof, JFR, ein Ruby-Tracer): heiße Funktionen nach inklusiver Zeit, ihre Aufrufer und welche Schleifen als Batch laufen sollten; markiert bereits kompilierten Code (numba, Cython, JAX), bei dem Rust wenig bringt |
-| 1. Planen | `rust-anything analyze <repo>` | Units, Portierungsreihenfolge, Risiken mit `file:line`, Bridge pro Unit, Passung von Abhängigkeiten zu Crates, beste erste Portierungen; `--whole-app` ergänzt Einstiegspunkte und Form, jede Abhängigkeit (importiert oder deklariert) mit ihrem Crate, Stücke (Units, die sich gegenseitig importieren, wandern zusammen) und nummerierte Entscheidungen mit einer empfohlenen Antwort |
-| 2. Bridge | `rust-anything bridge <repo> <unit>` | Crate mit den Bindings (`lib.rs`, plus dem Wrapper, den die Quellsprache lädt) und Stubs zum Portieren (`port.rs`); `--batch fn:param` fügt eine Klasse hinzu, die viele `param`-Werte in Rust hält; `--as-json T` bridget einen Typparameter, den die App nur mit Daten füllt, als JSON-Werte |
-| 3. Aufzeichnen | `rust-anything record <crate>` | Führt das Original mit generierten Randfällen aus (Nicht-ASCII, Emoji, `-0`, `NaN`, Ints, wo Floats erwartet werden, ...) und mit jeder semantischen Falle in jedem Parameter (Stringlänge und Groß-/Kleinschreibung, vorzeichenbehaftete Division, Überlaufgrenzen, Float-Ausgabe, Map- und Sortierreihenfolge) und speichert `cases.jsonl`; `--from-tests -- npx jest` (oder `-- pytest`) zeichnet zusätzlich jeden Aufruf auf, den die eigene Testsuite des Originals macht; `--float-tolerance 1e-9` lässt Floats bei numerischem Code innerhalb dieses Anteils übereinstimmen |
-| 3. Bauen | `rust-anything build <crate>` | Baut die Rust-Seite: `.node`, wasm-Paket, Python-Erweiterung oder Shared Library |
-| 3. Diff | `rust-anything diff <crate>` | Spielt die aufgezeichneten Fälle gegen Rust ab, aufgerufen so, wie die Aufrufer des Originals es aufrufen; listet Abweichungen |
-| 3. Bench | `rust-anything bench <crate>` | Misst die aufgezeichneten Fälle auf dem Original und auf Rust, Bridge eingeschlossen |
-| 4. Shadow | `rust-anything shadow <crate>` | Direkter Ersatz, der beide ausführt, das Ergebnis des Originals zurückgibt und Abweichungen meldet; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, Tests, `unsafe`-Prüfung, nichts unportiert, ein aufgezeichneter Fehlerfall für jeden Fehlerpfad des Originals, kein `unwrap`/`expect`/`panic!`, wo das Original einen Fehler zurückgibt (außer markiert mit `// INFALLIBLE: <why>`), Build, API, Verhalten |
-| Agents | `rust-anything setup` | Registriert den MCP-Server (`rust-anything mcp`, jeder Schritt als Tool) und den Workflow-Skill ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) bei deinen Coding-Agents |
+| 0. Profilieren | `everything-rust profile <repo> -- node bench.mjs` | Führt eine echte Arbeitslast unter dem Profiler der Sprache aus (node, cProfile, `go test` pprof, JFR, ein Ruby-Tracer): heiße Funktionen nach inklusiver Zeit, ihre Aufrufer und welche Schleifen als Batch laufen sollten; markiert bereits kompilierten Code (numba, Cython, JAX), bei dem Rust wenig bringt |
+| 1. Planen | `everything-rust analyze <repo>` | Units, Portierungsreihenfolge, Risiken mit `file:line`, Bridge pro Unit, Passung von Abhängigkeiten zu Crates, beste erste Portierungen; `--whole-app` ergänzt Einstiegspunkte und Form, jede Abhängigkeit (importiert oder deklariert) mit ihrem Crate, Stücke (Units, die sich gegenseitig importieren, wandern zusammen) und nummerierte Entscheidungen mit einer empfohlenen Antwort |
+| 2. Bridge | `everything-rust bridge <repo> <unit>` | Crate mit den Bindings (`lib.rs`, plus dem Wrapper, den die Quellsprache lädt) und Stubs zum Portieren (`port.rs`); `--batch fn:param` fügt eine Klasse hinzu, die viele `param`-Werte in Rust hält; `--as-json T` bridget einen Typparameter, den die App nur mit Daten füllt, als JSON-Werte |
+| 3. Aufzeichnen | `everything-rust record <crate>` | Führt das Original mit generierten Randfällen aus (Nicht-ASCII, Emoji, `-0`, `NaN`, Ints, wo Floats erwartet werden, ...) und mit jeder semantischen Falle in jedem Parameter (Stringlänge und Groß-/Kleinschreibung, vorzeichenbehaftete Division, Überlaufgrenzen, Float-Ausgabe, Map- und Sortierreihenfolge) und speichert `cases.jsonl`; `--from-tests -- npx jest` (oder `-- pytest`) zeichnet zusätzlich jeden Aufruf auf, den die eigene Testsuite des Originals macht; `--float-tolerance 1e-9` lässt Floats bei numerischem Code innerhalb dieses Anteils übereinstimmen |
+| 3. Bauen | `everything-rust build <crate>` | Baut die Rust-Seite: `.node`, wasm-Paket, Python-Erweiterung oder Shared Library |
+| 3. Diff | `everything-rust diff <crate>` | Spielt die aufgezeichneten Fälle gegen Rust ab, aufgerufen so, wie die Aufrufer des Originals es aufrufen; listet Abweichungen |
+| 3. Bench | `everything-rust bench <crate>` | Misst die aufgezeichneten Fälle auf dem Original und auf Rust, Bridge eingeschlossen |
+| 4. Shadow | `everything-rust shadow <crate>` | Direkter Ersatz, der beide ausführt, das Ergebnis des Originals zurückgibt und Abweichungen meldet; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, Tests, `unsafe`-Prüfung, nichts unportiert, ein aufgezeichneter Fehlerfall für jeden Fehlerpfad des Originals, kein `unwrap`/`expect`/`panic!`, wo das Original einen Fehler zurückgibt (außer markiert mit `// INFALLIBLE: <why>`), Build, API, Verhalten |
+| Agents | `everything-rust setup` | Registriert den MCP-Server (`everything-rust mcp`, jeder Schritt als Tool) und den Workflow-Skill ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) bei deinen Coding-Agents |
 ## Weiter
 
 Jeder Schritt hat eine eigene Seite: [Profilieren und analysieren](/docs/concepts/analyze), [Bridge](/docs/concepts/bridge), [Record](/docs/concepts/record), [Port](/docs/concepts/port), [Diff](/docs/concepts/diff), [Bench](/docs/concepts/bench), [Shadow](/docs/concepts/shadow) und [Gate](/docs/concepts/gate).

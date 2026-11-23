@@ -1,35 +1,30 @@
 <p align="center">
-  <img src="assets/logo.png" width="160" height="160" alt="rust-anything">
+  <img src="assets/logo.png" width="160" height="160" alt="everything-rust">
 </p>
 
-<h1 align="center">rust-anything</h1>
+<h1 align="center">everything-rust</h1>
 
 <p align="center"><sub><a href="../README.md">English</a> · <a href="README_TR.md">Türkçe</a> · <a href="README_UK.md">Українська</a> · <a href="README_ZH.md">简体中文</a> · <a href="README_ZH-TW.md">繁體中文</a> · <a href="README_DE.md">Deutsch</a> · <a href="README_FR.md">Français</a> · <a href="README_RU.md">Русский</a> · <a href="README_JA.md">日本語</a> · <a href="README_KO.md">한국어</a> · <a href="README_AZ.md">Azərbaycanca</a> · <a href="README_UZ.md">Oʻzbekcha</a> · <a href="README_KK.md">Қазақша</a> · <a href="README_KY.md">Кыргызча</a> · Türkmençe · <a href="README_TT.md">Татарча</a> · <a href="README_UG.md">ئۇيغۇرچە</a> · <a href="README_PT.md">Português</a> · <a href="README_VI.md">Tiếng Việt</a> · <a href="README_ES.md">Español</a> · <a href="README_IT.md">Italiano</a></sub></p>
 <p align="center"><sub>Bu terjimäni jemgyýetçilik goldaýar, şonuň üçin ol <a href="../README.md">iňlisçe README</a> faýlyndan yzda galyp biler.</sub></p>
 
 <p align="center"><b>Programmaňyzy Rust-da täzeden ýazyň we onuň henizem öňküsi ýaly işleýändigini subut ediň.</b><br>
-Ol kody özi terjime etmeýär: Rust-y kodlaýyş agentiňiz (ýa-da siz) ýazýar, rust-anything bolsa ony asyl nusga bilen barlaýar.</p>
+Ol kody özi terjime etmeýär: Rust-y kodlaýyş agentiňiz (ýa-da siz) ýazýar, everything-rust bolsa ony asyl nusga bilen barlaýar.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
+  <img src="https://img.shields.io/github/languages/top/marprojector/everything-rust?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
   <img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20Windows-native-2563EB" alt="Native binaries for macOS, Linux and Windows">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-555" alt="MIT license"></a>
-  <a href="https://crates.io/crates/rust-anything"><img src="https://img.shields.io/crates/v/rust-anything?color=E2862A&label=crates.io" alt="crates.io version"></a>
-  <a href="https://www.npmjs.com/package/rust-anything"><img src="https://img.shields.io/npm/v/rust-anything?color=E2862A&label=npm" alt="npm version"></a>
   <br>
-  <a href="https://coderabbit.link/erkamyaman"><img src="https://img.shields.io/coderabbit/prs/github/erkamyaman/rust-anything?labelColor=171717&color=FF570A&label=Reviewed+by+CodeRabbit" alt="Pull requests reviewed by CodeRabbit"></a>
   <a href="https://github.com/rust-unofficial/awesome-rust#development-tools"><img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Rust"></a>
   <a href="https://github.com/AIshihzong/awesome-reverse-engineer-anything"><img src="https://img.shields.io/badge/Featured%20in-Awesome%20REA-f0b429" alt="Featured in Awesome REA"></a>
-  <a href="https://github.com/erkamyaman/rust-anything"><img src="https://img.shields.io/github/stars/erkamyaman/rust-anything?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/marprojector/everything-rust"><img src="https://img.shields.io/github/stars/marprojector/everything-rust?style=social" alt="GitHub stars"></a>
 </p>
 
-<p align="center"><a href="https://github.com/erkamyaman/rust-anything/discussions/127"><img src="https://img.shields.io/badge/Join%20the%20discussion-6E40C9?style=for-the-badge&logo=github&logoColor=white" alt="Join the discussion"></a></p>
 
-<p align="center"><a href="https://trendshift.io/repositories/363468" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/363468/daily?language=Rust" alt="erkamyaman/rust-anything: #1 Rust repository of the day on Trendshift" width="250" height="55"/></a></p>
 
-<p align="center"><b><a href="#çalt-başlangyç">Çalt başlangyç</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Releases</a> · <a href="#çalt-başlangyç">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">Hakyky portlar</a> · <a href="faq.md#faq">Köp soralýan soraglar</a><br>
+<p align="center"><b><a href="#çalt-başlangyç">Çalt başlangyç</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#çalt-başlangyç">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Hakyky portlar</a> · <a href="faq.md#faq">Köp soralýan soraglar</a><br>
 <sub><a href="#diller">Diller</a> · <a href="how-it-works.md#how-it-works">Nähili işleýär</a> · <a href="whole-apps.md#port-a-whole-app">Tutuş programmalar</a> · <a href="../LICENSE">MIT</a></sub><br>
-Türkiýede 🇹🇷 <a href="https://github.com/erkamyaman">erKam Yaman</a> tarapyndan döredildi · <a href="../LICENSE">MIT</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ Hemaýatkär boluň</a> · Hemaýatkär: <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
 
 <p align="center">2.0-da täze: <a href="real-world.md#prettier">Prettier Rust-a geçirildi</a>. 19x has çalt · ýazga alnan 17,224 işletmäniň 15,861-si doly Rust-da · hemmesi baýtma-baýt deň</p>
 
@@ -62,7 +57,7 @@ Türkiýede 🇹🇷 <a href="https://github.com/erkamyaman">erKam Yaman</a> tar
   </tr>
 </table>
 
-**Tutuş programmaňyzy Rust-da bölek-bölekden täzeden ýazyň.** rust-anything siziň Node.js
+**Tutuş programmaňyzy Rust-da bölek-bölekden täzeden ýazyň.** everything-rust siziň Node.js
 (TypeScript/JavaScript), Python, C, Go, Ruby ýa-da Java programmaňyzyň häzir näme edýändigini ýazga
 alýar, soňra Rust nusgasynyň her bölegini indiki bölege geçmezden öň şol ýazgy bilen deňeşdirip
 barlaýar, programma doly arassa Rust bolýança. CLI-ler, HTTP serwerler we kitaphanalar; Rust koduny
@@ -70,7 +65,7 @@ siziň kodlaýyş agentiňiz (ýa-da özüňiz) ýazýar. Ol diňe ýazgynyň ö
 [Onuň tutup bilmeýän zatlary](how-it-works.md#what-it-cant-catch) bölümine serediň. Tutuş gurallar
 we serwerler ýa-da diňe haýal bölegi, bir gezekde bir hot path:
 
-| Hakyky taslama, çykyşy asyl nusga bilen birmeňzeş | Asyl nusga | rust-anything bilen |
+| Hakyky taslama, çykyşy asyl nusga bilen birmeňzeş | Asyl nusga | everything-rust bilen |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2, buýruk setirinden 2,360 JS/TS faýly | 128.6 s | **6.9 s: 19x has çalt** |
 | Prettier, buýruk setirinden 6,305 Markdown faýly | 352 s | **22.5 s: 15.6x has çalt** |
@@ -84,7 +79,7 @@ bilen baýtma-baýt gabat gelýär, sebäbi entek geçirilmedik islendik zat Pre
 json-server: ýazga alnan 514/514 HTTP ýagdaýy arassa Rust binar faýlynda gabat gelýär. Apple M4-de,
 her biri iki gezek işledilip ölçüldi; wagt ölçülmezden öň her çykyş deňeşdirilýär
 ([jikme-jiklikler](real-world.md)). Her kiçijik funksiýa üçin Rust-y aýratyn çagyrmak adatça JIT-den
-*haýalrak*; rust-anything göçürmäge degýän aýlawy tapýar we şony göçürýär.
+*haýalrak*; everything-rust göçürmäge degýän aýlawy tapýar we şony göçürýär.
 
 ## Diňe haýal bölegi
 
@@ -92,7 +87,7 @@ Tutuş programmany geçirmegiňiz hökman däl. `go`-ny gaty haýal işleýän b
 alýan ýeke-täk funksiýany geçirer:
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 Ol işletmäni profilleýär, göçürmäge degýän iň daşky funksiýany saýlaýar (içindäki kiçi çagyryşy
@@ -103,8 +98,8 @@ saklanýar). Funksiýany diňe ýazga alnan her ýagdaý gabat gelende we `gate`
 Soňra:
 
 ```sh
-rust-anything report rust/dedupe-rs     # pull request üçin REPORT.md we card.svg
-rust-anything disable rust/dedupe-rs    # baýtma-baýt asyl nusga gaýdyş
+everything-rust report rust/dedupe-rs     # pull request üçin REPORT.md we card.svg
+everything-rust disable rust/dedupe-rs    # baýtma-baýt asyl nusga gaýdyş
 ```
 
 Ýokardaky [Fuse.js](real-world.md#fusejs) hatary hem şu görnüşde: Fuse-yň bir setir üçin baly tutuş
@@ -120,7 +115,7 @@ synap görüň. Porty açmagyň we ýapmagyň ähli ýollary:
   <sub>Tutuş bir Node serweri bolan json-server arassa Rust binar faýlyna öwrüldi (Apple M4). <a href="real-world.md#json-server">Nähili ölçüldi</a>.</sub>
 </p>
 
-> rust-anything garaşsyz taslama, ol Rust Project ýa-da Rust Foundation bilen baglanyşykly däl we
+> everything-rust garaşsyz taslama, ol Rust Project ýa-da Rust Foundation bilen baglanyşykly däl we
 > olar tarapyndan goldanmaýar. "Rust" Rust Foundation-yň söwda belgisidir.
 
 > [!WARNING]
@@ -135,59 +130,59 @@ synap görüň. Porty açmagyň we ýapmagyň ähli ýollary:
 Muny Claude Code, Codex, Cursor, Gemini CLI ýa-da OpenCode içine goýuň we gurnamagy agentiňize tabşyryň:
 
 ```text
-Install rust-anything: run `cargo install rust-anything`, then `rust-anything setup`.
+Install everything-rust: run `cargo install everything-rust`, then `everything-rust setup`.
 Tell me when to restart you.
 ```
 
 Ýa-da özüňiz:
 
 ```sh
-cargo install rust-anything   # from crates.io
-rust-anything setup           # registers it with Claude Code, Codex, Cursor, Gemini CLI and OpenCode
+cargo install everything-rust   # from crates.io
+everything-rust setup           # registers it with Claude Code, Codex, Cursor, Gemini CLI and OpenCode
 ```
 
 Entek Rust toolchain ýokmy? macOS, Linux we Windows üçin taýýar binar faýllar her
-[GitHub release](https://github.com/erkamyaman/rust-anything/releases) sahypasyna goşulan, JavaScript
-taslamalary üçin bolsa `npm install -g rust-anything` şol bir binar faýly gurnaýar.
+[GitHub release](https://github.com/marprojector/everything-rust/releases) sahypasyna goşulan, JavaScript
+taslamalary üçin bolsa `npm install -g everything-rust` şol bir binar faýly gurnaýar.
 
 Claude Code-da ony plugin hökmünde hem gurnap bilersiňiz (MCP serwer we skill; ýokardaky CLI siziň
 `PATH` içiňizde bolmaly):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 `setup` tapan her agentine MCP serweri goşýar we workflow skill-ini agentiň skill-leri okaýan ýerine
 gurnaýar. Ol beýleki sazlamalaryňyzy saklaýar, ony gaýtadan işletmek howpsuz, `--remove` bolsa ony yzyna
 gaýtarýar. Soňra agentiňizden, meselem, şeýle soraň:
 
-- *"Bu CLI-ni rust-anything bilen başdan-aýak Rust-da täzeden ýaz we onuň edil şonuň ýaly işleýändigini subut et."*
-- *"Bu gözleg haýal ýaly. Ony rust-anything bilen profille we hot loop-y Rust-a göçür."*
-- *"rust-anything bilen `src/parser/` bukjasyny Rust-a geçirmegiň meýilnamasyny düz; birinji birligi geçir we subut et."*
+- *"Bu CLI-ni everything-rust bilen başdan-aýak Rust-da täzeden ýaz we onuň edil şonuň ýaly işleýändigini subut et."*
+- *"Bu gözleg haýal ýaly. Ony everything-rust bilen profille we hot loop-y Rust-a göçür."*
+- *"everything-rust bilen `src/parser/` bukjasyny Rust-a geçirmegiň meýilnamasyny düz; birinji birligi geçir we subut et."*
 - *"`rust/text-rs` içindäki Rust portuny asyl nusga bilen benchmark arkaly deňeşdir we ony çykarmalymy, aýt."*
 
 ### Haýsy agentler bilen işleýär
 
-| Agent | `rust-anything setup` näme goşýar |
+| Agent | `everything-rust setup` näme goşýar |
 | --- | --- |
 | Claude Code | `~/.claude.json` içinde MCP serwer, `~/.claude/skills/` içinde skill |
 | Codex | `~/.codex/config.toml` içinde MCP serwer, `~/.codex/skills/` içinde skill |
 | Cursor | `~/.cursor/mcp.json` içinde MCP serwer |
 | Gemini CLI | `~/.gemini/settings.json` içinde MCP serwer |
 | OpenCode | `~/.config/opencode/opencode.json` içinde MCP serwer (`mcp.servers`), `~/.config/opencode/skills/` içinde skill |
-| Islendik başga MCP müşderi | `rust-anything mcp` buýrugyny stdio serwer hökmünde el bilen goşuň ([Gurnamak](install.md#install) bölümine serediň) |
+| Islendik başga MCP müşderi | `everything-rust mcp` buýrugyny stdio serwer hökmünde el bilen goşuň ([Gurnamak](install.md#install) bölümine serediň) |
 
-Bar bolan faýly üýtgetmezden öň `setup` onuň nusgasyny ýanynda saklaýar (`<file>.rust-anything.bak`).
+Bar bolan faýly üýtgetmezden öň `setup` onuň nusgasyny ýanynda saklaýar (`<file>.everything-rust.bak`).
 
 OpenCode-y el bilen birikdirmek üçin serweri `~/.config/opencode/opencode.json` içine goýuň
-(`command` tutuş argv) we [`skills/rust-anything/`](../skills/rust-anything) bukjasyny
-`~/.config/opencode/skills/rust-anything/` içine göçürip alyň:
+(`command` tutuş argv) we [`skills/everything-rust/`](../skills/everything-rust) bukjasyny
+`~/.config/opencode/skills/everything-rust/` içine göçürip alyň:
 
 ```json
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
@@ -196,17 +191,17 @@ OpenCode-y el bilen birikdirmek üçin serweri `~/.config/opencode/opencode.json
 Ýa-da ädimleri özüňiz ýerine ýetiriň:
 
 ```sh
-rust-anything profile . -- node bench.mjs              # what is hot, and who calls it
-rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile . -- node bench.mjs              # what is hot, and who calls it
+everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text
 # write src/port.rs (or let your agent), then:
-rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
-rust-anything diff rust/fuzzy-rs                       # every recorded case must match
-rust-anything bench rust/fuzzy-rs                      # faster? the verdict says
-rust-anything gate rust/fuzzy-rs                       # done means this passes
+everything-rust record rust/fuzzy-rs && everything-rust build rust/fuzzy-rs
+everything-rust diff rust/fuzzy-rs                       # every recorded case must match
+everything-rust bench rust/fuzzy-rs                      # faster? the verdict says
+everything-rust gate rust/fuzzy-rs                       # done means this passes
 ```
 
-rust-anything kody terjime etmeýär: Rust koduny siziň kodlaýyş agentiňiz (Claude Code, Codex, Cursor,
-OpenCode, ...) ýa-da özüňiz ýazýarsyňyz. rust-anything agentiň ygtybarly çaklap bilmeýän zatlaryny berýär: wagt
+everything-rust kody terjime etmeýär: Rust koduny siziň kodlaýyş agentiňiz (Claude Code, Codex, Cursor,
+OpenCode, ...) ýa-da özüňiz ýazýarsyňyz. everything-rust agentiň ygtybarly çaklap bilmeýän zatlaryny berýär: wagt
 nirä gidýär, ilki näme we haýsy tertipde geçirmeli, galan kodyň Rust-y API-sini üýtgetmezden çagyrmagy
 üçin bridge, portuň gabat gelmeli takyk özüni alyp barşy, ony çykarmagyň howpsuz ýoly we portuň haçan
 taýýardygyny aýdýan gate.
@@ -245,7 +240,7 @@ PHP üçin `analyze` PHP programmasyny meýilleşdirýär (Composer paketleri we
 autoloading, loose comparison we integer-iň float-a dolup geçmegi ýaly töwekgelçilikler, crate-lere
 laýyklaşdyrylan Composer paketleri), PHP CLI-ni ýa-da serwerini bolsa ýazga alyp, gaýtadan işledip we
 Rust front door-yň arkasyna goýup bolýar. Onuň birliklerini PHP FFI arkaly Rust-a geçirmek indiki ädim
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# hem edil şeýle işleýär: `analyze` `.csproj` taslamalaryny we olaryň NuGet paketlerini
 okaýar (crate-lere laýyklaşdyrylýar), `using` direktiwalaryny bukjalara çözýär we C#-yň başgaça
@@ -265,31 +260,11 @@ arkasyna goýup bolýar; birlikleri P/Invoke arkaly geçirmek indiki nobatda.
 ## Hemaýatkärler
 
 <p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> mugt we açyk çeşmeli taslama. Eger ol işiňize kömek edýän bolsa, oňa hemaýatkär bolmagy göz öňünde tutuň.<br>
+  <a href="https://github.com/marprojector/everything-rust">everything-rust</a> mugt we açyk çeşmeli taslama. Eger ol işiňize kömek edýän bolsa, oňa hemaýatkär bolmagy göz öňünde tutuň.<br>
   Siziň goldawyňyz işläp düzmegiň dowam etmegine kömek edýär.
 </p>
 
 <p align="center">
-  <a href="https://coderabbit.link/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/company-dark.svg">
-      <img src="assets/sponsors/company-light.svg" width="800" alt="Kompaniýa hemaýatkäri: CodeRabbit">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/sponsors-dark.svg">
-      <img src="assets/sponsors/sponsors-light.svg" width="800" alt="Hemaýatkärler: Santosh Yadav, Hakan Soytürk, Ali Yilmaz, Ashley Hunter, Fatih Uzuntaş">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman"><img src="https://img.shields.io/badge/Hema%C3%BDatk%C3%A4r_bolu%C5%88-%E2%9D%A4-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Hemaýatkär boluň"></a>
-  <a href="https://buymeacoffee.com/erkamyaman"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 </p>
 
 ## Goşant goşmak
@@ -302,4 +277,4 @@ hem [özüňi alyp barş kodeksine](../CODE_OF_CONDUCT.md) serediň.
 
 ## Ygtyýarnama
 
-[MIT](../LICENSE) © [Erkam Yaman](https://github.com/erkamyaman). Repozitoriýiňizdäki portlar we döredilen kod siziňki.
+[MIT](../LICENSE) © [M. Ammar R. Arief](https://github.com/marprojector). Repozitoriýiňizdäki portlar we döredilen kod siziňki.

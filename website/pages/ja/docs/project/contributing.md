@@ -10,13 +10,13 @@ description: セットアップ、テストの置き場所、クレートの対�
 
 ## 始める前に
 
-- **バグ:** [Issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) を開き、
-  実行したコマンド、その出力、プラットフォーム、rust-anything のバージョン
-  （`rust-anything --version`）を添えてください。小さな再現用プロジェクトがあると最も助かります。
+- **バグ:** [Issue](https://github.com/marprojector/everything-rust/issues/new/choose) を開き、
+  実行したコマンド、その出力、プラットフォーム、everything-rust のバージョン
+  （`everything-rust --version`）を添えてください。小さな再現用プロジェクトがあると最も助かります。
 - **大きめの変更**（新しい言語、新しいコマンド、ユニットや記録の定義の変更）:
   書き始める前に形について合意できるよう、まず Issue を開いてください。過去の
-  選択の理由は [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md) にあります。
-- **セキュリティ上の問題:** 公開の Issue は開かないでください。[SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md) を参照してください。
+  選択の理由は [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md) にあります。
+- **セキュリティ上の問題:** 公開の Issue は開かないでください。[SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md) を参照してください。
 
 ## セットアップ
 
@@ -36,16 +36,16 @@ Rust（stable、1.97 以降）が必要です。テストは各部分が扱う�
 | wasm ブリッジ | `rustup target add wasm32-unknown-unknown` と、対応するバージョンの `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` は、これらのランタイムのうち手元にあるもの、そのバージョン、それぞれを
 インストールまたは更新するコマンドを一覧表示します。ランタイムがない場合にテストをスキップせず失敗させるには（CI はそうしています）、
-`RUST_ANYTHING_REQUIRE` にその名前を指定します。例:
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`。
+`EVERYTHING_RUST_REQUIRE` にその名前を指定します。例:
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`。
 
 フックは `scripts/check-secrets.sh` を実行し、コミット内容に含まれるキー、トークン、個人のホームフォルダの
 パスを拒否します。CI はすべてのファイルに対してこれを実行します。
@@ -64,7 +64,7 @@ cargo test
 - **フィクスチャ**は `tests/fixtures/` 配下の小さなアプリです。CLI と HTTP のフィクスチャは、すべての言語で同じ
   コマンドとルート（`tcli upper|len|div|words|copy|now`、`/hello`、`/upper`、
   `/div/{a}/{b}`、`/now`）を実装しているので、新しいものも他と挙動を同一に保ってください。
-- **生成コード**（rust-anything が書くブリッジ、ドライバー、フロントドア）も
+- **生成コード**（everything-rust が書くブリッジ、ドライバー、フロントドア）も
   `clippy -D warnings` に合格しなければなりません。`gate` がユーザーのクレートに対してそれを実行するからです。
 - **スタイル:** 周りのコードに合わせてください。コメントはコードだけでは伝えられないことに限り、
   変更の理由は Pull Request に書いてください。
@@ -80,8 +80,8 @@ Java と C# 用）、`crates`、`fit`（`good`、`partial`、`none`）、そし�
 ## 言語を追加する
 
 PHP と C# はプレビューとして 2 つのコミットで追加されました。最初に読んでおく価値があります:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243)（PHP）と
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a)（C#）。新しい言語も
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243)（PHP）と
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a)（C#）。新しい言語も
 同じように始めます:
 
 1. `src/lang/<name>.rs` のプラグイン: 検出、スキャン（インポートとリスク）、解決とエクスポート、
@@ -138,10 +138,10 @@ Pull Request はコミットを保持したままマージされるので、あ�
 ## 実際の移植を共有する
 
 実プロジェクトの移植は、何が動き何が壊れるかを示す最良の証拠です。実際のものに
-rust-anything を使ったら、[docs/real-world.md](/docs/real-world/overview) に追加する Issue や Pull Request を
+everything-rust を使ったら、[docs/real-world.md](/docs/real-world/overview) に追加する Issue や Pull Request を
 大歓迎します。プロジェクト、実行した
 コマンド、ケース数、そして驚いたことを含めてください。
 
 ## 行動規範
 
-参加するすべての人は[行動規範](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md)に従うことが求められます。
+参加するすべての人は[行動規範](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md)に従うことが求められます。

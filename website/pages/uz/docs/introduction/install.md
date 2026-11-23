@@ -1,6 +1,6 @@
 ---
 title: O'rnatish
-description: rust-anything'ni crates.io, npm yoki release binary'sidan o'rnating, shuningdek har bir tilga kerak bo'lgan runtime'lar.
+description: everything-rust'ni crates.io, npm yoki release binary'sidan o'rnating, shuningdek har bir tilga kerak bo'lgan runtime'lar.
 ---
 
 # O'rnatish
@@ -10,22 +10,22 @@ description: rust-anything'ni crates.io, npm yoki release binary'sidan o'rnating
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm JavaScript loyihalari uchun xuddi shu binary'ni o'rnatadi.
 
-macOS, Linux va Windows uchun tayyor binary fayllar har bir [GitHub release](https://github.com/erkamyaman/rust-anything/releases)'ga biriktirilgan. Claude Code'da uni plugin sifatida ham o'rnatishingiz mumkin (MCP server va skill; CLI `PATH` ichida bo'lishi kerak):
+macOS, Linux va Windows uchun tayyor binary fayllar har bir [GitHub release](https://github.com/marprojector/everything-rust/releases)'ga biriktirilgan. Claude Code'da uni plugin sifatida ham o'rnatishingiz mumkin (MCP server va skill; CLI `PATH` ichida bo'lishi kerak):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## Manba kodidan
@@ -46,7 +46,7 @@ Windows'dagi native CI `x86_64-pc-windows-msvc` Rust target'idan foydalanadi. Ba
 toolchain'ini va **Desktop development with C++** workload'i bilan Visual Studio Build Tools'ni o'rnating;
 C kompilyatori va linker C ko'priklari hamda native Rust kengaytmalari uchun zarur. Ko'chirayotgan
 manba tilingiz uchun runtime'ni o'rnating. Python `python3` yoki `python` sifatida mavjud bo'lishi
-mumkin; rust-anything ikkalasini ham aniqlaydi. GNU Windows target'i CI'da sinovdan o'tkazilmaydi.
+mumkin; everything-rust ikkalasini ham aniqlaydi. GNU Windows target'i CI'da sinovdan o'tkazilmaydi.
 
 Native ko'prik integratsiya testlar to'plamini Developer PowerShell oynasidan ishga tushiring:
 
@@ -65,11 +65,11 @@ PowerShell'dan ishga tushiring va `where.exe link` MSVC linker'ini topishini tek
 jumladan bo'sh joy va Unicode belgilar bor yo'ldan foydalanadi hamda muvaffaqiyatli ishga tushirishdan keyin
 generatsiya qilingan artefaktlarni o'chiradi.
 
-Agentlar uchun `rust-anything setup` hammasini ro'yxatdan o'tkazadi (Tezkor boshlashga qarang). MCP serverni
+Agentlar uchun `everything-rust setup` hammasini ro'yxatdan o'tkazadi (Tezkor boshlashga qarang). MCP serverni
 buning o'rniga bitta loyihaga qo'lda qo'shish uchun (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Har bir vosita, uning parametrlari va u nimalarga tegishi mumkinligi: [docs/tools.md](/docs/reference/mcp-tools). Server
@@ -77,12 +77,12 @@ skill asosida tuzilgan ikkita prompt ham taklif qiladi: `port_unit` va `port_who
 ## Yangilash yoki o'chirish
 
 ```sh
-cargo install rust-anything                                    # yangilash (Cargo)
-npm install -g rust-anything@latest                            # yangilash (npm)
-rust-anything setup                                            # agent sozlamalarini yangilash
-rust-anything setup --remove && cargo uninstall rust-anything  # o'chirish (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # o'chirish (npm)
+cargo install everything-rust                                    # yangilash (Cargo)
+npm install -g everything-rust@latest                            # yangilash (npm)
+everything-rust setup                                            # agent sozlamalarini yangilash
+everything-rust setup --remove && cargo uninstall everything-rust  # o'chirish (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # o'chirish (npm)
 ```
 
-`setup --remove` faqat rust-anything yozuvlarini olib tashlaydi; u saqlagan nusxalar
-(`<file>.rust-anything.bak`) siz ularni o'chirmaguningizcha qoladi.
+`setup --remove` faqat everything-rust yozuvlarini olib tashlaydi; u saqlagan nusxalar
+(`<file>.everything-rust.bak`) siz ularni o'chirmaguningizcha qoladi.

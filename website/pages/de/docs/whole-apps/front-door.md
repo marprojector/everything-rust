@@ -8,10 +8,10 @@ description: app front-door stellt eine Rust-Binary vor das Original; app wire �
 Verlege zuerst den Einstiegspunkt nach Rust und 체bergib ihm dann Befehle, eine Unit nach der anderen:
 
 ```sh
-rust-anything app front-door .                            # rust/app: jeder Befehl f체hrt das Original aus
-rust-anything app wire . textkit --command upper          # nachdem textkit-rs gate besteht
+everything-rust app front-door .                            # rust/app: jeder Befehl f체hrt das Original aus
+everything-rust app wire . textkit --command upper          # nachdem textkit-rs gate besteht
 # den Glue-Code in rust/app/src/units/textkit.rs schreiben, dann:
-rust-anything app wire . textkit                          # wieder 100%, niedrigere Fallback-Rate
+everything-rust app wire . textkit                          # wieder 100%, niedrigere Fallback-Rate
 ```
 
 ## Die Front Door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # wieder 100%, niedrig
 3. schreibt einmalig `src/units/<unit>.rs`, das du oder dein Agent ausf체llt: die Argumente parsen, `<crate>::port` aufrufen, ausgeben, was das Original ausgibt;
 4. leitet die Befehle dorthin, baut dann und spielt ab.
 
-F체hre es nach dem Schreiben des Glue-Codes erneut aus: 100% bestanden und eine niedrigere Fallback-Rate. `RUST_ANYTHING_UNIT_<NAME>=original` schickt eine verdrahtete Unit bis zum Lift zur체ck zum Original.
+F체hre es nach dem Schreiben des Glue-Codes erneut aus: 100% bestanden und eine niedrigere Fallback-Rate. `EVERYTHING_RUST_UNIT_<NAME>=original` schickt eine verdrahtete Unit bis zum Lift zur체ck zum Original.
 
 Verdrahte den eigenen Namen der App als Befehl (`--command mytool`) f체r argv, das keinen Befehl nennt: keine Argumente, unbekannte Befehle, Aufruffehler.
 

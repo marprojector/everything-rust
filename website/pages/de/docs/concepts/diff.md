@@ -6,9 +6,9 @@ description: diff spielt jeden aufgezeichneten Fall gegen das Rust ab. known-dif
 # Diff und bekannte Abweichungen
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # muss N/N sein
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # muss N/N sein
+everything-rust diff <crate> --json
 ```
 
 `diff` spielt `cases.jsonl` gegen das gebaute Rust-Modul ab, aufgerufen so, wie die Aufrufer des Originals es aufrufen, und listet die Abweichungen. Eine Abweichung ist ein Verhaltensunterschied: Korrigiere die Portierung, nie die Aufzeichnung.

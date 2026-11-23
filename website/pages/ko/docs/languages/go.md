@@ -13,7 +13,7 @@ description: 타입이 있는 cgo 호출과 생성된 바이너리 와이어를 
 | 필요 조건 | Go 1.21+ |
 | 상태 | Go 1.24의 `path`에서 검증: 2,642/2,642 (542개는 Go 자체 테스트 테이블에서), 게이트 통과 |
 
-`profile`은 `go test`를 통해 동작합니다: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. 배치는 `NewFnBatch(items)`이며, 다 쓰면 닫아야 합니다.
+`profile`은 `go test`를 통해 동작합니다: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. 배치는 `NewFnBatch(items)`이며, 다 쓰면 닫아야 합니다.
 
 ## 포트가 정확히 맞춰야 할 부분
 

@@ -3,7 +3,7 @@ name = "json-server"
 version = "0.1.0"
 edition = "2024"
 publish = false
-description = "`json-server` in Rust, lifted by rust-anything from its front door"
+description = "`json-server` in Rust, lifted by everything-rust from its front door"
 
 [[bin]]
 name = "json-server"

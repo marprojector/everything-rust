@@ -1,0 +1,20 @@
+{
+  "name": "everything-rust",
+  "version": "0.0.0",
+  "description": "Rewrite your app in Rust, one piece at a time, checked against the original's recorded behavior at every step. TypeScript, Python, C, Go, Ruby, Java.",
+  "keywords": ["rust", "performance", "migration", "ffi", "napi", "pyo3", "mcp", "claude-code", "codex"],
+  "license": "MIT",
+  "mcpName": "io.github.marprojector/everything-rust",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marprojector/everything-rust.git"
+  },
+  "homepage": "https://github.com/marprojector/everything-rust",
+  "bin": {
+    "everything-rust": "bin/everything-rust.js"
+  },
+  "files": ["bin", "binaries"],
+  "engines": {
+    "node": ">=18"
+  }
+}

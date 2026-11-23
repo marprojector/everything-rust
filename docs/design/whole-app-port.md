@@ -4,12 +4,12 @@ Status: built, all six milestones (CLIs, HTTP servers and libraries, in all six 
 
 ## Goal
 
-rust-anything ports a whole app (TypeScript/JavaScript, Python, C, Go, Ruby or Java) to a
+everything-rust ports a whole app (TypeScript/JavaScript, Python, C, Go, Ruby or Java) to a
 standalone Rust app, with the original kept only as reference. The user's coding agent writes the
-Rust; rust-anything decides the order, scaffolds, and proves at every step that the app still
+Rust; everything-rust decides the order, scaffolds, and proves at every step that the app still
 behaves the same. All six languages ship in the first version.
 
-The workflow the agent follows is in `skills/rust-anything/whole-app.md`. The evidence behind it
+The workflow the agent follows is in `skills/everything-rust/whole-app.md`. The evidence behind it
 is in `docs/research/whole-app-port.md`. This document is about what the tool needs so the agent
 can follow that workflow without hand-written scripts.
 
@@ -38,7 +38,7 @@ languages. That is what makes "all six at once" realistic: the per-language work
 
 Each is also an MCP tool with the same name.
 
-### `rust-anything app record <repo>`
+### `everything-rust app record <repo>`
 
 Runs the original on app-level cases and stores them in `rust/app-cases/`.
 
@@ -52,14 +52,14 @@ Runs the original on app-level cases and stores them in `rust/app-cases/`.
 - Runs the original **twice**. Fields that differ between the two runs are marked as noise and
   normalized (Diffy's idea). The user can add normalizers by name (timestamps, uuids, key order).
 
-### `rust-anything app replay <repo> [--build <command>] [--case <name>]`
+### `everything-rust app replay <repo> [--build <command>] [--case <name>]`
 
 Runs any build (the original, the front door, the final binary) against `rust/app-cases/` and
 prints `passed/total` and the **fallback rate** (cases still answered by the original). It writes a
 report with a diff per failing case. Exit code non-zero on any mismatch, so CI can run it.
 `--case` reruns one case (for a library, one unit): the fast loop for fixing one mismatch.
 
-### `rust-anything app front-door <repo>`
+### `everything-rust app front-door <repo>`
 
 Scaffolds `rust/app`, the Rust binary that owns the entry point from day one:
 
@@ -67,17 +67,17 @@ Scaffolds `rust/app`, the Rust binary that owns the entry point from day one:
   recorded cases), where every command starts as "run the original with the same argv, stdin and
   env and pass its output and exit code through".
 - **HTTP**: an `axum` server where every route starts as a proxy to the original server.
-- A **kill switch** per unit: `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the
+- A **kill switch** per unit: `EVERYTHING_RUST_UNIT_<NAME>=original` sends that unit back to the
   original until the lift.
 - Every fallback is counted, so `replay` can report the fallback rate.
 
-### `rust-anything app wire <repo> <unit>`
+### `everything-rust app wire <repo> <unit>`
 
 After a unit passes `gate`, connects its `port.rs` code to the front door: the commands or routes
 it covers stop falling back. The agent writes the glue; this command generates the call sites and
 the kill switch and runs `replay`.
 
-### `rust-anything app lift <repo>`
+### `everything-rust app lift <repo>`
 
 Only when the fallback rate is zero and every unit passes `gate`:
 
@@ -148,10 +148,10 @@ Taken while building, without a question to the user (the conventional option, w
 5. **The original's command goes after `--`** (`app record . -- python3 cli.py`), as `profile`
    already takes its workload; it is saved with the cases, so later runs need no arguments.
 6. **`--inputs` is JSONL** (`{"name", "args", "stdin", "env", "files"}`), like `record --inputs`.
-7. **Settings live in `rust/app-cases/rust-anything.json`**, not a TOML file, so a trycmd
+7. **Settings live in `rust/app-cases/everything-rust.json`**, not a TOML file, so a trycmd
    `*.toml` glob never reads them as a case.
 8. **Re-recording overwrites cases of the same name and deletes none**: hand-written cases stay.
-9. **The fallback hook is the file named by `RUST_ANYTHING_FALLBACK_LOG`**: one line per
+9. **The fallback hook is the file named by `EVERYTHING_RUST_FALLBACK_LOG`**: one line per
    fallback, created empty to report none. Any build can report through it, not only ours.
 10. **The front door's clap parser only routes**: the original always gets the raw argv, and
     anything clap rejects falls back, so the parser never has to match the original exactly.
@@ -182,7 +182,7 @@ Taken while building, without a question to the user (the conventional option, w
     last-modified, x-powered-by and the like): they differ between any two servers. The rest are,
     and the user deletes the ones that do not matter.
 22. **Examples are `curl` lines to localhost** in the docs, the form servers document themselves in.
-23. **rust-anything speaks HTTP/1.1 itself** (no client crate): requests are small and local, and
+23. **everything-rust speaks HTTP/1.1 itself** (no client crate): requests are small and local, and
     every dependency is a cost for all users.
 24. **The front door uses axum 0.8, tokio and reqwest without default features** (plain HTTP to
     the original, no TLS); reqwest does not follow redirects there, so the original's answer
@@ -214,8 +214,8 @@ Taken while building, without a question to the user (the conventional option, w
     and glob re-exports of both would be ambiguous.
 35. **The original package reaches Rust through the units' shadows**, which already keep the
     original API in every language; `wire` writes the shadow and the user or agent points the
-    package at it. rust-anything does not edit the original's own files.
-36. **Shadows honor `RUST_ANYTHING_UNIT_<NAME>=original`** before `RUST_ANYTHING_MODE`, so a library
+    package at it. everything-rust does not edit the original's own files.
+36. **Shadows honor `EVERYTHING_RUST_UNIT_<NAME>=original`** before `EVERYTHING_RUST_MODE`, so a library
     unit has the same kill switch as a CLI or server unit. C's shadow is chosen at build time and
     keeps its flags.
 37. **A library's fallback rate counts public exports**, not calls: each export not yet answered in
@@ -264,7 +264,7 @@ Taken while building, without a question to the user (the conventional option, w
 - One line (GitHub description, npm, `Cargo.toml`): "Rewrite your app in Rust, one piece at a
   time, checked against the original's recorded behavior at every step. TypeScript, Python, C, Go, Ruby, Java."
 - Hero tagline: "Rewrite anything in Rust. Keep it working the whole way."
-- Sub-line: "rust-anything ports your app piece by piece, checks every step against the original,
+- Sub-line: "everything-rust ports your app piece by piece, checks every step against the original,
   and hands you a pure Rust app."
 - `--help`: "Rewrite TypeScript/JavaScript, Python, C, Go, Ruby or Java apps in Rust, one verified
   piece at a time".

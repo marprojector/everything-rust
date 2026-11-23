@@ -1,5 +1,5 @@
 # `SlugifyBatch` and `PageCountBatch` against the Python originals: same results, same
-# exceptions, and the time for 20,000 slugs. Run after `rust-anything build .`: python3 bench_batch.py
+# exceptions, and the time for 20,000 slugs. Run after `everything-rust build .`: python3 bench_batch.py
 import sys, time
 import os
 here = os.path.dirname(os.path.abspath(__file__))

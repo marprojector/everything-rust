@@ -5,10 +5,10 @@ export default function Logo({ size = 28, text = true }: { size?: number; text?:
         src="/icon-192.png"
         width={size}
         height={size}
-        alt={text ? '' : 'rust-anything'}
+        alt={text ? '' : 'everything-rust'}
         className="shrink-0 rounded-[22%]"
       />
-      {text && <span className="font-display font-semibold tracking-tight text-fg">rust-anything</span>}
+      {text && <span className="font-display font-semibold tracking-tight text-fg">everything-rust</span>}
     </span>
   )
 }

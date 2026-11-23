@@ -6,8 +6,8 @@ description: Sonli kod port qilingach kamdan-kam hollarda bit darajasida bir xil
 # Float tolerantligi
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Sonli kod (fizika, statistika, grafika) port qilingach kamdan-kam hollarda bit darajasida bir xil float'lar beradi: amallar tartibi, fused multiply-add va matematik kutubxona kompilyatorlar orasida farq qiladi. Buni qabul qilsangiz, `--float-tolerance` va o'z qiymatingiz bilan yozib oling. Shunda float'lar kattaroq qiymatning shu ulushi doirasida mos keladi (1 dan kichik qiymatlar uchun mutlaq), `diff` va `gate` esa undan foydalanadi. `0` uni olib tashlaydi.

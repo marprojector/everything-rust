@@ -10,11 +10,11 @@ porta de `PORT` ou de `{port}` no comando (`--port` para um servidor que escuta 
 porta):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: todas as rotas com proxy
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: todas as rotas com proxy
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Os pedidos vêm das linhas `curl` na documentação da aplicação (`curl -X POST -d ... http://localhost:8080/x`),

@@ -1,7 +1,7 @@
 name: Ports on npm
 
 # Builds the Prettier and ESLint front doors on every platform and packs them with
-# `rust-anything package` into npm tarballs (uploaded as an artifact). Nothing is published.
+# `everything-rust package` into npm tarballs (uploaded as an artifact). Nothing is published.
 
 on:
   workflow_dispatch:
@@ -67,7 +67,7 @@ jobs:
           for spec in prettier:prettier-rs:prettier-rs:prettier@3.6.2 eslint:eslint-rs:eslint-rs:eslint@10.15.0; do
             IFS=: read -r port name bin original <<< "$spec"
             out="out/$port"
-            target/release/rust-anything package "demo/real-world/$port-rs/app" \
+            target/release/everything-rust package "demo/real-world/$port-rs/app" \
               --name "$name" --bin "$bin" --original "$original" --out "$out"
             for built in built/bin-"$port"-*; do
               key="${built##*/bin-"$port"-}"

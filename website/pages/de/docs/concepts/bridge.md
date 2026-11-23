@@ -6,8 +6,8 @@ description: bridge legt ein Rust-Crate für eine Unit an, mit Bindings und eine
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # Crate in <repo>/rust/<name>; überschreibt nie
-rust-anything refresh <crate>                  # nach dem Ändern einer Signatur in port.rs
+everything-rust bridge <repo> <unit-id>          # Crate in <repo>/rust/<name>; überschreibt nie
+everything-rust refresh <crate>                  # nach dem Ändern einer Signatur in port.rs
 ```
 
 `bridge` erstellt ein Crate mit den Bindings (`lib.rs`, plus dem Wrapper, den die Quellsprache lädt) und Stubs zum Portieren (`port.rs`). Du schreibst die Portierung nur in `src/port.rs`; `src/lib.rs` und die Wrapper werden generiert, und `refresh` erzeugt sie aus den Signaturen in `port.rs` neu und fügt neue Batch-Klassen hinzu. `port.rs` wird nie angefasst.

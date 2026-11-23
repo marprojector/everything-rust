@@ -10,9 +10,9 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::app::{self, RecordOptions, ReplayOptions};
-use rust_anything::front_door::{self, FrontDoorOptions, WireOptions};
-use rust_anything::lift::{self, LiftOptions};
+use everything_rust::app::{self, RecordOptions, ReplayOptions};
+use everything_rust::front_door::{self, FrontDoorOptions, WireOptions};
+use everything_rust::lift::{self, LiftOptions};
 
 fn copy_dir(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
@@ -30,7 +30,7 @@ fn fixture(lang: &str) -> PathBuf {
     static NEXT: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
     let n = NEXT.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     let repo = std::env::temp_dir().join(format!(
-        "rust-anything-app-test-{lang}-{}-{n}",
+        "everything-rust-app-test-{lang}-{}-{n}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&repo);
@@ -264,7 +264,7 @@ fn front_door_then_wire(repo: &Path) {
 
     let stub = wire(&["words".to_string()]);
     assert!(stub.glue_pending);
-    assert_eq!(stub.switch, "RUST_ANYTHING_UNIT_WORDCOUNT");
+    assert_eq!(stub.switch, "EVERYTHING_RUST_UNIT_WORDCOUNT");
     let failing = stub.replay.unwrap();
     assert!(!failing.failures.is_empty());
     assert!(
@@ -302,11 +302,11 @@ fn front_door_then_wire(repo: &Path) {
         let _ = std::fs::remove_file(&log);
         let mut cmd = Command::new(exe);
         cmd.arg("words")
-            .env(rust_anything::app::FALLBACK_ENV, &log)
+            .env(everything_rust::app::FALLBACK_ENV, &log)
             .stdin(std::process::Stdio::piped())
             .stdout(std::process::Stdio::piped());
         if let Some(value) = switch {
-            cmd.env("RUST_ANYTHING_UNIT_WORDCOUNT", value);
+            cmd.env("EVERYTHING_RUST_UNIT_WORDCOUNT", value);
         }
         let mut child = cmd.spawn().unwrap();
         child.stdin.take().unwrap().write_all(input).unwrap();
@@ -447,7 +447,7 @@ fn the_command_exits_non_zero_on_a_mismatch() {
          {\"args\": [\"div\", \"1\", \"0\"]}\n",
     )
     .unwrap();
-    let bin = env!("CARGO_BIN_EXE_rust-anything");
+    let bin = env!("CARGO_BIN_EXE_everything-rust");
     let record = Command::new(bin)
         .args(["app", "record"])
         .arg(&repo)
@@ -768,7 +768,7 @@ fn lift_end_to_end(repo: &Path, run: &str, semantics: &Semantics, original: &str
     let main = std::fs::read_to_string(app_dir.join("src/main.rs")).unwrap();
     assert!(!main.contains("original"), "{main}");
     let units = std::fs::read_to_string(app_dir.join("src/units/mod.rs")).unwrap();
-    assert!(!units.contains("RUST_ANYTHING_UNIT"), "{units}");
+    assert!(!units.contains("EVERYTHING_RUST_UNIT"), "{units}");
     assert!(app_dir.join("tests/app_cases.rs").is_file());
     for unit in ["wordcount-rs", "textops-rs"] {
         let cargo =
@@ -908,7 +908,7 @@ fn csharp_cli_lifts_to_pure_rust() {
 #[test]
 fn lift_strips_bridge_bindings_in_every_language() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let base = std::env::temp_dir().join(format!("rust-anything-strip-{}", std::process::id()));
+    let base = std::env::temp_dir().join(format!("everything-rust-strip-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&base);
     let units = [
         ("mini", "packages/a/src/util.ts", "ts"),
@@ -920,7 +920,7 @@ fn lift_strips_bridge_bindings_in_every_language() {
     ];
     for (fixture, unit, lang) in units {
         let dir = base.join(lang);
-        rust_anything::bridge::bridge(&rust_anything::bridge::Options {
+        everything_rust::bridge::bridge(&everything_rust::bridge::Options {
             root: &fixtures.join(fixture),
             unit,
             kind: None,

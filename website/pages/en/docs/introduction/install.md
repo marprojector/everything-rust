@@ -1,6 +1,6 @@
 ---
 title: Install
-description: Install rust-anything from crates.io, npm or a release binary, and the runtimes each language needs.
+description: Install everything-rust from crates.io, npm or a release binary, and the runtimes each language needs.
 ---
 
 # Install
@@ -10,22 +10,22 @@ description: Install rust-anything from crates.io, npm or a release binary, and 
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm installs the same binary, for JavaScript projects.
 
-Prebuilt binaries for macOS, Linux and Windows are attached to each [GitHub release](https://github.com/erkamyaman/rust-anything/releases). In Claude Code you can also install it as a plugin (the MCP server and the skill; the CLI must be on your `PATH`):
+Prebuilt binaries for macOS, Linux and Windows are attached to each [GitHub release](https://github.com/marprojector/everything-rust/releases). In Claude Code you can also install it as a plugin (the MCP server and the skill; the CLI must be on your `PATH`):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## From source

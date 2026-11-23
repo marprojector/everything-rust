@@ -1,17 +1,17 @@
 ---
 title: Seis linguagens
-description: O rust-anything executado do princípio ao fim em código real em Go, Ruby, Python, Java e C, com a velocidade por chamada e em lote, e os bugs que as execuções encontraram.
+description: O everything-rust executado do princípio ao fim em código real em Go, Ruby, Python, Java e C, com a velocidade por chamada e em lote, e os bugs que as execuções encontraram.
 ---
 
 # Código real em seis linguagens
 
-O rust-anything foi executado do princípio ao fim (analyze, bridge, record, migração, diff, gate, bench) em código real em
+O everything-rust foi executado do princípio ao fim (analyze, bridge, record, migração, diff, gate, bench) em código real em
 cada linguagem que suporta. O código tinha de estar já nesta máquina: código descarregado da
 internet não foi executado. Por isso, os alvos são módulos da biblioteca padrão distribuídos com as
 toolchains instaladas e, para Java e C, onde não havia código-fonte de bibliotecas adequado no disco, o próprio JDK
 e a glibc servem de oráculo por trás de uma fachada fina.
 
-As migrações, os casos registados e as entradas extra estão em [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md).
+As migrações, os casos registados e as entradas extra estão em [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md).
 
 | Linguagem | Código | Funções | Casos registados | Resultado |
 | --- | --- | ---: | ---: | --- |
@@ -61,7 +61,7 @@ O que decide:
 ### Lotes: a pesquisa do x18n
 
 As migrações de folhas acima são medidas por chamada. Na pesquisa da barra lateral do x18n (50,000 chaves, escrita letra
-a letra), o `rust-anything profile` mostrou o `fuzzyScore` a ocupar cerca de um quarto da execução, chamado uma vez por chave por
+a letra), o `everything-rust profile` mostrou o `fuzzyScore` a ocupar cerca de um quarto da execução, chamado uma vez por chave por
 `matched`, e sugeriu `--batch fuzzyScore:text`. O `FuzzyScoreBatch` gerado mantém as
 chaves em Rust; um `FuzzyScoreIndex` em `port.rs` converte-as para minúsculas em UTF-16 uma única vez e mantém uma máscara de 64 bits
 das unidades de código de cada chave, de modo que a maioria das chaves que não podem coincidir é ignorada sem ser lida. Os resultados
@@ -112,12 +112,12 @@ Por chamada, a migração para Go passou de 0,73x para 0,93x, e a de Java de 0,4
 
 ## O que as execuções encontraram
 
-### Bugs no rust-anything, corrigidos
+### Bugs no everything-rust, corrigidos
 
 - **Floats alterados em um ULP** (execução Java). O parser de floats predefinido do `serde_json` nem sempre
-  arredonda corretamente. O rust-anything alterava as entradas registadas ao lê-las, e os crates gerados
+  arredonda corretamente. O everything-rust alterava as entradas registadas ao lê-las, e os crates gerados
   voltavam a alterá-las. 43 casos de `Double.toString` falhavam para uma migração correta. Corrigido com a
-  feature `float_roundtrip` do `serde_json` no rust-anything e em cada crate que gera (napi-rs,
+  feature `float_roundtrip` do `serde_json` no everything-rust e em cada crate que gera (napi-rs,
   wasm e o dispatcher JSON).
 - **Os crashes em C interrompiam o registo** (execução C). Entradas fora do contrato de uma função C (`isalpha(INT_MAX)`)
   provocam segfault na glibc. O driver C executa agora cada caso num processo filho (fork) e regista
@@ -195,4 +195,4 @@ Tratado na primeira migração e confirmado pelos casos registados:
 | Ruby | o driver gerado carrega os ficheiros originais | o mesmo driver carrega o wrapper Fiddle | dispatcher JSON + wrapper Fiddle que define os mesmos módulos | ficheiro a fazer require depois do original: faz `prepend` de ambos |
 | Java | driver de reflexão compilado com o código-fonte original | o mesmo driver compilado com as classes wrapper JNI | dispatcher JSON sobre JNI + classes wrapper com os métodos estáticos originais | classes `<Class>Shadow` |
 | Python | driver no processo importa o original | o mesmo driver importa o pacote PyO3 | PyO3 | módulo com a API original |
-| C | `cc -shared` do original, chamado através de ctypes, um fork por caso | ctypes sobre o `cdylib` Rust | funções `extern "C"` com os nomes originais e um header | `.c` de shadow com renomeações `-D`; a feature `shadow` do crate exporta apenas nomes `rust_anything_` |
+| C | `cc -shared` do original, chamado através de ctypes, um fork por caso | ctypes sobre o `cdylib` Rust | funções `extern "C"` com os nomes originais e um header | `.c` de shadow com renomeações `-D`; a feature `shadow` do crate exporta apenas nomes `everything_rust_` |

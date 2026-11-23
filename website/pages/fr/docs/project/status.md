@@ -1,6 +1,6 @@
 ---
 title: État
-description: Ce qui fonctionne aujourd'hui dans rust-anything, et comment chaque partie a été vérifiée pour la dernière fois.
+description: Ce qui fonctionne aujourd'hui dans everything-rust, et comment chaque partie a été vérifiée pour la dernière fois.
 ---
 
 # État
@@ -15,7 +15,7 @@ exécuté sur un vrai projet. **Préversion** : fonctionne pour une partie du fl
 
 | Langage | État | Dernière exécution réelle | Résultat |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Vérifié | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` de x18n | Prettier : `doc-printer-rs` 2,848/2,848 et `js-format-rs` 1,279/1,279, le gate passe sur les deux ; json-server : six unités, 3,399 cas, le gate passe sur chacune ; Fuse.js, vercel/ms, x18n : 3,414/3,414, 975/975 et plus de 9,000 cas correspondent |
+| TypeScript/JavaScript | Vérifié | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` de x18n | Prettier : `doc-printer-rs` 2,848/2,848 et `js-format-rs` 1,279/1,279, le gate passe sur les deux ; json-server : six unités, 3,399 cas, le gate passe sur chacune ; Fuse.js, vercel/ms, x18n : 3,414/3,414, 975/975 et plus de 9,000 cas correspondent |
 | Python | Vérifié | `colorsys.py` de CPython 3.13 (2026-11-16) | 2,400/2,400 ; le gate passe |
 | Go | Vérifié | `path` de Go 1.24 (2026-11-16) | 2,642/2,642 ; le gate passe |
 | Ruby | Vérifié | `shellwords.rb` de Ruby 3.3 (2026-11-16) | 1,617/1,617 ; le gate passe |

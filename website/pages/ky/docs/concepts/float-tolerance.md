@@ -6,8 +6,8 @@ description: Сандык код порттолгондон кийин сейр�
 # Float тактыгы
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Сандык код (физика, статистика, графика) порттолгондон кийин сейрек учурда биттери боюнча бирдей float'тарды берет: амалдардын тартиби, fused multiply-add жана математикалык китепкана компиляторлордо ар башка. Муну кабыл алсаңыз, `--float-tolerance` жана өзүңүздүн санды берип жазып алыңыз. Андан кийин float'тар чоңураак маанинин ошол үлүшүнүн чегинде дал келет (1ден кичине маанилер үчүн абсолюттук), жана `diff` менен `gate` аны колдонот. `0` аны алып салат.

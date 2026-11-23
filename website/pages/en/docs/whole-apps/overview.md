@@ -5,7 +5,7 @@ description: From the first recording to a pure Rust binary. The goal is a Rust 
 
 # Port a whole app
 
-The goal is a pure Rust app that behaves like the original, with the original kept as reference. Your agent writes the Rust; rust-anything orders the work, scaffolds it, and proves every step. CLIs, HTTP servers and libraries.
+The goal is a pure Rust app that behaves like the original, with the original kept as reference. Your agent writes the Rust; everything-rust orders the work, scaffolds it, and proves every step. CLIs, HTTP servers and libraries.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Plan
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` adds the app's shape (CLI, server or library) and entry points, every external dependency (imported or declared) with its Rust crate and fit, the port order as pieces (units that import each other move together), and numbered decisions with a recommended answer: keep units, blocked units, dependencies with no or a partial crate.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## How the agent works through it
 
-The [whole-app skill](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) walks the agent through it, starting with the decisions only you can make:
+The [whole-app skill](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) walks the agent through it, starting with the decisions only you can make:
 
 - **Grilling**: the agent asks in rounds, each question with its recommended answer, until every decision the port depends on is settled, and writes each one as an ADR in `rust/DECISIONS.md`, with `rust/GLOSSARY.md` mapping the original's terms to Rust names.
 - **Research**: background agents read each dependency's primary sources and write `rust/research/<topic>.md`, with every semantic trap they found.

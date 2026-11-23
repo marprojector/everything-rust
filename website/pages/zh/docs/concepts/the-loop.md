@@ -7,7 +7,7 @@ description: profile、analyze、bridge、record、port、diff、bench、shadow 
 
 每一次迁移，从一个热点函数到整个应用，都要一次一个单元地经过相同的步骤。只有 `gate` 通过，迁移才算完成。
 
-rust-anything 如何校验一次迁移、它的各个命令做出哪些决定，以及它的局限在哪里。返回 [README](/)。
+everything-rust 如何校验一次迁移、它的各个命令做出哪些决定，以及它的局限在哪里。返回 [README](/)。
 
 ## 工作原理
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | 步骤 | 命令 | 作用 |
 | --- | --- | --- |
-| 0. 性能分析 | `rust-anything profile <repo> -- node bench.mjs` | 在对应语言的性能分析器（node、cProfile、`go test` pprof、JFR、Ruby tracer）下运行真实工作负载：按包含子调用的时间列出热点函数、它们的调用方，以及哪些循环适合批处理；标出已经编译过的代码（numba、Cython、JAX），Rust 在这些地方获益很少 |
-| 1. 规划 | `rust-anything analyze <repo>` | 单元、迁移顺序、带 `file:line` 的风险、每个单元的桥接层、依赖与 crate 的匹配度、最适合先迁移的单元；`--whole-app` 还会加上入口点和应用形态、每个依赖（导入的或声明的）及其对应 crate、迁移块（相互导入的单元一起迁移），以及带推荐答案的编号决策项 |
-| 2. 桥接 | `rust-anything bridge <repo> <unit>` | 生成带绑定代码的 crate（`lib.rs`，以及源语言加载的包装层）和待移植的桩函数（`port.rs`）；`--batch fn:param` 会添加一个把大量 `param` 值留在 Rust 中的类；`--as-json T` 把应用只用来装数据的类型参数作为 JSON 值桥接 |
-| 3. 录制 | `rust-anything record <crate>` | 在生成的边界用例（非 ASCII、emoji、`-0`、`NaN`、期望浮点数的地方传整数……）以及每个参数上的每个语义陷阱（字符串长度与大小写、有符号除法、溢出边界、浮点输出、Map 与排序顺序）上运行原实现，并保存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）还会录制原实现自身测试套件发出的每一次调用；`--float-tolerance 1e-9` 让数值代码中的浮点数在该比例内即可视为一致 |
-| 3. 构建 | `rust-anything build <crate>` | 构建 Rust 侧：`.node`、wasm 包、Python 扩展或共享库 |
-| 3. Diff | `rust-anything diff <crate>` | 以原实现调用方的调用方式，在 Rust 上回放录制用例；列出不一致之处 |
-| 3. 基准测试 | `rust-anything bench <crate>` | 在原实现和 Rust 上为录制用例计时，包含桥接开销 |
-| 4. 影子运行 | `rust-anything shadow <crate>` | 可直接替换的模块，同时运行两者，返回原实现的结果，并报告不一致；`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 门禁 | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、测试、`unsafe` 审计、没有未移植的内容、原实现的每条错误路径都有一条录制的失败用例、在原实现返回错误的地方没有 `unwrap`/`expect`/`panic!`（除非标注了 `// INFALLIBLE: <why>`）、构建、API、行为 |
-| 智能体 | `rust-anything setup` | 把 MCP 服务器（`rust-anything mcp`，每个步骤都是一个工具）和工作流技能（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)）注册到你的编程智能体 |
+| 0. 性能分析 | `everything-rust profile <repo> -- node bench.mjs` | 在对应语言的性能分析器（node、cProfile、`go test` pprof、JFR、Ruby tracer）下运行真实工作负载：按包含子调用的时间列出热点函数、它们的调用方，以及哪些循环适合批处理；标出已经编译过的代码（numba、Cython、JAX），Rust 在这些地方获益很少 |
+| 1. 规划 | `everything-rust analyze <repo>` | 单元、迁移顺序、带 `file:line` 的风险、每个单元的桥接层、依赖与 crate 的匹配度、最适合先迁移的单元；`--whole-app` 还会加上入口点和应用形态、每个依赖（导入的或声明的）及其对应 crate、迁移块（相互导入的单元一起迁移），以及带推荐答案的编号决策项 |
+| 2. 桥接 | `everything-rust bridge <repo> <unit>` | 生成带绑定代码的 crate（`lib.rs`，以及源语言加载的包装层）和待移植的桩函数（`port.rs`）；`--batch fn:param` 会添加一个把大量 `param` 值留在 Rust 中的类；`--as-json T` 把应用只用来装数据的类型参数作为 JSON 值桥接 |
+| 3. 录制 | `everything-rust record <crate>` | 在生成的边界用例（非 ASCII、emoji、`-0`、`NaN`、期望浮点数的地方传整数……）以及每个参数上的每个语义陷阱（字符串长度与大小写、有符号除法、溢出边界、浮点输出、Map 与排序顺序）上运行原实现，并保存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）还会录制原实现自身测试套件发出的每一次调用；`--float-tolerance 1e-9` 让数值代码中的浮点数在该比例内即可视为一致 |
+| 3. 构建 | `everything-rust build <crate>` | 构建 Rust 侧：`.node`、wasm 包、Python 扩展或共享库 |
+| 3. Diff | `everything-rust diff <crate>` | 以原实现调用方的调用方式，在 Rust 上回放录制用例；列出不一致之处 |
+| 3. 基准测试 | `everything-rust bench <crate>` | 在原实现和 Rust 上为录制用例计时，包含桥接开销 |
+| 4. 影子运行 | `everything-rust shadow <crate>` | 可直接替换的模块，同时运行两者，返回原实现的结果，并报告不一致；`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 门禁 | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、测试、`unsafe` 审计、没有未移植的内容、原实现的每条错误路径都有一条录制的失败用例、在原实现返回错误的地方没有 `unwrap`/`expect`/`panic!`（除非标注了 `// INFALLIBLE: <why>`）、构建、API、行为 |
+| 智能体 | `everything-rust setup` | 把 MCP 服务器（`everything-rust mcp`，每个步骤都是一个工具）和工作流技能（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)）注册到你的编程智能体 |
 
 ## 热点路径：把数据留在 Rust 侧
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 每次调用都在全部核心上对所有数据运行该函数，并返回类型化数组结果。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore：占整个运行时间的四分之一，由 `matched` 按键逐个调用：将其批处理化
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ x18n 的侧边栏搜索中，对 50,000 个键逐字母输入，结果完全一�
 
 编译型原实现获益较少：逐条数据的处理本来就快，所以批处理的优势约等于核心
 数。批处理 crate 使用 mimalloc 分配内存：使用系统分配器时，Go 批处理比
-单线程还慢。示例：[`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+单线程还慢。示例：[`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 
 ## `bridge` 如何做决定
 
@@ -176,16 +176,16 @@ x18n 的侧边栏搜索中，对 50,000 个键逐字母输入，结果完全一�
 
 | 步骤 | 命令 | 作用 |
 | --- | --- | --- |
-| 0. 性能分析 | `rust-anything profile <repo> -- node bench.mjs` | 在对应语言的性能分析器（node、cProfile、`go test` pprof、JFR、Ruby tracer）下运行真实工作负载：按包含子调用的时间列出热点函数、它们的调用方，以及哪些循环适合批处理；标出已经编译过的代码（numba、Cython、JAX），Rust 在这些地方获益很少 |
-| 1. 规划 | `rust-anything analyze <repo>` | 单元、迁移顺序、带 `file:line` 的风险、每个单元的桥接层、依赖与 crate 的匹配度、最适合先迁移的单元；`--whole-app` 还会加上入口点和应用形态、每个依赖（导入的或声明的）及其对应 crate、迁移块（相互导入的单元一起迁移），以及带推荐答案的编号决策项 |
-| 2. 桥接 | `rust-anything bridge <repo> <unit>` | 生成带绑定代码的 crate（`lib.rs`，以及源语言加载的包装层）和待移植的桩函数（`port.rs`）；`--batch fn:param` 会添加一个把大量 `param` 值留在 Rust 中的类；`--as-json T` 把应用只用来装数据的类型参数作为 JSON 值桥接 |
-| 3. 录制 | `rust-anything record <crate>` | 在生成的边界用例（非 ASCII、emoji、`-0`、`NaN`、期望浮点数的地方传整数……）以及每个参数上的每个语义陷阱（字符串长度与大小写、有符号除法、溢出边界、浮点输出、Map 与排序顺序）上运行原实现，并保存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）还会录制原实现自身测试套件发出的每一次调用；`--float-tolerance 1e-9` 让数值代码中的浮点数在该比例内即可视为一致 |
-| 3. 构建 | `rust-anything build <crate>` | 构建 Rust 侧：`.node`、wasm 包、Python 扩展或共享库 |
-| 3. Diff | `rust-anything diff <crate>` | 以原实现调用方的调用方式，在 Rust 上回放录制用例；列出不一致之处 |
-| 3. 基准测试 | `rust-anything bench <crate>` | 在原实现和 Rust 上为录制用例计时，包含桥接开销 |
-| 4. 影子运行 | `rust-anything shadow <crate>` | 可直接替换的模块，同时运行两者，返回原实现的结果，并报告不一致；`RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. 门禁 | `rust-anything gate <crate>` | fmt、clippy `-D warnings`、测试、`unsafe` 审计、没有未移植的内容、原实现的每条错误路径都有一条录制的失败用例、在原实现返回错误的地方没有 `unwrap`/`expect`/`panic!`（除非标注了 `// INFALLIBLE: <why>`）、构建、API、行为 |
-| 智能体 | `rust-anything setup` | 把 MCP 服务器（`rust-anything mcp`，每个步骤都是一个工具）和工作流技能（[`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)）注册到你的编程智能体 |
+| 0. 性能分析 | `everything-rust profile <repo> -- node bench.mjs` | 在对应语言的性能分析器（node、cProfile、`go test` pprof、JFR、Ruby tracer）下运行真实工作负载：按包含子调用的时间列出热点函数、它们的调用方，以及哪些循环适合批处理；标出已经编译过的代码（numba、Cython、JAX），Rust 在这些地方获益很少 |
+| 1. 规划 | `everything-rust analyze <repo>` | 单元、迁移顺序、带 `file:line` 的风险、每个单元的桥接层、依赖与 crate 的匹配度、最适合先迁移的单元；`--whole-app` 还会加上入口点和应用形态、每个依赖（导入的或声明的）及其对应 crate、迁移块（相互导入的单元一起迁移），以及带推荐答案的编号决策项 |
+| 2. 桥接 | `everything-rust bridge <repo> <unit>` | 生成带绑定代码的 crate（`lib.rs`，以及源语言加载的包装层）和待移植的桩函数（`port.rs`）；`--batch fn:param` 会添加一个把大量 `param` 值留在 Rust 中的类；`--as-json T` 把应用只用来装数据的类型参数作为 JSON 值桥接 |
+| 3. 录制 | `everything-rust record <crate>` | 在生成的边界用例（非 ASCII、emoji、`-0`、`NaN`、期望浮点数的地方传整数……）以及每个参数上的每个语义陷阱（字符串长度与大小写、有符号除法、溢出边界、浮点输出、Map 与排序顺序）上运行原实现，并保存 `cases.jsonl`；`--from-tests -- npx jest`（或 `-- pytest`）还会录制原实现自身测试套件发出的每一次调用；`--float-tolerance 1e-9` 让数值代码中的浮点数在该比例内即可视为一致 |
+| 3. 构建 | `everything-rust build <crate>` | 构建 Rust 侧：`.node`、wasm 包、Python 扩展或共享库 |
+| 3. Diff | `everything-rust diff <crate>` | 以原实现调用方的调用方式，在 Rust 上回放录制用例；列出不一致之处 |
+| 3. 基准测试 | `everything-rust bench <crate>` | 在原实现和 Rust 上为录制用例计时，包含桥接开销 |
+| 4. 影子运行 | `everything-rust shadow <crate>` | 可直接替换的模块，同时运行两者，返回原实现的结果，并报告不一致；`EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. 门禁 | `everything-rust gate <crate>` | fmt、clippy `-D warnings`、测试、`unsafe` 审计、没有未移植的内容、原实现的每条错误路径都有一条录制的失败用例、在原实现返回错误的地方没有 `unwrap`/`expect`/`panic!`（除非标注了 `// INFALLIBLE: <why>`）、构建、API、行为 |
+| 智能体 | `everything-rust setup` | 把 MCP 服务器（`everything-rust mcp`，每个步骤都是一个工具）和工作流技能（[`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)）注册到你的编程智能体 |
 ## 下一步
 
 每个步骤都有单独的页面：[性能分析与规划](/docs/concepts/analyze)、[桥接层](/docs/concepts/bridge)、[录制](/docs/concepts/record)、[移植](/docs/concepts/port)、[Diff](/docs/concepts/diff)、[基准测试](/docs/concepts/bench)、[影子运行](/docs/concepts/shadow)和[门禁](/docs/concepts/gate)。

@@ -6,9 +6,9 @@ description: record оригиналны ясалган чик очраклар�
 # Язып алу
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # яки: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # яки: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` оригинал функцияләрне җибәрә һәм һәрберсе нәрсә кайтарганын яки нинди хата ыргытканын crate янәшәсендәге `cases.jsonl` эчендә саклый: порт туры килергә тиешле тәртип. Соңрак туры килмәү ул тәртиптәге аерма: язманы түгел, портны төзәтегез.

@@ -9,11 +9,11 @@ description: Шул ук командалар HTTP серверларны исб
 `PORT`'тан яки командадагы `{port}`'тан ала (һәрвакыт бер үк портны тыңлаучы сервер өчен `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: һәр маршрут проксилана
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: һәр маршрут проксилана
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Сораулар кушымта документациясендәге `curl` юлларыннан (`curl -X POST -d ... http://localhost:8080/x`),

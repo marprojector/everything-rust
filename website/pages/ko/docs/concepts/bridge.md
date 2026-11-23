@@ -6,8 +6,8 @@ description: bridge는 유닛 하나를 위한 Rust crate의 뼈대를 바인딩
 # 브리지
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # <repo>/rust/<name>에 crate 생성, 덮어쓰지 않음
-rust-anything refresh <crate>                  # port.rs의 시그니처를 바꾼 후
+everything-rust bridge <repo> <unit-id>          # <repo>/rust/<name>에 crate 생성, 덮어쓰지 않음
+everything-rust refresh <crate>                  # port.rs의 시그니처를 바꾼 후
 ```
 
 `bridge`는 바인딩(`lib.rs`와 원본 언어가 불러오는 래퍼)과 포팅할 스텁(`port.rs`)이 담긴 crate를 만듭니다. 포트는 `src/port.rs`에만 작성합니다. `src/lib.rs`와 래퍼는 생성되며, `refresh`가 `port.rs`의 시그니처로부터 이를 다시 생성하고 새 배치 클래스도 추가합니다. `port.rs`는 절대 건드리지 않습니다.

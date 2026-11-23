@@ -6,7 +6,7 @@ description: gate 是一次移植的完成定義。它執行的每項檢查，�
 # 閘門
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 `gate` 通過才算完成。它會檢查：

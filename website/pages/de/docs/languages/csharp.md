@@ -17,10 +17,10 @@ description: "C# ist in der Vorschau. analyze liest .csproj-Projekte, und eine C
 Eine gebaute App aufzeichnen:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Das Portieren von Units über P/Invoke folgt als Nächstes. Bis dahin lehnt `bridge` C#-Units mit einer klaren Meldung ab.

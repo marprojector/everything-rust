@@ -6,9 +6,9 @@ description: record, orijinali üretilmiş uç durumlar, anlamsal tuzaklar, kend
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # ya da: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # ya da: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record`, orijinal fonksiyonları çalıştırır ve her birinin döndürdüğünü ya da fırlattığını crate'in yanındaki `cases.jsonl` dosyasına kaydeder: portun eşleşmesi gereken davranış. Sonradan çıkan bir uyuşmazlık bir davranış farkıdır: kaydı değil, portu düzeltin.

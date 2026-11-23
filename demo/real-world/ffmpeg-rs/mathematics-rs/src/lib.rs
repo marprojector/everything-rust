@@ -1,5 +1,5 @@
 //! C ABI for `mathematics.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
@@ -19,10 +19,10 @@ pub extern "C" fn av_gcd(a: i64, b: i64) -> i64 {
     port::av_gcd(a, b)
 }
 
-/// `av_gcd` as `rust_anything_av_gcd`, for shadow builds beside the original.
+/// `av_gcd` as `everything_rust_av_gcd`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_gcd(a: i64, b: i64) -> i64 {
+pub extern "C" fn everything_rust_av_gcd(a: i64, b: i64) -> i64 {
     port::av_gcd(a, b)
 }
 
@@ -34,10 +34,10 @@ pub extern "C" fn av_rescale_rnd(a: i64, b: i64, c: i64, rnd: std::ffi::c_int) -
     port::av_rescale_rnd(a, b, c, rnd)
 }
 
-/// `av_rescale_rnd` as `rust_anything_av_rescale_rnd`, for shadow builds beside the original.
+/// `av_rescale_rnd` as `everything_rust_av_rescale_rnd`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_rescale_rnd(
+pub extern "C" fn everything_rust_av_rescale_rnd(
     a: i64,
     b: i64,
     c: i64,
@@ -54,10 +54,10 @@ pub extern "C" fn av_rescale(a: i64, b: i64, c: i64) -> i64 {
     port::av_rescale(a, b, c)
 }
 
-/// `av_rescale` as `rust_anything_av_rescale`, for shadow builds beside the original.
+/// `av_rescale` as `everything_rust_av_rescale`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_rescale(a: i64, b: i64, c: i64) -> i64 {
+pub extern "C" fn everything_rust_av_rescale(a: i64, b: i64, c: i64) -> i64 {
     port::av_rescale(a, b, c)
 }
 
@@ -74,10 +74,10 @@ pub extern "C" fn av_rescale_q_rnd(
     port::av_rescale_q_rnd(a, bq, cq, rnd)
 }
 
-/// `av_rescale_q_rnd` as `rust_anything_av_rescale_q_rnd`, for shadow builds beside the original.
+/// `av_rescale_q_rnd` as `everything_rust_av_rescale_q_rnd`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_rescale_q_rnd(
+pub extern "C" fn everything_rust_av_rescale_q_rnd(
     a: i64,
     bq: AVRational,
     cq: AVRational,
@@ -94,10 +94,10 @@ pub extern "C" fn av_rescale_q(a: i64, bq: AVRational, cq: AVRational) -> i64 {
     port::av_rescale_q(a, bq, cq)
 }
 
-/// `av_rescale_q` as `rust_anything_av_rescale_q`, for shadow builds beside the original.
+/// `av_rescale_q` as `everything_rust_av_rescale_q`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_rescale_q(a: i64, bq: AVRational, cq: AVRational) -> i64 {
+pub extern "C" fn everything_rust_av_rescale_q(a: i64, bq: AVRational, cq: AVRational) -> i64 {
     port::av_rescale_q(a, bq, cq)
 }
 
@@ -109,10 +109,10 @@ pub extern "C" fn av_compare_mod(a: u64, b: u64, r#mod: u64) -> i64 {
     port::av_compare_mod(a, b, r#mod)
 }
 
-/// `av_compare_mod` as `rust_anything_av_compare_mod`, for shadow builds beside the original.
+/// `av_compare_mod` as `everything_rust_av_compare_mod`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_compare_mod(a: u64, b: u64, r#mod: u64) -> i64 {
+pub extern "C" fn everything_rust_av_compare_mod(a: u64, b: u64, r#mod: u64) -> i64 {
     port::av_compare_mod(a, b, r#mod)
 }
 
@@ -124,9 +124,9 @@ pub extern "C" fn av_bessel_i0(x: f64) -> f64 {
     port::av_bessel_i0(x)
 }
 
-/// `av_bessel_i0` as `rust_anything_av_bessel_i0`, for shadow builds beside the original.
+/// `av_bessel_i0` as `everything_rust_av_bessel_i0`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_bessel_i0(x: f64) -> f64 {
+pub extern "C" fn everything_rust_av_bessel_i0(x: f64) -> f64 {
     port::av_bessel_i0(x)
 }

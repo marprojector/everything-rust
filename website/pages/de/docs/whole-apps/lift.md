@@ -8,7 +8,7 @@ description: app lift macht rust/app zu einer reinen Rust-App, sobald das Abspie
 Wenn das Abspielen mit Fallback-Rate 0 besteht und jede Unit gate besteht, mach daraus eine reine Rust-App:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` verweigert sich, bis beides gilt, und sagt, was es blockiert: die Fälle, die noch auf den Fallback zurückgreifen, Glue-Code, der noch ein Stub ist, Units, die gate nicht bestehen.

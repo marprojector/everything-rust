@@ -10,13 +10,13 @@ description: 开发环境搭建、测试放在哪里、如何添加 crate 映射
 
 ## 开始之前
 
-- **bug：** 提交一个 [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose)，附上
-  你运行的命令、它的输出、你的平台以及 rust-anything 版本
-  （`rust-anything --version`）。一个很小的复现项目最有帮助。
+- **bug：** 提交一个 [issue](https://github.com/marprojector/everything-rust/issues/new/choose)，附上
+  你运行的命令、它的输出、你的平台以及 everything-rust 版本
+  （`everything-rust --version`）。一个很小的复现项目最有帮助。
 - **较大的改动**（新语言、新命令、改变单元或录制结果的定义）：
   请先提一个 issue，以便在你动手之前就整体方案达成一致。过往决策背后的原因
-  见 [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md)。
-- **安全问题：** 不要提交公开 issue；见 [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md)。
+  见 [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md)。
+- **安全问题：** 不要提交公开 issue；见 [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md)。
 
 ## 环境搭建
 
@@ -36,15 +36,15 @@ description: 开发环境搭建、测试放在哪里、如何添加 crate 映射
 | wasm 桥接层 | `rustup target add wasm32-unknown-unknown` 以及对应版本的 `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` 会列出你已安装的运行时、它们的版本，以及安装或更新每一项的
-命令。如果希望缺少运行时的测试直接失败而不是跳过（CI 就是这样做的），请在 `RUST_ANYTHING_REQUIRE` 中列出它，例如
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`。
+命令。如果希望缺少运行时的测试直接失败而不是跳过（CI 就是这样做的），请在 `EVERYTHING_RUST_REQUIRE` 中列出它，例如
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`。
 
 该钩子会运行 `scripts/check-secrets.sh`，拒绝你提交的内容中出现密钥、令牌和个人主目录
 路径。CI 会对每个文件运行它。
@@ -64,7 +64,7 @@ cargo test
 - **测试夹具**是 `tests/fixtures/` 下的小型应用。CLI 和 HTTP 测试夹具在每种语言中实现相同的
   命令和路由（`tcli upper|len|div|words|copy|now`、`/hello`、`/upper`、
   `/div/{a}/{b}`、`/now`），所以新增的测试夹具在行为上要与其他的保持一致。
-- **生成的代码**（rust-anything 写出的桥接层、驱动和前门）也必须通过
+- **生成的代码**（everything-rust 写出的桥接层、驱动和前门）也必须通过
   `clippy -D warnings`，因为 `gate` 会在用户的 crate 上运行它。
 - **风格：** 与周围的代码保持一致。注释只写代码本身表达不出来的内容，
   修改的理由请写在 Pull Request 中。
@@ -80,8 +80,8 @@ cargo test
 ## 添加一种语言
 
 PHP 和 C# 是以预览形式在两个提交中加入的，值得先读一读：
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243)（PHP）和
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a)（C#）。新语言
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243)（PHP）和
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a)（C#）。新语言
 也以同样的方式开始：
 
 1. `src/lang/<name>.rs` 中的插件：发现、扫描（导入和风险）、解析和导出项，
@@ -137,10 +137,10 @@ Pull Request 会保留其中的提交进行合并，所以你的提交历史仍�
 ## 分享真实的迁移案例
 
 真实项目的迁移是证明什么可行、什么会出问题的最好证据。如果你在真实项目上使用了
-rust-anything，非常欢迎提交 issue 或 Pull Request，把它加到
+everything-rust，非常欢迎提交 issue 或 Pull Request，把它加到
 [docs/real-world.md](/docs/real-world/overview) 中。请写明项目、你运行的
 命令、用例数量，以及任何让你感到意外的地方。
 
 ## 行为准则
 
-每一位参与者都应遵守[行为准则](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md)。
+每一位参与者都应遵守[行为准则](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md)。

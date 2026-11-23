@@ -10,7 +10,7 @@ description: profile белән вакыт кая китүен табу, анн�
 Максат тизлек булса, берәр нәрсә сайлаганчы үлчәгез:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # яки: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # яки: python3 bench.py, ruby bench.rb,
                                                     #      java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # яки: python3 bench.py, 
 ## Анализ: портны планлаштыру
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # кешеләр өчен
-rust-anything analyze <repo> --json            # агентлар өчен: rust-anything/analyze@1 схемасы
-rust-anything analyze <repo> --whole-app       # өстәвенә керү нокталары, форма, бәйлелекләр, карарлар
+everything-rust analyze <repo> -o plan.md        # кешеләр өчен
+everything-rust analyze <repo> --json            # агентлар өчен: everything-rust/analyze@1 схемасы
+everything-rust analyze <repo> --whole-app       # өстәвенә керү нокталары, форма, бәйлелекләр, карарлар
 ```
 
 `analyze` берәмлекләрне, күчерү тәртибен, `file:line` белән куркынычларны, һәр берәмлек өчен bridge'ны, һәр бәйлелекнең crate'ка күпме туры килүен һәм `start_here` күрсәтә: иң яхшы беренче портлар. `--whole-app` кушымтаның формасын (CLI, сервер яки китапханә) һәм керү нокталарын, һәр бәйлелекне (импортланган яки игълан ителгән) аның crate'ы белән, өлешләрне (бер-берсен импортлаучы берәмлекләр бергә күчә) һәм тәкъдим ителгән җавап белән номерланган карарларны өсти. [Бөтен кушымтаны күчерү](/docs/whole-apps/overview) битен карагыз.

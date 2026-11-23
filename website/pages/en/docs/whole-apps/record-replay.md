@@ -8,9 +8,9 @@ description: app record runs the whole app on its documented examples, your inpu
 `record` and `diff` prove one unit; `app record` and `app replay` prove the app, for CLIs and servers in any of the six languages. The app is a black box.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # the command that runs the original
-rust-anything app replay .                            # the original must pass 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # the command that runs the original
+everything-rust app replay .                            # the original must pass 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Where the cases come from
@@ -40,7 +40,7 @@ Read and edit them by hand; a Rust test can run them with `trycmd` once the port
 ## Replay
 
 - `app replay` runs any build against the cases, prints `passed/total`, writes `rust/app-cases/replay-report.md` with a diff per failing case, and exits non-zero on any mismatch.
-- A build that appends to the file named by `RUST_ANYTHING_FALLBACK_LOG` (one line per fallback to the original), as the [front door](/docs/whole-apps/front-door) does, also gets its fallback rate reported.
+- A build that appends to the file named by `EVERYTHING_RUST_FALLBACK_LOG` (one line per fallback to the original), as the [front door](/docs/whole-apps/front-door) does, also gets its fallback rate reported.
 - `app replay --case <name>` reruns one case by the name the report gives it: the fast, repeatable loop for fixing a mismatch before running everything again.
 
 ## Replay in CI
@@ -48,7 +48,7 @@ Read and edit them by hand; a Rust test can run them with `trycmd` once the port
 The report has no timings or temporary paths: two replays of the same build write the same file. Commit it, then run in CI:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

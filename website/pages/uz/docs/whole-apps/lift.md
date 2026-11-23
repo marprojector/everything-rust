@@ -8,7 +8,7 @@ description: Qayta ijro 0 fallback ulushi bilan o'tgach va har bir birlik gate'd
 Qayta ijro 0 fallback ulushi bilan o'tganda va har bir birlik gate'dan o'tganda, uni toza Rust ilovasiga aylantiring:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` ikkala shart bajarilmaguncha rad etadi va nima to'sqinlik qilayotganini aytadi: hali fallback'ga tushayotgan holatlar, hali stub bo'lib turgan bog'lovchi kod, gate'dan o'tmayotgan birliklar.

@@ -8,10 +8,10 @@ description: app front-door puts a Rust binary in front of the original; app wir
 Move the entry point to Rust first, then hand it commands one unit at a time:
 
 ```sh
-rust-anything app front-door .                            # rust/app: every command runs the original
-rust-anything app wire . textkit --command upper          # after textkit-rs passes gate
+everything-rust app front-door .                            # rust/app: every command runs the original
+everything-rust app wire . textkit --command upper          # after textkit-rs passes gate
 # write the glue in rust/app/src/units/textkit.rs, then:
-rust-anything app wire . textkit                          # 100% again, lower fallback rate
+everything-rust app wire . textkit                          # 100% again, lower fallback rate
 ```
 
 ## The front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # 100% again, lower fa
 3. writes `src/units/<unit>.rs` once, for you or your agent to fill in: parse the arguments, call `<crate>::port`, print what the original prints;
 4. routes the commands to it, then builds and replays.
 
-Run it again after writing the glue: 100% passed and a lower fallback rate. `RUST_ANYTHING_UNIT_<NAME>=original` sends a wired unit back to the original until the lift.
+Run it again after writing the glue: 100% passed and a lower fallback rate. `EVERYTHING_RUST_UNIT_<NAME>=original` sends a wired unit back to the original until the lift.
 
 Wire the app's own name as a command (`--command mytool`) for argv that names no command: no arguments, unknown commands, usage errors.
 

@@ -1,6 +1,6 @@
 ---
 title: Статус
-description: Що працює в rust-anything сьогодні і як кожну частину перевіряли востаннє.
+description: Що працює в everything-rust сьогодні і як кожну частину перевіряли востаннє.
 ---
 
 # Статус
@@ -15,7 +15,7 @@ description: Що працює в rust-anything сьогодні і як кож�
 
 | Мова | Статус | Останній реальний прогін | Результат |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | Перевірено | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` з x18n | Prettier: `doc-printer-rs` 2,848/2,848 і `js-format-rs` 1,279/1,279, gate проходить на обох; json-server: шість модулів, 3,399 випадків, gate проходить на кожному; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 і 9,000+ випадків збігаються |
+| TypeScript/JavaScript | Перевірено | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier) (2026-11-18), [json-server](/docs/real-world/json-server) (2026-11-18), [Fuse.js](/docs/real-world/fuse-js) (2026-11-18), [vercel/ms](/docs/real-world/vercel-ms) (2026-11-18), `packages/core` з x18n | Prettier: `doc-printer-rs` 2,848/2,848 і `js-format-rs` 1,279/1,279, gate проходить на обох; json-server: шість модулів, 3,399 випадків, gate проходить на кожному; Fuse.js, vercel/ms, x18n: 3,414/3,414, 975/975 і 9,000+ випадків збігаються |
 | Python | Перевірено | `colorsys.py` з CPython 3.13 (2026-11-16) | 2,400/2,400; gate проходить |
 | Go | Перевірено | `path` з Go 1.24 (2026-11-16) | 2,642/2,642; gate проходить |
 | Ruby | Перевірено | `shellwords.rb` з Ruby 3.3 (2026-11-16) | 1,617/1,617; gate проходить |

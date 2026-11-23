@@ -5,7 +5,7 @@ description: port.rs ýazmak, siziň ýa-da agentiňiziň ýazýan ýeke faýly,
 
 # Geçirmek
 
-Porty `src/port.rs` içinde siz ýa-da agentiňiz ýazýar. Crate-däki galan hemme zat döredilýär. `port.rs` içinde signatura üýtgedilenden soň `rust-anything refresh <crate>` işlediň.
+Porty `src/port.rs` içinde siz ýa-da agentiňiz ýazýar. Crate-däki galan hemme zat döredilýär. `port.rs` içinde signatura üýtgedilenden soň `everything-rust refresh <crate>` işlediň.
 
 ## Diff-iň bir tapgyryny tygşytlaýan düzgünler
 
@@ -25,14 +25,14 @@ Döredilen `js.rs` Rust-yň tapawutlanýan ýerinde JavaScript-i gaýtalaýan k�
 ## Mysal: orny süýşüren emoji
 
 [x18n](https://github.com/x18n-dev/x18n)-iň `packages/core/src/fuzzy.ts` faýly, iki usulda hem geçirildi,
-[`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo) içinde:
+[`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo) içinde:
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core runs in browsers)
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts: ready, wasm-bindgen (core runs in browsers)
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # src/port.rs ýazyň
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 Rust `char` boýunça indeksleýän ilkinji port ýönekeý testlerden geçdi, emma `diff`-den geçmedi:
@@ -46,7 +46,7 @@ JS `indexOf` UTF-16 kod birliklerini sanaýar, şonuň üçin emoji iki orun tut
 `demo/*/src/port.rs` içindäki port döredilen `utf16` kömekçilerini ulanýar we 2000/2000 ýagdaýdan hem-de gate-den geçýär,
 napi-rs (`demo/fuzzy-napi`) we wasm-bindgen (`demo/fuzzy-rs`) hökmünde.
 
-rust-anything-iň tutuş x18n üçin ýazan meýilnamasy: [`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md).
+everything-rust-iň tutuş x18n üçin ýazan meýilnamasy: [`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md).
 ## Ol näçe uly bolmaly?
 
 `gate` portuň setirlerini asyl nusganyňky bilen deňeşdirýär we 3x-dan geçende şowsuz bolýar (import we signaturalar üçin goşmaça 50 setir). Ondan köp bolmagy adatça crate-iň eýýäm edýän zadyny el bilen ýazmagy ýa-da ýagdaýlary birme-bir işlemegi aňladýar. `analyze` ulanmaly crate-leri sanaýar.

@@ -17,10 +17,10 @@ description: C# is in preview. analyze reads .csproj projects, and a C# CLI or A
 Record a built app:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Porting units through P/Invoke comes next. Until then, `bridge` refuses C# units with a clear message.

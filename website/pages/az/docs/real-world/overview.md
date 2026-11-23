@@ -1,11 +1,11 @@
 ---
 title: Real portlar
-description: rust-anything real kodla qarşılaşanda nə baş verdi, yavaş nəticələr sürətlilərin yanında, və bunun nəticəsində alətdə nə dəyişdi.
+description: everything-rust real kodla qarşılaşanda nə baş verdi, yavaş nəticələr sürətlilərin yanında, və bunun nəticəsində alətdə nə dəyişdi.
 ---
 
 # Real portlar
 
-rust-anything real kodla qarşılaşanda nə baş verdi və bunun nəticəsində alətdə nə dəyişdi. Aşağıdakı hər rəqəm əvvəlcə nəticələrin eyni olduğunu yoxlayan benchmark-dan gəlir, yavaş hallar isə sürətlilərin yanında göstərilib.
+everything-rust real kodla qarşılaşanda nə baş verdi və bunun nəticəsində alətdə nə dəyişdi. Aşağıdakı hər rəqəm əvvəlcə nəticələrin eyni olduğunu yoxlayan benchmark-dan gəlir, yavaş hallar isə sürətlilərin yanında göstərilib.
 
 | Port | Nədir | Nəticə |
 | --- | --- | --- |

@@ -6,12 +6,12 @@ description: shadow erzeugt ein Ersatzmodul, das das Original und das Rust neben
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow` erzeugt einen direkten Ersatz mit der API des Originals: ein TS- oder Python-Modul, ein Go-Package, eine Ruby-Datei, Java-Klassen oder eine C-Datei. Lade ihn dort, wo die App das Original geladen hat. Er führt beide aus, gibt das Ergebnis des Originals zurück und meldet Abweichungen des Rust, während du in der Produktion Vertrauen aufbaust.
 
-| `RUST_ANYTHING_MODE` | Verhalten |
+| `EVERYTHING_RUST_MODE` | Verhalten |
 | --- | --- |
 | `shadow` (Standard) | führt beide aus, gibt das Ergebnis des Originals zurück, meldet Abweichungen |
 | `new` | schaltet auf Rust um |

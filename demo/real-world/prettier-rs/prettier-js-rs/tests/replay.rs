@@ -1,4 +1,4 @@
-//! Replays recorded Prettier CLI cases (`rust-anything app record` output) through the port.
+//! Replays recorded Prettier CLI cases (`everything-rust app record` output) through the port.
 //! Used as the test suite for mutation testing (`equiv/mutants/`). Skipped unless
 //! `REPLAY_CASES` names the `app-cases` folder.
 //!

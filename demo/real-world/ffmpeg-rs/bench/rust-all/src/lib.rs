@@ -1,4 +1,4 @@
-//! Links every port so its `rust_anything_*` exports land in this staticlib.
+//! Links every port so its `everything_rust_*` exports land in this staticlib.
 
 pub use adler32_rs as adler32;
 pub use avstring_rs as avstring;

@@ -9,11 +9,11 @@ description: 同样的命令也能验证 HTTP 服务端。--http、--fresh、--a
 `{port}` 获取端口（如果服务端总是监听同一个端口，使用 `--port`）：
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum：所有路由都被代理
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum：所有路由都被代理
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - 请求来自应用文档中的 `curl` 命令（`curl -X POST -d ... http://localhost:8080/x`）、

@@ -1,0 +1,36 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/rust/service-calls.ts",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "service-rs",
+  "exports": [
+    {
+      "name": "serviceCalls",
+      "file": "src/rust/service-calls.ts",
+      "line": 22,
+      "params": [
+        {
+          "name": "data",
+          "ts_type": "(Record<string, Record<string, unknown>[] | Record<string, unknown>>)",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "calls",
+          "ts_type": "({\n  op: string\n  name: string\n  id?: string\n  body?: Record<string, unknown>\n  where?: Record<string, unknown>\n  sort?: string\n  page?: number\n  perPage?: number\n  embed?: string | string[]\n  dependent?: string | string[]\n})[]",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<unknown>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

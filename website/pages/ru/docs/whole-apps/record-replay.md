@@ -8,9 +8,9 @@ description: app record запускает всё приложение на ег
 `record` и `diff` доказывают корректность одного модуля; `app record` и `app replay` доказывают корректность приложения, для CLI и серверов на любом из шести языков. Приложение рассматривается как чёрный ящик.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # the command that runs the original
-rust-anything app replay .                            # the original must pass 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # the command that runs the original
+everything-rust app replay .                            # the original must pass 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Откуда берутся кейсы
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## Воспроизведение
 
 - `app replay` прогоняет любую сборку по кейсам, печатает `passed/total`, пишет `rust/app-cases/replay-report.md` с diff для каждого упавшего кейса и завершается с ненулевым кодом при любом расхождении.
-- Для сборки, которая дописывает в файл, указанный в `RUST_ANYTHING_FALLBACK_LOG` (по одной строке на каждый фолбэк к оригиналу), как это делает [входная точка](/docs/whole-apps/front-door), также сообщается доля фолбэка.
+- Для сборки, которая дописывает в файл, указанный в `EVERYTHING_RUST_FALLBACK_LOG` (по одной строке на каждый фолбэк к оригиналу), как это делает [входная точка](/docs/whole-apps/front-door), также сообщается доля фолбэка.
 - `app replay --case <name>` перезапускает один кейс по имени, которое ему дал отчёт: быстрый, воспроизводимый цикл для исправления расхождения перед повторным прогоном всего набора.
 
 ## Воспроизведение в CI
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 В отчёте нет замеров времени и временных путей: два воспроизведения одной и той же сборки пишут одинаковый файл. Закоммитьте его, а затем запускайте в CI:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

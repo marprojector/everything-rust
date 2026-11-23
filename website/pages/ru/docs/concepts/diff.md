@@ -6,9 +6,9 @@ description: diff воспроизводит каждый записанный �
 # Diff и известные расхождения
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # должно быть N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # должно быть N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` воспроизводит `cases.jsonl` на собранном Rust-модуле, вызывая его так, как его вызывает код, использующий оригинал, и перечисляет расхождения. Расхождение означает различие в поведении: исправляйте порт, а не запись.

@@ -1,4 +1,4 @@
-// Adapter for rust-anything: runs a list of Service calls on in-memory data and returns every
+// Adapter for everything-rust: runs a list of Service calls on in-memory data and returns every
 // result, as it was when the call returned, and the data afterwards. Ids made by `create` are random, so each is replaced by
 // `#1`, `#2`... in the order they were made.
 import { Low, Memory } from 'lowdb'

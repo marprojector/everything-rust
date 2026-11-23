@@ -1,6 +1,6 @@
 # tserve
 
-A small HTTP server used to test `rust-anything app record --http` and the HTTP front door.
+A small HTTP server used to test `everything-rust app record --http` and the HTTP front door.
 It listens on `PORT` (default 8080).
 
 ```console

@@ -6,9 +6,9 @@ description: record runs the original on generated edge cases, semantic traps, i
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # or: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # or: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` runs the original functions and saves what each one returns or throws in `cases.jsonl`, next to the crate: the behavior the port must match. A mismatch later is a behavior difference: fix the port, never the recording.

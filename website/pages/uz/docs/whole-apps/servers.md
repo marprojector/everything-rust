@@ -9,11 +9,11 @@ Xuddi shu buyruqlar HTTP serverlarni isbotlaydi. `--http` buyruq serverni ishga 
 `PORT` dan yoki buyruqdagi `{port}` dan oladi (har doim bir xil portda tinglaydigan server uchun `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: har bir marshrut proksi qilinadi
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: har bir marshrut proksi qilinadi
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - So'rovlar ilova hujjatlaridagi `curl` qatorlaridan (`curl -X POST -d ... http://localhost:8080/x`),

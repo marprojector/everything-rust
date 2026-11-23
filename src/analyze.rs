@@ -16,7 +16,7 @@ use crate::ts::discover::{self, FileKind, Package, Workspace};
 use crate::ts::scan::{self, FileFacts, Platform};
 
 /// Version of the JSON output. Bump on any breaking change to its shape.
-pub const SCHEMA: &str = "rust-anything/analyze@1";
+pub const SCHEMA: &str = "everything-rust/analyze@1";
 const SAMPLES_PER_RISK: usize = 3;
 /// Units smaller than this are not suggested as a first port.
 const MIN_CANDIDATE_LOC: usize = 20;
@@ -230,7 +230,7 @@ const COMPILED: [&str; 17] = [
 ];
 
 fn compiled_hint() -> &'static str {
-    "rust-anything ports source code: it parses functions, records what they do, and checks the \
+    "everything-rust ports source code: it parses functions, records what they do, and checks the \
      Rust port against the running original. A compiled app (an APK, a JAR, an .exe) has no \
      source to port and no way to record it function by function. Point it at the app's source \
      folder instead; for an app you only have as a binary, writing a new Rust app from its \

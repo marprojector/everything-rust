@@ -7,7 +7,7 @@ description: profile, analyze, bridge, record, port, diff, bench, shadow жән�
 
 Әр порт, бір ыстық функциядан бүкіл қолданбаға дейін, бір уақытта бір бірліктен сол қадамдардан өтеді. Порт тек `gate` өткенде ғана дайын.
 
-rust-anything портты қалай тексереді, оның командалары нені шешеді және оның шектеулері қайда. [README](/) бетіне оралу.
+everything-rust портты қалай тексереді, оның командалары нені шешеді және оның шектеулері қайда. [README](/) бетіне оралу.
 
 ## Қалай жұмыс істейді
 
@@ -36,16 +36,16 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 
 | Қадам | Команда | Не істейді |
 | --- | --- | --- |
-| 0. Profile | `rust-anything profile <repo> -- node bench.mjs` | Нақты жүктемені тілдің профайлері астында іске қосады (node, cProfile, `go test` pprof, JFR, Ruby трейсері): инклюзивті уақыт бойынша ыстық функциялар, олардың шақырушылары және қай циклдарға batch жасау керектігі; Rust аз ұтатын, компиляцияланып қойған кодты (numba, Cython, JAX) белгілейді |
-| 1. Жоспар | `rust-anything analyze <repo>` | Бірліктер, порттау реті, `file:line` көрсетілген тәуекелдер, әр бірліктің bridge-і, тәуелділіктің crate-ке сәйкестігі, алғашқы порттау үшін ең жақсылары; `--whole-app` кіру нүктелері мен пішінді, әр тәуелділікті (импортталған немесе жарияланған) өз crate-імен, бөліктерді (бір-бірін импорттайтын бірліктер бірге көшеді) және ұсынылған жауабы бар нөмірленген шешімдерді қосады |
-| 2. Bridge | `rust-anything bridge <repo> <unit>` | Байланыстырулары (`lib.rs`, сондай-ақ бастапқы тіл жүктейтін wrapper) және порттауға арналған stub-тары (`port.rs`) бар crate; `--batch fn:param` көптеген `param` мәндерін Rust ішінде ұстайтын класс қосады; `--as-json T` қолданба тек деректермен толтыратын тип параметріне JSON мәндері ретінде bridge жасайды |
-| 3. Record | `rust-anything record <crate>` | Түпнұсқаны генерацияланған шеткі кейстерде (ASCII емес таңбалар, эмодзи, `-0`, `NaN`, float күтілетін жердегі int-тер, ...) және әр параметрдегі әр семантикалық тұзақта (жол ұзындығы мен регистрі, таңбалы бөлу, толып кету шекаралары, float-тарды басып шығару, map және сұрыптау реті) іске қосып, `cases.jsonl` сақтайды; `--from-tests -- npx jest` (немесе `-- pytest`) түпнұсқаның өз тест жиынтығы жасайтын әр шақыруды да жазып алады; `--float-tolerance 1e-9` сандық код үшін float-тарға сол үлес шегінде сәйкес келуге мүмкіндік береді |
-| 3. Build | `rust-anything build <crate>` | Rust жағын құрастырады: `.node`, wasm пакеті, Python кеңейтімі немесе shared library |
-| 3. Diff | `rust-anything diff <crate>` | Жазылған кейстерді Rust-қа қарсы, түпнұсқаның шақырушылары шақыратындай етіп қайта ойнатады; сәйкессіздіктерді тізімдейді |
-| 3. Bench | `rust-anything bench <crate>` | Жазылған кейстерді түпнұсқада және Rust-та, bridge-ті қоса алғанда, уақытпен өлшейді |
-| 4. Shadow | `rust-anything shadow <crate>` | Екеуін де іске қосып, түпнұсқаның нәтижесін қайтаратын, сәйкессіздіктерді хабарлайтын алмастырғыш; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, тесттер, `unsafe` аудиті, портталмаған ештеңе қалмауы, түпнұсқаның әр қате жолы үшін жазылған сәтсіз кейс, түпнұсқа қате қайтаратын жерде `unwrap`/`expect`/`panic!` болмауы (`// INFALLIBLE: <why>` деп белгіленбесе), build, API, мінез-құлық |
-| Агенттер | `rust-anything setup` | MCP серверді (`rust-anything mcp`, әр қадам құрал ретінде) және workflow skill-ін ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) кодинг-агенттеріңізде тіркейді |
+| 0. Profile | `everything-rust profile <repo> -- node bench.mjs` | Нақты жүктемені тілдің профайлері астында іске қосады (node, cProfile, `go test` pprof, JFR, Ruby трейсері): инклюзивті уақыт бойынша ыстық функциялар, олардың шақырушылары және қай циклдарға batch жасау керектігі; Rust аз ұтатын, компиляцияланып қойған кодты (numba, Cython, JAX) белгілейді |
+| 1. Жоспар | `everything-rust analyze <repo>` | Бірліктер, порттау реті, `file:line` көрсетілген тәуекелдер, әр бірліктің bridge-і, тәуелділіктің crate-ке сәйкестігі, алғашқы порттау үшін ең жақсылары; `--whole-app` кіру нүктелері мен пішінді, әр тәуелділікті (импортталған немесе жарияланған) өз crate-імен, бөліктерді (бір-бірін импорттайтын бірліктер бірге көшеді) және ұсынылған жауабы бар нөмірленген шешімдерді қосады |
+| 2. Bridge | `everything-rust bridge <repo> <unit>` | Байланыстырулары (`lib.rs`, сондай-ақ бастапқы тіл жүктейтін wrapper) және порттауға арналған stub-тары (`port.rs`) бар crate; `--batch fn:param` көптеген `param` мәндерін Rust ішінде ұстайтын класс қосады; `--as-json T` қолданба тек деректермен толтыратын тип параметріне JSON мәндері ретінде bridge жасайды |
+| 3. Record | `everything-rust record <crate>` | Түпнұсқаны генерацияланған шеткі кейстерде (ASCII емес таңбалар, эмодзи, `-0`, `NaN`, float күтілетін жердегі int-тер, ...) және әр параметрдегі әр семантикалық тұзақта (жол ұзындығы мен регистрі, таңбалы бөлу, толып кету шекаралары, float-тарды басып шығару, map және сұрыптау реті) іске қосып, `cases.jsonl` сақтайды; `--from-tests -- npx jest` (немесе `-- pytest`) түпнұсқаның өз тест жиынтығы жасайтын әр шақыруды да жазып алады; `--float-tolerance 1e-9` сандық код үшін float-тарға сол үлес шегінде сәйкес келуге мүмкіндік береді |
+| 3. Build | `everything-rust build <crate>` | Rust жағын құрастырады: `.node`, wasm пакеті, Python кеңейтімі немесе shared library |
+| 3. Diff | `everything-rust diff <crate>` | Жазылған кейстерді Rust-қа қарсы, түпнұсқаның шақырушылары шақыратындай етіп қайта ойнатады; сәйкессіздіктерді тізімдейді |
+| 3. Bench | `everything-rust bench <crate>` | Жазылған кейстерді түпнұсқада және Rust-та, bridge-ті қоса алғанда, уақытпен өлшейді |
+| 4. Shadow | `everything-rust shadow <crate>` | Екеуін де іске қосып, түпнұсқаның нәтижесін қайтаратын, сәйкессіздіктерді хабарлайтын алмастырғыш; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, тесттер, `unsafe` аудиті, портталмаған ештеңе қалмауы, түпнұсқаның әр қате жолы үшін жазылған сәтсіз кейс, түпнұсқа қате қайтаратын жерде `unwrap`/`expect`/`panic!` болмауы (`// INFALLIBLE: <why>` деп белгіленбесе), build, API, мінез-құлық |
+| Агенттер | `everything-rust setup` | MCP серверді (`everything-rust mcp`, әр қадам құрал ретінде) және workflow skill-ін ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) кодинг-агенттеріңізде тіркейді |
 
 ## Hot path-тар: деректерді Rust ішінде ұстау
 
@@ -54,9 +54,9 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 барлығына барлық ядроларда, типтелген массив нәтижелерімен орындайтын класты генерациялайды.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: іске қосудың төрттен бірі, `matched` әр кілт үшін шақырады: batch жасаңыз
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -96,7 +96,7 @@ x18n бүйірлік панеліндегі 50,000 кілт бойынша із
 
 Компиляцияланатын түпнұсқалар азырақ ұтады: әр элементке жұмыс онсыз да жылдам, сондықтан batch ядролар
 санына қарай ұтады. Batch crate-тері mimalloc арқылы жады бөледі: жүйелік аллокатормен Go batch-і бір
-ағыннан да баяу болды. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+ағыннан да баяу болды. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## `bridge` не шешеді
 
@@ -175,16 +175,16 @@ x18n бүйірлік панеліндегі 50,000 кілт бойынша із
 
 | Қадам | Команда | Не істейді |
 | --- | --- | --- |
-| 0. Profile | `rust-anything profile <repo> -- node bench.mjs` | Нақты жүктемені тілдің профайлері астында іске қосады (node, cProfile, `go test` pprof, JFR, Ruby трейсері): инклюзивті уақыт бойынша ыстық функциялар, олардың шақырушылары және қай циклдарға batch жасау керектігі; Rust аз ұтатын, компиляцияланып қойған кодты (numba, Cython, JAX) белгілейді |
-| 1. Жоспар | `rust-anything analyze <repo>` | Бірліктер, порттау реті, `file:line` көрсетілген тәуекелдер, әр бірліктің bridge-і, тәуелділіктің crate-ке сәйкестігі, алғашқы порттау үшін ең жақсылары; `--whole-app` кіру нүктелері мен пішінді, әр тәуелділікті (импортталған немесе жарияланған) өз crate-імен, бөліктерді (бір-бірін импорттайтын бірліктер бірге көшеді) және ұсынылған жауабы бар нөмірленген шешімдерді қосады |
-| 2. Bridge | `rust-anything bridge <repo> <unit>` | Байланыстырулары (`lib.rs`, сондай-ақ бастапқы тіл жүктейтін wrapper) және порттауға арналған stub-тары (`port.rs`) бар crate; `--batch fn:param` көптеген `param` мәндерін Rust ішінде ұстайтын класс қосады; `--as-json T` қолданба тек деректермен толтыратын тип параметріне JSON мәндері ретінде bridge жасайды |
-| 3. Record | `rust-anything record <crate>` | Түпнұсқаны генерацияланған шеткі кейстерде (ASCII емес таңбалар, эмодзи, `-0`, `NaN`, float күтілетін жердегі int-тер, ...) және әр параметрдегі әр семантикалық тұзақта (жол ұзындығы мен регистрі, таңбалы бөлу, толып кету шекаралары, float-тарды басып шығару, map және сұрыптау реті) іске қосып, `cases.jsonl` сақтайды; `--from-tests -- npx jest` (немесе `-- pytest`) түпнұсқаның өз тест жиынтығы жасайтын әр шақыруды да жазып алады; `--float-tolerance 1e-9` сандық код үшін float-тарға сол үлес шегінде сәйкес келуге мүмкіндік береді |
-| 3. Build | `rust-anything build <crate>` | Rust жағын құрастырады: `.node`, wasm пакеті, Python кеңейтімі немесе shared library |
-| 3. Diff | `rust-anything diff <crate>` | Жазылған кейстерді Rust-қа қарсы, түпнұсқаның шақырушылары шақыратындай етіп қайта ойнатады; сәйкессіздіктерді тізімдейді |
-| 3. Bench | `rust-anything bench <crate>` | Жазылған кейстерді түпнұсқада және Rust-та, bridge-ті қоса алғанда, уақытпен өлшейді |
-| 4. Shadow | `rust-anything shadow <crate>` | Екеуін де іске қосып, түпнұсқаның нәтижесін қайтаратын, сәйкессіздіктерді хабарлайтын алмастырғыш; `RUST_ANYTHING_MODE=old\|shadow\|new` |
-| 5. Gate | `rust-anything gate <crate>` | fmt, clippy `-D warnings`, тесттер, `unsafe` аудиті, портталмаған ештеңе қалмауы, түпнұсқаның әр қате жолы үшін жазылған сәтсіз кейс, түпнұсқа қате қайтаратын жерде `unwrap`/`expect`/`panic!` болмауы (`// INFALLIBLE: <why>` деп белгіленбесе), build, API, мінез-құлық |
-| Агенттер | `rust-anything setup` | MCP серверді (`rust-anything mcp`, әр қадам құрал ретінде) және workflow skill-ін ([`skills/rust-anything/SKILL.md`](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/SKILL.md)) кодинг-агенттеріңізде тіркейді |
+| 0. Profile | `everything-rust profile <repo> -- node bench.mjs` | Нақты жүктемені тілдің профайлері астында іске қосады (node, cProfile, `go test` pprof, JFR, Ruby трейсері): инклюзивті уақыт бойынша ыстық функциялар, олардың шақырушылары және қай циклдарға batch жасау керектігі; Rust аз ұтатын, компиляцияланып қойған кодты (numba, Cython, JAX) белгілейді |
+| 1. Жоспар | `everything-rust analyze <repo>` | Бірліктер, порттау реті, `file:line` көрсетілген тәуекелдер, әр бірліктің bridge-і, тәуелділіктің crate-ке сәйкестігі, алғашқы порттау үшін ең жақсылары; `--whole-app` кіру нүктелері мен пішінді, әр тәуелділікті (импортталған немесе жарияланған) өз crate-імен, бөліктерді (бір-бірін импорттайтын бірліктер бірге көшеді) және ұсынылған жауабы бар нөмірленген шешімдерді қосады |
+| 2. Bridge | `everything-rust bridge <repo> <unit>` | Байланыстырулары (`lib.rs`, сондай-ақ бастапқы тіл жүктейтін wrapper) және порттауға арналған stub-тары (`port.rs`) бар crate; `--batch fn:param` көптеген `param` мәндерін Rust ішінде ұстайтын класс қосады; `--as-json T` қолданба тек деректермен толтыратын тип параметріне JSON мәндері ретінде bridge жасайды |
+| 3. Record | `everything-rust record <crate>` | Түпнұсқаны генерацияланған шеткі кейстерде (ASCII емес таңбалар, эмодзи, `-0`, `NaN`, float күтілетін жердегі int-тер, ...) және әр параметрдегі әр семантикалық тұзақта (жол ұзындығы мен регистрі, таңбалы бөлу, толып кету шекаралары, float-тарды басып шығару, map және сұрыптау реті) іске қосып, `cases.jsonl` сақтайды; `--from-tests -- npx jest` (немесе `-- pytest`) түпнұсқаның өз тест жиынтығы жасайтын әр шақыруды да жазып алады; `--float-tolerance 1e-9` сандық код үшін float-тарға сол үлес шегінде сәйкес келуге мүмкіндік береді |
+| 3. Build | `everything-rust build <crate>` | Rust жағын құрастырады: `.node`, wasm пакеті, Python кеңейтімі немесе shared library |
+| 3. Diff | `everything-rust diff <crate>` | Жазылған кейстерді Rust-қа қарсы, түпнұсқаның шақырушылары шақыратындай етіп қайта ойнатады; сәйкессіздіктерді тізімдейді |
+| 3. Bench | `everything-rust bench <crate>` | Жазылған кейстерді түпнұсқада және Rust-та, bridge-ті қоса алғанда, уақытпен өлшейді |
+| 4. Shadow | `everything-rust shadow <crate>` | Екеуін де іске қосып, түпнұсқаның нәтижесін қайтаратын, сәйкессіздіктерді хабарлайтын алмастырғыш; `EVERYTHING_RUST_MODE=old\|shadow\|new` |
+| 5. Gate | `everything-rust gate <crate>` | fmt, clippy `-D warnings`, тесттер, `unsafe` аудиті, портталмаған ештеңе қалмауы, түпнұсқаның әр қате жолы үшін жазылған сәтсіз кейс, түпнұсқа қате қайтаратын жерде `unwrap`/`expect`/`panic!` болмауы (`// INFALLIBLE: <why>` деп белгіленбесе), build, API, мінез-құлық |
+| Агенттер | `everything-rust setup` | MCP серверді (`everything-rust mcp`, әр қадам құрал ретінде) және workflow skill-ін ([`skills/everything-rust/SKILL.md`](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/SKILL.md)) кодинг-агенттеріңізде тіркейді |
 ## Келесі
 
 Әр қадамның өз беті бар: [Профайлдау және талдау](/docs/concepts/analyze), [Bridge](/docs/concepts/bridge), [Жазып алу](/docs/concepts/record), [Порт](/docs/concepts/port), [Diff](/docs/concepts/diff), [Bench](/docs/concepts/bench), [Shadow](/docs/concepts/shadow) және [Gate](/docs/concepts/gate).

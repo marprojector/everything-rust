@@ -1,8 +1,8 @@
-//! `setup`: register rust-anything with the coding agents on this machine, in one command.
+//! `setup`: register everything-rust with the coding agents on this machine, in one command.
 //!
-//! For each agent it finds (or is told about), it adds the MCP server (`rust-anything mcp`) to
+//! For each agent it finds (or is told about), it adds the MCP server (`everything-rust mcp`) to
 //! the agent's own configuration and, where the agent reads skills, installs the workflow skill.
-//! Existing settings are kept: only the `rust-anything` entries are added or replaced, and a file
+//! Existing settings are kept: only the `everything-rust` entries are added or replaced, and a file
 //! that does not parse is left alone with an error. `--remove` takes the entries out again.
 
 use std::path::{Path, PathBuf};
@@ -12,15 +12,15 @@ use serde::Serialize;
 use serde_json::{Map, Value, json};
 
 /// The server and skill name in every agent.
-pub const NAME: &str = "rust-anything";
+pub const NAME: &str = "everything-rust";
 
-/// The workflow skill, as shipped in `skills/rust-anything/SKILL.md`.
-pub const SKILL: &str = include_str!("../skills/rust-anything/SKILL.md");
+/// The workflow skill, as shipped in `skills/everything-rust/SKILL.md`.
+pub const SKILL: &str = include_str!("../skills/everything-rust/SKILL.md");
 pub(crate) const SKILL_FILES: &[(&str, &str)] = &[
     ("SKILL.md", SKILL),
     (
         "whole-app.md",
-        include_str!("../skills/rust-anything/whole-app.md"),
+        include_str!("../skills/everything-rust/whole-app.md"),
     ),
 ];
 
@@ -117,7 +117,7 @@ pub struct Options<'a> {
     pub command: PathBuf,
     pub remove: bool,
     pub dry_run: bool,
-    /// Save `<file>.rust-anything.bak` before changing an existing file.
+    /// Save `<file>.everything-rust.bak` before changing an existing file.
     pub backup: bool,
 }
 
@@ -185,13 +185,13 @@ pub fn setup(opts: &Options) -> Result<Report> {
     })
 }
 
-/// Copies an existing settings file to `<file>.rust-anything.bak` before it is changed.
+/// Copies an existing settings file to `<file>.everything-rust.bak` before it is changed.
 fn backup(path: &Path) -> Result<Option<PathBuf>> {
     if !path.is_file() {
         return Ok(None);
     }
     let mut name = path.file_name().unwrap_or_default().to_os_string();
-    name.push(".rust-anything.bak");
+    name.push(".everything-rust.bak");
     let copy = path.with_file_name(name);
     std::fs::copy(path, &copy).with_context(|| format!("backing up {}", path.display()))?;
     Ok(Some(copy))
@@ -205,7 +205,7 @@ fn write(path: &Path, text: &str) -> Result<()> {
     if let Some(dir) = path.parent() {
         std::fs::create_dir_all(dir).with_context(|| format!("creating {}", dir.display()))?;
     }
-    let tmp = path.with_extension("rust-anything.tmp");
+    let tmp = path.with_extension("everything-rust.tmp");
     let mut file =
         std::fs::File::create(&tmp).with_context(|| format!("writing {}", tmp.display()))?;
     if let Ok(meta) = std::fs::metadata(path) {
@@ -321,7 +321,7 @@ fn opencode_servers<'a>(
     Ok(mcp)
 }
 
-/// `mcp.servers.rust-anything` in OpenCode's `opencode.json`: a local server whose `command`
+/// `mcp.servers.everything-rust` in OpenCode's `opencode.json`: a local server whose `command`
 /// is the whole argv, so the executable and `mcp` go in one array.
 fn opencode_server(agent: Agent, path: &Path, command: &str, opts: &Options) -> Result<Change> {
     let text = match std::fs::read_to_string(path) {
@@ -399,7 +399,7 @@ fn opencode_server(agent: Agent, path: &Path, command: &str, opts: &Options) -> 
     })
 }
 
-/// `[mcp_servers.rust-anything]` in Codex's `config.toml`, keeping the rest of the file as is.
+/// `[mcp_servers.everything-rust]` in Codex's `config.toml`, keeping the rest of the file as is.
 fn codex_server(agent: Agent, path: &Path, command: &str, opts: &Options) -> Result<Change> {
     let text = match std::fs::read_to_string(path) {
         Ok(t) => t,
@@ -441,7 +441,7 @@ fn codex_server(agent: Agent, path: &Path, command: &str, opts: &Options) -> Res
         "unchanged"
     } else {
         let had = servers.contains_key(NAME);
-        // An entry written inline (`rust-anything = { ... }`) keeps its other keys too.
+        // An entry written inline (`everything-rust = { ... }`) keeps its other keys too.
         let mut entry = match servers.get(NAME) {
             Some(toml_edit::Item::Table(t)) => t.clone(),
             Some(toml_edit::Item::Value(toml_edit::Value::InlineTable(t))) => {
@@ -525,7 +525,7 @@ pub fn text(r: &Report) -> String {
     let mut out = String::new();
     let verb = if r.dry_run { "Would set up" } else { "Set up" };
     let names: Vec<&str> = r.agents.iter().map(|a| a.name()).collect();
-    out.push_str(&format!("{verb} rust-anything for {}\n", names.join(", ")));
+    out.push_str(&format!("{verb} everything-rust for {}\n", names.join(", ")));
     for c in &r.changes {
         out.push_str(&format!(
             "  {:<10} {:<9} {}\n",
@@ -544,7 +544,7 @@ pub fn text(r: &Report) -> String {
     {
         out.push_str(&format!(
             "\nThe agents run `{} mcp`. Restart them, then ask, for example:\n  \
-             \"Profile this repo's slowest workflow with rust-anything and move the hot loop to Rust.\"\n",
+             \"Profile this repo's slowest workflow with everything-rust and move the hot loop to Rust.\"\n",
             r.command.display()
         ));
     }
@@ -557,7 +557,7 @@ mod tests {
 
     fn temp_home(name: &str) -> PathBuf {
         let dir =
-            std::env::temp_dir().join(format!("rust-anything-setup-{name}-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-setup-{name}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).unwrap();
         dir
@@ -567,7 +567,7 @@ mod tests {
         Options {
             home,
             agents,
-            command: PathBuf::from("/opt/bin/rust-anything"),
+            command: PathBuf::from("/opt/bin/everything-rust"),
             remove: false,
             dry_run: false,
             backup: true,
@@ -580,7 +580,7 @@ mod tests {
         let cursor = home.join(".cursor/mcp.json");
         std::fs::create_dir_all(cursor.parent().unwrap()).unwrap();
         std::fs::write(&cursor, r#"{"mcpServers":{"other":{"command":"x"}}}"#).unwrap();
-        let copy = home.join(".cursor/mcp.json.rust-anything.bak");
+        let copy = home.join(".cursor/mcp.json.everything-rust.bak");
 
         let mut options = opts(&home, vec![Agent::Cursor]);
         options.backup = false;
@@ -591,7 +591,7 @@ mod tests {
         assert!(
             std::fs::read_to_string(&cursor)
                 .unwrap()
-                .contains("rust-anything")
+                .contains("everything-rust")
         );
 
         options.remove = true;
@@ -630,7 +630,7 @@ mod tests {
             serde_json::from_str(&std::fs::read_to_string(home.join(".claude.json")).unwrap())
                 .unwrap();
         assert_eq!(
-            claude["mcpServers"]["rust-anything"]["args"],
+            claude["mcpServers"]["everything-rust"]["args"],
             json!(["mcp"])
         );
         assert_eq!(claude["mcpServers"]["other"]["command"], "x");
@@ -649,22 +649,22 @@ mod tests {
         assert_eq!(keys, ["zeta", "mcpServers", "alpha"], "key order kept");
         let codex = std::fs::read_to_string(home.join(".codex/config.toml")).unwrap();
         assert!(codex.starts_with("model = \"o4\""), "{codex}");
-        assert!(codex.contains("[mcp_servers.rust-anything]\ncommand = \"/opt/bin/rust-anything\"\nargs = [\"mcp\"]"), "{codex}");
+        assert!(codex.contains("[mcp_servers.everything-rust]\ncommand = \"/opt/bin/everything-rust\"\nargs = [\"mcp\"]"), "{codex}");
         assert!(codex.contains("[mcp_servers.other]"));
         assert_eq!(
-            std::fs::read_to_string(home.join(".claude/skills/rust-anything/SKILL.md")).unwrap(),
+            std::fs::read_to_string(home.join(".claude/skills/everything-rust/SKILL.md")).unwrap(),
             SKILL
         );
         assert!(
-            home.join(".codex/skills/rust-anything/whole-app.md")
+            home.join(".codex/skills/everything-rust/whole-app.md")
                 .exists()
         );
         let cursor: Value =
             serde_json::from_str(&std::fs::read_to_string(home.join(".cursor/mcp.json")).unwrap())
                 .unwrap();
         assert_eq!(
-            cursor["mcpServers"]["rust-anything"]["command"],
-            "/opt/bin/rust-anything"
+            cursor["mcpServers"]["everything-rust"]["command"],
+            "/opt/bin/everything-rust"
         );
         assert!(home.join(".gemini/settings.json").exists());
 
@@ -678,7 +678,7 @@ mod tests {
 
         // A moved binary updates the entries.
         let mut moved = opts(&home, vec![Agent::Codex]);
-        moved.command = PathBuf::from("/usr/local/bin/rust-anything");
+        moved.command = PathBuf::from("/usr/local/bin/everything-rust");
         let r = setup(&moved).unwrap();
         assert_eq!(r.changes[0].action, "updated");
 
@@ -689,12 +689,12 @@ mod tests {
         let claude: Value =
             serde_json::from_str(&std::fs::read_to_string(home.join(".claude.json")).unwrap())
                 .unwrap();
-        assert!(claude["mcpServers"].get("rust-anything").is_none());
+        assert!(claude["mcpServers"].get("everything-rust").is_none());
         assert_eq!(claude["mcpServers"]["other"]["command"], "x");
-        assert!(!home.join(".claude/skills/rust-anything").exists());
+        assert!(!home.join(".claude/skills/everything-rust").exists());
         let codex = std::fs::read_to_string(home.join(".codex/config.toml")).unwrap();
         assert!(
-            !codex.contains("rust-anything") && codex.contains("[mcp_servers.other]"),
+            !codex.contains("everything-rust") && codex.contains("[mcp_servers.other]"),
             "{codex}"
         );
         std::fs::remove_dir_all(&home).unwrap();
@@ -707,8 +707,8 @@ mod tests {
         let codex = home.join(".codex/config.toml");
         std::fs::create_dir_all(cursor.parent().unwrap()).unwrap();
         std::fs::create_dir_all(codex.parent().unwrap()).unwrap();
-        std::fs::write(&cursor, r#"{"mcpServers":{"rust-anything":{"command":"old","args":["mcp"],"env":{"MODE":"custom"}}}}"#).unwrap();
-        std::fs::write(&codex, "[mcp_servers.rust-anything]\ncommand = \"old\"\nargs = [\"mcp\"]\ntool_timeout_sec = 120\n").unwrap();
+        std::fs::write(&cursor, r#"{"mcpServers":{"everything-rust":{"command":"old","args":["mcp"],"env":{"MODE":"custom"}}}}"#).unwrap();
+        std::fs::write(&codex, "[mcp_servers.everything-rust]\ncommand = \"old\"\nargs = [\"mcp\"]\ntool_timeout_sec = 120\n").unwrap();
 
         let options = opts(&home, vec![Agent::Cursor, Agent::Codex]);
         setup(&options).unwrap();
@@ -721,7 +721,7 @@ mod tests {
         assert_eq!(cursor["mcpServers"][NAME]["env"]["MODE"], "custom");
         assert_eq!(
             cursor["mcpServers"][NAME]["command"],
-            "/opt/bin/rust-anything"
+            "/opt/bin/everything-rust"
         );
         assert_eq!(
             codex["mcp_servers"][NAME]["tool_timeout_sec"].as_integer(),
@@ -737,7 +737,7 @@ mod tests {
         std::fs::create_dir_all(codex.parent().unwrap()).unwrap();
         std::fs::write(
             &codex,
-            "[mcp_servers]\nrust-anything = { command = \"old\", args = [\"mcp\"], env = { MODE = \"custom\" } }\n",
+            "[mcp_servers]\neverything-rust = { command = \"old\", args = [\"mcp\"], env = { MODE = \"custom\" } }\n",
         )
         .unwrap();
 
@@ -752,7 +752,7 @@ mod tests {
         );
         assert_eq!(
             doc["mcp_servers"][NAME]["command"].as_str(),
-            Some("/opt/bin/rust-anything")
+            Some("/opt/bin/everything-rust")
         );
         assert!(again.changes.iter().all(|c| c.action == "unchanged"));
     }
@@ -774,14 +774,14 @@ mod tests {
         let doc: Value = serde_json::from_str(&std::fs::read_to_string(&config).unwrap()).unwrap();
         let entry = &doc["mcp"]["servers"][NAME];
         assert_eq!(entry["type"], "local");
-        assert_eq!(entry["command"], json!(["/opt/bin/rust-anything", "mcp"]));
+        assert_eq!(entry["command"], json!(["/opt/bin/everything-rust", "mcp"]));
         assert!(entry.get("disabled").is_none(), "{entry}");
         assert_eq!(doc["mcp"]["servers"]["other"]["command"], json!(["x"]));
         assert_eq!(doc["model"], "a/b");
         let keys: Vec<&String> = doc.as_object().unwrap().keys().collect();
         assert_eq!(keys, ["$schema", "mcp", "model"], "key order kept");
         assert_eq!(
-            std::fs::read_to_string(home.join(".config/opencode/skills/rust-anything/SKILL.md"))
+            std::fs::read_to_string(home.join(".config/opencode/skills/everything-rust/SKILL.md"))
                 .unwrap(),
             SKILL
         );
@@ -805,7 +805,7 @@ mod tests {
         assert!(doc["mcp"]["servers"][NAME].get("disabled").is_none());
 
         // A moved binary updates the entry.
-        options.command = PathBuf::from("/usr/local/bin/rust-anything");
+        options.command = PathBuf::from("/usr/local/bin/everything-rust");
         let r = setup(&options).unwrap();
         assert_eq!(r.changes[0].action, "updated");
 
@@ -815,7 +815,7 @@ mod tests {
         let doc: Value = serde_json::from_str(&std::fs::read_to_string(&config).unwrap()).unwrap();
         assert!(doc["mcp"]["servers"].get(NAME).is_none());
         assert_eq!(doc["mcp"]["servers"]["other"]["command"], json!(["x"]));
-        assert!(!home.join(".config/opencode/skills/rust-anything").exists());
+        assert!(!home.join(".config/opencode/skills/everything-rust").exists());
 
         // A file that lists servers in `mcp` by name (the older shape) keeps that shape.
         let flat = temp_home("opencode-flat");
@@ -823,14 +823,14 @@ mod tests {
         std::fs::create_dir_all(flat_config.parent().unwrap()).unwrap();
         std::fs::write(
             &flat_config,
-            r#"{"mcp":{"other":{"type":"local","command":["x"]},"rust-anything":{"type":"local","command":["/old/rust-anything","mcp"],"enabled":true}}}"#,
+            r#"{"mcp":{"other":{"type":"local","command":["x"]},"everything-rust":{"type":"local","command":["/old/everything-rust","mcp"],"enabled":true}}}"#,
         )
         .unwrap();
         setup(&opts(&flat, vec![Agent::OpenCode])).unwrap();
         let doc: Value =
             serde_json::from_str(&std::fs::read_to_string(&flat_config).unwrap()).unwrap();
         let entry = &doc["mcp"][NAME];
-        assert_eq!(entry["command"], json!(["/opt/bin/rust-anything", "mcp"]));
+        assert_eq!(entry["command"], json!(["/opt/bin/everything-rust", "mcp"]));
         assert!(entry.get("enabled").is_none(), "{entry}");
         assert!(entry.get("disabled").is_none(), "{entry}");
         assert!(
@@ -864,7 +864,7 @@ mod tests {
         let link = std::fs::symlink_metadata(home.join(".claude.json")).unwrap();
         assert!(link.file_type().is_symlink(), "the link is kept");
         let text = std::fs::read_to_string(&real).unwrap();
-        assert!(text.contains("rust-anything"), "{text}");
+        assert!(text.contains("everything-rust"), "{text}");
         let mode = std::fs::metadata(&real).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600, "permissions kept");
         std::fs::remove_dir_all(&home).unwrap();

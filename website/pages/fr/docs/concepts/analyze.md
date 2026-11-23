@@ -10,7 +10,7 @@ description: Trouvez où passe le temps avec profile, puis planifiez les unités
 Quand l'objectif est la vitesse, mesurez avant de choisir quoi que ce soit :
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # ou : python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # ou : python3 bench.py, ruby bench.rb,
                                                     #      java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # ou : python3 bench.py, rub
 ## Analyze : planifier le portage
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # pour les humains
-rust-anything analyze <repo> --json            # pour les agents : schéma rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # plus points d'entrée, forme, dépendances, décisions
+everything-rust analyze <repo> -o plan.md        # pour les humains
+everything-rust analyze <repo> --json            # pour les agents : schéma everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # plus points d'entrée, forme, dépendances, décisions
 ```
 
 `analyze` liste les unités, l'ordre de portage, les risques avec `file:line`, le bridge de chaque unité, la correspondance de chaque dépendance avec une crate, et `start_here` : les meilleurs premiers portages. `--whole-app` ajoute la forme de l'application (CLI, serveur ou bibliothèque) et ses points d'entrée, chaque dépendance (importée ou déclarée) avec sa crate, les morceaux (les unités qui s'importent mutuellement se déplacent ensemble) et des décisions numérotées avec une réponse recommandée. Voir [Porter une application entière](/docs/whole-apps/overview).

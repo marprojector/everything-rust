@@ -8,9 +8,9 @@ description: app record exécute toute l'application sur ses exemples documenté
 `record` et `diff` prouvent une unité ; `app record` et `app replay` prouvent l'application, pour les CLI et les serveurs dans n'importe lequel des six langages. L'application est une boîte noire.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # la commande qui exécute l'original
-rust-anything app replay .                            # l'original doit passer à 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # la commande qui exécute l'original
+everything-rust app replay .                            # l'original doit passer à 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## D'où viennent les cas
@@ -40,7 +40,7 @@ Lisez-les et modifiez-les à la main ; un test Rust peut les exécuter avec `try
 ## Replay
 
 - `app replay` exécute n'importe quel build contre les cas, affiche `passed/total`, écrit `rust/app-cases/replay-report.md` avec un diff par cas en échec, et se termine avec un code non nul au moindre écart.
-- Un build qui ajoute des lignes au fichier nommé par `RUST_ANYTHING_FALLBACK_LOG` (une ligne par fallback vers l'original), comme le fait la [porte d'entrée](/docs/whole-apps/front-door), obtient aussi son taux de fallback dans le rapport.
+- Un build qui ajoute des lignes au fichier nommé par `EVERYTHING_RUST_FALLBACK_LOG` (une ligne par fallback vers l'original), comme le fait la [porte d'entrée](/docs/whole-apps/front-door), obtient aussi son taux de fallback dans le rapport.
 - `app replay --case <name>` relance un seul cas par le nom que lui donne le rapport : la boucle rapide et reproductible pour corriger un écart avant de tout relancer.
 
 ## Replay en CI
@@ -48,7 +48,7 @@ Lisez-les et modifiez-les à la main ; un test Rust peut les exécuter avec `try
 Le rapport ne contient ni durées ni chemins temporaires : deux replays du même build écrivent le même fichier. Commitez-le, puis lancez en CI :
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

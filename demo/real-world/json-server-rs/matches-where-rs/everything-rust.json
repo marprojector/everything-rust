@@ -1,0 +1,36 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/matches-where.ts",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "matches-where-rs",
+  "exports": [
+    {
+      "name": "matchesWhere",
+      "file": "src/matches-where.ts",
+      "line": 24,
+      "params": [
+        {
+          "name": "obj",
+          "ts_type": "JsonObject",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "where",
+          "ts_type": "JsonObject",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "boolean",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
 const OUT = join(dirname(new URL(import.meta.url).pathname), '..', 'docs', 'assets', 'sponsors')
-const MAINTAINER = 'erkamyaman'
+const MAINTAINER = 'marprojector'
 
 const COMPANIES = [{ login: 'coderabbitai', name: 'CodeRabbit', url: 'coderabbit.ai' }]
 

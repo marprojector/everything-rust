@@ -8,7 +8,7 @@ description: app lift кабат уйнату 0 fallback өлеше белән �
 Кабат уйнату 0 fallback өлеше белән узса һәм һәр берәмлек gate'ны узса, аны саф Rust кушымтасына әйләндерегез:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` икесе дә үтәлмичә эшләүдән баш тарта һәм нәрсә комачаулаганын әйтә: һаман fallback'ка китүче очраклар, һаман буш калган glue, gate'ны узмаган берәмлекләр.

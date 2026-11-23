@@ -3,13 +3,13 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::{Command, ExitCode, ExitStatus};
 
-const ROOT: &str = match option_env!("RUST_ANYTHING_REPO") {
+const ROOT: &str = match option_env!("EVERYTHING_RUST_REPO") {
     Some(root) => root,
     None => concat!(env!("CARGO_MANIFEST_DIR"), "/../.."),
 };
 const RUN: &[&str] = &["node", "node_modules/prettier/bin/prettier.cjs"];
-const FALLBACK_LOG: &str = "RUST_ANYTHING_FALLBACK_LOG";
-const ORIGINAL_BASE: &str = "RUST_ANYTHING_ORIGINAL_BASE";
+const FALLBACK_LOG: &str = "EVERYTHING_RUST_FALLBACK_LOG";
+const ORIGINAL_BASE: &str = "EVERYTHING_RUST_ORIGINAL_BASE";
 
 /// Where an installed package finds `node_modules/...`: the folder its launcher resolved the
 /// original from, else the nearest one above this binary while it sits inside `node_modules`.
@@ -58,7 +58,7 @@ fn log() -> Option<std::fs::File> {
         .ok()
 }
 
-/// Tells `rust-anything app replay` this build counts its fallbacks, even when it makes none.
+/// Tells `everything-rust app replay` this build counts its fallbacks, even when it makes none.
 pub fn report_fallbacks() {
     let _ = log();
 }

@@ -6,7 +6,7 @@ description: gate port uchun tayyorlik ta'rifi. U bajaradigan har bir tekshiruv 
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Tayyor degani `gate` o'tadi degani. U quyidagilarni tekshiradi:

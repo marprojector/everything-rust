@@ -6,7 +6,7 @@ description: gate 是一次迁移完成的定义。它运行的每一项检查�
 # 门禁
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 完成的定义就是 `gate` 通过。它会检查：

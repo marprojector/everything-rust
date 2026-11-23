@@ -1,16 +1,16 @@
 ---
 title: Altı dil
-description: rust-anything Go, Ruby, Python, Java və C dillərində real kod üzərində başdan-başa işə salınıb, çağırış başına və batch sürəti, işləmələrin tapdığı xətalar.
+description: everything-rust Go, Ruby, Python, Java və C dillərində real kod üzərində başdan-başa işə salınıb, çağırış başına və batch sürəti, işləmələrin tapdığı xətalar.
 ---
 
 # Altı dildə real kod
 
-rust-anything dəstəklədiyi hər dildə real kod üzərində başdan-başa (analyze, bridge, record, port, diff, gate, bench)
+everything-rust dəstəklədiyi hər dildə real kod üzərində başdan-başa (analyze, bridge, record, port, diff, gate, bench)
 işə salınıb. Kod artıq bu maşında olmalı idi: internetdən endirilmiş kod icra edilmədi. Buna görə
 hədəflər quraşdırılmış toolchain-lərlə gələn standart kitabxana modullarıdır, uyğun kitabxana mənbəyi
 diskdə olmayan Java və C üçün isə JDK və glibc özləri nazik fasad arxasında oracle rolunu oynayır.
 
-Portlar, qeydə alınmış hallar və əlavə girişlər [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md)-dədir.
+Portlar, qeydə alınmış hallar və əlavə girişlər [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md)-dədir.
 
 | Dil | Kod | Funksiyalar | Qeydə alınmış hallar | Nəticə |
 | --- | --- | ---: | ---: | --- |
@@ -60,7 +60,7 @@ Bunu həll edən amillər:
 ### Batch-lər: x18n-in axtarışı
 
 Yuxarıdakı yarpaq portları çağırış başına ölçülüb. x18n-in yan panel axtarışında (50,000 açar, hərf-hərf
-yazılaraq) `rust-anything profile` `fuzzyScore`-u işləmənin təxminən dörddə biri kimi göstərdi, `matched` tərəfindən
+yazılaraq) `everything-rust profile` `fuzzyScore`-u işləmənin təxminən dörddə biri kimi göstərdi, `matched` tərəfindən
 hər açar üçün bir dəfə çağırılan, və `--batch fuzzyScore:text` təklif etdi. Yaradılmış `FuzzyScoreBatch`
 açarları Rust-da saxlayır; `port.rs`-dəki `FuzzyScoreIndex` onları bir dəfə UTF-16-da kiçik hərflərə çevirir
 və hər açardakı kod vahidlərinin 64 bitlik maskasını saxlayır, buna görə uyğun gələ bilməyən açarların çoxu
@@ -111,11 +111,11 @@ yalnız `Σ` saxlayan boşluqla ayrılmış hissəni bütöv şəkildə kiçik h
 
 ## İşləmələr nə tapdı
 
-### rust-anything-dəki xətalar, düzəldilib
+### everything-rust-dəki xətalar, düzəldilib
 
 - **Bir ULP dəyişən float-lar** (Java işləməsi). `serde_json`-un standart float parser-i həmişə
-  düzgün yuvarlaqlaşdırmır. rust-anything qeydə alınmış girişləri oxuyanda onları təhrif edirdi, yaradılmış crate-lər
-  isə yenidən təhrif edirdi. Düzgün port üçün 43 `Double.toString` halı uğursuz oldu. rust-anything-də və onun yaratdığı
+  düzgün yuvarlaqlaşdırmır. everything-rust qeydə alınmış girişləri oxuyanda onları təhrif edirdi, yaradılmış crate-lər
+  isə yenidən təhrif edirdi. Düzgün port üçün 43 `Double.toString` halı uğursuz oldu. everything-rust-də və onun yaratdığı
   hər crate-də (napi-rs, wasm və JSON dispatcher) `serde_json`-un `float_roundtrip` xüsusiyyəti ilə düzəldilib.
 - **C çökmələri qeydi öldürürdü** (C işləməsi). C funksiyasının müqaviləsindən kənar girişlər (`isalpha(INT_MAX)`)
   glibc-də segfault verir. C drayveri indi hər halı fork edilmiş child prosesdə işə salır və
@@ -193,4 +193,4 @@ real işləmələrdən gəlir.
 | Ruby | yaradılmış drayver orijinal faylları yükləyir | eyni drayver Fiddle wrapper-ini yükləyir | JSON dispatcher + eyni modulları təyin edən Fiddle wrapper-i | orijinaldan sonra require ediləcək fayl: hər ikisini `prepend` edir |
 | Java | orijinal mənbələrlə kompilyasiya olunmuş reflection drayveri | JNI wrapper sinifləri ilə kompilyasiya olunmuş eyni drayver | JNI üzərində JSON dispatcher + orijinal statik metodlara malik wrapper sinifləri | `<Class>Shadow` sinifləri |
 | Python | proses daxili drayver orijinalı import edir | eyni drayver PyO3 paketini import edir | PyO3 | orijinal API-li modul |
-| C | orijinalın `cc -shared` ilə qurulması, ctypes ilə çağırılır, hər hal üçün bir fork | Rust `cdylib` üzərində ctypes | orijinal adlarla `extern "C"` funksiyaları və header | `-D` adlandırmaları ilə shadow `.c`; crate-in `shadow` xüsusiyyəti yalnız `rust_anything_` adlarını export edir |
+| C | orijinalın `cc -shared` ilə qurulması, ctypes ilə çağırılır, hər hal üçün bir fork | Rust `cdylib` üzərində ctypes | orijinal adlarla `extern "C"` funksiyaları və header | `-D` adlandırmaları ilə shadow `.c`; crate-in `shadow` xüsusiyyəti yalnız `everything_rust_` adlarını export edir |

@@ -1,6 +1,6 @@
 ---
 title: 项目状态
-description: rust-anything 目前哪些功能可用，以及每一部分最近一次是如何检验的。
+description: everything-rust 目前哪些功能可用，以及每一部分最近一次是如何检验的。
 ---
 
 # 项目状态
@@ -15,7 +15,7 @@ description: rust-anything 目前哪些功能可用，以及每一部分最近�
 
 | 语言 | 状态 | 最近一次真实运行 | 结果 |
 | --- | --- | --- | --- |
-| TypeScript/JavaScript | 已验证 | [Prettier](https://github.com/erkamyaman/rust-anything/blob/main/docs/real-world.md#prettier)（2026-11-18）、[json-server](/docs/real-world/json-server)（2026-11-18）、[Fuse.js](/docs/real-world/fuse-js)（2026-11-18）、[vercel/ms](/docs/real-world/vercel-ms)（2026-11-18）、x18n 的 `packages/core` | Prettier：`doc-printer-rs` 2,848/2,848，`js-format-rs` 1,279/1,279，两者均通过门禁；json-server：六个单元，3,399 条用例，每个都通过门禁；Fuse.js、vercel/ms、x18n：3,414/3,414、975/975 以及 9,000+ 条用例一致 |
+| TypeScript/JavaScript | 已验证 | [Prettier](https://github.com/marprojector/everything-rust/blob/main/docs/real-world.md#prettier)（2026-11-18）、[json-server](/docs/real-world/json-server)（2026-11-18）、[Fuse.js](/docs/real-world/fuse-js)（2026-11-18）、[vercel/ms](/docs/real-world/vercel-ms)（2026-11-18）、x18n 的 `packages/core` | Prettier：`doc-printer-rs` 2,848/2,848，`js-format-rs` 1,279/1,279，两者均通过门禁；json-server：六个单元，3,399 条用例，每个都通过门禁；Fuse.js、vercel/ms、x18n：3,414/3,414、975/975 以及 9,000+ 条用例一致 |
 | Python | 已验证 | CPython 3.13 的 `colorsys.py`（2026-11-16） | 2,400/2,400；门禁通过 |
 | Go | 已验证 | Go 1.24 的 `path`（2026-11-16） | 2,642/2,642；门禁通过 |
 | Ruby | 已验证 | Ruby 3.3 的 `shellwords.rb`（2026-11-16） | 1,617/1,617；门禁通过 |

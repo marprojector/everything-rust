@@ -8,7 +8,7 @@ description: 当回放在回退率为 0 的情况下通过、且每个单元都�
 当回放在回退率为 0 的情况下通过、且每个单元都通过门禁时，就可以把它变成纯 Rust 应用：
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - 在这两个条件都满足之前，`app lift` 会拒绝执行，并说明卡在哪里：仍在回退的用例、仍是桩函数的胶水代码、未通过门禁的单元。

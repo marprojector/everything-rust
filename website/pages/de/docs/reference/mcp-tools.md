@@ -1,17 +1,17 @@
 ---
 title: MCP-Tools
-description: Jedes Tool, das der MCP-Server von rust-anything anbietet, seine Parameter und was es anfassen darf.
+description: Jedes Tool, das der MCP-Server von everything-rust anbietet, seine Parameter und was es anfassen darf.
 ---
 
 # MCP-Tools
 
-`rust-anything mcp` stellt jeden Schritt als MCP-Tool über stdio bereit. `rust-anything setup` registriert ihn bei deinen Agents ([Agent einrichten](/docs/introduction/agents)).
+`everything-rust mcp` stellt jeden Schritt als MCP-Tool über stdio bereit. `everything-rust setup` registriert ihn bei deinen Agents ([Agent einrichten](/docs/introduction/agents)).
 
 Erzeugt aus der Tool-Liste des MCP-Servers durch `tests/tools.rs`; nicht von Hand bearbeiten (`UPDATE_TOOLS_DOC=1 cargo test --test tools` schreibt sie neu). Jedes Tool ist auch ein CLI-Befehl mit denselben Optionen. Die Beschreibungen der Tools und Parameter bleiben auf Englisch, so wie der Server sie an Agents schickt.
 
 ## Repository analysieren
 
-Tool `analyze` · CLI `rust-anything analyze`
+Tool `analyze` · CLI `everything-rust analyze`
 
 Map a repository (TypeScript/JavaScript, Python, C, Go, Ruby or Java): units, port order (waves), risks with file:line, bridge per unit, dependency-to-crate fit, and `start_here`: the best first ports.
 
@@ -25,7 +25,7 @@ Nur lesend.
 
 ## Unit-Crate anlegen
 
-Tool `bridge` · CLI `rust-anything bridge`
+Tool `bridge` · CLI `everything-rust bridge`
 
 Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.rs, stubs to port in src/port.rs, UTF-16 helpers when the unit uses string offsets. Never overwrites an existing folder.
 
@@ -43,18 +43,18 @@ Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.
 
 ## Bindings neu erzeugen
 
-Tool `refresh` · CLI `rust-anything refresh`
+Tool `refresh` · CLI `everything-rust refresh`
 
 Regenerate a crate's bindings (lib.rs, index.cjs, js.rs) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `batch` | string[] |  | Batch classes to add, `function:param`: the function runs over many `param` values kept in Rust, on all cores, in one call. A `<Function>Index` struct in port.rs replaces the default per-item loop. |
 
 ## Verhalten des Originals aufzeichnen
 
-Tool `record` · CLI `rust-anything record`
+Tool `record` · CLI `everything-rust record`
 
 Run the original functions on generated edge-case inputs (non-ASCII, emoji, -0, NaN, ...) plus optional extra inputs, and save the results as cases.jsonl: the behavior the port must match.
 
@@ -62,7 +62,7 @@ Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `count` | integer |  | Generated cases per function (default 200). |
 | `inputs` | string |  | JSONL file of extra cases: {"fn": name, "args": [...]}. |
 | `module` | string |  | JS only: import the original from this JS module instead of the TS source. |
@@ -73,7 +73,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## Crate bauen
 
-Tool `build` · CLI `rust-anything build`
+Tool `build` · CLI `everything-rust build`
 
 Build the crate: the napi-rs .node, wasm-bindgen output, Python extension or shared library.
 
@@ -81,11 +81,11 @@ Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 
 ## Portierung gegen die Aufzeichnung vergleichen
 
-Tool `diff` · CLI `rust-anything diff`
+Tool `diff` · CLI `everything-rust diff`
 
 Replay cases.jsonl against the built Rust module and list mismatches.
 
@@ -93,7 +93,7 @@ Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `ignore_key_order` | boolean |  |  |
 | `module` | string |  | Test this JS module instead of the crate's `index.cjs`. |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
@@ -101,7 +101,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## Arbeitslast profilieren
 
-Tool `profile` · CLI `rust-anything profile`
+Tool `profile` · CLI `everything-rust profile`
 
 Run a real workload (a command: node or python3 script, `go test -bench`, java, ruby) under the language's profiler and rank the repository's hot functions by inclusive time, with their callers, call counts and advice: what to port together, and which loops to batch (`bridge` with `batch`). Profile before porting: leaf functions called one at a time are slower in Rust.
 
@@ -115,7 +115,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## Portierung benchmarken
 
-Tool `bench` · CLI `rust-anything bench`
+Tool `bench` · CLI `everything-rust bench`
 
 Time the recorded cases on the original and on the built Rust module, bridge included; speedup below 1 means the port is slower as its callers call it. Returns the rows and a verdict with advice: ship, keep the slower functions, or port a bigger unit.
 
@@ -123,27 +123,27 @@ Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `resolve_from` | string |  |  |
 | `min_ms` | integer |  | Minimum measured time per function and side, in milliseconds (default 200). |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
 
 ## Shadow-Modul erzeugen
 
-Tool `shadow` · CLI `rust-anything shadow`
+Tool `shadow` · CLI `everything-rust shadow`
 
-Generate a drop-in shadow (a TS or Python module, Go package, Ruby file, Java classes or C file) that runs the original and the Rust port side by side and reports mismatches; RUST_ANYTHING_MODE=old|shadow|new switches at runtime.
+Generate a drop-in shadow (a TS or Python module, Go package, Ruby file, Java classes or C file) that runs the original and the Rust port side by side and reports mismatches; EVERYTHING_RUST_MODE=old|shadow|new switches at runtime.
 
 Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `out` | string |  |  |
 
 ## Definition von „fertig“ prüfen
 
-Tool `gate` · CLI `rust-anything gate`
+Tool `gate` · CLI `everything-rust gate`
 
 Definition of done: fmt, clippy -D warnings, cargo test, unsafe with SAFETY comments only, no unimplemented functions, build, API present, recorded behavior matches.
 
@@ -151,12 +151,12 @@ Führt Code oder Befehle des Originals aus.
 
 | Parameter | Typ | Erforderlich | Beschreibung |
 | --- | --- | --- | --- |
-| `crate` | string | ja | Folder of the generated crate (holds rust-anything.json). |
+| `crate` | string | ja | Folder of the generated crate (holds everything-rust.json). |
 | `node_args` | string[] |  | Extra arguments for node, e.g. ["--import=tsx"]. |
 
 ## Ganze App aufzeichnen
 
-Tool `app_record` · CLI `rust-anything app record`
+Tool `app_record` · CLI `everything-rust app record`
 
 Record the whole CLI app's behavior: run the original on its own documented examples, an inputs file and semantic traps (non-ASCII and emoji, negative division, overflow, float extremes, map order), twice each. What differs between runs is reported by kind in `noise`: values (now [..] wildcards), order (lines compared in any order) and lines (a ... that matches anything): show every one to the user. Cases are trycmd files in <repo>/rust/app-cases/ (argv, stdin, env, files in; stdout, stderr, exit code, files out).
 
@@ -180,7 +180,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## App-Fälle abspielen
 
-Tool `app_replay` · CLI `rust-anything app replay`
+Tool `app_replay` · CLI `everything-rust app replay`
 
 Replay <repo>/rust/app-cases/ against a build (the original, the front door, the final Rust binary): passed/total, fallback rate when the build reports it, and a report with a diff per failing case (rust/app-cases/replay-report.md).
 
@@ -196,7 +196,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## Rust-Front-Door anlegen
 
-Tool `app_front_door` · CLI `rust-anything app front-door`
+Tool `app_front_door` · CLI `everything-rust app front-door`
 
 Scaffold <repo>/rust/app, the Rust binary that owns the CLI's entry point: a clap parser for the recorded commands and flags, every command running the original with the same argv, stdin and env (each fallback counted). For a server: an axum app that starts the original on a port of its own and proxies every route no unit answers. Builds it and replays the cases: 100% passed at 100% fallback. Needs app_record first; never overwrites rust/app.
 
@@ -210,9 +210,9 @@ Führt Code oder Befehle des Originals aus.
 
 ## Unit in die App verdrahten
 
-Tool `app_wire` · CLI `rust-anything app wire`
+Tool `app_wire` · CLI `everything-rust app wire`
 
-After a unit passes gate, hand its commands to its port.rs: adds the unit crate to rust/app as a library, writes a glue stub (src/units/<unit>.rs, yours to write: parse args, call <crate>::port, print what the original prints), regenerates the routing with a kill switch RUST_ANYTHING_UNIT_<NAME>=original, then builds and replays. Run it again after writing the glue: 100% passed and a lower fallback rate.
+After a unit passes gate, hand its commands to its port.rs: adds the unit crate to rust/app as a library, writes a glue stub (src/units/<unit>.rs, yours to write: parse args, call <crate>::port, print what the original prints), regenerates the routing with a kill switch EVERYTHING_RUST_UNIT_<NAME>=original, then builds and replays. Run it again after writing the glue: 100% passed and a lower fallback rate.
 
 Führt Code oder Befehle des Originals aus.
 
@@ -227,7 +227,7 @@ Führt Code oder Befehle des Originals aus.
 
 ## Lift zu einer reinen Rust-App
 
-Tool `app_lift` · CLI `rust-anything app lift`
+Tool `app_lift` · CLI `everything-rust app lift`
 
 Make rust/app a pure Rust app. Refuses (and lists every blocker) unless replay passes with fallback rate 0 and every unit passes gate. Then, on a copy first: removes the fallback and kill switches, turns each unit into a plain library (no cdylib, bindings or generated wrappers), adds a trycmd test running rust/app-cases on cargo test, checks fmt/clippy/tests, DECISIONS.md targets and assets, and replays the pure binary. Never touches the original.
 

@@ -1,6 +1,6 @@
 ---
 title: Орнату
-description: rust-anything-ті crates.io, npm немесе release бинарлық файлынан орнату, және әр тілге қажет runtime-дар.
+description: everything-rust-ті crates.io, npm немесе release бинарлық файлынан орнату, және әр тілге қажет runtime-дар.
 ---
 
 # Орнату
@@ -10,22 +10,22 @@ description: rust-anything-ті crates.io, npm немесе release бинарл
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm JavaScript жобалары үшін сол бинарлық файлды орнатады.
 
-macOS, Linux және Windows үшін дайын бинарлық файлдар әр [GitHub release](https://github.com/erkamyaman/rust-anything/releases) бетіне тіркелген. Claude Code ішінде оны плагин ретінде де орнатуға болады (MCP сервер және skill; CLI сіздің `PATH` ішінде болуы керек):
+macOS, Linux және Windows үшін дайын бинарлық файлдар әр [GitHub release](https://github.com/marprojector/everything-rust/releases) бетіне тіркелген. Claude Code ішінде оны плагин ретінде де орнатуға болады (MCP сервер және skill; CLI сіздің `PATH` ішінде болуы керек):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## Бастапқы кодтан
@@ -46,7 +46,7 @@ Windows-тағы нативті CI `x86_64-pc-windows-msvc` Rust target-ін қ�
 toolchain-ін және **Desktop development with C++** workload-ы бар Visual Studio Build Tools орнатыңыз;
 C компиляторы мен linker C bridge-тері және нативті Rust кеңейтімдері үшін қажет. Көшіріп жатқан
 бастапқы тіліңіздің runtime-ын орнатыңыз. Python `python3` немесе `python` ретінде қолжетімді болуы
-мүмкін; rust-anything екеуін де анықтайды. GNU Windows target-і CI-да тексерілмейді.
+мүмкін; everything-rust екеуін де анықтайды. GNU Windows target-і CI-да тексерілмейді.
 
 Нативті bridge интеграциялық тесттерін Developer PowerShell терезесінен іске қосыңыз:
 
@@ -65,11 +65,11 @@ Visual Studio Developer PowerShell ішінен іске қосып, `where.exe 
 Тесттер уақытша бумаларды қолданады, оның ішінде бос орындар мен Unicode таңбалары бар жол да бар, және
 сәтті іске қосудан кейін генерацияланған артефактілерді жояды.
 
-Агенттер үшін `rust-anything setup` барлығын тіркейді (Жылдам бастау бөлімін қараңыз). MCP серверді оның
+Агенттер үшін `everything-rust setup` барлығын тіркейді (Жылдам бастау бөлімін қараңыз). MCP серверді оның
 орнына бір жобаға қолмен қосу үшін (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 Әр құрал, оның параметрлері және ол неге қол тигізуі мүмкін: [docs/tools.md](/docs/reference/mcp-tools). Сервер
@@ -77,12 +77,12 @@ Visual Studio Developer PowerShell ішінен іске қосып, `where.exe 
 ## Жаңарту немесе жою
 
 ```sh
-cargo install rust-anything                                    # жаңарту (Cargo)
-npm install -g rust-anything@latest                            # жаңарту (npm)
-rust-anything setup                                            # агент баптауларын жаңарту
-rust-anything setup --remove && cargo uninstall rust-anything  # жою (Cargo)
-rust-anything setup --remove && npm uninstall -g rust-anything # жою (npm)
+cargo install everything-rust                                    # жаңарту (Cargo)
+npm install -g everything-rust@latest                            # жаңарту (npm)
+everything-rust setup                                            # агент баптауларын жаңарту
+everything-rust setup --remove && cargo uninstall everything-rust  # жою (Cargo)
+everything-rust setup --remove && npm uninstall -g everything-rust # жою (npm)
 ```
 
-`setup --remove` тек rust-anything жазбаларын алып тастайды; ол сақтаған көшірмелер
-(`<file>.rust-anything.bak`) өзіңіз жоймайынша қала береді.
+`setup --remove` тек everything-rust жазбаларын алып тастайды; ол сақтаған көшірмелер
+(`<file>.everything-rust.bak`) өзіңіз жоймайынша қала береді.

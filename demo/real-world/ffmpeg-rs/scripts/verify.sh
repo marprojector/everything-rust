@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # For every port: copies the crate next to the tree, records ffmpeg's behavior on the inputs
-# from inputs.py (and rust-anything's generated edge cases), builds the Rust, replays every
+# from inputs.py (and everything-rust's generated edge cases), builds the Rust, replays every
 # case and runs gate. Run prepare.sh first. Pass crate names to verify only those.
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")/.." && pwd)
 REPO=$(cd "$HERE/../../.." && pwd)
 WORK=${WORK:-$HERE/work}
 TREE=$WORK/tree
-RA=${RA:-$REPO/target/release/rust-anything}
+RA=${RA:-$REPO/target/release/everything-rust}
 [ -x "$RA" ] || cargo build --release --manifest-path "$REPO/Cargo.toml"
 export CFLAGS="-I$TREE -DHAVE_AV_CONFIG_H"
 
@@ -21,7 +21,7 @@ for crate in "${crates[@]}"; do
   rm -rf "$dir"
   mkdir -p "$dir"
   (cd "$HERE/$crate" && tar cf - --exclude target .) | (cd "$dir" && tar xf -)
-  python3 - "$dir/rust-anything.json" "$TREE/libavutil" <<'PY'
+  python3 - "$dir/everything-rust.json" "$TREE/libavutil" <<'PY'
 import json, sys
 path, root = sys.argv[1], sys.argv[2]
 m = json.load(open(path))

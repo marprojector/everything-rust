@@ -8,9 +8,9 @@ description: app record запускає весь застосунок на йо
 `record` і `diff` доводять один модуль; `app record` і `app replay` доводять застосунок, для CLI та серверів будь-якою з шести мов. Застосунок є чорною скринькою.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # команда, що запускає оригінал
-rust-anything app replay .                            # оригінал має пройти 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # команда, що запускає оригінал
+everything-rust app replay .                            # оригінал має пройти 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Звідки беруться випадки
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## Відтворення
 
 - `app replay` проганяє будь-яку збірку на випадках, друкує `passed/total`, пише `rust/app-cases/replay-report.md` з diff для кожного провального випадку і завершується з ненульовим кодом за будь-якої розбіжності.
-- Збірка, що дописує у файл, названий у `RUST_ANYTHING_FALLBACK_LOG` (по рядку на кожен fallback до оригіналу), як це робить [front door](/docs/whole-apps/front-door), також отримує звіт про свою частку fallback.
+- Збірка, що дописує у файл, названий у `EVERYTHING_RUST_FALLBACK_LOG` (по рядку на кожен fallback до оригіналу), як це робить [front door](/docs/whole-apps/front-door), також отримує звіт про свою частку fallback.
 - `app replay --case <name>` повторно запускає один випадок за іменем, яке дає йому звіт: швидкий, відтворюваний цикл для виправлення розбіжності, перш ніж знову проганяти все.
 
 ## Відтворення в CI
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 Звіт не містить таймінгів чи тимчасових шляхів: два відтворення однієї збірки пишуть однаковий файл. Закомітьте його, потім запускайте в CI:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

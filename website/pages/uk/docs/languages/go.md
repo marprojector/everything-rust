@@ -13,7 +13,7 @@ description: Портуйте пакет Go на Rust через типізов�
 | Потрібно | Go 1.21+ |
 | Статус | Перевірено на `path` з Go 1.24: 2,642/2,642 (542 з власних тестових таблиць Go), gate проходить |
 
-`profile` працює через `go test`: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Пакети створюються як `NewFnBatch(items)`; закривайте їх після використання.
+`profile` працює через `go test`: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Пакети створюються як `NewFnBatch(items)`; закривайте їх після використання.
 
 ## Що порт має зробити правильно
 

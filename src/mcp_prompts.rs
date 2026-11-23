@@ -3,8 +3,8 @@
 
 use serde_json::{Value, json};
 
-const SKILL: &str = include_str!("../skills/rust-anything/SKILL.md");
-const WHOLE_APP: &str = include_str!("../skills/rust-anything/whole-app.md");
+const SKILL: &str = include_str!("../skills/everything-rust/SKILL.md");
+const WHOLE_APP: &str = include_str!("../skills/everything-rust/whole-app.md");
 
 /// The `prompts/list` result.
 pub fn list() -> Value {
@@ -37,10 +37,10 @@ pub fn get(name: &str, arguments: &Value) -> Result<Value, String> {
         "port_unit" => {
             let target = match arg("unit") {
                 Some(unit) => format!(
-                    "Port the unit `{unit}` of the repository at {path} to Rust with rust-anything."
+                    "Port the unit `{unit}` of the repository at {path} to Rust with everything-rust."
                 ),
                 None => format!(
-                    "Port one unit of the repository at {path} to Rust with rust-anything: run \
+                    "Port one unit of the repository at {path} to Rust with everything-rust: run \
                      analyze on it first and take the best first port from `start_here`."
                 ),
             };
@@ -55,7 +55,7 @@ pub fn get(name: &str, arguments: &Value) -> Result<Value, String> {
         "port_whole_app" => (
             "Port a whole app to Rust",
             format!(
-                "Rewrite the app at {path} as a pure Rust app with rust-anything, keeping the \
+                "Rewrite the app at {path} as a pure Rust app with everything-rust, keeping the \
                  original only as reference.\n\nFollow this guide:\n\n{}\n\nEach unit goes through \
                  the per-unit loop:\n\n{}",
                 body(WHOLE_APP),

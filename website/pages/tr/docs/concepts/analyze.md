@@ -10,7 +10,7 @@ description: profile ile zamanın nereye gittiğini bulun, ardından analyze ile
 Amaç hız olduğunda, herhangi bir seçim yapmadan önce ölçün:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # ya da: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # ya da: python3 bench.py, ruby bench.rb,
                                                     #     java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # ya da: python3 bench.py, r
 ## Analyze: portu planlayın
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # insanlar için
-rust-anything analyze <repo> --json            # ajanlar için: şema rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # artı giriş noktaları, yapı, bağımlılıklar, kararlar
+everything-rust analyze <repo> -o plan.md        # insanlar için
+everything-rust analyze <repo> --json            # ajanlar için: şema everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # artı giriş noktaları, yapı, bağımlılıklar, kararlar
 ```
 
 `analyze`; birimleri, port sırasını, `file:line` ile riskleri, birim başına köprüyü, her bağımlılığın bir crate'e ne kadar iyi eşlendiğini ve `start_here`'ı (en iyi ilk portlar) listeler. `--whole-app` uygulamanın yapısını (CLI, sunucu veya kütüphane) ve giriş noktalarını, crate'iyle birlikte her bağımlılığı (import edilen ya da bildirilen), parçaları (birbirini import eden birimler birlikte taşınır) ve önerilen bir yanıtla numaralandırılmış kararları ekler. Bkz. [Tüm uygulamayı port etmek](/docs/whole-apps/overview).

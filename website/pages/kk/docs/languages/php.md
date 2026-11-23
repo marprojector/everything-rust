@@ -17,12 +17,12 @@ description: PHP preview күйінде. analyze PHP қолданбасын жо
 PHP CLI немесе серверін жазып алуға, қайта ойнатуға және Rust front door-ының артына қоюға болады:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Оның бірліктерін PHP FFI арқылы Rust-қа порттау келесі қадам ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Оған дейін `bridge` PHP бірліктерін түсінікті хабармен қабылдамайды.
+Оның бірліктерін PHP FFI арқылы Rust-қа порттау келесі қадам ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). Оған дейін `bridge` PHP бірліктерін түсінікті хабармен қабылдамайды.
 
 CI PHP орнатпайды, сондықтан PHP тесттері тек ол орнатылған машинада ғана іске қосылады.

@@ -6,7 +6,7 @@ description: bench 在原实现和 Rust 上为录制用例计时（包含桥接�
 # 基准测试
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` 在原实现和构建好的 Rust 模块上为录制用例计时（包含桥接开销），返回各行数据和一个附带建议的结论：上线、把较慢的函数留在源语言中，或者迁移更大的单元。加速比低于 1 表示按调用方的调用方式，移植版更慢。`--min-ms` 设置每个函数每一侧的最短测量时间（默认 200）。
@@ -31,7 +31,7 @@ rust-anything bench <crate>
 | Java | 0.18x | 迁移更大的单元 |
 | Go | 0.04x | 迁移更大的单元 |
 
-x18n core 中所有能在不改 API 的情况下迁移的 29 个函数都已迁移：每个门禁都通过，7,925 条录制用例完全一致，而 `bench` 显示从 JS 调用时移植版比 TS 更慢，因为桥接开销比实际工作还大（[报告](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)）。在录制用例上，vercel/ms 逐次调用的速度是 0.56x（[案例研究](/docs/real-world/vercel-ms)）。
+x18n core 中所有能在不改 API 的情况下迁移的 29 个函数都已迁移：每个门禁都通过，7,925 条录制用例完全一致，而 `bench` 显示从 JS 调用时移植版比 TS 更慢，因为桥接开销比实际工作还大（[报告](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)）。在录制用例上，vercel/ms 逐次调用的速度是 0.56x（[案例研究](/docs/real-world/vercel-ms)）。
 
 ## 真正能赢的：迁移循环
 

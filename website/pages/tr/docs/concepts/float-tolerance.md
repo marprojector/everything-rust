@@ -6,8 +6,8 @@ description: Sayısal kod port edildiğinde nadiren bit bit aynı float'lar veri
 # Kayan nokta toleransı
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Sayısal kod (fizik, istatistik, grafik) port edildiğinde nadiren bit bit aynı float'lar verir: işlem sırası, fused multiply-add ve matematik kütüphanesi derleyiciden derleyiciye değişir. Bunu kabul ediyorsanız `--float-tolerance` ve kendi değerinizle kaydedin. Float'lar o zaman büyük değerin bu oranı içinde eşleşir (1'in altında mutlak değer olarak) ve `diff` ile `gate` bunu kullanır. `0` toleransı kaldırır.

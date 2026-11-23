@@ -5,7 +5,7 @@ description: Du premier enregistrement à un binaire 100 % Rust. Le but est une 
 
 # Porter une application entière
 
-Le but est une application 100 % Rust qui se comporte comme l'original, l'original étant conservé comme référence. Votre agent écrit le Rust ; rust-anything ordonne le travail, crée la structure et prouve chaque étape. CLI, serveurs HTTP et bibliothèques.
+Le but est une application 100 % Rust qui se comporte comme l'original, l'original étant conservé comme référence. Votre agent écrit le Rust ; everything-rust ordonne le travail, crée la structure et prouve chaque étape. CLI, serveurs HTTP et bibliothèques.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Planifier
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` ajoute la forme de l'application (CLI, serveur ou bibliothèque) et ses points d'entrée, chaque dépendance externe (importée ou déclarée) avec sa crate Rust et son adéquation, l'ordre de portage sous forme de morceaux (les unités qui s'importent mutuellement se déplacent ensemble), et des décisions numérotées avec une réponse recommandée : unités à garder, unités bloquées, dépendances sans crate ou avec une crate partielle.
@@ -33,7 +33,7 @@ Les [serveurs](/docs/whole-apps/servers) et les [bibliothèques](/docs/whole-app
 
 ## Comment l'agent s'y prend
 
-Le [skill whole-app](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) guide l'agent pas à pas, en commençant par les décisions que vous seul pouvez prendre :
+Le [skill whole-app](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) guide l'agent pas à pas, en commençant par les décisions que vous seul pouvez prendre :
 
 - **Interrogatoire** : l'agent pose ses questions par séries, chacune avec sa réponse recommandée, jusqu'à ce que chaque décision dont dépend le portage soit tranchée, et consigne chacune sous forme d'ADR dans `rust/DECISIONS.md`, avec `rust/GLOSSARY.md` qui fait correspondre les termes de l'original aux noms Rust.
 - **Recherche** : des agents en arrière-plan lisent les sources primaires de chaque dépendance et écrivent `rust/research/<topic>.md`, avec chaque piège sémantique trouvé.

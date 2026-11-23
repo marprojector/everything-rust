@@ -8,7 +8,7 @@ description: app lift, yeniden oynatma fallback oranı 0 ile geçtiğinde ve her
 Yeniden oynatma fallback oranı 0 ile geçtiğinde ve her birim gate'i geçtiğinde, onu saf bir Rust uygulamasına dönüştürün:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` ikisi de sağlanana kadar reddeder ve neyin engellediğini söyler: hâlâ fallback'e düşen vakalar, hâlâ stub olan yapıştırıcı kod, gate'i geçemeyen birimler.

@@ -1,13 +1,13 @@
 ---
 title: Doctor 健康檢查
-description: rust-anything doctor 會檢查語言執行環境、AI 代理設定與 MCP 伺服器，並列出修正每個問題的指令。
+description: everything-rust doctor 會檢查語言執行環境、AI 代理設定與 MCP 伺服器，並列出修正每個問題的指令。
 ---
 
 # Doctor 健康檢查
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` 會檢查語言執行環境、AI 代理設定與 MCP 伺服器，並印出修正每個問題的指令。當缺少必要項目時，它會以 1 結束。

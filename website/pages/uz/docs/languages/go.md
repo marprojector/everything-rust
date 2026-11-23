@@ -13,7 +13,7 @@ description: Go paketini asl API'li paketda tiplangan cgo chaqiruvlari va genera
 | Talablar | Go 1.21+ |
 | Holat | Go 1.24'dagi `path` da tekshirilgan: 2,642/2,642 (542 tasi Go'ning o'z test jadvallaridan), gate o'tadi |
 
-`profile` `go test` orqali ishlaydi: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batch'lar `NewFnBatch(items)`; ish tugagach ularni yoping.
+`profile` `go test` orqali ishlaydi: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batch'lar `NewFnBatch(items)`; ish tugagach ularni yoping.
 
 ## Port nimani to'g'ri qilishi kerak
 

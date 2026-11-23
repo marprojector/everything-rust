@@ -7,8 +7,8 @@ description: vercel/ms портовано від початку до кінця.
 
 [vercel/ms](https://github.com/vercel/ms) (5.5k зірок, коміт `4ff48ce`) перетворює `"2 days"` на
 мілісекунди і назад; більшість проєктів на Node підтягують його через якусь залежність. Портовано від початку до кінця
-за допомогою rust-anything 1.5.1; крейт лежить у
-[`demo/real-world/vercel-ms-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/vercel-ms-rs).
+за допомогою everything-rust 1.5.1; крейт лежить у
+[`demo/real-world/vercel-ms-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/vercel-ms-rs).
 
 | Крок | Результат |
 | --- | --- |

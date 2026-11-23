@@ -30,7 +30,7 @@ rəqəm kimi müəyyən edilir.
 PHP önizləmədədir: `analyze` PHP tətbiqini planlaşdırır (Composer paketləri və PSR-4 autoloading,
 sərbəst müqayisə və tam ədədin float-a daşması kimi risklər, crate-lərə uyğunlaşdırılmış Composer paketləri),
 PHP CLI və ya serveri isə qeydə alına, təkrar oynadıla və Rust front door-unun arxasına qoyula bilər. Onun
-vahidlərini PHP-nin FFI-ı vasitəsilə Rust-a port etmək növbəti addımdır ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+vahidlərini PHP-nin FFI-ı vasitəsilə Rust-a port etmək növbəti addımdır ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# da eyni şəkildə önizləmədədir: `analyze` `.csproj` layihələrini və onların NuGet paketlərini
 (crate-lərə uyğunlaşdırılmış) oxuyur, `using` direktivlərini qovluqlara həll edir və C#-ın fərqli etdiyi

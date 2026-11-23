@@ -276,7 +276,7 @@ pub fn stale(crate_dir: &Path, m: &Manifest) -> Option<String> {
     let (now, _) = fingerprint(m)?;
     (saved["fingerprint"].as_str()? != now).then(|| {
         format!(
-            "{} changed since it was recorded: re-run `rust-anything record {}` so the port is \
+            "{} changed since it was recorded: re-run `everything-rust record {}` so the port is \
              checked against what the original does now",
             m.unit,
             crate_dir.display()
@@ -284,7 +284,7 @@ pub fn stale(crate_dir: &Path, m: &Manifest) -> Option<String> {
     })
 }
 
-const HISTORY: &str = ".rust-anything/diff-history.jsonl";
+const HISTORY: &str = ".everything-rust/diff-history.jsonl";
 /// Changes to `port.rs` in a row that gain no matching case before `diff` calls the port stalled.
 pub const STALL_AFTER: usize = 3;
 

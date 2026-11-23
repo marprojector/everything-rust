@@ -6,9 +6,9 @@ description: record は生成したエッジケース、セマンティックト
 # 記録
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # または: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # または: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` は元の関数を実行し、それぞれが返したもの、または投げたものを、クレートの隣の `cases.jsonl` に保存します: これが移植版が一致させなければならない挙動です。後で不一致が出たら、それは挙動の違いです: 直すのは移植版であり、記録ではありません。

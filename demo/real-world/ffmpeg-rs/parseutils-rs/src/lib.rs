@@ -1,11 +1,11 @@
 //! C ABI for `parseutils.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
 use std::ffi::c_char;
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
     use std::ffi::{CStr, c_char};
 
     /// A `const char *` argument as bytes; `None` for `NULL`.
@@ -53,24 +53,24 @@ pub extern "C" fn av_parse_video_size(
     str: *const c_char,
 ) -> std::ffi::c_int {
     port::av_parse_video_size(
-        crate::__rust_anything_c_abi::out(width_ptr),
-        crate::__rust_anything_c_abi::out(height_ptr),
-        crate::__rust_anything_c_abi::c_str(str),
+        crate::__everything_rust_c_abi::out(width_ptr),
+        crate::__everything_rust_c_abi::out(height_ptr),
+        crate::__everything_rust_c_abi::c_str(str),
     )
 }
 
-/// `av_parse_video_size` as `rust_anything_av_parse_video_size`, for shadow builds beside the original.
+/// `av_parse_video_size` as `everything_rust_av_parse_video_size`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_parse_video_size(
+pub extern "C" fn everything_rust_av_parse_video_size(
     width_ptr: *mut std::ffi::c_int,
     height_ptr: *mut std::ffi::c_int,
     str: *const c_char,
 ) -> std::ffi::c_int {
     port::av_parse_video_size(
-        crate::__rust_anything_c_abi::out(width_ptr),
-        crate::__rust_anything_c_abi::out(height_ptr),
-        crate::__rust_anything_c_abi::c_str(str),
+        crate::__everything_rust_c_abi::out(width_ptr),
+        crate::__everything_rust_c_abi::out(height_ptr),
+        crate::__everything_rust_c_abi::c_str(str),
     )
 }
 
@@ -85,30 +85,30 @@ pub extern "C" fn av_find_info_tag(
     info: *const c_char,
 ) -> std::ffi::c_int {
     port::av_find_info_tag(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             arg.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(arg_size),
+            crate::__everything_rust_c_abi::len(arg_size),
         ),
-        crate::__rust_anything_c_abi::c_str(tag1),
-        crate::__rust_anything_c_abi::c_str(info),
+        crate::__everything_rust_c_abi::c_str(tag1),
+        crate::__everything_rust_c_abi::c_str(info),
     )
 }
 
-/// `av_find_info_tag` as `rust_anything_av_find_info_tag`, for shadow builds beside the original.
+/// `av_find_info_tag` as `everything_rust_av_find_info_tag`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_av_find_info_tag(
+pub extern "C" fn everything_rust_av_find_info_tag(
     arg: *mut std::ffi::c_char,
     arg_size: std::ffi::c_int,
     tag1: *const c_char,
     info: *const c_char,
 ) -> std::ffi::c_int {
     port::av_find_info_tag(
-        crate::__rust_anything_c_abi::bytes_mut(
+        crate::__everything_rust_c_abi::bytes_mut(
             arg.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(arg_size),
+            crate::__everything_rust_c_abi::len(arg_size),
         ),
-        crate::__rust_anything_c_abi::c_str(tag1),
-        crate::__rust_anything_c_abi::c_str(info),
+        crate::__everything_rust_c_abi::c_str(tag1),
+        crate::__everything_rust_c_abi::c_str(info),
     )
 }

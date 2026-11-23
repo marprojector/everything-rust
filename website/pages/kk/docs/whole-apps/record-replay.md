@@ -8,9 +8,9 @@ description: app record бүкіл қолданбаны оның құжатта�
 `record` пен `diff` бір бірлікті дәлелдейді; `app record` пен `app replay` алты тілдің кез келгеніндегі CLI-лар мен серверлер үшін қолданбаны дәлелдейді. Қолданба қара жәшік ретінде қарастырылады.
 
 ```sh
-rust-anything app record . -- python3 cli.py          # түпнұсқаны іске қосатын команда
-rust-anything app replay .                            # түпнұсқа 100% өтуі керек
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # түпнұсқаны іске қосатын команда
+everything-rust app replay .                            # түпнұсқа 100% өтуі керек
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## Кейстер қайдан алынады
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## Қайта ойнату
 
 - `app replay` кез келген build-ті кейстерге қарсы іске қосады, `passed/total` басып шығарады, әр құлаған кейс үшін diff-пен `rust/app-cases/replay-report.md` жазады және кез келген сәйкессіздікте нөлдік емес кодпен аяқталады.
-- [Front door](/docs/whole-apps/front-door) сияқты `RUST_ANYTHING_FALLBACK_LOG` атаған файлға жазып отыратын build (түпнұсқаға әр fallback үшін бір жол) өзінің fallback үлесін де хабарлатады.
+- [Front door](/docs/whole-apps/front-door) сияқты `EVERYTHING_RUST_FALLBACK_LOG` атаған файлға жазып отыратын build (түпнұсқаға әр fallback үшін бір жол) өзінің fallback үлесін де хабарлатады.
 - `app replay --case <name>` есеп берген атау бойынша бір кейсті қайта іске қосады: барлығын қайта іске қоспас бұрын сәйкессіздікті түзетуге арналған жылдам, қайталанатын цикл.
 
 ## CI-да қайта ойнату
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 Есепте уақыт өлшемдері немесе уақытша жолдар жоқ: бір build-тің екі рет қайта ойнатылуы бірдей файл жазады. Оны commit жасаңыз, содан кейін CI-да іске қосыңыз:
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

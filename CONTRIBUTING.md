@@ -1,13 +1,13 @@
-# Contributing to rust-anything
+# Contributing to everything-rust
 
 Thanks for helping. Bug reports, fixes, new language support and write-ups of real ports are all
 welcome, and you don't need to ask before opening a pull request for a bug fix.
 
 ## Before you start
 
-- **A bug:** open an [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) with
-  the command you ran, its output, your platform and the rust-anything version
-  (`rust-anything --version`). A tiny repro project helps most.
+- **A bug:** open an [issue](https://github.com/marprojector/everything-rust/issues/new/choose) with
+  the command you ran, its output, your platform and the everything-rust version
+  (`everything-rust --version`). A tiny repro project helps most.
 - **A bigger change** (a new language, a new command, a change to what a unit or a recording is):
   open an issue first so we can agree on the shape before you write it. The reasons behind past
   choices are in [DECISIONS.md](./DECISIONS.md).
@@ -31,8 +31,8 @@ skip a part whose runtime is missing, so install the ones you touch:
 | wasm bridges | `rustup target add wasm32-unknown-unknown` and the matching `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
@@ -44,8 +44,8 @@ check above, plus `cargo fmt` and `cargo clippy` before each commit). Use it ins
 
 `cargo run -- doctor` lists which of these runtimes you have, their versions, and the command
 that installs or updates each one. To make a missing runtime fail its tests instead of skipping
-them (CI does this), name it in `RUST_ANYTHING_REQUIRE`, e.g.
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+them (CI does this), name it in `EVERYTHING_RUST_REQUIRE`, e.g.
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 The hook runs `scripts/check-secrets.sh`, which refuses keys, tokens and personal home-folder
 paths in what you commit. CI runs it on every file.
@@ -65,7 +65,7 @@ paths in what you commit. CI runs it on every file.
 - **Fixtures** are small apps under `tests/fixtures/`. The CLI and HTTP fixtures implement the same
   commands and routes in every language (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), so keep a new one identical in behavior to the others.
-- **Generated code** (the bridges, drivers and front doors rust-anything writes) has to pass
+- **Generated code** (the bridges, drivers and front doors everything-rust writes) has to pass
   `clippy -D warnings` too, since `gate` runs it on users' crates.
 - **Style:** match the code around you. Keep comments for what the code can't say on its own, and
   put the reasoning for a change in the pull request instead.
@@ -81,8 +81,8 @@ library missing from the table is reported as `unknown`; never guess a crate.
 ## Add a language
 
 PHP and C# were added in two commits worth reading first:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) and
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). A new language starts
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) and
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). A new language starts
 the same way:
 
 1. A plugin in `src/lang/<name>.rs`: discovery, scan (imports and risks), resolve and exports,
@@ -131,7 +131,7 @@ small adjustments, a maintainer may add a commit on top rather than ask for anot
 ## Share a real port
 
 Ports of real projects are the best evidence of what works and what breaks. If you used
-rust-anything on something real, an issue or a pull request adding it to
+everything-rust on something real, an issue or a pull request adding it to
 [docs/real-world.md](./docs/real-world.md) is very welcome. Include the project, the commands you
 ran, the case counts, and anything that surprised you.
 

@@ -12,26 +12,26 @@
   .p { color: #3fb950; } .c { color: #f2f2f2; } .m { color: #8b9099; } .o { color: #e8892f; font-weight: 700; } .g { color: #3fb950; } .w { color: #f2f2f2; }
   .cur { background: #c9ced6; color: #111317; }
 </style></head><body>
-<div class="win"><div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">~/x18n — rust-anything</span></div><div class="screen"><pre id="t"></pre></div></div>
+<div class="win"><div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">~/x18n — everything-rust</span></div><div class="screen"><pre id="t"></pre></div></div>
 <script>
 const P = '<span class="p">~/x18n $</span> '
 // [kind, text]: cmd lines are typed; out lines appear; pause holds the frame.
 const script = [
-  ['cmd', 'rust-anything profile . -- node --experimental-strip-types search.ts'],
+  ['cmd', 'everything-rust profile . -- node --experimental-strip-types search.ts'],
   ['out', '<span class="m">862 ms in all; 21% of it in the repository\'s own code.</span>'],
   ['out', ''],
   ['out', '<span class="w">fuzzyScore</span>  packages/core/src/fuzzy.ts:2   <span class="o">21% (180 ms)</span>'],
   ['out', ''],
   ['out', 'Called in a loop by `matched`: a call per item would cost more than the'],
   ['out', 'work. Batch it, keeping the items in Rust and using all cores:'],
-  ['out', '<span class="o">rust-anything bridge . packages/core/src/fuzzy.ts --batch fuzzyScore:text</span>'],
+  ['out', '<span class="o">everything-rust bridge . packages/core/src/fuzzy.ts --batch fuzzyScore:text</span>'],
   ['pause', 22],
-  ['cmd', 'rust-anything bridge . packages/core/src/fuzzy.ts --batch fuzzyScore:text'],
+  ['cmd', 'everything-rust bridge . packages/core/src/fuzzy.ts --batch fuzzyScore:text'],
   ['out', 'Created rust/fuzzy-rs (Napi) for fuzzyScore'],
   ['out', '<span class="m">  Cargo.toml  src/lib.rs  src/port.rs  index.cjs  src/utf16.rs  ...</span>'],
   ['pause', 10],
   ['cmd', '<span class="m"># port fuzzyScore in src/port.rs (you or your agent), then:</span>', true],
-  ['cmd', 'rust-anything gate rust/fuzzy-rs'],
+  ['cmd', 'everything-rust gate rust/fuzzy-rs'],
   ['out', '<span class="g">pass</span>  fmt        formatted'],
   ['out', '<span class="g">pass</span>  clippy     no warnings'],
   ['out', '<span class="g">pass</span>  cargo test passed'],

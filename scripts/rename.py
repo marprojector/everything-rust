@@ -2,14 +2,14 @@
 """Renames the tool: `python3 scripts/rename.py <new-name>`.
 
 Replaces the working name in every tracked file (crate name, binary, schema ids,
-`RUST_ANYTHING_*` environment variables, docs) and in tracked paths. Review with `git diff`.
+`EVERYTHING_RUST_*` environment variables, docs) and in tracked paths. Review with `git diff`.
 """
 import os
 import re
 import subprocess
 import sys
 
-OLD = "rust-anything"
+OLD = "everything-rust"
 
 def main() -> None:
     if len(sys.argv) != 2 or not re.fullmatch(r"[a-z][a-z0-9-]*", sys.argv[1]):

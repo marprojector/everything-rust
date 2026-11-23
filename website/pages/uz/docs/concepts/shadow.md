@@ -6,12 +6,12 @@ description: shadow asl nusxani va Rust'ni yonma-yon ishga tushiradigan va nomuv
 # Shadow
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow` asl API'ga ega o'rinbosarni generatsiya qiladi: TS yoki Python moduli, Go paketi, Ruby fayli, Java klasslari yoki C fayli. Uni ilova asl nusxani yuklagan joyda yuklang. U ikkalasini ishga tushiradi, asl nusxa natijasini qaytaradi va production'da ishonch hosil qilayotganingizda Rust nomuvofiqliklarini xabar qiladi.
 
-| `RUST_ANYTHING_MODE` | Xatti-harakat |
+| `EVERYTHING_RUST_MODE` | Xatti-harakat |
 | --- | --- |
 | `shadow` (standart) | ikkalasini ishga tushiradi, asl nusxa natijasini qaytaradi, nomuvofiqliklarni xabar qiladi |
 | `new` | Rust'ga o'tadi |

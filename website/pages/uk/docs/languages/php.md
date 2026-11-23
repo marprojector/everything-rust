@@ -17,12 +17,12 @@ description: PHP у стадії попереднього перегляду. an
 CLI чи сервер на PHP можна записати, відтворити і поставити за front door на Rust:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Портування його модулів у Rust через FFI у PHP буде наступним кроком ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Доти `bridge` відхиляє модулі PHP із зрозумілим повідомленням.
+Портування його модулів у Rust через FFI у PHP буде наступним кроком ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). Доти `bridge` відхиляє модулі PHP із зрозумілим повідомленням.
 
 CI не встановлює PHP, тож тести PHP запускаються лише на машині, де він є.

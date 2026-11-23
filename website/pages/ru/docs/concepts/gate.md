@@ -6,7 +6,7 @@ description: gate определяет, когда порт готов. Все �
 # Гейт (gate)
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Готово означает, что `gate` проходит. Он проверяет:

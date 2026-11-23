@@ -6,11 +6,11 @@ import { REPO_ROOT, WEBSITE_ROOT } from './md-include.mjs'
 function findBinary() {
   const candidates = [
     process.argv[2],
-    process.env.RUST_ANYTHING_BIN,
-    join(REPO_ROOT, 'target', 'release', 'rust-anything'),
-    join(REPO_ROOT, 'target', 'debug', 'rust-anything'),
+    process.env.EVERYTHING_RUST_BIN,
+    join(REPO_ROOT, 'target', 'release', 'everything-rust'),
+    join(REPO_ROOT, 'target', 'debug', 'everything-rust'),
   ].filter(Boolean)
-  return candidates.find((c) => existsSync(c)) ?? 'rust-anything'
+  return candidates.find((c) => existsSync(c)) ?? 'everything-rust'
 }
 
 function run(bin, args) {
@@ -28,7 +28,7 @@ function subcommands(help) {
 }
 
 const bin = findBinary()
-const version = run(bin, ['--version']).trim().replace(/^rust-anything\s+/, '')
+const version = run(bin, ['--version']).trim().replace(/^everything-rust\s+/, '')
 const commands = []
 function walk(path) {
   const help = run(bin, [...path, '--help'])

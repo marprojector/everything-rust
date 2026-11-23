@@ -5,7 +5,7 @@ description: 从第一次录制到纯 Rust 二进制。目标是一个行为与�
 
 # 迁移整个应用
 
-目标是一个行为与原实现一致的纯 Rust 应用，同时保留原实现作为参照。Rust 代码由你的智能体编写；rust-anything 负责排定工作顺序、搭建脚手架，并验证每一步。适用于 CLI、HTTP 服务端和程序库。
+目标是一个行为与原实现一致的纯 Rust 应用，同时保留原实现作为参照。Rust 代码由你的智能体编写；everything-rust 负责排定工作顺序、搭建脚手架，并验证每一步。适用于 CLI、HTTP 服务端和程序库。
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. 规划
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` 会加上应用形态（CLI、服务端或程序库）和入口点、每个外部依赖（导入的或声明的）及其对应的 Rust crate 和匹配度、按迁移块排列的迁移顺序（相互导入的单元一起迁移），以及带推荐答案的编号决策项：保留的单元、受阻的单元、没有 crate 或只有部分匹配 crate 的依赖。
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## 智能体如何推进
 
-[整应用技能](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md)会引导智能体完成全过程，首先从只有你能做的决策开始：
+[整应用技能](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md)会引导智能体完成全过程，首先从只有你能做的决策开始：
 
 - **深度访谈**：智能体分轮提问，每个问题都附带推荐答案，直到迁移所依赖的每项决策都确定下来，并把每项决策以 ADR 形式写入 `rust/DECISIONS.md`，同时在 `rust/GLOSSARY.md` 中把原项目的术语映射为 Rust 命名。
 - **调研**：后台智能体阅读每个依赖的一手资料，并编写 `rust/research/<topic>.md`，列出它们发现的每一个语义陷阱。

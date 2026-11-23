@@ -19,7 +19,7 @@ use crate::ts::exports::LocalType;
 use crate::ts::shape::{self, Shape};
 
 pub const CASES: &str = "cases.jsonl";
-pub(crate) const WORK_DIR: &str = ".rust-anything";
+pub(crate) const WORK_DIR: &str = ".everything-rust";
 const COVERAGE_DIR: &str = "coverage";
 
 /// Strings that break naive ports: empty, case, whitespace, non-ASCII, astral, combining.
@@ -419,10 +419,10 @@ fn record_node(opts: &RecordOptions, manifest: &Manifest, cases: &[Value]) -> Re
                 .arg(inputs)
                 .arg(part)
                 .env("NODE_V8_COVERAGE", work.join(COVERAGE_DIR))
-                .env("RUST_ANYTHING_PATHS", &aliases)
-                .env("RUST_ANYTHING_WORKSPACE", workspace_env(manifest));
+                .env("EVERYTHING_RUST_PATHS", &aliases)
+                .env("EVERYTHING_RUST_WORKSPACE", workspace_env(manifest));
             if let Some(dir) = &resolve_from {
-                cmd.env("RUST_ANYTHING_RESOLVE_FROM", dir);
+                cmd.env("EVERYTHING_RUST_RESOLVE_FROM", dir);
             }
             crate::pin::apply(&mut cmd, opts.crate_dir)?;
             crate::enable::original_only(&mut cmd, &Manifest::load(opts.crate_dir)?);
@@ -748,7 +748,7 @@ pub fn bench(opts: &BenchOptions) -> Result<Vec<BenchRow>> {
     let cases = opts.crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             opts.crate_dir.display()
         );
     }
@@ -808,10 +808,10 @@ pub fn bench(opts: &BenchOptions) -> Result<Vec<BenchRow>> {
         .arg(&cases)
         .arg(&out)
         .arg(opts.min_ms.to_string())
-        .env("RUST_ANYTHING_PATHS", alias_env(&manifest))
-        .env("RUST_ANYTHING_WORKSPACE", workspace_env(&manifest));
+        .env("EVERYTHING_RUST_PATHS", alias_env(&manifest))
+        .env("EVERYTHING_RUST_WORKSPACE", workspace_env(&manifest));
     if let Some(dir) = opts.resolve_from {
-        cmd.env("RUST_ANYTHING_RESOLVE_FROM", dir.canonical()?);
+        cmd.env("EVERYTHING_RUST_RESOLVE_FROM", dir.canonical()?);
     }
     run(&mut cmd, "node")?;
     Ok(serde_json::from_str(&std::fs::read_to_string(&out)?)?)
@@ -853,7 +853,7 @@ fn diff_after(opts: &DiffOptions, exact: DiffOutcome) -> Result<DiffOutcome> {
     outcome.mismatches.truncate(SHOWN_MISMATCHES);
     anyhow::ensure!(
         outcome.total > 0,
-        "no recorded cases to compare; run `rust-anything record` first"
+        "no recorded cases to compare; run `everything-rust record` first"
     );
     if opts.module.is_none() {
         outcome.trend = crate::recording::track(opts.crate_dir, outcome.passed, outcome.total);
@@ -899,7 +899,7 @@ pub(crate) fn diff_exact(opts: &DiffOptions) -> Result<DiffOutcome> {
     {
         bail!(
             "{} is older than the crate's sources, so diff would test the previous port; run \
-             `rust-anything build {}` first",
+             `everything-rust build {}` first",
             built.display(),
             opts.crate_dir.display()
         );
@@ -955,7 +955,7 @@ pub(crate) fn diff_exact(opts: &DiffOptions) -> Result<DiffOutcome> {
     let cases = opts.crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             opts.crate_dir.display()
         );
     }
@@ -1579,9 +1579,9 @@ impl Rng {
 }
 
 /// How long one recorded case may run before the original is stopped on it:
-/// `RUST_ANYTHING_CASE_TIMEOUT` seconds, 10 by default.
+/// `EVERYTHING_RUST_CASE_TIMEOUT` seconds, 10 by default.
 fn case_timeout() -> std::time::Duration {
-    let secs = std::env::var("RUST_ANYTHING_CASE_TIMEOUT")
+    let secs = std::env::var("EVERYTHING_RUST_CASE_TIMEOUT")
         .ok()
         .and_then(|v| v.parse::<f64>().ok())
         .filter(|s| s.is_finite() && *s > 0.0)
@@ -1590,7 +1590,7 @@ fn case_timeout() -> std::time::Duration {
 }
 
 /// Runs a record driver over `cases` with a watchdog. The driver appends the index of each case
-/// it starts to `RUST_ANYTHING_PROGRESS` and flushes each recorded line. A case that runs past
+/// it starts to `EVERYTHING_RUST_PROGRESS` and flushes each recorded line. A case that runs past
 /// the time limit (an input that makes the original allocate or loop for ever) stops the driver;
 /// the lines recorded so far are kept, that input is left out, and the driver goes on with the
 /// rest. Returns the inputs left out.
@@ -1617,7 +1617,7 @@ pub(crate) fn record_cases(
         std::fs::write(&progress, "")?;
         let _ = std::fs::remove_file(&part);
         let mut cmd = command(&inputs, &part)?;
-        cmd.env("RUST_ANYTHING_PROGRESS", &progress)
+        cmd.env("EVERYTHING_RUST_PROGRESS", &progress)
             .stdin(Stdio::null())
             .stdout(Stdio::null())
             .stderr(std::fs::File::create(&stderr_path)?);
@@ -1834,18 +1834,18 @@ const REGISTER_JS: &str =
     "import { register } from 'node:module'\nregister('./resolve.mjs', import.meta.url)\n";
 
 /// Node resolve hook: bundler-style relative imports, and npm packages from
-/// `RUST_ANYTHING_RESOLVE_FROM` when the source tree has none installed.
+/// `EVERYTHING_RUST_RESOLVE_FROM` when the source tree has none installed.
 const RESOLVE_JS: &str = r#"
 import { existsSync, statSync } from 'node:fs'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-const extra = process.env.RUST_ANYTHING_RESOLVE_FROM
+const extra = process.env.EVERYTHING_RUST_RESOLVE_FROM
 // tsconfig `paths`: exact keys first, then wildcard keys by longest prefix.
 const aliasPriority = pattern => pattern.includes('*') ? pattern.indexOf('*') : Number.POSITIVE_INFINITY
-const aliases = JSON.parse(process.env.RUST_ANYTHING_PATHS || '[]')
+const aliases = JSON.parse(process.env.EVERYTHING_RUST_PATHS || '[]')
   .sort(([a], [b]) => aliasPriority(b) - aliasPriority(a))
 // Workspace packages by name: `@x18n/core` and `@x18n/core/sub` resolve to source.
-const workspace = JSON.parse(process.env.RUST_ANYTHING_WORKSPACE || '{}')
+const workspace = JSON.parse(process.env.EVERYTHING_RUST_WORKSPACE || '{}')
 const workspaceTargets = (specifier) => {
   for (const [name, src] of Object.entries(workspace)) {
     if (specifier === name)
@@ -1982,7 +1982,7 @@ import { pathToFileURL } from 'node:url'
 const [inputsPath, outPath] = process.argv.slice(2)
 const inputs = JSON.parse(readFileSync(inputsPath, 'utf8'))
 const modules = new Map()
-const progress = process.env.RUST_ANYTHING_PROGRESS
+const progress = process.env.EVERYTHING_RUST_PROGRESS
 writeFileSync(outPath, '')
 const lines = { push: line => appendFileSync(outPath, `${line}\n`) }
 // A class scenario: construct, then call each method in turn; every step's result is recorded.

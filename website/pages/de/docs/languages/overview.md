@@ -30,7 +30,7 @@ als Zahlen erkannt.
 PHP ist in der Vorschau: `analyze` plant eine PHP-App (Composer-Pakete und PSR-4-Autoloading, Risiken
 wie loser Vergleich und Ganzzahlüberlauf in Floats, Composer-Pakete auf Crates abgebildet),
 und eine PHP-CLI oder ein PHP-Server lässt sich aufzeichnen, abspielen und hinter eine Rust-Front-Door stellen. Das Portieren
-der Units nach Rust über PHPs FFI ist der nächste Schritt ([Issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+der Units nach Rust über PHPs FFI ist der nächste Schritt ([Issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# ist auf dieselbe Weise in der Vorschau: `analyze` liest `.csproj`-Projekte und ihre NuGet-Pakete
 (auf Crates abgebildet), löst `using`-Direktiven zu Ordnern auf und markiert, was C# anders macht

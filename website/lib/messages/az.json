@@ -17,8 +17,8 @@
     "closeMenu": "Menyunu bağla",
     "menu": "Menyu",
     "language": "Dil",
-    "home": "rust-anything ana səhifəsi",
-    "github": "GitHub-da rust-anything",
+    "home": "everything-rust ana səhifəsi",
+    "github": "GitHub-da everything-rust",
     "onThisPage": "Bu səhifədə",
     "editPage": "Bu səhifəni GitHub-da redaktə edin",
     "previous": "Əvvəlki",
@@ -54,7 +54,7 @@
       "project": "Layihə"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything nədir",
+      "/docs/introduction/what-is-everything-rust": "everything-rust nədir",
       "/docs/introduction/quick-start": "Sürətli başlanğıc",
       "/docs/introduction/install": "Quraşdırma",
       "/docs/introduction/agents": "Agentinizi qurun",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Tətbiqinizi Rust-da yenidən yazın.",
     "title2": "Eyni davrandığını sübut edin.",
-    "sub": "rust-anything kodunuzun nə etdiyini qeydə alır, sonra hər qeydə alınmış halı Rust portuna qarşı təkrar oynadır. Rust-u agentiniz yazır. Çıxışlar uyğun gəlməyənə qədər heç nə buraxılmır.",
+    "sub": "everything-rust kodunuzun nə etdiyini qeydə alır, sonra hər qeydə alınmış halı Rust portuna qarşı təkrar oynadır. Rust-u agentiniz yazır. Çıxışlar uyğun gəlməyənə qədər heç nə buraxılmır.",
     "cta": "Sürətli başlanğıcı oxuyun",
     "source": "GitHub-da mənbə kodu",
     "sourceLanguage": "Mənbə dili",
@@ -138,10 +138,10 @@
     "installTitle": "Quraşdırma",
     "installDesc": "CLI-ı quraşdırın, sonra MCP serveri və iş axını skill-ini Claude Code, Codex, Cursor və Gemini CLI-da qeydiyyatdan keçirin.",
     "installNote": "macOS, Linux və Windows üçün hazır binary fayllar hər [GitHub release]({releases})-dədir.",
-    "agentPrompt": "rust-anything-i quraşdır: `cargo install rust-anything`, sonra `rust-anything setup` işə sal.",
+    "agentPrompt": "everything-rust-i quraşdır: `cargo install everything-rust`, sonra `everything-rust setup` işə sal.",
     "agentRestart": "Səni nə vaxt yenidən başlatmalı olduğumu de.",
     "loopTitle": "Port necə hazır olur",
-    "loopDesc": "Orijinal həqiqət mənbəyi olaraq qalır. rust-anything kodu tərcümə etmir: agentin təxmin edə bilmədiyini və portun nə vaxt hazır olduğunu deyən gate-i təmin edir.",
+    "loopDesc": "Orijinal həqiqət mənbəyi olaraq qalır. everything-rust kodu tərcümə etmir: agentin təxmin edə bilmədiyini və portun nə vaxt hazır olduğunu deyən gate-i təmin edir.",
     "steps": [
       {
         "title": "Qeyd",
@@ -272,7 +272,7 @@
       "csharp": "bütöv tətbiqin qeydi və təkrar oynadılması; vahid körpüləri növbədə"
     },
     "sponsorsTitle": "Sponsorlar",
-    "sponsorsDesc": "rust-anything pulsuz və açıq mənbəlidir. Əgər işinizə yarayırsa, lütfən ona sponsorluq etməyi düşünün. Dəstəyiniz inkişafın davam etməsinə kömək edir.",
+    "sponsorsDesc": "everything-rust pulsuz və açıq mənbəlidir. Əgər işinizə yarayırsa, lütfən ona sponsorluq etməyi düşünün. Dəstəyiniz inkişafın davam etməsinə kömək edir.",
     "companySponsor": "Şirkət sponsoru",
     "becomeSponsor": "Sponsor olun"
   }

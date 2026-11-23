@@ -6,7 +6,7 @@ description: bench 會在原始版本與 Rust 版本上（包含橋接）為已�
 # 基準測試
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` 會在原始版本與建置好的 Rust 模組上（包含橋接）為已錄製的案例計時，並回傳各列結果與附帶建議的結論：出貨、將較慢的函式留在來源語言，或移植更大的單元。加速比低於 1 代表以呼叫端的呼叫方式而言，移植版本比較慢。`--min-ms` 設定每個函式在每一側的最短量測時間（預設 200）。
@@ -31,7 +31,7 @@ rust-anything bench <crate>
 | Java | 0.18x | 移植更大的單元 |
 | Go | 0.04x | 移植更大的單元 |
 
-x18n 核心中所有 29 個能在不改變 API 的情況下搬移的函式都已移植：每個 gate 都通過，7,925 個已錄製的案例完全一致，而 `bench` 顯示從 JS 呼叫時，這些移植版本比 TS 慢，因為橋接的成本比實際工作還高（[報告](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)）。vercel/ms 在其已錄製的案例上，單次呼叫為 0.56x（[案例研究](/docs/real-world/vercel-ms)）。
+x18n 核心中所有 29 個能在不改變 API 的情況下搬移的函式都已移植：每個 gate 都通過，7,925 個已錄製的案例完全一致，而 `bench` 顯示從 JS 呼叫時，這些移植版本比 TS 慢，因為橋接的成本比實際工作還高（[報告](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)）。vercel/ms 在其已錄製的案例上，單次呼叫為 0.56x（[案例研究](/docs/real-world/vercel-ms)）。
 
 ## 勝出的方法：搬移迴圈
 

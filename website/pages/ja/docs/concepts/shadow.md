@@ -6,12 +6,12 @@ description: shadow は元の実装と Rust を並べて実行し、不一致を
 # シャドウ
 
 ```sh
-rust-anything shadow <crate>
+everything-rust shadow <crate>
 ```
 
 `shadow` は元の実装と同じ API を持つ差し替え用モジュールを生成します: TS または Python のモジュール、Go のパッケージ、Ruby のファイル、Java のクラス、または C のファイルです。アプリが元の実装を読み込んでいた場所で読み込んでください。両方を実行して元の実装の結果を返し、本番環境で信頼性を確かめている間、Rust の不一致を報告します。
 
-| `RUST_ANYTHING_MODE` | 動作 |
+| `EVERYTHING_RUST_MODE` | 動作 |
 | --- | --- |
 | `shadow`（デフォルト） | 両方を実行し、元の実装の結果を返し、不一致を報告する |
 | `new` | Rust に切り替える |

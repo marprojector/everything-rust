@@ -10,11 +10,11 @@ portunu `PORT`'tan ya da komuttaki `{port}`'tan alır (her zaman aynı portu din
 `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: her route proxy'lenir
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: her route proxy'lenir
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - İstekler uygulamanın dokümanlarındaki `curl` satırlarından (`curl -X POST -d ... http://localhost:8080/x`),

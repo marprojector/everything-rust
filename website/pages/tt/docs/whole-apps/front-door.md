@@ -8,10 +8,10 @@ description: app front-door оригиналның алдына Rust бинар 
 Башта керү ноктасын Rust'ка күчерегез, аннары аңа командаларны бер тапкырда бер берәмлек тапшырыгыз:
 
 ```sh
-rust-anything app front-door .                            # rust/app: һәр команда оригиналны җибәрә
-rust-anything app wire . textkit --command upper          # textkit-rs gate'ны узганнан соң
+everything-rust app front-door .                            # rust/app: һәр команда оригиналны җибәрә
+everything-rust app wire . textkit --command upper          # textkit-rs gate'ны узганнан соң
 # glue кодын rust/app/src/units/textkit.rs эчендә языгыз, аннары:
-rust-anything app wire . textkit                          # тагын 100%, fallback өлеше түбәнрәк
+everything-rust app wire . textkit                          # тагын 100%, fallback өлеше түбәнрәк
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # тагын 100%, fal
 3. `src/units/<unit>.rs` файлын бер тапкыр яза, аны сез яки агентыгыз тутырсын өчен: аргументларны парсингларга, `<crate>::port`'ны чакырырга, оригинал нәрсә бастырса, шуны бастырырга;
 4. командаларны аңа юнәлтә, аннары җыя һәм кабат уйната.
 
-Glue кодын язганнан соң аны тагын җибәрегез: 100% узу һәм түбәнрәк fallback өлеше. `RUST_ANYTHING_UNIT_<NAME>=original` тоташтырылган берәмлекне lift'ка кадәр оригиналга кире җибәрә.
+Glue кодын язганнан соң аны тагын җибәрегез: 100% узу һәм түбәнрәк fallback өлеше. `EVERYTHING_RUST_UNIT_<NAME>=original` тоташтырылган берәмлекне lift'ка кадәр оригиналга кире җибәрә.
 
 Бер команданы да атамаган argv өчен (аргументлар юк, билгесез командалар, куллану хаталары) кушымтаның үз исемен команда итеп тоташтырыгыз (`--command mytool`).
 

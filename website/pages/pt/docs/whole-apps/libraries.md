@@ -9,11 +9,11 @@ Uma biblioteca não tem nenhum processo para reproduzir: a sua API pública é a
 unidade são a prova.
 
 ```sh
-rust-anything app front-door .        # rust/app: uma crate Rust com a API pública
+everything-rust app front-door .        # rust/app: uma crate Rust com a API pública
 # cada unidade passa pelo ciclo: bridge, record, port.rs, build, diff, gate; depois:
-rust-anything app wire . textkit-rs   # reexportada a partir de rust/app; o original importa o seu shadow
-rust-anything app replay .            # os casos de todas as unidades ligadas; fallback = exportações ainda no original
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # reexportada a partir de rust/app; o original importa o seu shadow
+everything-rust app replay .            # os casos de todas as unidades ligadas; fallback = exportações ainda no original
+everything-rust app lift .
 ```
 
 - O `app front-door` encontra a API pública (as exportações de todas as unidades) quando o repositório não tem `main`
@@ -21,7 +21,7 @@ rust-anything app lift .
   ligada passa a ser um módulo dela: `pub use textkit_rs::port as textkit;`.
 - O `app wire` recebe uma crate criada pelo `bridge`, executa o `gate` e escreve o substituto shadow da unidade:
   o pacote original importa-o no lugar da unidade, de modo que quem o chama mantém a API original e
-  chega ao Rust. `RUST_ANYTHING_UNIT_<NAME>=original` devolve a unidade ao original (C: compilar sem as
+  chega ao Rust. `EVERYTHING_RUST_UNIT_<NAME>=original` devolve a unidade ao original (C: compilar sem as
   flags do shadow).
 - O `app replay` executa os casos registados de todas as unidades ligadas através dos respetivos bindings. A taxa de fallback é
   a parte das exportações públicas a que o Rust ainda não responde: unidades não ligadas e exportações que o `bridge` mantém

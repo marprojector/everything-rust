@@ -1,6 +1,6 @@
 mod common;
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 #[test]
 fn records_go_internal_packages() {
@@ -9,7 +9,7 @@ fn records_go_internal_packages() {
     }
 
     let root =
-        std::env::temp_dir().join(format!("rust-anything-go-internal-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-go-internal-{}", std::process::id()));
     let unit = root.join("internal/textkit");
     std::fs::create_dir_all(&unit).unwrap();
     std::fs::write(root.join("go.mod"), "module example.com/app\n\ngo 1.21\n").unwrap();

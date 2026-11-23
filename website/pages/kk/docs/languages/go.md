@@ -13,7 +13,7 @@ description: Go пакетін типтелген cgo шақырулары жә�
 | Қажет | Go 1.21+ |
 | Күйі | Go 1.24-тегі `path` пакетінде тексерілген: 2,642/2,642 (542-сі Go-ның өз тест кестелерінен), gate өтеді |
 
-`profile` `go test` арқылы жұмыс істейді: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batch-тар `NewFnBatch(items)` арқылы жасалады; жұмыс біткенде оларды жабыңыз.
+`profile` `go test` арқылы жұмыс істейді: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batch-тар `NewFnBatch(items)` арқылы жасалады; жұмыс біткенде оларды жабыңыз.
 
 ## Порт нені дұрыс істеуі керек
 

@@ -5,8 +5,8 @@ import { CheckIcon, CopyIcon } from '../site/icons'
 
 export default function InstallBox({ ui, agent }: { ui: Messages['ui']; agent: [string, string] }) {
   const OPTIONS = [
-    { key: 'cargo', label: 'cargo', lines: ['cargo install rust-anything', 'rust-anything setup'] },
-    { key: 'npm', label: 'npm', lines: ['npm install -g rust-anything', 'rust-anything setup'] },
+    { key: 'cargo', label: 'cargo', lines: ['cargo install everything-rust', 'everything-rust setup'] },
+    { key: 'npm', label: 'npm', lines: ['npm install -g everything-rust', 'everything-rust setup'] },
     { key: 'agent', label: 'agent', lines: agent },
   ]
   const [tab, setTab] = useState('cargo')

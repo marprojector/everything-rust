@@ -1,0 +1,49 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<a Prettier 3.6.2 checkout; see ../README.md>",
+  "unit": "src/index.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "js-format-rs",
+  "exports": [
+    {
+      "name": "format",
+      "file": "src/index.js",
+      "line": 68,
+      "params": [
+        {
+          "name": "text",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "options",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "check",
+      "file": "src/index.js",
+      "line": 76,
+      "reason": "kept on request"
+    },
+    {
+      "name": "clearConfigCache",
+      "file": "src/index.js",
+      "line": 81,
+      "reason": "kept on request"
+    }
+  ]
+}

@@ -273,7 +273,7 @@ mod tests {
 
     fn check(lang: Lang, file: &str, source: &str, exports: &[(&str, u32)]) -> Vec<String> {
         let dir = std::env::temp_dir().join(format!(
-            "rust-anything-raises-{}-{file}",
+            "everything-rust-raises-{}-{file}",
             std::process::id()
         ));
         std::fs::create_dir_all(&dir).unwrap();

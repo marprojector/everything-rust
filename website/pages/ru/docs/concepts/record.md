@@ -6,9 +6,9 @@ description: record запускает оригинал на сгенериро�
 # Запись (record)
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # или: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # или: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` запускает исходные функции и сохраняет то, что каждая из них возвращает или выбрасывает, в `cases.jsonl` рядом с крейтом: это поведение, которому должен соответствовать порт. Расхождение в дальнейшем означает различие в поведении: исправляйте порт, а не запись.

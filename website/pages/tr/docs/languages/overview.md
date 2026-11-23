@@ -31,7 +31,7 @@ PHP önizlemededir: `analyze` bir PHP uygulamasını planlar (Composer paketleri
 gevşek karşılaştırma ve tam sayı taşmasının float'a dönüşmesi gibi riskler, crate'lere eşlenmiş
 Composer paketleri) ve bir PHP CLI'ı ya da sunucusu kaydedilebilir, yeniden oynatılabilir ve bir
 Rust front door'unun arkasına konabilir. Birimlerini PHP'nin FFI'ı üzerinden Rust'a port etmek bir
-sonraki adımdır ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+sonraki adımdır ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# da aynı şekilde önizlemededir: `analyze` `.csproj` projelerini ve NuGet paketlerini okur
 (crate'lere eşlenmiş olarak), `using` yönergelerini klasörlere çözümler ve C#'ın farklı yaptığı

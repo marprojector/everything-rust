@@ -6,7 +6,7 @@ description: 要素ごとに 1 回呼ばれる移植版は JIT に負けます�
 # バッチとホットパス
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # または: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # または: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` は、`param` の値を一度だけ受け取って Rust 側に保持するクラスを生成します: `new FnBatch(items)`（TS、Python、Java）、`Mod::FnBatch.new(items)`（Ruby）、`NewFnBatch(items)`（Go）。クエリごとに、`run(<other args>)` はすべての結果を 1 つの配列で返し、`rank(<other args>, min)` は要素のインデックスを良い順に返します。全コアで実行され、エラーは元の実装と同じです。C 以外のすべての言語でバッチが使えます。
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # または: rust-anythin
 呼び出しのたびに全要素に対して関数を全コアで実行し、型付き配列で結果を返すクラスを生成します。
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: 実行時間の 4 分の 1、`matched` からキーごとに呼ばれている: バッチ化する
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ x18n のサイドバー検索で 50,000 キーに対して 1 文字ずつ入力�
 
 コンパイル型の元の実装では効果が小さくなります: 要素ごとの処理がすでに速いので、バッチの効果はほぼコア数分です。
 バッチのクレートは mimalloc でメモリを確保します: システムのアロケーターでは、Go のバッチは
-シングルスレッドより遅くなりました。デモ: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md)。
+シングルスレッドより遅くなりました。デモ: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md)。
 ## 速いインデックスの書き方
 
 - 呼び出し元にはバッチをクエリごとではなく一度だけ作らせてください。返されたインデックスは単純なループで要素に戻します。

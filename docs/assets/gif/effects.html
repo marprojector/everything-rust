@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Side effects: a rewrite that prints the same output but sends each email twice fails replay.
-     Every line of output is copied from a real run of rust-anything 2.0.0 (paths shortened).
+     Every line of output is copied from a real run of everything-rust 2.0.0 (paths shortened).
      Render with `node scripts/gifs.mjs effects`. -->
 <html><head><meta charset="utf-8"><style>
   body { margin: 0; background: #0b0d10; }
@@ -13,16 +13,16 @@
   .p { color: #3fb950; } .c { color: #f2f2f2; } .m { color: #8b9099; } .o { color: #e8892f; font-weight: 700; } .g { color: #3fb950; } .w { color: #f2f2f2; }
   .cur { background: #c9ced6; color: #111317; }
 </style></head><body>
-<div class="win"><div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">~/signup · rust-anything</span></div><div class="screen"><pre id="t"></pre></div></div>
+<div class="win"><div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">~/signup · everything-rust</span></div><div class="screen"><pre id="t"></pre></div></div>
 <script>
 const P = '<span class="p">~/signup $</span> '
 const script = [
   ['cmd', '<span class="m"># notify.py posts a webhook and sends one welcome email per signup</span>', true],
-  ['cmd', 'rust-anything app record . --effects smtp --effect-env WEBHOOK_URL=http-url -- python3 notify.py'],
+  ['cmd', 'everything-rust app record . --effects smtp --effect-env WEBHOOK_URL=http-url -- python3 notify.py'],
   ['out', 'Recorded 2 cases in rust/app-cases (0 from examples, 2 from inputs, 0 traps)'],
   ['pause', 14],
   ['cmd', '<span class="m"># rewrite.py prints exactly the same thing, but mails twice</span>', true],
-  ['cmd', 'rust-anything app replay . --build "python3 rewrite.py"'],
+  ['cmd', 'everything-rust app replay . --build "python3 rewrite.py"'],
   ['out', '<span class="o">0/2 cases passed</span>'],
   ['out', '- alice: <span class="o">effects</span>'],
   ['out', '- bob: <span class="o">effects</span>'],

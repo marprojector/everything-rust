@@ -20,7 +20,7 @@ description: 型付き JNI と自動生成のバイナリワイヤを通じて�
 - `Integer.parseInt` は `Character.digit` を通じて、あらゆる Unicode の 10 進数字（`١٢`、`２`）を受け付けます。
 - `Double.toString`（JDK 19+）は最短の 10 進表記を出力しますが、桁数は最低 2 桁です: `4.9E-324` となり、Rust の最短表記は `5e-324` です。
 - `\s` は ASCII のみです。Rust の `split_whitespace` は U+00A0 でも分割します。
-- 浮動小数点数は往復変換で値が保たれなければなりません: `serde_json` のデフォルトの浮動小数点パーサーは常に正しく丸めるとは限らないので、rust-anything とそれが生成するすべてのクレートは `float_roundtrip` 機能を使います。
+- 浮動小数点数は往復変換で値が保たれなければなりません: `serde_json` のデフォルトの浮動小数点パーサーは常に正しく丸めるとは限らないので、everything-rust とそれが生成するすべてのクレートは `float_roundtrip` 機能を使います。
 
 ## 速度
 

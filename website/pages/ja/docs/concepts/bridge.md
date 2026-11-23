@@ -6,8 +6,8 @@ description: bridge は 1 つのユニットのための Rust クレートを、
 # ブリッジ
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # <repo>/rust/<name> にクレートを作成。上書きはしない
-rust-anything refresh <crate>                  # port.rs のシグネチャを変更した後に実行
+everything-rust bridge <repo> <unit-id>          # <repo>/rust/<name> にクレートを作成。上書きはしない
+everything-rust refresh <crate>                  # port.rs のシグネチャを変更した後に実行
 ```
 
 `bridge` は、バインディング（`lib.rs` と、元の言語が読み込むラッパー）と移植用のスタブ（`port.rs`）を持つクレートを作成します。移植版は `src/port.rs` にだけ書きます。`src/lib.rs` とラッパーは生成されるもので、`refresh` が `port.rs` のシグネチャから再生成し、新しいバッチクラスも追加します。`port.rs` には一切触れません。

@@ -17,10 +17,10 @@ description: C# preview абалында. analyze .csproj долбоорлору
 Курулган колдонмону жазып алыңыз:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Бирдиктерди P/Invoke аркылуу порттоо кийинки кезекте. Ага чейин `bridge` C# бирдиктерин түшүнүктүү билдирүү менен четке кагат.

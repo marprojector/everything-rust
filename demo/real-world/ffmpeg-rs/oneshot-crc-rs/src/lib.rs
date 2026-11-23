@@ -1,9 +1,9 @@
 //! C ABI for `oneshot_crc.c`: drop-in replacements with the original names and signatures, generated
-//! by rust-anything from `rust-anything.json`. All of the crate's `unsafe` code lives in this file.
+//! by everything-rust from `everything-rust.json`. All of the crate's `unsafe` code lives in this file.
 
 pub mod port;
 
-mod __rust_anything_c_abi {
+mod __everything_rust_c_abi {
 
     /// A `const` byte pointer and its length as a slice; empty for `NULL` or a zero length.
     pub(super) fn bytes<'a>(ptr: *const u8, len: usize) -> &'a [u8] {
@@ -30,17 +30,17 @@ pub extern "C" fn oneshot_crc(id: std::ffi::c_int, crc: u32, buf: *const u8, len
     port::oneshot_crc(
         id,
         crc,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }
 
-/// `oneshot_crc` as `rust_anything_oneshot_crc`, for shadow builds beside the original.
+/// `oneshot_crc` as `everything_rust_oneshot_crc`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_oneshot_crc(
+pub extern "C" fn everything_rust_oneshot_crc(
     id: std::ffi::c_int,
     crc: u32,
     buf: *const u8,
@@ -49,9 +49,9 @@ pub extern "C" fn rust_anything_oneshot_crc(
     port::oneshot_crc(
         id,
         crc,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }
@@ -75,17 +75,17 @@ pub extern "C" fn oneshot_crc_custom(
         poly,
         table_size,
         crc,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }
 
-/// `oneshot_crc_custom` as `rust_anything_oneshot_crc_custom`, for shadow builds beside the original.
+/// `oneshot_crc_custom` as `everything_rust_oneshot_crc_custom`, for shadow builds beside the original.
 // SAFETY: a name no C code defines.
 #[unsafe(no_mangle)]
-pub extern "C" fn rust_anything_oneshot_crc_custom(
+pub extern "C" fn everything_rust_oneshot_crc_custom(
     le: std::ffi::c_int,
     bits: std::ffi::c_int,
     poly: u32,
@@ -100,9 +100,9 @@ pub extern "C" fn rust_anything_oneshot_crc_custom(
         poly,
         table_size,
         crc,
-        crate::__rust_anything_c_abi::bytes(
+        crate::__everything_rust_c_abi::bytes(
             buf.cast::<u8>(),
-            crate::__rust_anything_c_abi::len(len),
+            crate::__everything_rust_c_abi::len(len),
         ),
     )
 }

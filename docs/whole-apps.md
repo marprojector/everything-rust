@@ -5,8 +5,8 @@ Port a whole CLI, server or library, unit by unit, until it is pure Rust. Back t
 ## Port a whole app
 
 The goal is a pure Rust app that behaves like the original, with the original kept as reference.
-Your agent writes the Rust; rust-anything orders the work, scaffolds it, and proves every step.
-The [whole-app skill](../skills/rust-anything/whole-app.md) walks the agent through it, starting
+Your agent writes the Rust; everything-rust orders the work, scaffolds it, and proves every step.
+The [whole-app skill](../skills/everything-rust/whole-app.md) walks the agent through it, starting
 with the decisions only you can make:
 
 - **Grilling**: the agent asks in rounds, each question with its recommended answer, until every
@@ -29,8 +29,8 @@ recording is what the original did from the outside (arguments, stdin, files, HT
 checked the same way as the Rust front door:
 
 ```sh
-rust-anything app record . -- java -jar app.jar     # what the original does
-rust-anything app replay . --build "./app-go"       # does the rewrite do the same?
+everything-rust app record . -- java -jar app.jar     # what the original does
+everything-rust app replay . --build "./app-go"       # does the rewrite do the same?
 ```
 
 The unit tools (`bridge`, `record`, `diff`, `gate`) and `lift` are Rust-specific.
@@ -41,15 +41,15 @@ A rewrite can answer with the same JSON and still send an email twice or write d
 `app record` can record what leaves the process too, per case, and `app replay` compares it:
 
 ```sh
-rust-anything app record . --effects http,smtp --effect-env WEBHOOK_URL=http-url \
+everything-rust app record . --effects http,smtp --effect-env WEBHOOK_URL=http-url \
   --db-reset "sh scripts/reset-db.sh" --db-dump "sqlite3 app.db .dump" -- python3 app.py
 ```
 
 - **`--effects http`** runs a local HTTP sink that answers every request with `200 {}`, set as
-  `HTTP_PROXY`, `http_proxy` and `RUST_ANYTHING_HTTP_SINK`. Each request is recorded as method,
+  `HTTP_PROXY`, `http_proxy` and `EVERYTHING_RUST_HTTP_SINK`. Each request is recorded as method,
   URL, content type and body. HTTPS through the proxy is recorded as `CONNECT host:443` and refused,
   since the sink cannot read it: point HTTPS settings at the sink with `--effect-env` instead.
-- **`--effects smtp`** runs a local mail server (`SMTP_HOST`, `SMTP_PORT`, `RUST_ANYTHING_SMTP_SINK`)
+- **`--effects smtp`** runs a local mail server (`SMTP_HOST`, `SMTP_PORT`, `EVERYTHING_RUST_SMTP_SINK`)
   that accepts everything, and records sender, recipients and the message.
 - **`--effect-env VAR=KIND`** points one of the app's own settings at a sink: `http-url`,
   `smtp-host`, `smtp-port` or `smtp-url`. Most apps read their webhook URL or mail host from a
@@ -63,7 +63,7 @@ the count and order of effects matter, values that differed between the original
 (dates, ids) become wildcards, and effects the original sends in varying order are compared in any
 order. The settings are saved with the cases, so replay starts the same sinks for every build.
 
-Plan first: `rust-anything analyze . --whole-app` adds the app's shape (CLI, server or library)
+Plan first: `everything-rust analyze . --whole-app` adds the app's shape (CLI, server or library)
 and entry points, every external dependency (imported or declared) with its Rust crate and fit,
 the port order as pieces (units that import each other move together), and numbered decisions
 with a recommended answer: keep units, blocked units, dependencies with no or a partial crate.
@@ -73,9 +73,9 @@ and `app replay` prove the app, for CLIs and servers in any of the six languages
 black box):
 
 ```sh
-rust-anything app record . -- python3 cli.py          # the command that runs the original
-rust-anything app replay .                            # the original must pass 100%
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # the command that runs the original
+everything-rust app replay .                            # the original must pass 100%
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 - `app record` runs the original on the app's own documented examples (`$ mytool ...` lines in
@@ -90,7 +90,7 @@ rust-anything app replay . --build "target/release/mytool"
   and edit them by hand; a Rust test can run them with `trycmd` once the port has a binary.
 - `app replay` runs any build against the cases, prints `passed/total`, writes
   `rust/app-cases/replay-report.md` with a diff per failing case, and exits non-zero on any
-  mismatch. A build that appends to the file named by `RUST_ANYTHING_FALLBACK_LOG` (one line per
+  mismatch. A build that appends to the file named by `EVERYTHING_RUST_FALLBACK_LOG` (one line per
   fallback to the original), as the front door below does, also gets its fallback rate reported.
 - `app replay --case <name>` reruns one case by the name the report gives it: the fast,
   repeatable loop for fixing a mismatch before running everything again.
@@ -102,10 +102,10 @@ rust-anything app replay . --build "target/release/mytool"
 Then move the entry point to Rust and hand it commands one unit at a time:
 
 ```sh
-rust-anything app front-door .                            # rust/app: every command runs the original
-rust-anything app wire . textkit --command upper          # after textkit-rs passes gate
+everything-rust app front-door .                            # rust/app: every command runs the original
+everything-rust app wire . textkit --command upper          # after textkit-rs passes gate
 # write the glue in rust/app/src/units/textkit.rs, then:
-rust-anything app wire . textkit                          # 100% again, lower fallback rate
+everything-rust app wire . textkit                          # 100% again, lower fallback rate
 ```
 
 - `app front-door` scaffolds `rust/app`, a Rust binary named after the app: a clap parser for the
@@ -116,7 +116,7 @@ rust-anything app wire . textkit                          # 100% again, lower fa
 - `app wire <repo> <unit> --command <name>` runs `gate` on the unit crate (`--skip-gate` if it just
   passed), adds it to `rust/app` as a library, writes `src/units/<unit>.rs` once for you or your
   agent to fill in (parse the arguments, call `<crate>::port`, print what the original prints),
-  routes the commands to it, then builds and replays. `RUST_ANYTHING_UNIT_<NAME>=original` sends a
+  routes the commands to it, then builds and replays. `EVERYTHING_RUST_UNIT_<NAME>=original` sends a
   wired unit back to the original until the lift.
 
 Wire the app's own name as a command (`--command mytool`) for argv that names no command: no
@@ -125,7 +125,7 @@ arguments, unknown commands, usage errors.
 When replay passes with fallback rate 0 and every unit passes gate, make it a pure Rust app:
 
 ```sh
-rust-anything app lift .
+everything-rust app lift .
 ```
 
 - `app lift` refuses until both hold, and says what blocks it: the cases still falling back,
@@ -146,11 +146,11 @@ port from `PORT` or `{port}` in the command (`--port` for one that always listen
 port):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: every route proxied
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: every route proxied
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Requests come from `curl` lines in the app's docs (`curl -X POST -d ... http://localhost:8080/x`),
@@ -178,11 +178,11 @@ A library has no process to replay: its public API is the front door, and each u
 cases are the proof.
 
 ```sh
-rust-anything app front-door .        # rust/app: a Rust crate with the public API
+everything-rust app front-door .        # rust/app: a Rust crate with the public API
 # each unit through the loop: bridge, record, port.rs, build, diff, gate; then:
-rust-anything app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
-rust-anything app replay .            # every wired unit's cases; fallback = exports still in the original
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # re-exported from rust/app; the original imports its shadow
+everything-rust app replay .            # every wired unit's cases; fallback = exports still in the original
+everything-rust app lift .
 ```
 
 - `app front-door` finds the public API (every unit's exports) when the repository has no `main`
@@ -190,7 +190,7 @@ rust-anything app lift .
   unit becomes a module of it: `pub use textkit_rs::port as textkit;`.
 - `app wire` takes a crate made by `bridge`, runs `gate`, and writes the unit's shadow drop-in:
   the original package imports it in place of the unit, so its callers keep the original API and
-  reach the Rust. `RUST_ANYTHING_UNIT_<NAME>=original` sends the unit back (C: build without the
+  reach the Rust. `EVERYTHING_RUST_UNIT_<NAME>=original` sends the unit back (C: build without the
   shadow's flags).
 - `app replay` runs every wired unit's recorded cases through its bindings. The fallback rate is
   the share of public exports Rust does not answer yet: unwired units, and exports `bridge` keeps

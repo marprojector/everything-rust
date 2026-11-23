@@ -17,10 +17,10 @@ description: "C# est en préversion. analyze lit les projets .csproj, et une CLI
 Enregistrer une application compilée :
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Le portage des unités via P/Invoke est la prochaine étape. D'ici là, `bridge` refuse les unités C# avec un message clair.

@@ -10,13 +10,13 @@ mamnuniyat bilan qabul qilinadi, xatoni tuzatish uchun pull request ochishdan ol
 
 ## Boshlashdan oldin
 
-- **Xato:** ishga tushirgan buyrug'ingiz, uning chiqishi, platformangiz va rust-anything versiyasi
-  (`rust-anything --version`) bilan [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) oching.
+- **Xato:** ishga tushirgan buyrug'ingiz, uning chiqishi, platformangiz va everything-rust versiyasi
+  (`everything-rust --version`) bilan [issue](https://github.com/marprojector/everything-rust/issues/new/choose) oching.
   Kichik qayta ishlab chiqaruvchi loyiha eng ko'p yordam beradi.
 - **Kattaroq o'zgarish** (yangi til, yangi buyruq, birlik yoki yozuv nima ekanini o'zgartirish):
   uni yozishdan oldin shakli bo'yicha kelishib olishimiz uchun avval issue oching. O'tgan
-  tanlovlar sabablari [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md) da.
-- **Xavfsizlik muammosi:** ommaviy issue ochmang; [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md) ga qarang.
+  tanlovlar sabablari [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md) da.
+- **Xavfsizlik muammosi:** ommaviy issue ochmang; [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md) ga qarang.
 
 ## Sozlash
 
@@ -36,16 +36,16 @@ runtime'i yo'q qismni o'tkazib yuboradi, shuning uchun o'zingiz tegadiganlarini 
 | wasm ko'priklari | `rustup target add wasm32-unknown-unknown` va mos `wasm-bindgen-cli` |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` bu runtime'lardan qaysilari borligini, ularning versiyalarini va har birini o'rnatadigan yoki yangilaydigan
 buyruqni ko'rsatadi. Yo'q runtime testlarini o'tkazib yuborish o'rniga muvaffaqiyatsiz qilish uchun
-(CI shunday qiladi) uni `RUST_ANYTHING_REQUIRE` da nomlang, masalan
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+(CI shunday qiladi) uni `EVERYTHING_RUST_REQUIRE` da nomlang, masalan
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Hook `scripts/check-secrets.sh` ni ishga tushiradi, u commit qilayotgan narsangizda kalitlar, tokenlar va shaxsiy home papka
 yo'llarini rad etadi. CI uni har bir faylda ishga tushiradi.
@@ -65,7 +65,7 @@ yo'llarini rad etadi. CI uni har bir faylda ishga tushiradi.
 - **Fixture'lar** `tests/fixtures/` ostidagi kichik ilovalar. CLI va HTTP fixture'lari har bir tilda bir xil
   buyruqlar va marshrutlarni amalga oshiradi (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), shuning uchun yangisini xatti-harakat bo'yicha boshqalari bilan bir xil saqlang.
-- **Generatsiya qilinadigan kod** (rust-anything yozadigan ko'priklar, drayverlar va front door'lar) ham
+- **Generatsiya qilinadigan kod** (everything-rust yozadigan ko'priklar, drayverlar va front door'lar) ham
   `clippy -D warnings` dan o'tishi kerak, chunki `gate` uni foydalanuvchilarning crate'larida ishga tushiradi.
 - **Uslub:** atrofdagi kodga moslang. Izohlarni kod o'zi ayta olmaydigan narsalar uchun qoldiring,
   o'zgarish sabablarini esa pull request'ga yozing.
@@ -81,8 +81,8 @@ yo'q kutubxona `unknown` deb xabar qilinadi; hech qachon crate'ni taxmin qilmang
 ## Til qo'shish
 
 PHP va C# preview sifatida ikkita commit'da qo'shilgan, avval ularni o'qishga arziydi:
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) va
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Yangi til ham
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) va
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Yangi til ham
 xuddi shunday boshlanadi:
 
 1. `src/lang/<name>.rs` dagi plugin: topish, skanerlash (importlar va xavflar), resolve va eksportlar,
@@ -139,10 +139,10 @@ kichik tuzatishlarni talab qilsa, maintainer yana bir aylanishni so'rash o'rniga
 ## Haqiqiy port bilan ulashing
 
 Haqiqiy loyihalar portlari nima ishlashi va nima buzilishining eng yaxshi dalilidir. Agar
-rust-anything'ni haqiqiy narsada ishlatgan bo'lsangiz, uni
+everything-rust'ni haqiqiy narsada ishlatgan bo'lsangiz, uni
 [docs/real-world.md](/docs/real-world/overview) ga qo'shadigan issue yoki pull request mamnuniyat bilan qabul qilinadi. Loyihani, ishga tushirgan
 buyruqlaringizni, holatlar sonini va sizni hayratga solgan har qanday narsani kiriting.
 
 ## Xulq-atvor kodeksi
 
-Ishtirok etayotgan har bir kishi [xulq-atvor kodeksi](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md)ga amal qilishi kutiladi.
+Ishtirok etayotgan har bir kishi [xulq-atvor kodeksi](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md)ga amal qilishi kutiladi.

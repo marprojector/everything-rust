@@ -1,16 +1,16 @@
 ---
 title: 여섯 가지 언어
-description: Go, Ruby, Python, Java, C의 실제 코드에 rust-anything을 처음부터 끝까지 적용한 결과. 호출당 속도와 배치 속도, 그리고 실행 중에 발견한 버그.
+description: Go, Ruby, Python, Java, C의 실제 코드에 everything-rust을 처음부터 끝까지 적용한 결과. 호출당 속도와 배치 속도, 그리고 실행 중에 발견한 버그.
 ---
 
 # 여섯 가지 언어의 실제 코드
 
-rust-anything이 지원하는 각 언어의 실제 코드에 처음부터 끝까지(analyze, bridge, record, port, diff, gate, bench)
+everything-rust이 지원하는 각 언어의 실제 코드에 처음부터 끝까지(analyze, bridge, record, port, diff, gate, bench)
 실행해 보았습니다. 코드는 이 머신에 이미 있는 것이어야 했습니다: 인터넷에서 내려받은 코드는
 실행하지 않았습니다. 그래서 대상은 설치된 툴체인에 포함된 표준 라이브러리 모듈이며, 적절한 라이브러리 소스가
 디스크에 없었던 Java와 C는 JDK와 glibc 자체를 얇은 파사드 뒤에 두고 정답(oracle)으로 삼았습니다.
 
-포트, 기록된 케이스, 추가 입력은 [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md)에 있습니다.
+포트, 기록된 케이스, 추가 입력은 [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md)에 있습니다.
 
 | 언어 | 코드 | 함수 | 기록된 케이스 | 결과 |
 | --- | --- | ---: | ---: | --- |
@@ -59,7 +59,7 @@ TypeScript(x18n core, 유닛 9개, 같은 케이스에서 함수 27개): 바이�
 ### 배치: x18n의 검색
 
 위의 리프 포트는 호출당으로 측정했습니다. x18n의 사이드바 검색(키 50,000개, 한 글자씩
-입력)에서 `rust-anything profile`은 `fuzzyScore`가 실행 시간의 약 4분의 1을 차지하며 `matched`가 키마다 한 번씩
+입력)에서 `everything-rust profile`은 `fuzzyScore`가 실행 시간의 약 4분의 1을 차지하며 `matched`가 키마다 한 번씩
 호출한다는 것을 보여 주었고, `--batch fuzzyScore:text`를 제안했습니다. 생성된 `FuzzyScoreBatch`는
 키를 Rust 안에 유지합니다. `port.rs`의 `FuzzyScoreIndex`는 키를 한 번 UTF-16 소문자로 바꾸고, 각 키에 들어 있는
 코드 유닛의 64비트 마스크를 보관하므로, 일치할 수 없는 키 대부분은 읽지도 않고 건너뜁니다. 결과는
@@ -108,12 +108,12 @@ Rust `slugify`는 Go보다 아주 조금 빠를 뿐이었고 Java의 JIT보다�
 
 ## 실행에서 발견한 것
 
-### rust-anything의 버그, 수정 완료
+### everything-rust의 버그, 수정 완료
 
 - **부동소수점 값이 1 ULP만큼 바뀜**(Java 실행). `serde_json`의 기본 부동소수점 파서는 항상
-  정확히 반올림하지는 않습니다. rust-anything이 기록된 입력을 읽을 때 값을 미세하게 바꿨고, 생성된 crate가
-  다시 한 번 바꿨습니다. 올바른 포트인데도 `Double.toString` 케이스 43개가 실패했습니다. rust-anything과
-  rust-anything이 생성하는 모든 crate(napi-rs, wasm, JSON 디스패처)에서 `serde_json`의 `float_roundtrip` 기능을 써서 고쳤습니다.
+  정확히 반올림하지는 않습니다. everything-rust이 기록된 입력을 읽을 때 값을 미세하게 바꿨고, 생성된 crate가
+  다시 한 번 바꿨습니다. 올바른 포트인데도 `Double.toString` 케이스 43개가 실패했습니다. everything-rust과
+  everything-rust이 생성하는 모든 crate(napi-rs, wasm, JSON 디스패처)에서 `serde_json`의 `float_roundtrip` 기능을 써서 고쳤습니다.
 - **C 크래시가 기록을 중단시킴**(C 실행). C 함수의 계약을 벗어나는 입력(`isalpha(INT_MAX)`)은
   glibc에서 세그폴트를 일으킵니다. 이제 C 드라이버는 각 케이스를 fork한 자식 프로세스에서 실행하고
   `crash: SIGSEGV`를 기록합니다. C의 동작이 정의되지 않았으므로 `diff`는 그 경우 포트의 어떤 동작도 받아들입니다.
@@ -190,4 +190,4 @@ Rust `slugify`는 Go보다 아주 조금 빠를 뿐이었고 Java의 JIT보다�
 | Ruby | 생성된 드라이버가 원본 파일을 불러옴 | 같은 드라이버가 Fiddle 래퍼를 불러옴 | JSON 디스패처 + 같은 모듈을 정의하는 Fiddle 래퍼 | 원본 다음에 require하는 파일: 둘 다 `prepend` |
 | Java | 원본 소스와 함께 컴파일되는 리플렉션 드라이버 | 같은 드라이버를 JNI 래퍼 클래스와 함께 컴파일 | JNI 위의 JSON 디스패처 + 원래 static 메서드를 가진 래퍼 클래스 | `<Class>Shadow` 클래스 |
 | Python | 프로세스 내 드라이버가 원본을 import | 같은 드라이버가 PyO3 패키지를 import | PyO3 | 원래 API를 가진 모듈 |
-| C | 원본을 `cc -shared`로 빌드해 ctypes로 호출, 케이스마다 fork 하나 | Rust `cdylib` 위의 ctypes | 원래 이름을 가진 `extern "C"` 함수와 헤더 | `-D` 이름 변경을 쓰는 섀도 `.c`, crate의 `shadow` 기능은 `rust_anything_` 이름만 export |
+| C | 원본을 `cc -shared`로 빌드해 ctypes로 호출, 케이스마다 fork 하나 | Rust `cdylib` 위의 ctypes | 원래 이름을 가진 `extern "C"` 함수와 헤더 | `-D` 이름 변경을 쓰는 섀도 `.c`, crate의 `shadow` 기능은 `everything_rust_` 이름만 export |

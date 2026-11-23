@@ -37,7 +37,7 @@ description: 원래 API를 유지하며, napi-rs나 wasm-bindgen을 통해 Node.
 
 호출 단위로는 포트가 매번 브리지 비용을 치르고, V8은 작은 함수를 나노초 단위로 실행합니다. vercel/ms는 기록된 케이스에서 호출당 0.56x였고, x18n의 core 포트는 JS에서 호출할 때 TS보다 느립니다. 배치로 하면 루프가 Rust로 옮겨집니다:
 
-| 워크로드 | 원본 | rust-anything 적용 |
+| 워크로드 | 원본 | everything-rust 적용 |
 | --- | ---: | ---: |
 | x18n 사이드바 검색, 키 50,000개 (Node) | 쿼리당 10 ms | 0.5 ms: 20배 빠름 |
 | 브라우저에서 같은 검색 (wasm, 스레드 1개) | 10 ms | 0.95 ms: 11.5x |

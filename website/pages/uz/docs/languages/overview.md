@@ -31,7 +31,7 @@ PHP preview'da: `analyze` PHP ilovasini rejalashtiradi (Composer paketlari va PS
 erkin taqqoslash va butun sonning float'ga to'lib o'tishi kabi xavflar, crate'larga moslangan Composer
 paketlari), PHP CLI yoki serverini esa yozib olish, qayta ijro etish va Rust front door'i ortiga qo'yish
 mumkin. Uning birliklarini PHP FFI orqali Rust'ga port qilish keyingi qadam
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# ham xuddi shunday preview'da: `analyze` `.csproj` loyihalarini va ularning NuGet paketlarini
 o'qiydi (crate'larga moslangan), `using` direktivalarini papkalarga bog'laydi va C# boshqacha

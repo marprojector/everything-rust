@@ -10,7 +10,7 @@ description: profile ilə vaxtın hara getdiyini tapın, sonra analyze ilə vahi
 Məqsəd sürətdirsə, nəyisə seçməzdən əvvəl ölçün:
 
 ```sh
-rust-anything profile <repo> -- node bench.mjs      # və ya: python3 bench.py, ruby bench.rb,
+everything-rust profile <repo> -- node bench.mjs      # və ya: python3 bench.py, ruby bench.rb,
                                                     #        java -cp out Main, go test -run X -bench . ./pkg
 ```
 
@@ -22,9 +22,9 @@ rust-anything profile <repo> -- node bench.mjs      # və ya: python3 bench.py, 
 ## Analiz: portu planlaşdırın
 
 ```sh
-rust-anything analyze <repo> -o plan.md        # insanlar üçün
-rust-anything analyze <repo> --json            # agentlər üçün: sxem rust-anything/analyze@1
-rust-anything analyze <repo> --whole-app       # üstəgəl giriş nöqtələri, struktur, asılılıqlar, qərarlar
+everything-rust analyze <repo> -o plan.md        # insanlar üçün
+everything-rust analyze <repo> --json            # agentlər üçün: sxem everything-rust/analyze@1
+everything-rust analyze <repo> --whole-app       # üstəgəl giriş nöqtələri, struktur, asılılıqlar, qərarlar
 ```
 
 `analyze` vahidləri, port ardıcıllığını, `file:line` ilə riskləri, hər vahid üçün körpünü, hər asılılığın crate-ə nə dərəcədə uyğun gəldiyini və `start_here`-i, yəni ən yaxşı ilk portları siyahıya alır. `--whole-app` tətbiqin strukturunu (CLI, server və ya kitabxana) və giriş nöqtələrini, crate-i ilə birlikdə hər asılılığı (import edilmiş və ya elan edilmiş), hissələri (bir-birini import edən vahidlər birlikdə köçür) və tövsiyə olunan cavabla nömrələnmiş qərarları əlavə edir. Bax [Bütöv tətbiqi port etmək](/docs/whole-apps/overview).

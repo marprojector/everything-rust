@@ -6,8 +6,8 @@ description: Rəqəmsal kod port edildikdən sonra nadir hallarda bit-bit eyni f
 # Float tolerantlığı
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Rəqəmsal kod (fizika, statistika, qrafika) port edildikdən sonra nadir hallarda bit-bit eyni float-lar verir: əməliyyat ardıcıllığı, fused multiply-add və riyazi kitabxana kompilyatorlar arasında fərqlənir. Bunu qəbul edirsinizsə, `--float-tolerance` və öz rəqəminizlə qeydə alın. Bundan sonra float-lar böyük dəyərin həmin payı daxilində uyğun gəlir (1-dən kiçik dəyərlərdə mütləq), `diff` və `gate` isə ondan istifadə edir. `0` onu ləğv edir.

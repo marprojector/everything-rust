@@ -6,9 +6,9 @@ description: diff kaydedilen her vakayı Rust'a karşı yeniden oynatır. known-
 # Diff ve bilinen farklar
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N olmalı
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N olmalı
+everything-rust diff <crate> --json
 ```
 
 `diff`, `cases.jsonl`'i derlenmiş Rust modülüne karşı, orijinali çağıranların çağırdığı şekilde yeniden oynatır ve uyuşmazlıkları listeler. Bir uyuşmazlık bir davranış farkıdır: kaydı değil, portu düzeltin.

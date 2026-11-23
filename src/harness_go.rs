@@ -1,6 +1,6 @@
 //! The Go side of record, build, diff and bench. A generated driver calls the package's
 //! functions by name: built against the original package to record, and against the cgo
-//! wrapper over the Rust library to diff. Both builds are separate modules under `.rust-anything/`
+//! wrapper over the Rust library to diff. Both builds are separate modules under `.everything-rust/`
 //! with `replace` directives, so nothing is written into the original repository.
 
 use crate::walk::Canonical;
@@ -13,7 +13,7 @@ use serde_json::Value;
 use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -77,7 +77,7 @@ fn go_version(go_mod: &str) -> &str {
 
 /// The wrapper module's path.
 pub fn wrapper_module(m: &Manifest) -> String {
-    format!("rust-anything.local/{}", m.lib_name())
+    format!("everything-rust.local/{}", m.lib_name())
 }
 
 pub fn wrapper_go_mod(m: &Manifest) -> String {
@@ -118,7 +118,7 @@ fn build_driver(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<PathBuf> {
     } else {
         (module.clone(), module_dir.clone(), import_path(m)?)
     };
-    let driver_module = format!("{target_module}/rust-anything-driver");
+    let driver_module = format!("{target_module}/everything-rust-driver");
     let mut text = format!(
         "module {driver_module}\n\ngo {}\n\nrequire {target_module} {}\n\nreplace {target_module} => {}\n",
         go_version(&go_mod),
@@ -206,7 +206,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -226,7 +226,7 @@ pub fn bench(crate_dir: &Path, m: &Manifest, min_ms: u64) -> Result<Vec<BenchRow
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }

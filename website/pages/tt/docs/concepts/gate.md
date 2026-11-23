@@ -6,7 +6,7 @@ description: gate порт өчен "әзер" төшенчәсенең билг
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Әзер дигән сүз `gate` уза дигәнне аңлата. Ул тикшерә:

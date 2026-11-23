@@ -6,9 +6,9 @@ description: record түп нусканы генерацияланган чек�
 # Жазып алуу
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # or: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # or: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` түп нуска функцияларды иштетет жана ар бири эмне кайтарарын же кандай ката ыргытарын crate'тин жанындагы `cases.jsonl` ичине сактайт: порт дал келиши керек болгон жүрүм-турум. Кийин чыккан дал келбестик жүрүм-турумдагы айырма: портту оңдоңуз, жазууну эч качан оңдобоңуз.

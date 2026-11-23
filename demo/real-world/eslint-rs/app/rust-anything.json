@@ -1,6 +1,0 @@
-{
-  "schema": "rust-anything/front-door@1",
-  "name": "eslint",
-  "commands": [],
-  "units": []
-}

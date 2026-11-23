@@ -1,6 +1,6 @@
 ---
 title: インストール
-description: crates.io、npm、またはリリースバイナリから rust-anything をインストールする方法と、各言語に必要なランタイム。
+description: crates.io、npm、またはリリースバイナリから everything-rust をインストールする方法と、各言語に必要なランタイム。
 ---
 
 # インストール
@@ -10,22 +10,22 @@ description: crates.io、npm、またはリリースバイナリから rust-anyt
 ::: tabs
 == cargo
 ```sh
-cargo install rust-anything
-rust-anything setup
+cargo install everything-rust
+everything-rust setup
 ```
 == npm
 ```sh
-npm install -g rust-anything
-rust-anything setup
+npm install -g everything-rust
+everything-rust setup
 ```
 :::
 
 npm は JavaScript プロジェクト向けに同じバイナリをインストールします。
 
-macOS、Linux、Windows 向けのビルド済みバイナリは、各 [GitHub リリース](https://github.com/erkamyaman/rust-anything/releases)に添付されています。Claude Code ではプラグインとしてインストールすることもできます（MCP サーバーとスキル。CLI が `PATH` に通っている必要があります）:
+macOS、Linux、Windows 向けのビルド済みバイナリは、各 [GitHub リリース](https://github.com/marprojector/everything-rust/releases)に添付されています。Claude Code ではプラグインとしてインストールすることもできます（MCP サーバーとスキル。CLI が `PATH` に通っている必要があります）:
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 ## ソースから
@@ -46,7 +46,7 @@ cargo install --path .
 ツールチェーンと、**Desktop development with C++** ワークロード付きの Visual Studio Build Tools をインストールしてください。
 C コンパイラとリンカーは C ブリッジとネイティブ Rust 拡張に必要です。移行する元の言語の
 ランタイムもインストールしてください。Python は `python3` と
-`python` のどちらでも構いません。rust-anything は両方を検出します。GNU の Windows ターゲットは CI では検証していません。
+`python` のどちらでも構いません。everything-rust は両方を検出します。GNU の Windows ターゲットは CI では検証していません。
 
 ネイティブブリッジの統合テストスイートは Developer PowerShell のプロンプトから実行します:
 
@@ -65,11 +65,11 @@ PowerShell から実行し、`where.exe link` が MSVC リンカーを見つけ�
 （スペースと Unicode 文字を含むパスを含む）を使い、成功した実行の後に生成物を
 削除します。
 
-エージェント向けには、`rust-anything setup` がすべてを登録します（クイックスタートを参照）。代わりに 1 つのプロジェクトに手動で MCP サーバーを
+エージェント向けには、`everything-rust setup` がすべてを登録します（クイックスタートを参照）。代わりに 1 つのプロジェクトに手動で MCP サーバーを
 追加するには（`.mcp.json`）:
 
 ```json
-{ "mcpServers": { "rust-anything": { "command": "rust-anything", "args": ["mcp"] } } }
+{ "mcpServers": { "everything-rust": { "command": "everything-rust", "args": ["mcp"] } } }
 ```
 
 各ツール、そのパラメータ、触れる可能性のあるもの: [docs/tools.md](/docs/reference/mcp-tools)。サーバーは
@@ -77,12 +77,12 @@ PowerShell から実行し、`where.exe link` が MSVC リンカーを見つけ�
 ## 更新または削除
 
 ```sh
-cargo install rust-anything                                    # 更新（Cargo）
-npm install -g rust-anything@latest                            # 更新（npm）
-rust-anything setup                                            # エージェントの設定を更新
-rust-anything setup --remove && cargo uninstall rust-anything  # 削除（Cargo）
-rust-anything setup --remove && npm uninstall -g rust-anything # 削除（npm）
+cargo install everything-rust                                    # 更新（Cargo）
+npm install -g everything-rust@latest                            # 更新（npm）
+everything-rust setup                                            # エージェントの設定を更新
+everything-rust setup --remove && cargo uninstall everything-rust  # 削除（Cargo）
+everything-rust setup --remove && npm uninstall -g everything-rust # 削除（npm）
 ```
 
-`setup --remove` は rust-anything のエントリだけを取り除きます。保存したコピー
-（`<file>.rust-anything.bak`）は、あなたが削除するまで残ります。
+`setup --remove` は everything-rust のエントリだけを取り除きます。保存したコピー
+（`<file>.everything-rust.bak`）は、あなたが削除するまで残ります。

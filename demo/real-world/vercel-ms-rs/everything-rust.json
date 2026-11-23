@@ -1,0 +1,106 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the original sources; see demo/real-world/README.md>",
+  "unit": "src/index.ts",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "index-rs",
+  "exports": [
+    {
+      "name": "ms",
+      "file": "src/index.ts",
+      "line": 50,
+      "params": [
+        {
+          "name": "value",
+          "ts_type": "(| `${number}`\n  | `${number}${(Capitalize<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | Uppercase<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | (| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms')))}`\n  | `${number} ${(Capitalize<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | Uppercase<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | (| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms')))}`) | number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "options",
+          "ts_type": "Options",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "number | string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "parse",
+      "file": "src/index.ts",
+      "line": 71,
+      "params": [
+        {
+          "name": "str",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "parseStrict",
+      "file": "src/index.ts",
+      "line": 156,
+      "params": [
+        {
+          "name": "value",
+          "ts_type": "(| `${number}`\n  | `${number}${(Capitalize<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | Uppercase<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | (| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms')))}`\n  | `${number} ${(Capitalize<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | Uppercase<(| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms'))> | (| ('years' | 'year' | 'yrs' | 'yr' | 'y')\n  | ('months' | 'month' | 'mo')\n  | ('weeks' | 'week' | 'w')\n  | ('days' | 'day' | 'd')\n  | ('hours' | 'hour' | 'hrs' | 'hr' | 'h')\n  | ('minutes' | 'minute' | 'mins' | 'min' | 'm')\n  | ('seconds' | 'second' | 'secs' | 'sec' | 's')\n  | ('milliseconds' | 'millisecond' | 'msecs' | 'msec' | 'ms')))}`)",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "format",
+      "file": "src/index.ts",
+      "line": 225,
+      "params": [
+        {
+          "name": "ms",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "options",
+          "ts_type": "Options",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [],
+  "batches": [
+    {
+      "function": "parse",
+      "param": "str"
+    },
+    {
+      "function": "format",
+      "param": "ms"
+    }
+  ]
+}

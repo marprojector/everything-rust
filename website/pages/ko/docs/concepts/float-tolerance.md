@@ -6,8 +6,8 @@ description: 수치 코드는 포팅 후 비트 단위로 같은 부동소수점
 # 부동소수점 허용 오차
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 수치 코드(물리, 통계, 그래픽)는 포팅 후 비트 단위로 같은 부동소수점을 내는 경우가 드뭅니다. 연산 순서, FMA(fused multiply-add), 수학 라이브러리가 컴파일러마다 다르기 때문입니다. 이를 받아들인다면 `--float-tolerance`와 원하는 값으로 기록하세요. 그러면 부동소수점은 더 큰 값의 그 비율 이내에서 일치하며(1 미만에서는 절댓값 기준), `diff`와 `gate`도 이를 사용합니다. `0`을 주면 허용 오차가 제거됩니다.

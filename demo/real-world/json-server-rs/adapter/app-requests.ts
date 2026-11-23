@@ -1,4 +1,4 @@
-// Adapter for rust-anything: serves `createApp` on in-memory data and sends it a list of
+// Adapter for everything-rust: serves `createApp` on in-memory data and sends it a list of
 // requests over HTTP, one after another; returns what each response held (status, the headers
 // that do not change between runs, body) and the data afterwards. Ids made by POST are random,
 // so each is replaced by `#1`, `#2`... in the order they were made.

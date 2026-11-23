@@ -1,6 +1,6 @@
 # Accessibility
 
-rust-anything is a command-line tool, so its accessibility is mostly about its output and its docs.
+everything-rust is a command-line tool, so its accessibility is mostly about its output and its docs.
 
 ## What we aim for
 
@@ -22,7 +22,7 @@ rust-anything is a command-line tool, so its accessibility is mostly about its o
 
 ## Reporting a barrier
 
-If something in rust-anything or its docs gets in your way, please open an
-[issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) and describe what you were
+If something in everything-rust or its docs gets in your way, please open an
+[issue](https://github.com/marprojector/everything-rust/issues/new/choose) and describe what you were
 trying to do and what you use (screen reader, terminal, OS). Accessibility issues are treated as
 bugs.

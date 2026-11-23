@@ -6,8 +6,8 @@ description: bridge бер берәмлек өчен Rust crate ясый, чак
 # Bridge
 
 ```sh
-rust-anything bridge <repo> <unit-id>          # crate <repo>/rust/<name> эчендә; беркайчан да өстән язмый
-rust-anything refresh <crate>                  # port.rs эчендә сигнатураны үзгәрткәннән соң
+everything-rust bridge <repo> <unit-id>          # crate <repo>/rust/<name> эчендә; беркайчан да өстән язмый
+everything-rust refresh <crate>                  # port.rs эчендә сигнатураны үзгәрткәннән соң
 ```
 
 `bridge` binding'лар (`lib.rs`, өстәвенә чыганак тел йөкли торган wrapper) һәм күчерү өчен буш функцияләр (`port.rs`) белән crate ясый. Портны сез `src/port.rs` эчендә генә язасыз; `src/lib.rs` һәм wrapper'лар ясалган файллар, һәм `refresh` аларны `port.rs` эчендәге сигнатуралардан яңадан ясый, яңа batch классларын да өсти. Ул `port.rs` файлына беркайчан да кагылмый.

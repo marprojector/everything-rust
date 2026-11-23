@@ -1,6 +1,6 @@
 # tcli
 
-A small CLI used to test `rust-anything app record` and `app replay`.
+A small CLI used to test `everything-rust app record` and `app replay`.
 
 ```console
 $ tcli upper hello world

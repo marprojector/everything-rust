@@ -1,12 +1,12 @@
 ---
 title: Real-world ports
-description: What happened when rust-anything met real code, with the slow results next to the fast ones, and what changed in the tool because of it.
+description: What happened when everything-rust met real code, with the slow results next to the fast ones, and what changed in the tool because of it.
 source: docs/real-world.md
 ---
 
 # Real-world ports
 
-What happened when rust-anything met real code, and what changed in the tool because of it. Every number below comes from a benchmark that first checks the results are identical, and the slow cases are listed next to the fast ones.
+What happened when everything-rust met real code, and what changed in the tool because of it. Every number below comes from a benchmark that first checks the results are identical, and the slow cases are listed next to the fast ones.
 
 | Port | What it is | Result |
 | --- | --- | --- |

@@ -1,4 +1,4 @@
-// Loads the native module built by `rust-anything build`.
+// Loads the native module built by `everything-rust build`.
 const native = require('./eslint_stdin_rs.node')
 module.exports = native
 const guards = {

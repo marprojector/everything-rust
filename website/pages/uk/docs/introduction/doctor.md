@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor перевіряє середовища виконання мов, налаштування агента і сервер MCP та показує команду, яка виправляє кожну проблему.
+description: everything-rust doctor перевіряє середовища виконання мов, налаштування агента і сервер MCP та показує команду, яка виправляє кожну проблему.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` перевіряє середовища виконання мов, налаштування агента і сервер MCP та виводить команду, яка виправляє кожну проблему. Він завершується з кодом 1, коли бракує чогось обов'язкового.

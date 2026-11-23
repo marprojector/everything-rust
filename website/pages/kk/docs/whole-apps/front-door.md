@@ -8,10 +8,10 @@ description: app front-door түпнұсқаның алдына Rust бинар�
 Алдымен кіру нүктесін Rust-қа көшіріңіз, содан кейін командаларды оған бір-бір бірліктен беріңіз:
 
 ```sh
-rust-anything app front-door .                            # rust/app: әр команда түпнұсқаны іске қосады
-rust-anything app wire . textkit --command upper          # textkit-rs gate-тен өткеннен кейін
+everything-rust app front-door .                            # rust/app: әр команда түпнұсқаны іске қосады
+everything-rust app wire . textkit --command upper          # textkit-rs gate-тен өткеннен кейін
 # glue кодын rust/app/src/units/textkit.rs ішінде жазыңыз, содан кейін:
-rust-anything app wire . textkit                          # қайтадан 100%, fallback үлесі төменірек
+everything-rust app wire . textkit                          # қайтадан 100%, fallback үлесі төменірек
 ```
 
 ## Front door
@@ -27,7 +27,7 @@ rust-anything app wire . textkit                          # қайтадан 100
 3. сіз немесе агентіңіз толтыруы үшін `src/units/<unit>.rs` файлын бір рет жазады: аргументтерді парстау, `<crate>::port` шақыру, түпнұсқа басып шығаратынды басып шығару;
 4. командаларды соған бағыттайды, содан кейін құрастырып, қайта ойнатады.
 
-Glue кодын жазғаннан кейін оны қайта іске қосыңыз: 100% өтеді және fallback үлесі төменірек. `RUST_ANYTHING_UNIT_<NAME>=original` қосылған бірлікті lift-ке дейін түпнұсқаға қайтарады.
+Glue кодын жазғаннан кейін оны қайта іске қосыңыз: 100% өтеді және fallback үлесі төменірек. `EVERYTHING_RUST_UNIT_<NAME>=original` қосылған бірлікті lift-ке дейін түпнұсқаға қайтарады.
 
 Ешбір команданы атамайтын argv үшін (аргументтер жоқ, белгісіз командалар, қолдану қателері) қолданбаның өз атын команда ретінде қосыңыз (`--command mytool`).
 

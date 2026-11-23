@@ -30,7 +30,7 @@ description: "TypeScript/JavaScript, Python, C, Go, Ruby и Java, а также 
 PHP находится в превью: `analyze` планирует PHP-приложение (пакеты Composer и автозагрузка PSR-4, риски
 вроде нестрогого сравнения и переполнения целых чисел во float, сопоставление пакетов Composer с крейтами),
 а PHP CLI или сервер можно записать, воспроизвести и поставить за входную точку на Rust. Перенос его
-модулей в Rust через PHP FFI станет следующим этапом ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+модулей в Rust через PHP FFI станет следующим этапом ([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# находится в превью аналогичным образом: `analyze` читает проекты `.csproj` и их пакеты NuGet
 (сопоставляемые с крейтами), разрешает директивы `using` в каталоги и отмечает, что C# делает иначе

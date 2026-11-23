@@ -5,7 +5,7 @@ description: Von der ersten Aufzeichnung bis zu einer reinen Rust-Binary. Das Zi
 
 # Eine ganze App portieren
 
-Das Ziel ist eine reine Rust-App, die sich wie das Original verhält, wobei das Original als Referenz erhalten bleibt. Dein Agent schreibt das Rust; rust-anything ordnet die Arbeit, legt das Gerüst an und beweist jeden Schritt. CLIs, HTTP-Server und Bibliotheken.
+Das Ziel ist eine reine Rust-App, die sich wie das Original verhält, wobei das Original als Referenz erhalten bleibt. Dein Agent schreibt das Rust; everything-rust ordnet die Arbeit, legt das Gerüst an und beweist jeden Schritt. CLIs, HTTP-Server und Bibliotheken.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Planen
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 `--whole-app` ergänzt die Form der App (CLI, Server oder Bibliothek) und ihre Einstiegspunkte, jede externe Abhängigkeit (importiert oder deklariert) mit ihrem Rust-Crate und wie gut es passt, die Portierungsreihenfolge als Stücke (Units, die sich gegenseitig importieren, wandern zusammen) und nummerierte Entscheidungen mit einer empfohlenen Antwort: Units behalten, blockierte Units, Abhängigkeiten ohne oder mit nur teilweise passendem Crate.
@@ -33,7 +33,7 @@ rust-anything analyze . --whole-app
 
 ## Wie der Agent sich hindurcharbeitet
 
-Der [Whole-App-Skill](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) führt den Agent hindurch und beginnt mit den Entscheidungen, die nur du treffen kannst:
+Der [Whole-App-Skill](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) führt den Agent hindurch und beginnt mit den Entscheidungen, die nur du treffen kannst:
 
 - **Grilling**: Der Agent fragt in Runden, jede Frage mit ihrer empfohlenen Antwort, bis jede Entscheidung geklärt ist, von der die Portierung abhängt, und schreibt jede als ADR in `rust/DECISIONS.md`, wobei `rust/GLOSSARY.md` die Begriffe des Originals auf Rust-Namen abbildet.
 - **Recherche**: Hintergrund-Agents lesen die Primärquellen jeder Abhängigkeit und schreiben `rust/research/<topic>.md`, mit jeder semantischen Falle, die sie gefunden haben.

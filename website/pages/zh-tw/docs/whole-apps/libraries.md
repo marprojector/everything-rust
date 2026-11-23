@@ -9,11 +9,11 @@ description: 函式庫沒有可以重播的行程。它的公開 API 就是入�
 案例就是證明。
 
 ```sh
-rust-anything app front-door .        # rust/app：具有公開 API 的 Rust crate
+everything-rust app front-door .        # rust/app：具有公開 API 的 Rust crate
 # 每個單元都走過工作循環：bridge、record、port.rs、build、diff、gate；然後：
-rust-anything app wire . textkit-rs   # 由 rust/app 重新匯出；原始版本匯入它的影子模組
-rust-anything app replay .            # 每個已接上單元的案例；回退 = 仍在原始版本中的匯出
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # 由 rust/app 重新匯出；原始版本匯入它的影子模組
+everything-rust app replay .            # 每個已接上單元的案例；回退 = 仍在原始版本中的匯出
+everything-rust app lift .
 ```
 
 - 當儲存庫沒有 `main` 也沒有伺服器時（否則使用 `--library`），`app front-door` 會找出公開 API（每個單元的匯出），
@@ -21,7 +21,7 @@ rust-anything app lift .
   單元都會成為它的一個模組：`pub use textkit_rs::port as textkit;`。
 - `app wire` 接收由 `bridge` 建立的 crate，執行 `gate`，並寫入該單元可直接替換的影子模組：
   原始套件會以它取代該單元來匯入，所以它的呼叫端保留原本的 API，並且
-  呼叫到 Rust。`RUST_ANYTHING_UNIT_<NAME>=original` 會把該單元送回去（C：建置時不加上
+  呼叫到 Rust。`EVERYTHING_RUST_UNIT_<NAME>=original` 會把該單元送回去（C：建置時不加上
   影子模組的旗標）。
 - `app replay` 會透過綁定執行每個已接上單元的已錄製案例。回退率是
   Rust 尚未回應的公開匯出所佔的比例：尚未接上的單元，以及 `bridge` 保留

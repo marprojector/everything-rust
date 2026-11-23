@@ -1,6 +1,6 @@
 /* ffmpeg's libavutil (n7.1, built by its own configure and make, -O3) against the Rust ports,
  * called from one C program. The ports are linked from one LTO staticlib built with the `shadow`
- * feature, so they export only `rust_anything_*` names beside libavutil's. Each row runs the
+ * feature, so they export only `everything_rust_*` names beside libavutil's. Each row runs the
  * same calls on both sides until 200 ms pass, five times; the median is printed. */
 #include <inttypes.h>
 #include <stdint.h>
@@ -20,31 +20,31 @@
 #include "libavutil/rational.h"
 #include "libavutil/sha.h"
 
-uint32_t rust_anything_av_adler32_update(uint32_t, const uint8_t *, size_t);
-int rust_anything_av_base64_decode(uint8_t *, const char *, int);
-char *rust_anything_av_base64_encode(char *, int, const uint8_t *, int);
-uint32_t rust_anything_oneshot_crc(int, uint32_t, const uint8_t *, size_t);
-int rust_anything_oneshot_md5(uint8_t *, int, const uint8_t *, size_t, int);
-int rust_anything_oneshot_sha(uint8_t *, int, int, const uint8_t *, size_t, int);
-int rust_anything_oneshot_murmur3(uint8_t *, int, uint64_t, const uint8_t *, size_t, int);
-int64_t rust_anything_av_rescale_rnd(int64_t, int64_t, int64_t, int);
-int64_t rust_anything_av_gcd(int64_t, int64_t);
-double rust_anything_av_bessel_i0(double);
-int rust_anything_av_reduce(int *, int *, int64_t, int64_t, int64_t);
-int rust_anything_av_strcasecmp(const char *, const char *);
-char *rust_anything_av_stristr(const char *, const char *);
-int rust_anything_av_match_name(const char *, const char *);
-int rust_anything_av_strstart(const char *, const char *, const char **);
-int rust_anything_av_stristart(const char *, const char *, const char **);
-AVRational rust_anything_av_mul_q(AVRational, AVRational);
-AVRational rust_anything_av_add_q(AVRational, AVRational);
-AVRational rust_anything_av_d2q(double, int);
-int rust_anything_av_nearer_q(AVRational, AVRational, AVRational);
-uint32_t rust_anything_av_q2intfloat(AVRational);
-int64_t rust_anything_av_rescale_q(int64_t, AVRational, AVRational);
-size_t rust_anything_av_strlcpy(char *, const char *, size_t);
-int rust_anything_av_parse_video_size(int *, int *, const char *);
-int rust_anything_av_find_info_tag(char *, int, const char *, const char *);
+uint32_t everything_rust_av_adler32_update(uint32_t, const uint8_t *, size_t);
+int everything_rust_av_base64_decode(uint8_t *, const char *, int);
+char *everything_rust_av_base64_encode(char *, int, const uint8_t *, int);
+uint32_t everything_rust_oneshot_crc(int, uint32_t, const uint8_t *, size_t);
+int everything_rust_oneshot_md5(uint8_t *, int, const uint8_t *, size_t, int);
+int everything_rust_oneshot_sha(uint8_t *, int, int, const uint8_t *, size_t, int);
+int everything_rust_oneshot_murmur3(uint8_t *, int, uint64_t, const uint8_t *, size_t, int);
+int64_t everything_rust_av_rescale_rnd(int64_t, int64_t, int64_t, int);
+int64_t everything_rust_av_gcd(int64_t, int64_t);
+double everything_rust_av_bessel_i0(double);
+int everything_rust_av_reduce(int *, int *, int64_t, int64_t, int64_t);
+int everything_rust_av_strcasecmp(const char *, const char *);
+char *everything_rust_av_stristr(const char *, const char *);
+int everything_rust_av_match_name(const char *, const char *);
+int everything_rust_av_strstart(const char *, const char *, const char **);
+int everything_rust_av_stristart(const char *, const char *, const char **);
+AVRational everything_rust_av_mul_q(AVRational, AVRational);
+AVRational everything_rust_av_add_q(AVRational, AVRational);
+AVRational everything_rust_av_d2q(double, int);
+int everything_rust_av_nearer_q(AVRational, AVRational, AVRational);
+uint32_t everything_rust_av_q2intfloat(AVRational);
+int64_t everything_rust_av_rescale_q(int64_t, AVRational, AVRational);
+size_t everything_rust_av_strlcpy(char *, const char *, size_t);
+int everything_rust_av_parse_video_size(int *, int *, const char *);
+int everything_rust_av_find_info_tag(char *, int, const char *, const char *);
 
 static volatile uint64_t sink;
 static double now_ns(void)
@@ -103,46 +103,46 @@ static struct AVSHA *sha;
 static struct AVMurMur3 *mm3;
 
 static void c_adler(void) { sink += av_adler32_update(1, data, size); }
-static void r_adler(void) { sink += rust_anything_av_adler32_update(1, data, size); }
+static void r_adler(void) { sink += everything_rust_av_adler32_update(1, data, size); }
 static void c_crc(void) { sink += av_crc(av_crc_get_table(AV_CRC_32_IEEE_LE), 0, data, size); }
-static void r_crc(void) { sink += rust_anything_oneshot_crc(AV_CRC_32_IEEE_LE, 0, data, size); }
+static void r_crc(void) { sink += everything_rust_oneshot_crc(AV_CRC_32_IEEE_LE, 0, data, size); }
 static void c_md5(void) { av_md5_init(md5); av_md5_update(md5, data, size); av_md5_final(md5, out); sink += out[0]; }
-static void r_md5(void) { rust_anything_oneshot_md5(out, 16, data, size, 0); sink += out[0]; }
+static void r_md5(void) { everything_rust_oneshot_md5(out, 16, data, size, 0); sink += out[0]; }
 static void c_sha1(void) { av_sha_init(sha, 160); av_sha_update(sha, data, size); av_sha_final(sha, out); sink += out[0]; }
-static void r_sha1(void) { rust_anything_oneshot_sha(out, 32, 160, data, size, 0); sink += out[0]; }
+static void r_sha1(void) { everything_rust_oneshot_sha(out, 32, 160, data, size, 0); sink += out[0]; }
 static void c_sha256(void) { av_sha_init(sha, 256); av_sha_update(sha, data, size); av_sha_final(sha, out); sink += out[0]; }
-static void r_sha256(void) { rust_anything_oneshot_sha(out, 32, 256, data, size, 0); sink += out[0]; }
+static void r_sha256(void) { everything_rust_oneshot_sha(out, 32, 256, data, size, 0); sink += out[0]; }
 static void c_mm3(void) { av_murmur3_init_seeded(mm3, 7); av_murmur3_update(mm3, data, size); av_murmur3_final(mm3, out); sink += out[0]; }
-static void r_mm3(void) { rust_anything_oneshot_murmur3(out, 16, 7, data, size, 0); sink += out[0]; }
+static void r_mm3(void) { everything_rust_oneshot_murmur3(out, 16, 7, data, size, 0); sink += out[0]; }
 static void c_b64e(void) { sink += (uintptr_t)av_base64_encode((char *)out, sizeof(out), data, size); }
-static void r_b64e(void) { sink += (uintptr_t)rust_anything_av_base64_encode((char *)out, sizeof(out), data, size); }
+static void r_b64e(void) { sink += (uintptr_t)everything_rust_av_base64_encode((char *)out, sizeof(out), data, size); }
 static void c_b64d(void) { sink += av_base64_decode(out, text, sizeof(out)); }
-static void r_b64d(void) { sink += rust_anything_av_base64_decode(out, text, sizeof(out)); }
+static void r_b64d(void) { sink += everything_rust_av_base64_decode(out, text, sizeof(out)); }
 
 #define N_ARGS 4096
 static int64_t ia[N_ARGS], ib[N_ARGS], ic[N_ARGS];
 static double fx[N_ARGS];
 static void c_rescale(void) { for (int i = 0; i < N_ARGS; i++) sink += av_rescale_rnd(ia[i], ib[i], ic[i], i % 6 == 4 ? 5 : i % 6); }
-static void r_rescale(void) { for (int i = 0; i < N_ARGS; i++) sink += rust_anything_av_rescale_rnd(ia[i], ib[i], ic[i], i % 6 == 4 ? 5 : i % 6); }
+static void r_rescale(void) { for (int i = 0; i < N_ARGS; i++) sink += everything_rust_av_rescale_rnd(ia[i], ib[i], ic[i], i % 6 == 4 ? 5 : i % 6); }
 static void c_gcd(void) { for (int i = 0; i < N_ARGS; i++) sink += av_gcd(ia[i], ib[i]); }
-static void r_gcd(void) { for (int i = 0; i < N_ARGS; i++) sink += rust_anything_av_gcd(ia[i], ib[i]); }
+static void r_gcd(void) { for (int i = 0; i < N_ARGS; i++) sink += everything_rust_av_gcd(ia[i], ib[i]); }
 static void c_reduce(void) { int n, d; for (int i = 0; i < N_ARGS; i++) { sink += av_reduce(&n, &d, ia[i], ib[i] | 1, 1 << 16) + n; } }
-static void r_reduce(void) { int n, d; for (int i = 0; i < N_ARGS; i++) { sink += rust_anything_av_reduce(&n, &d, ia[i], ib[i] | 1, 1 << 16) + n; } }
+static void r_reduce(void) { int n, d; for (int i = 0; i < N_ARGS; i++) { sink += everything_rust_av_reduce(&n, &d, ia[i], ib[i] | 1, 1 << 16) + n; } }
 static AVRational qa[N_ARGS], qb[N_ARGS], qc[N_ARGS];
 static void c_mulq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = av_mul_q(qa[i], qb[i]); sink += r.num + r.den; } }
-static void r_mulq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = rust_anything_av_mul_q(qa[i], qb[i]); sink += r.num + r.den; } }
+static void r_mulq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = everything_rust_av_mul_q(qa[i], qb[i]); sink += r.num + r.den; } }
 static void c_addq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = av_add_q(qa[i], qb[i]); sink += r.num + r.den; } }
-static void r_addq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = rust_anything_av_add_q(qa[i], qb[i]); sink += r.num + r.den; } }
+static void r_addq(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = everything_rust_av_add_q(qa[i], qb[i]); sink += r.num + r.den; } }
 static void c_d2q(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = av_d2q(fx[i], i & 1 ? 1 << 16 : INT32_MAX); sink += r.num + r.den; } }
-static void r_d2q(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = rust_anything_av_d2q(fx[i], i & 1 ? 1 << 16 : INT32_MAX); sink += r.num + r.den; } }
+static void r_d2q(void) { for (int i = 0; i < N_ARGS; i++) { AVRational r = everything_rust_av_d2q(fx[i], i & 1 ? 1 << 16 : INT32_MAX); sink += r.num + r.den; } }
 static void c_nearer(void) { for (int i = 0; i < N_ARGS; i++) sink += av_nearer_q(qa[i], qb[i], qc[i]); }
-static void r_nearer(void) { for (int i = 0; i < N_ARGS; i++) sink += rust_anything_av_nearer_q(qa[i], qb[i], qc[i]); }
+static void r_nearer(void) { for (int i = 0; i < N_ARGS; i++) sink += everything_rust_av_nearer_q(qa[i], qb[i], qc[i]); }
 static void c_q2if(void) { for (int i = 0; i < N_ARGS; i++) sink += av_q2intfloat(qa[i]); }
-static void r_q2if(void) { for (int i = 0; i < N_ARGS; i++) sink += rust_anything_av_q2intfloat(qa[i]); }
+static void r_q2if(void) { for (int i = 0; i < N_ARGS; i++) sink += everything_rust_av_q2intfloat(qa[i]); }
 static void c_rescaleq(void) { for (int i = 0; i < N_ARGS; i++) sink += av_rescale_q(ia[i], qa[i], qb[i]); }
-static void r_rescaleq(void) { for (int i = 0; i < N_ARGS; i++) sink += rust_anything_av_rescale_q(ia[i], qa[i], qb[i]); }
+static void r_rescaleq(void) { for (int i = 0; i < N_ARGS; i++) sink += everything_rust_av_rescale_q(ia[i], qa[i], qb[i]); }
 static void c_bessel(void) { double s = 0; for (int i = 0; i < N_ARGS; i++) s += av_bessel_i0(fx[i]); sink += (uint64_t)s; }
-static void r_bessel(void) { double s = 0; for (int i = 0; i < N_ARGS; i++) s += rust_anything_av_bessel_i0(fx[i]); sink += (uint64_t)s; }
+static void r_bessel(void) { double s = 0; for (int i = 0; i < N_ARGS; i++) s += everything_rust_av_bessel_i0(fx[i]); sink += (uint64_t)s; }
 
 static const char *const words[] = {
     "mp4", "MOV", "matroska", "webm", "h264", "HEVC", "aac", "Opus", "flac", "pcm_s16le",
@@ -151,28 +151,28 @@ static const char *const words[] = {
 #define N_WORDS (int)(sizeof(words) / sizeof(words[0]))
 static const char *const names = "mov,mp4,m4a,3gp,3g2,mj2,matroska,webm,mpegts,flv,ogg";
 static void c_casecmp(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += av_strcasecmp(words[i], words[j]); }
-static void r_casecmp(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += rust_anything_av_strcasecmp(words[i], words[j]); }
+static void r_casecmp(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += everything_rust_av_strcasecmp(words[i], words[j]); }
 static void c_stristr(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += (uintptr_t)av_stristr(words[i], words[j]); }
-static void r_stristr(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += (uintptr_t)rust_anything_av_stristr(words[i], words[j]); }
+static void r_stristr(void) { for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_WORDS; j++) sink += (uintptr_t)everything_rust_av_stristr(words[i], words[j]); }
 static void c_match(void) { for (int i = 0; i < N_WORDS; i++) sink += av_match_name(words[i], names); }
-static void r_match(void) { for (int i = 0; i < N_WORDS; i++) sink += rust_anything_av_match_name(words[i], names); }
+static void r_match(void) { for (int i = 0; i < N_WORDS; i++) sink += everything_rust_av_match_name(words[i], names); }
 static const char *const prefixes[] = { "mp4", "m", "", "Education", "hello", "MOV", "pcm_" };
 #define N_PREFIXES (int)(sizeof(prefixes) / sizeof(prefixes[0]))
 static void c_strstart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += av_strstart(words[i], prefixes[j], &p); }
-static void r_strstart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += rust_anything_av_strstart(words[i], prefixes[j], &p); }
+static void r_strstart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += everything_rust_av_strstart(words[i], prefixes[j], &p); }
 static void c_stristart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += av_stristart(words[i], prefixes[j], &p); }
-static void r_stristart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += rust_anything_av_stristart(words[i], prefixes[j], &p); }
+static void r_stristart(void) { const char *p; for (int i = 0; i < N_WORDS; i++) for (int j = 0; j < N_PREFIXES; j++) sink += everything_rust_av_stristart(words[i], prefixes[j], &p); }
 static void c_strlcpy(void) { for (int i = 0; i < N_WORDS; i++) sink += av_strlcpy((char *)out, words[i], 32); }
-static void r_strlcpy(void) { for (int i = 0; i < N_WORDS; i++) sink += rust_anything_av_strlcpy((char *)out, words[i], 32); }
+static void r_strlcpy(void) { for (int i = 0; i < N_WORDS; i++) sink += everything_rust_av_strlcpy((char *)out, words[i], 32); }
 
 static const char *const sizes[] = { "hd1080", "1920x1080", "uhd4320", "640x480", "ntsc", "123x45foo", "4k", "352x288" };
 #define N_SIZES (int)(sizeof(sizes) / sizeof(sizes[0]))
 static void c_vsize(void) { int w, h; for (int i = 0; i < N_SIZES; i++) sink += av_parse_video_size(&w, &h, sizes[i]) + w; }
-static void r_vsize(void) { int w, h; for (int i = 0; i < N_SIZES; i++) sink += rust_anything_av_parse_video_size(&w, &h, sizes[i]) + w; }
+static void r_vsize(void) { int w, h; for (int i = 0; i < N_SIZES; i++) sink += everything_rust_av_parse_video_size(&w, &h, sizes[i]) + w; }
 static const char *const info = "?tag1=val1&tag2=val2&tag3=val3&tag41=value 41&tag42=random1";
 static const char *const tags[] = { "tag1", "tag3", "tag42", "nope" };
 static void c_info(void) { char b[64]; for (int i = 0; i < 4; i++) sink += av_find_info_tag(b, sizeof(b), tags[i], info); }
-static void r_info(void) { char b[64]; for (int i = 0; i < 4; i++) sink += rust_anything_av_find_info_tag(b, sizeof(b), tags[i], info); }
+static void r_info(void) { char b[64]; for (int i = 0; i < 4; i++) sink += everything_rust_av_find_info_tag(b, sizeof(b), tags[i], info); }
 
 int main(void)
 {

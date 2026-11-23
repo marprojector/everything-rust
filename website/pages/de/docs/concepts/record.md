@@ -6,9 +6,9 @@ description: record führt das Original mit generierten Randfällen, semantische
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # oder: -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # oder: -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` führt die ursprünglichen Funktionen aus und speichert, was jede zurückgibt oder wirft, in `cases.jsonl` neben dem Crate: das Verhalten, das die Portierung treffen muss. Eine spätere Abweichung ist ein Verhaltensunterschied: Korrigiere die Portierung, nie die Aufzeichnung.

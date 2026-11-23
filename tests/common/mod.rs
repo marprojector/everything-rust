@@ -1,6 +1,6 @@
 //! Runtime checks shared by the integration tests.
 //!
-//! A test whose runtime is missing is skipped with a note, unless `RUST_ANYTHING_REQUIRE` names
+//! A test whose runtime is missing is skipped with a note, unless `EVERYTHING_RUST_REQUIRE` names
 //! that runtime (comma-separated: `node,python3,go,ruby,java`): then the test fails, so CI notices
 //! when a language suite stops running. `java` covers `javac` too.
 
@@ -10,7 +10,7 @@ use std::process::Command;
 
 fn required(runtime: &str) -> bool {
     let runtime = if runtime == "javac" { "java" } else { runtime };
-    std::env::var("RUST_ANYTHING_REQUIRE").is_ok_and(|list| {
+    std::env::var("EVERYTHING_RUST_REQUIRE").is_ok_and(|list| {
         list.split(',')
             .any(|r| r.trim().eq_ignore_ascii_case(runtime))
     })
@@ -34,7 +34,7 @@ fn version_args(program: &str) -> &'static [&'static str] {
 fn missing(runtime: &str, why: &str) -> bool {
     assert!(
         !required(runtime),
-        "{runtime} is required (RUST_ANYTHING_REQUIRE) but {why}"
+        "{runtime} is required (EVERYTHING_RUST_REQUIRE) but {why}"
     );
     eprintln!("skipped: {runtime} {why}");
     false

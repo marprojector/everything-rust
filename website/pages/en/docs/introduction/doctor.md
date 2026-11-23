@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor checks the language runtimes, the agent setup and the MCP server, with the command that fixes each problem.
+description: everything-rust doctor checks the language runtimes, the agent setup and the MCP server, with the command that fixes each problem.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` checks the language runtimes, the agent setup and the MCP server, and prints the command that fixes each problem. It exits 1 when something required is missing.

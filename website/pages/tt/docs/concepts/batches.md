@@ -6,7 +6,7 @@ description: Һәр элемент өчен бер тапкыр чакырылг
 # Batch'лар һәм кайнар юллар
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # яки: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # яки: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` `param` кыйммәтләрен бер тапкыр алып, аларны Rust'та тотучы класс ясый: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Һәр сорауга `run(<other args>)` һәр нәтиҗәне бер массив итеп кайтара, ә `rank(<other args>, min)` элемент индексларын, иң яхшысыннан башлап, кайтара. Ул барлык ядроларда эшли, һәм хаталар оригиналныкы. C'тан кала һәр тел batch'лар ала.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # яки: rust-anything r
 һәр чакыруда функцияне аларның барысына барлык ядроларда җибәрүче һәм typed array нәтиҗәләре кайтаручы класс ясый.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: җибәрүнең чиреге, `matched` аны һәр ачкыч өчен чакыра: batch итегез
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 Компиляцияләнгән оригиналлар азрак отыш ала: бер элементка эш инде тиз, шуңа күрә batch ядролар саны
 кадәр генә отыш бирә. Batch crate'лары хәтерне mimalloc белән бүлә: система аллокаторы белән Go batch
-бер агымнан әкренрәк иде. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+бер агымнан әкренрәк иде. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Тиз индекс язу
 
 - Чакыручы batch'ны һәр сорауга түгел, бер тапкыр төзесен. Кайтарылган индексларны элементларга гади цикл белән кире әйләндерегез.

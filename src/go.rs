@@ -95,12 +95,12 @@ pub fn pick(report: &Report, function: Option<&str>) -> Result<Pick> {
             .find(eligible)
             .or_else(|| report.hot.iter().find(|h| h.name == name))
             .with_context(|| {
-                format!("`{name}` is not among the hot functions of this run (see `rust-anything profile`)")
+                format!("`{name}` is not among the hot functions of this run (see `everything-rust profile`)")
             })?,
         None => report.hot.iter().find(eligible).with_context(|| {
             format!(
                 "no hot function to port: none of the {} hot functions is exported by a portable \
-                 unit, can cross the bridge and takes arguments. `rust-anything profile` shows why.",
+                 unit, can cross the bridge and takes arguments. `everything-rust profile` shows why.",
                 report.hot.len()
             )
         })?,
@@ -177,7 +177,7 @@ pub fn task(crate_dir: &Path, pick: &Pick, command: &[String]) -> String {
         format!(
             "\nThe crate also has a batch class for `{spec}`, which runs `{function}` over many \
              items kept in Rust. A `{}Index` struct in `src/port.rs` can prepare the items once \
-             (see the Hot paths section of rust-anything's docs/how-it-works.md); `rust-anything go` runs `rust-anything \
+             (see the Hot paths section of everything-rust's docs/how-it-works.md); `everything-rust go` runs `everything-rust \
              refresh` before building, so the batch class uses it.\n",
             crate::codegen_batch::pascal(function)
         )
@@ -186,7 +186,7 @@ pub fn task(crate_dir: &Path, pick: &Pick, command: &[String]) -> String {
         "# Port `{function}` to Rust\n\n\
          `{function}` (`{file}:{line}`) took {pct:.0}% of `{command}`. Port it, and only it, in \
          `src/port.rs` of this crate ({dir}). The bindings, the recorded cases and \
-         `rust-anything.json` are generated: leave them as they are.\n{batch}\n\
+         `everything-rust.json` are generated: leave them as they are.\n{batch}\n\
          ## Rules\n\n\
          - Match the original exactly on every recorded case in `cases.jsonl`: values, errors and \
            their messages, edge cases (empty input, Unicode, large numbers). Read the original \
@@ -195,12 +195,12 @@ pub fn task(crate_dir: &Path, pick: &Pick, command: &[String]) -> String {
          - Keep helpers private; only the unit's functions are `pub`.\n\n\
          ## Loop\n\n\
          ```sh\n\
-         rust-anything build .\n\
-         rust-anything diff .     # every recorded case must match\n\
-         rust-anything gate .     # fmt, clippy, tests, unsafe, API, diff\n\
+         everything-rust build .\n\
+         everything-rust diff .     # every recorded case must match\n\
+         everything-rust gate .     # fmt, clippy, tests, unsafe, API, diff\n\
          ```\n\n\
          Done when `diff` matches every case and `gate` passes. Do not switch the port on; \
-         `rust-anything go` does that once both pass.\n",
+         `everything-rust go` does that once both pass.\n",
         function = pick.function,
         file = pick.file,
         line = pick.line,
@@ -224,7 +224,7 @@ pub fn agent_command(agent: &str) -> Result<Command> {
                 "acceptEdits",
                 "--allowedTools",
                 "Bash(cargo:*)",
-                "Bash(rust-anything:*)",
+                "Bash(everything-rust:*)",
             ]);
         }
         "codex" if args.is_empty() => {
@@ -267,7 +267,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
 
     let name = crate_name(&pick.function);
     let crate_dir = root.join("rust").join(&name);
-    if crate_dir.join("rust-anything.json").is_file() {
+    if crate_dir.join("everything-rust.json").is_file() {
         let m = Manifest::load(&crate_dir)?;
         if !m.exports.iter().any(|f| f.name == pick.function) {
             bail!(
@@ -381,7 +381,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
                     Vec::new(),
                     format!(
                         "Port `{}` in {} as {} says (or pass --agent claude), then run the same \
-                         `rust-anything go` again.",
+                         `everything-rust go` again.",
                         pick.function,
                         crate_dir.join("src/port.rs").display(),
                         task_path.display()
@@ -429,7 +429,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
                 Some(matched),
                 problems,
                 format!(
-                    "Fix the port ({}), then run the same `rust-anything go` again. The unit stays off.",
+                    "Fix the port ({}), then run the same `everything-rust go` again. The unit stays off.",
                     task_path.display()
                 ),
             ));
@@ -474,7 +474,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
         say(
             &mut steps,
             format!(
-                "switched on: {} {} in Rust now ({}); `rust-anything disable {}` turns it off",
+                "switched on: {} {} in Rust now ({}); `everything-rust disable {}` turns it off",
                 on.functions.join(", "),
                 if on.functions.len() == 1 {
                     "runs"
@@ -496,7 +496,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
             Some(matched),
             Vec::new(),
             format!(
-                "Measure it: `rust-anything report {}` writes REPORT.md and card.svg.",
+                "Measure it: `everything-rust report {}` writes REPORT.md and card.svg.",
                 crate_dir.display()
             ),
         )
@@ -509,7 +509,7 @@ pub fn go(opts: &Options) -> Result<Outcome> {
             Vec::new(),
             format!(
                 "Every case matches and gate passes. Switch it in with the shadow module \
-                 (`rust-anything shadow {}`), then `rust-anything report` it.",
+                 (`everything-rust shadow {}`), then `everything-rust report` it.",
                 crate_dir.display()
             ),
         )
@@ -540,15 +540,15 @@ pub fn slower_advice(pick: &Pick, speedup: f64) -> String {
                 "Every case matches, but called once per item the port is {lost} than the \
                  original, so it stays off. The speed is in the batch: in {caller}, build \
                  `{}Batch` once over the items and call it per query (the crate's type \
-                 declarations list its methods), or port {caller} with it. Then `rust-anything enable` and \
-                 `rust-anything report`.",
+                 declarations list its methods), or port {caller} with it. Then `everything-rust enable` and \
+                 `everything-rust report`.",
                 crate::codegen_batch::pascal(function)
             )
         }
         None => format!(
             "Every case matches, but the port is {lost} than the original as {caller} calls it: \
              each call into Rust costs more than its work. It stays off. Port {caller} with it \
-             (`rust-anything go --function <name>`), or keep it in the original."
+             (`everything-rust go --function <name>`), or keep it in the original."
         ),
     }
 }
@@ -559,7 +559,7 @@ fn check(crate_dir: &Path, steps: &mut Vec<String>) -> Result<(usize, usize, Vec
         && let Err(e) = crate::bridge::refresh(crate_dir)
     {
         say(steps, "refresh failed".into());
-        return Ok((0, 0, vec![format!("`rust-anything refresh` fails:\n{e:#}")]));
+        return Ok((0, 0, vec![format!("`everything-rust refresh` fails:\n{e:#}")]));
     }
     if let Err(e) = crate::harness::build(crate_dir) {
         say(steps, "the build failed".into());
@@ -726,7 +726,7 @@ mod tests {
     #[test]
     fn functions_bridge_keeps_are_left_to_bridge_for_their_reason() {
         let root =
-            std::env::temp_dir().join(format!("rust-anything-go-others-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-go-others-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(&root).unwrap();
         std::fs::write(

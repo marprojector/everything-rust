@@ -1,13 +1,13 @@
 ---
 title: Doctor
-description: rust-anything doctor тилдердин runtime'дарын, агенттин жөндөөлөрүн жана MCP серверди текшерип, ар бир көйгөйдү оңдогон буйрукту көрсөтөт.
+description: everything-rust doctor тилдердин runtime'дарын, агенттин жөндөөлөрүн жана MCP серверди текшерип, ар бир көйгөйдү оңдогон буйрукту көрсөтөт.
 ---
 
 # Doctor
 
 ```sh
-rust-anything doctor
-rust-anything doctor --json
+everything-rust doctor
+everything-rust doctor --json
 ```
 
 `doctor` тилдердин runtime'дарын, агенттин жөндөөлөрүн жана MCP серверди текшерет жана ар бир көйгөйдү оңдогон буйрукту чыгарат. Керектүү бир нерсе жок болсо, ал 1 коду менен аяктайт.

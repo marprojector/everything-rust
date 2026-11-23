@@ -1,7 +1,7 @@
 use std::path::Path;
 
-use rust_anything::bridge::{self, Manifest};
-use rust_anything::{port_map, recording};
+use everything_rust::bridge::{self, Manifest};
+use everything_rust::{port_map, recording};
 
 fn copy_dir(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
@@ -19,7 +19,7 @@ fn copy_dir(from: &Path, to: &Path) {
 #[test]
 fn map_lists_ports_and_marks_upstream_changes() {
     let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini");
-    let repo = std::env::temp_dir().join(format!("rust-anything-map-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!("everything-rust-map-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     copy_dir(&fixture, &repo);
     let unit = "packages/a/src/util.ts";
@@ -62,10 +62,10 @@ fn map_lists_ports_and_marks_upstream_changes() {
     assert_eq!(map.changed(), 1);
     let md = port_map::markdown(&map);
     assert!(md.contains("**1 changed upstream**"), "{md}");
-    assert!(md.contains("`rust-anything record rust/util-rs`"), "{md}");
+    assert!(md.contains("`everything-rust record rust/util-rs`"), "{md}");
 
     let outside =
-        std::env::temp_dir().join(format!("rust-anything-map-out-{}", std::process::id()));
+        std::env::temp_dir().join(format!("everything-rust-map-out-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&outside);
     bridge::bridge(&bridge::Options {
         root: &repo,
@@ -97,7 +97,7 @@ fn map_lists_ports_and_marks_upstream_changes() {
 #[test]
 fn map_names_a_crate_folder_whose_manifest_does_not_parse() {
     let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini");
-    let repo = std::env::temp_dir().join(format!("rust-anything-map-bad-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!("everything-rust-map-bad-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     copy_dir(&fixture, &repo);
     let crate_dir = repo.join("rust/util-rs");
@@ -119,7 +119,7 @@ fn map_names_a_crate_folder_whose_manifest_does_not_parse() {
     // A manifest that does not parse used to be skipped in silence: the map then said the unit had
     // no port, which is wrong: the crate folder is right there. Break it the way a hand edit does:
     // valid JSON, one required field missing.
-    let path = crate_dir.join("rust-anything.json");
+    let path = crate_dir.join("everything-rust.json");
     let mut manifest: serde_json::Value =
         serde_json::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
     manifest["exports"][0]["params"][0]
@@ -129,8 +129,8 @@ fn map_names_a_crate_folder_whose_manifest_does_not_parse() {
     std::fs::write(&path, manifest.to_string()).unwrap();
     std::fs::create_dir_all(repo.join("rust/app")).unwrap();
     std::fs::write(
-        repo.join("rust/app/rust-anything.json"),
-        r#"{"schema": "rust-anything/front-door@1", "name": "mini"}"#,
+        repo.join("rust/app/everything-rust.json"),
+        r#"{"schema": "everything-rust/front-door@1", "name": "mini"}"#,
     )
     .unwrap();
     let map = port_map::map(&repo, &[]).unwrap();
@@ -153,7 +153,7 @@ fn map_names_a_crate_folder_whose_manifest_does_not_parse() {
 #[test]
 fn a_broken_manifest_with_an_unresolved_root_is_reported() {
     let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/mini");
-    let repo = std::env::temp_dir().join(format!("rust-anything-map-root-{}", std::process::id()));
+    let repo = std::env::temp_dir().join(format!("everything-rust-map-root-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&repo);
     copy_dir(&fixture, &repo);
     let crate_dir = repo.join("rust/util-rs");
@@ -174,8 +174,8 @@ fn a_broken_manifest_with_an_unresolved_root_is_reported() {
     // `root` names a directory that does not exist: that says nothing about which repository the
     // folder belongs to, so the failure is reported instead of being taken for a foreign port.
     std::fs::write(
-        crate_dir.join("rust-anything.json"),
-        "{\"schema\": \"rust-anything/bridge@1\", \"root\": \"../../missing-dir\"}\n",
+        crate_dir.join("everything-rust.json"),
+        "{\"schema\": \"everything-rust/bridge@1\", \"root\": \"../../missing-dir\"}\n",
     )
     .unwrap();
     let map = port_map::map(&repo, &[]).unwrap();

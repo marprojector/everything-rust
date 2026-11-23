@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.erkamyaman/rust-anything",
-  "title": "rust-anything",
+  "name": "io.github.marprojector/everything-rust",
+  "title": "everything-rust",
   "description": "Rewrite an app in Rust one piece at a time, checked against the original's recorded behavior.",
   "repository": {
-    "url": "https://github.com/erkamyaman/rust-anything",
+    "url": "https://github.com/marprojector/everything-rust",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/erkamyaman/rust-anything",
+  "websiteUrl": "https://github.com/marprojector/everything-rust",
   "version": "3.3.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
-      "identifier": "rust-anything",
+      "identifier": "everything-rust",
       "version": "3.3.0",
       "runtimeHint": "npx",
       "transport": {

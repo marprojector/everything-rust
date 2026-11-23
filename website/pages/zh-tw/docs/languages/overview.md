@@ -30,7 +30,7 @@ Rust 中，每次呼叫都會使用所有核心處理全部項目。
 PHP 目前為預覽：`analyze` 可以規劃 PHP 應用程式（Composer 套件與 PSR-4 自動載入、
 寬鬆比較與整數溢位成浮點數等風險、Composer 套件對應到 crate），
 而 PHP CLI 或伺服器可以被錄製、重播，並放到 Rust 入口之後。透過 PHP 的 FFI 將其
-單元移植到 Rust 是下一步（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。
+單元移植到 Rust 是下一步（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。
 
 C# 同樣處於預覽：`analyze` 會讀取 `.csproj` 專案及其 NuGet 套件
 （對應到 crate），將 `using` 指示詞解析到資料夾，並標出 C# 行為不同之處

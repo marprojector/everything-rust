@@ -37,7 +37,7 @@ Real kodda qeydə alınmış hallarla tapılıb:
 
 Çağırış başına port hər dəfə körpünün haqqını ödəyir, V8 isə kiçik funksiyaları nanosaniyələrdə işlədir. vercel/ms qeydə alınmış halları üzrə çağırış başına 0.56x işlədi; x18n-in core portları JS-dən çağırıldıqda TS-dən daha yavaşdır. Batch-lər kimi dövr Rust-a köçür:
 
-| İş yükü | Orijinal | rust-anything ilə |
+| İş yükü | Orijinal | everything-rust ilə |
 | --- | ---: | ---: |
 | x18n-in yan panel axtarışı, 50,000 açar (Node) | sorğu başına 10 ms | 0.5 ms: 20x daha sürətli |
 | Eyni axtarış brauzerdə (wasm, bir thread) | 10 ms | 0.95 ms: 11.5x |

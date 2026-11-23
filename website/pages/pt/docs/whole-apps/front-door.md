@@ -8,10 +8,10 @@ description: O app front-door coloca um binário Rust à frente do original; o a
 Passe primeiro o ponto de entrada para Rust e depois entregue-lhe os comandos, uma unidade de cada vez:
 
 ```sh
-rust-anything app front-door .                            # rust/app: todos os comandos executam o original
-rust-anything app wire . textkit --command upper          # depois de textkit-rs passar o gate
+everything-rust app front-door .                            # rust/app: todos os comandos executam o original
+everything-rust app wire . textkit --command upper          # depois de textkit-rs passar o gate
 # escreva a ligação em rust/app/src/units/textkit.rs e depois:
-rust-anything app wire . textkit                          # de novo 100%, com menor taxa de fallback
+everything-rust app wire . textkit                          # de novo 100%, com menor taxa de fallback
 ```
 
 ## A front door
@@ -27,7 +27,7 @@ O `app front-door` cria a estrutura de `rust/app`, um binário Rust com o nome d
 3. escreve `src/units/<unit>.rs` uma vez, para que você ou o seu agente o preencham: interpretar os argumentos, chamar `<crate>::port`, imprimir o que o original imprime;
 4. encaminha os comandos para ela e depois compila e reproduz.
 
-Execute-o novamente depois de escrever a ligação: 100% de sucesso e uma taxa de fallback menor. `RUST_ANYTHING_UNIT_<NAME>=original` devolve uma unidade ligada ao original até ao lift.
+Execute-o novamente depois de escrever a ligação: 100% de sucesso e uma taxa de fallback menor. `EVERYTHING_RUST_UNIT_<NAME>=original` devolve uma unidade ligada ao original até ao lift.
 
 Ligue o próprio nome da aplicação como comando (`--command mytool`) para argv que não nomeia nenhum comando: sem argumentos, comandos desconhecidos, erros de utilização.
 

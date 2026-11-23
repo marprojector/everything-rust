@@ -27,7 +27,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      RUST_ANYTHING_REQUIRE: node,cargo
+      EVERYTHING_RUST_REQUIRE: node,cargo
     steps:
       - uses: actions/checkout@v7
       - run: sh scripts/check-secrets.sh --all
@@ -46,7 +46,7 @@ jobs:
   macos:
     runs-on: macos-latest
     env:
-      RUST_ANYTHING_REQUIRE: node,python3,go,ruby,java,cc,cargo
+      EVERYTHING_RUST_REQUIRE: node,python3,go,ruby,java,cc,cargo
     steps:
       - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
@@ -78,13 +78,13 @@ jobs:
       - name: Gate every demo port
         run: |
           for crate in demo/fixtures/*-rs; do
-            rust-anything gate "$crate"
+            everything-rust gate "$crate"
           done
 
   windows:
     runs-on: windows-latest
     env:
-      RUST_ANYTHING_REQUIRE: node,python,go,ruby,java,cargo
+      EVERYTHING_RUST_REQUIRE: node,python,go,ruby,java,cargo
     steps:
       - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
@@ -127,5 +127,5 @@ jobs:
       - name: Gate the fixture ports
         run: |
           for crate in demo/fixtures/async-rs; do
-            rust-anything gate "$crate"
+            everything-rust gate "$crate"
           done

@@ -17,12 +17,12 @@ description: PHP находится в превью. analyze планирует 
 PHP CLI или сервер можно записать, воспроизвести и поставить за входную точку на Rust:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Перенос его модулей в Rust через PHP FFI станет следующим этапом ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). До тех пор `bridge` отклоняет модули PHP с понятным сообщением.
+Перенос его модулей в Rust через PHP FFI станет следующим этапом ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). До тех пор `bridge` отклоняет модули PHP с понятным сообщением.
 
 CI не устанавливает PHP, поэтому тесты PHP запускаются только на машине, где он есть.

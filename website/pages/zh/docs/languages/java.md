@@ -20,7 +20,7 @@ description: 通过类型化 JNI 和生成的二进制传输协议，把由 publ
 - `Integer.parseInt` 通过 `Character.digit` 接受任何 Unicode 十进制数字（`١٢`、`２`）。
 - `Double.toString`（JDK 19+）输出最短的十进制表示，但至少两位数字：`4.9E-324`，而 Rust 的最短形式是 `5e-324`。
 - `\s` 只匹配 ASCII；Rust 的 `split_whitespace` 还会在 U+00A0 处切分。
-- 浮点数必须能无损往返：`serde_json` 默认的浮点解析器并不总是正确舍入，所以 rust-anything 及其生成的每个 crate 都启用了它的 `float_roundtrip` 特性。
+- 浮点数必须能无损往返：`serde_json` 默认的浮点解析器并不总是正确舍入，所以 everything-rust 及其生成的每个 crate 都启用了它的 `float_roundtrip` 特性。
 
 ## 速度
 

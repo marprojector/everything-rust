@@ -9,11 +9,11 @@ description: Кітапхананың қайта ойнатуға болатын
 кейстері дәлел болады.
 
 ```sh
-rust-anything app front-door .        # rust/app: ашық API бар Rust crate
+everything-rust app front-door .        # rust/app: ашық API бар Rust crate
 # әр бірлік цикл арқылы: bridge, record, port.rs, build, diff, gate; содан кейін:
-rust-anything app wire . textkit-rs   # rust/app-тан қайта экспортталады; түпнұсқа оның shadow-ын импорттайды
-rust-anything app replay .            # әр қосылған бірліктің кейстері; fallback = әлі түпнұсқадағы экспорттар
-rust-anything app lift .
+everything-rust app wire . textkit-rs   # rust/app-тан қайта экспортталады; түпнұсқа оның shadow-ын импорттайды
+everything-rust app replay .            # әр қосылған бірліктің кейстері; fallback = әлі түпнұсқадағы экспорттар
+everything-rust app lift .
 ```
 
 - Репозиторийде `main` те, сервер де болмаса (`--library` әйтпесе), `app front-door` ашық API-ді (әр бірліктің
@@ -21,7 +21,7 @@ rust-anything app lift .
   бірлік оның модуліне айналады: `pub use textkit_rs::port as textkit;`.
 - `app wire` `bridge` жасаған crate-ті алып, `gate` іске қосады және бірліктің shadow алмастырғышын жазады:
   түпнұсқа пакет оны бірліктің орнына импорттайды, сондықтан оның шақырушылары түпнұсқа API-ді сақтап,
-  Rust-қа жетеді. `RUST_ANYTHING_UNIT_<NAME>=original` бірлікті кері қайтарады (C: shadow флагтарынсыз
+  Rust-қа жетеді. `EVERYTHING_RUST_UNIT_<NAME>=original` бірлікті кері қайтарады (C: shadow флагтарынсыз
   құрастырыңыз).
 - `app replay` әр қосылған бірліктің жазылған кейстерін оның байланыстырулары (bindings) арқылы іске қосады. Fallback үлесі
   Rust әлі жауап бермейтін ашық экспорттардың үлесі: қосылмаған бірліктер және `bridge` бастапқы тілде

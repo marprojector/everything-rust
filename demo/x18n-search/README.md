@@ -4,11 +4,11 @@ x18n's sidebar search (`fuzzyScore` from `packages/core/src/fuzzy.ts` over every
 filter and sort) moved to Rust as a batch, with the keys kept on the Rust side.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/search.ts .   # fuzzyScore: ~25%, per key
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/search.ts .   # fuzzyScore: ~25%, per key
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 # port fuzzyScore, then add FuzzyScoreIndex to src/port.rs
-rust-anything gate .                                   # 2000/2000 recorded cases match
-rust-anything build . && node --experimental-strip-types bench.ts ../x18n
+everything-rust gate .                                   # 2000/2000 recorded cases match
+everything-rust build . && node --experimental-strip-types bench.ts ../x18n
 ```
 
 - `src/port.rs`: `fuzzy_score`, the port, and `FuzzyScoreIndex`: keys lowercased once (UTF-16,

@@ -6,9 +6,9 @@ description: diff rejoue chaque cas enregistré contre le Rust. known-diffs.json
 # Diff et différences connues
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # doit être N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # doit être N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` rejoue `cases.jsonl` contre le module Rust compilé, appelé comme l'appellent les appelants de l'original, et liste les écarts. Un écart est une différence de comportement : corrigez le portage, jamais l'enregistrement.

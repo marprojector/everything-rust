@@ -7,7 +7,7 @@ mod common;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use rust_anything::{bridge, cache, enable};
+use everything_rust::{bridge, cache, enable};
 
 fn copy_tree(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
@@ -26,7 +26,7 @@ fn copy_tree(from: &Path, to: &Path) {
 
 fn scratch(name: &str, fixture: &str) -> PathBuf {
     let dir = std::env::temp_dir().join(format!(
-        "rust-anything-switch-{name}-{}",
+        "everything-rust-switch-{name}-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&dir);
@@ -107,9 +107,9 @@ fn python_callers_get_rust_until_disabled() {
         cmd.args(["-c", "import fuzzy; print(fuzzy.dedupe(['ab', 'ac'], 1))"])
             .current_dir(&root)
             .env("PYTHONDONTWRITEBYTECODE", "1")
-            .env_remove("RUST_ANYTHING_MODE");
+            .env_remove("EVERYTHING_RUST_MODE");
         if let Some(v) = switch {
-            cmd.env("RUST_ANYTHING_UNIT_DEDUPE", v);
+            cmd.env("EVERYTHING_RUST_UNIT_DEDUPE", v);
         }
         run(&mut cmd)
     };
@@ -117,7 +117,7 @@ fn python_callers_get_rust_until_disabled() {
 
     let on = enable::enable(&crate_dir).unwrap();
     assert_eq!(on.functions, ["dedupe"]);
-    assert_eq!(on.switch, "RUST_ANYTHING_UNIT_DEDUPE");
+    assert_eq!(on.switch, "EVERYTHING_RUST_UNIT_DEDUPE");
     assert!(enable::is_enabled(&crate_dir).unwrap());
     let text = std::fs::read_to_string(root.join("fuzzy.py")).unwrap();
     assert!(
@@ -164,9 +164,9 @@ fn typescript_callers_get_rust_until_disabled() {
             "const u = await import('./packages/a/src/util.ts'); console.log(u.count('a b c'), u.words('$x'))",
         ])
         .current_dir(&root)
-        .env_remove("RUST_ANYTHING_MODE");
+        .env_remove("EVERYTHING_RUST_MODE");
         if let Some(v) = switch {
-            cmd.env("RUST_ANYTHING_UNIT_UTIL", v);
+            cmd.env("EVERYTHING_RUST_UNIT_UTIL", v);
         }
         run(&mut cmd)
     };
@@ -229,7 +229,7 @@ fn a_wasm_crate_is_switched_on_through_its_wrapper() {
         "const u = await import('./packages/a/src/util.ts'); console.log(u.count('a b c'), u.words('$x'))",
     ])
     .current_dir(&root)
-    .env_remove("RUST_ANYTHING_MODE");
+    .env_remove("EVERYTHING_RUST_MODE");
     assert_eq!(run(&mut cmd), "42 [ 'rust' ]");
     enable::disable(&crate_dir).unwrap();
     assert_eq!(std::fs::read(&file).unwrap(), before);
@@ -240,7 +240,7 @@ fn a_wasm_crate_is_switched_on_through_its_wrapper() {
 /// not share it: the second builds in its own `target/`, and each keeps its own library.
 #[test]
 fn two_crates_with_one_name_keep_their_own_library() {
-    let root = std::env::temp_dir().join(format!("rust-anything-shared-{}", std::process::id()));
+    let root = std::env::temp_dir().join(format!("everything-rust-shared-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     let shared = root.join("shared");
     let krate = |dir: &str, value: u32| -> PathBuf {
@@ -292,7 +292,7 @@ fn two_crates_with_one_name_keep_their_own_library() {
 
 #[test]
 fn go_takes_the_root_as_profile_does() {
-    let bin = env!("CARGO_BIN_EXE_rust-anything");
+    let bin = env!("CARGO_BIN_EXE_everything-rust");
     let parse = |args: &[&str]| {
         let out = Command::new(bin)
             .args(args)

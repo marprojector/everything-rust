@@ -116,7 +116,7 @@ pub fn ruby_rs(m: &Manifest, api: &PortApi) -> Result<(String, String), String> 
             code,
             "\n/// `{js}` over many `{param}` values kept in Rust: `run` maps them all in one call, on\n\
              /// all cores; `rank` returns the indexes of results >= `min`, best first.\n\
-             #[magnus::wrap(class = \"RustAnythingNative{camel}::{class}\", free_immediately, size)]\n\
+             #[magnus::wrap(class = \"EverythingRustNative{camel}::{class}\", free_immediately, size)]\n\
              pub struct {class} {{\n    inner: {index},\n}}\n\n\
              impl {class} {{\n    \
              fn new(ruby: &Ruby, {items_param}) -> Result<Self, Error> {{\n{items_convert}        \
@@ -186,7 +186,7 @@ pub fn ruby_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
             .map(|p| p.name.as_str())
             .collect();
         let native = format!(
-            "RustAnythingNative{}::{}",
+            "EverythingRustNative{}::{}",
             crate::codegen_ruby::camel(&lib),
             s.class
         );
@@ -344,7 +344,7 @@ fn go_fixed_params(
 }
 
 /// The results' C out-parameters: Go-owned for numbers and booleans; for strings, the results
-/// stay in Rust until Go has a buffer of their total size (`rust_anything_b_take_strings`).
+/// stay in Rust until Go has a buffer of their total size (`everything_rust_b_take_strings`).
 fn go_out_params(result_c: &str) -> (&'static str, String) {
     match result_c {
         "string" => (
@@ -371,7 +371,7 @@ pub fn go_prototypes(m: &Manifest, api: &PortApi) -> String {
     let mut out = String::new();
     if !batches.is_empty() {
         out.push_str(
-            "void rust_anything_b_take_strings(void *res, uint8_t *buf, size_t len, size_t *lens, size_t cap);\n",
+            "void everything_rust_b_take_strings(void *res, uint8_t *buf, size_t len, size_t *lens, size_t cap);\n",
         );
     }
     for g in &batches {
@@ -380,16 +380,16 @@ pub fn go_prototypes(m: &Manifest, api: &PortApi) -> String {
         let (fixed, _, _) = go_fixed_params(&g.fixed);
         let pre: String = fixed.iter().map(|p| format!(", {p}")).collect();
         let (outs, _) = go_out_params(g.result_c);
-        let _ = writeln!(out, "void *rust_anything_b_{name}_new({items});");
-        let _ = writeln!(out, "void rust_anything_b_{name}_free(void *h);");
+        let _ = writeln!(out, "void *everything_rust_b_{name}_new({items});");
+        let _ = writeln!(out, "void everything_rust_b_{name}_free(void *h);");
         let _ = writeln!(
             out,
-            "int rust_anything_b_{name}_run(const void *h{pre}, {outs}, char **err);"
+            "int everything_rust_b_{name}_run(const void *h{pre}, {outs}, char **err);"
         );
         if rank_body(g.s.f.ret.trim()).is_some() {
             let _ = writeln!(
                 out,
-                "int rust_anything_b_{name}_rank(const void *h{pre}, double min, uint32_t *order, size_t cap, size_t *n, char **err);"
+                "int everything_rust_b_{name}_rank(const void *h{pre}, double min, uint32_t *order, size_t cap, size_t *n, char **err);"
             );
         }
     }
@@ -455,10 +455,10 @@ unsafe fn batch_out<T: Copy>(out: *mut T, cap: usize, values: &[T]) {
 ///
 /// `res` comes from a batch's `run` and is taken once; `buf` holds `len` bytes, the results'
 /// total from `run`, and `lens` holds `cap` values.
-// SAFETY: exported unmangled under a name only rust-anything defines.
+// SAFETY: exported unmangled under a name only everything-rust defines.
 #[unsafe(no_mangle)]
 // SAFETY: callers uphold the contract under `# Safety`.
-pub unsafe extern "C" fn rust_anything_b_take_strings(res: *mut Vec<String>, buf: *mut u8, len: usize, lens: *mut usize, cap: usize) {
+pub unsafe extern "C" fn everything_rust_b_take_strings(res: *mut Vec<String>, buf: *mut u8, len: usize, lens: *mut usize, cap: usize) {
     use rayon::prelude::*;
     if res.is_null() {
         return;
@@ -514,7 +514,7 @@ pub fn go_rs(m: &Manifest, api: &PortApi) -> Result<String, String> {
         let (_, outs) = go_out_params(g.result_c);
         let write = if g.result_c == "string" {
             "            // SAFETY: Go passes valid `res` and `total`, and takes the results with\n            \
-             // `rust_anything_b_take_strings`.\n            \
+             // `everything_rust_b_take_strings`.\n            \
              unsafe {\n                *total = values.iter().map(String::len).sum();\n                \
              *res = Box::into_raw(Box::new(values));\n            }"
                 .to_string()
@@ -524,20 +524,20 @@ pub fn go_rs(m: &Manifest, api: &PortApi) -> Result<String, String> {
         let _ = write!(
             out,
             "\n/// Builds a `{class}`: the items cross once.\n///\n/// # Safety\n///\n/// Called by the generated Go wrapper with valid pointers.\n\
-             // SAFETY: exported unmangled under a name only rust-anything defines.\n#[unsafe(no_mangle)]\n\
+             // SAFETY: exported unmangled under a name only everything-rust defines.\n#[unsafe(no_mangle)]\n\
              // SAFETY: callers uphold the contract under `# Safety`.\n\
-             pub unsafe extern \"C\" fn rust_anything_b_{name}_new({items}) -> *mut {index} {{\n    \
+             pub unsafe extern \"C\" fn everything_rust_b_{name}_new({items}) -> *mut {index} {{\n    \
              // SAFETY: Go passes its items' memory (see above).\n    let items = unsafe {{ {read_items} }};\n    \
              std::panic::catch_unwind(|| {index}::new(items))\n        .map_or(std::ptr::null_mut(), |index| Box::into_raw(Box::new(index)))\n}}\n\n\
-             /// Frees a `{class}`.\n///\n/// # Safety\n///\n/// `h` comes from `rust_anything_b_{name}_new`, once.\n\
-             // SAFETY: exported unmangled under a name only rust-anything defines.\n#[unsafe(no_mangle)]\n\
+             /// Frees a `{class}`.\n///\n/// # Safety\n///\n/// `h` comes from `everything_rust_b_{name}_new`, once.\n\
+             // SAFETY: exported unmangled under a name only everything-rust defines.\n#[unsafe(no_mangle)]\n\
              // SAFETY: callers uphold the contract under `# Safety`.\n\
-             pub unsafe extern \"C\" fn rust_anything_b_{name}_free(h: *mut {index}) {{\n    if !h.is_null() {{\n        \
+             pub unsafe extern \"C\" fn everything_rust_b_{name}_free(h: *mut {index}) {{\n    if !h.is_null() {{\n        \
              // SAFETY: `h` was boxed by `_new` and is freed once.\n        drop(unsafe {{ Box::from_raw(h) }});\n    }}\n}}\n\n\
              /// `{name}` over every item: 0, or 1 with the error in `err`.\n///\n/// # Safety\n///\n/// Called by the generated Go wrapper with a live handle and valid pointers.\n\
-             // SAFETY: exported unmangled under a name only rust-anything defines.\n#[unsafe(no_mangle)]\n\
+             // SAFETY: exported unmangled under a name only everything-rust defines.\n#[unsafe(no_mangle)]\n\
              // SAFETY: callers uphold the contract under `# Safety`.\n\
-             pub unsafe extern \"C\" fn rust_anything_b_{name}_run(h: *const {index}{pre}, {outs}, err: *mut *mut c_char) -> i32 {{\n{convert}    \
+             pub unsafe extern \"C\" fn everything_rust_b_{name}_run(h: *const {index}{pre}, {outs}, err: *mut *mut c_char) -> i32 {{\n{convert}    \
              // SAFETY: Go keeps the batch alive during the call.\n    let index = unsafe {{ &*h }};\n    \
              match run(|| index.run({args})) {{\n        Ok(values) => {{\n{write}\n            0\n        }}\n        \
              // SAFETY: Go passes a valid `err`.\n        Err(message) => unsafe {{ fail(err, message) }},\n    }}\n}}\n",
@@ -550,9 +550,9 @@ pub fn go_rs(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 out,
                 "\n/// Indexes of the items whose result is at least `min`, best first: 0, or 1 with the error.\n///\n/// # Safety\n///\n\
                  /// Called by the generated Go wrapper with a live handle and valid pointers.\n\
-                 // SAFETY: exported unmangled under a name only rust-anything defines.\n#[unsafe(no_mangle)]\n\
+                 // SAFETY: exported unmangled under a name only everything-rust defines.\n#[unsafe(no_mangle)]\n\
                  // SAFETY: callers uphold the contract under `# Safety`.\n\
-                 pub unsafe extern \"C\" fn rust_anything_b_{name}_rank(h: *const {index}{pre}, min: f64, order_out: *mut u32, cap: usize, n: *mut usize, err: *mut *mut c_char) -> i32 {{\n{convert}    \
+                 pub unsafe extern \"C\" fn everything_rust_b_{name}_rank(h: *const {index}{pre}, min: f64, order_out: *mut u32, cap: usize, n: *mut usize, err: *mut *mut c_char) -> i32 {{\n{convert}    \
                  // SAFETY: Go keeps the batch alive during the call.\n    let index = unsafe {{ &*h }};\n    \
                  match run(|| index.run({args})) {{\n        Ok(out) => {{\n            {rank}\n            \
                  // SAFETY: Go passes `order_out` of `cap` values and a valid `n`.\n            unsafe {{\n                \
@@ -578,7 +578,7 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 "\ttotal := 0\n\tfor _, s := range items {{\n\t\ttotal += len(s)\n\t}}\n\
                  \tbytes := make([]byte, 0, total)\n\tlens := make([]C.size_t, len(items))\n\
                  \tfor i, s := range items {{\n\t\tbytes = append(bytes, s...)\n\t\tlens[i] = C.size_t(len(s))\n\t}}\n\
-                 \th := C.rust_anything_b_{name}_new(rustAnythingBytes(bytes), C.size_t(len(bytes)), rustAnythingPtr(lens), C.size_t(len(items)))\n"
+                 \th := C.everything_rust_b_{name}_new(everythingRustBytes(bytes), C.size_t(len(bytes)), everythingRustPtr(lens), C.size_t(len(items)))\n"
             ),
             c => {
                 let cty = match c {
@@ -588,7 +588,7 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 };
                 format!(
                     "\tvalues := make([]{cty}, len(items))\n\tfor i, v := range items {{\n\t\tvalues[i] = {cty}(v)\n\t}}\n\
-                     \th := C.rust_anything_b_{name}_new(rustAnythingPtr(values), C.size_t(len(items)))\n"
+                     \th := C.everything_rust_b_{name}_new(everythingRustPtr(values), C.size_t(len(items)))\n"
                 )
             }
         };
@@ -603,7 +603,7 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 args,
                 ", {}",
                 match t.c {
-                    "string" => format!("rustAnythingStr({n}), C.size_t(len({n}))"),
+                    "string" => format!("everythingRustStr({n}), C.size_t(len({n}))"),
                     "int64_t" => format!("C.int64_t({n})"),
                     "double" => format!("C.double({n})"),
                     _ => format!("C.bool({n})"),
@@ -613,10 +613,10 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
         let fail = |zero: &str| {
             if g.fallible {
                 format!(
-                    "\tif status == 1 {{\n\t\treturn {zero}, errors.New(rustAnythingErr(errp))\n\t}}\n"
+                    "\tif status == 1 {{\n\t\treturn {zero}, errors.New(everythingRustErr(errp))\n\t}}\n"
                 )
             } else {
-                "\tif status == 1 {\n\t\tpanic(rustAnythingErr(errp))\n\t}\n".to_string()
+                "\tif status == 1 {\n\t\tpanic(everythingRustErr(errp))\n\t}\n".to_string()
             }
         };
         let ok = if g.fallible { ", nil" } else { "" };
@@ -631,11 +631,11 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
         let run_body = match g.result_c {
             "string" => format!(
                 "\tvar errp *C.char\n\tvar res unsafe.Pointer\n\tvar total C.size_t\n\
-                 \tstatus := C.rust_anything_b_{name}_run(b.h{args}, &res, &total, &errp)\n\
+                 \tstatus := C.everything_rust_b_{name}_run(b.h{args}, &res, &total, &errp)\n\
                  \truntime.KeepAlive(b)\n{fail}\
                  \t// Rust writes the results straight into Go memory; each result is a slice of it.\n\
                  \tbuf := make([]byte, int(total))\n\tlens := make([]C.size_t, b.n)\n\
-                 \tC.rust_anything_b_take_strings(res, rustAnythingBytes(buf), total, rustAnythingPtr(lens), C.size_t(b.n))\n\
+                 \tC.everything_rust_b_take_strings(res, everythingRustBytes(buf), total, everythingRustPtr(lens), C.size_t(b.n))\n\
                  \tall := unsafe.String(unsafe.SliceData(buf), len(buf))\n\
                  \tout := make([]{result}, b.n)\n\tat := 0\n\tfor i, n := range lens {{\n\t\tout[i] = {result}(all[at : at+int(n)])\n\t\tat += int(n)\n\t}}\n\
                  \treturn out{ok}\n",
@@ -649,7 +649,7 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 };
                 format!(
                     "\tvar errp *C.char\n\tvalues := make([]{cty}, b.n)\n\
-                     \tstatus := C.rust_anything_b_{name}_run(b.h{args}, rustAnythingPtr(values), C.size_t(b.n), &errp)\n\
+                     \tstatus := C.everything_rust_b_{name}_run(b.h{args}, everythingRustPtr(values), C.size_t(b.n), &errp)\n\
                      \truntime.KeepAlive(b)\n{fail}\
                      \tout := make([]{result}, b.n)\n\tfor i, v := range values {{\n\t\tout[i] = {result}(v)\n\t}}\n\
                      \treturn out{ok}\n",
@@ -664,7 +664,7 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
                 "\n// Rank returns the indexes of the items whose result is at least min, highest first.\n\
                  func (b *{class}) Rank({}) {} {{\n\
                  \tvar errp *C.char\n\torder := make([]C.uint32_t, b.n)\n\tvar n C.size_t\n\
-                 \tstatus := C.rust_anything_b_{name}_rank(b.h{args}, C.double(min), rustAnythingPtr(order), C.size_t(b.n), &n, &errp)\n\
+                 \tstatus := C.everything_rust_b_{name}_rank(b.h{args}, C.double(min), everythingRustPtr(order), C.size_t(b.n), &n, &errp)\n\
                  \truntime.KeepAlive(b)\n{}\
                  \tout := make([]int, int(n))\n\tfor i := range out {{\n\t\tout[i] = int(order[i])\n\t}}\n\treturn out{ok}\n}}\n",
                 rank_params.join(", "),
@@ -681,9 +681,9 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
              // Close when done (a finalizer frees it otherwise).\n\
              type {class} struct {{\n\th unsafe.Pointer\n\tn int\n}}\n\n\
              // New{class} copies the items into Rust.\nfunc New{class}(items []{item_go}) *{class} {{\n{items}\
-             \tif h == nil {{\n\t\tpanic(\"rust-anything: building {class} failed\")\n\t}}\n\
+             \tif h == nil {{\n\t\tpanic(\"everything-rust: building {class} failed\")\n\t}}\n\
              \tb := &{class}{{h: h, n: len(items)}}\n\truntime.SetFinalizer(b, (*{class}).Close)\n\treturn b\n}}\n\n\
-             // Close frees the items on the Rust side.\nfunc (b *{class}) Close() {{\n\tif b.h != nil {{\n\t\tC.rust_anything_b_{name}_free(b.h)\n\t\tb.h = nil\n\t}}\n}}\n\n\
+             // Close frees the items on the Rust side.\nfunc (b *{class}) Close() {{\n\tif b.h != nil {{\n\t\tC.everything_rust_b_{name}_free(b.h)\n\t\tb.h = nil\n\t}}\n}}\n\n\
              // Run returns {name}'s result for every item, in order.\nfunc (b *{class}) Run({params}) {ret} {{\n{run_body}}}\n{rank}",
             item = g.e.params[g.s.item].name,
             params = params.join(", "),
@@ -693,10 +693,10 @@ pub fn go_wrapper(m: &Manifest, api: &PortApi) -> Result<String, String> {
     if !out.is_empty() {
         out.insert_str(
             0,
-            "\n// rustAnythingPtr is a slice's first element for C; nil when empty.\n\
-             func rustAnythingPtr[T any](s []T) *T {\n\tif len(s) == 0 {\n\t\treturn nil\n\t}\n\treturn &s[0]\n}\n\n\
-             // rustAnythingBytes is a byte slice for C; nil when empty.\n\
-             func rustAnythingBytes(b []byte) *C.uint8_t {\n\tif len(b) == 0 {\n\t\treturn nil\n\t}\n\treturn (*C.uint8_t)(unsafe.Pointer(&b[0]))\n}\n",
+            "\n// everythingRustPtr is a slice's first element for C; nil when empty.\n\
+             func everythingRustPtr[T any](s []T) *T {\n\tif len(s) == 0 {\n\t\treturn nil\n\t}\n\treturn &s[0]\n}\n\n\
+             // everythingRustBytes is a byte slice for C; nil when empty.\n\
+             func everythingRustBytes(b []byte) *C.uint8_t {\n\tif len(b) == 0 {\n\t\treturn nil\n\t}\n\treturn (*C.uint8_t)(unsafe.Pointer(&b[0]))\n}\n",
         );
     }
     Ok(out)
@@ -1089,8 +1089,8 @@ pub fn java_files(m: &Manifest, api: &PortApi) -> Result<Vec<(String, String)>, 
             rank_params.push("double min".into());
             format!(
                 "\n    /** Indexes of the items whose result is at least {{@code min}}, highest result first. */\n    \
-                 public int[] rank({}) {{\n        String[] slot = RustAnythingError.slot();\n        \
-                 int[] out = nRank(handle(){args}, min, slot);\n        RustAnythingError.check(slot);\n        \
+                 public int[] rank({}) {{\n        String[] slot = EverythingRustError.slot();\n        \
+                 int[] out = nRank(handle(){args}, min, slot);\n        EverythingRustError.check(slot);\n        \
                  java.lang.ref.Reference.reachabilityFence(this);\n        return out;\n    }}\n\n    \
                  private static native int[] nRank(long handle{native_params}, double min, String[] slot);\n",
                 rank_params.join(", ")
@@ -1101,8 +1101,8 @@ pub fn java_files(m: &Manifest, api: &PortApi) -> Result<Vec<(String, String)>, 
         let strings = g.result.java == "String";
         let run_body = if strings {
             format!(
-                "        String[] slot = RustAnythingError.slot();\n        int[] lens = new int[count];\n        \
-                 char[] chars = nRun(handle(){args}, lens, slot);\n        RustAnythingError.check(slot);\n        \
+                "        String[] slot = EverythingRustError.slot();\n        int[] lens = new int[count];\n        \
+                 char[] chars = nRun(handle(){args}, lens, slot);\n        EverythingRustError.check(slot);\n        \
                  java.lang.ref.Reference.reachabilityFence(this);\n        \
                  // One array from Rust; each result is a slice of it.\n        \
                  String[] out = new String[count];\n        int at = 0;\n        for (int i = 0; i < count; i++) {{\n            \
@@ -1110,8 +1110,8 @@ pub fn java_files(m: &Manifest, api: &PortApi) -> Result<Vec<(String, String)>, 
             )
         } else {
             format!(
-                "        String[] slot = RustAnythingError.slot();\n        {ret}[] out = nRun(handle(){args}, slot);\n        \
-                 RustAnythingError.check(slot);\n        java.lang.ref.Reference.reachabilityFence(this);\n        return out;\n",
+                "        String[] slot = EverythingRustError.slot();\n        {ret}[] out = nRun(handle(){args}, slot);\n        \
+                 EverythingRustError.check(slot);\n        java.lang.ref.Reference.reachabilityFence(this);\n        return out;\n",
                 ret = g.result.java
             )
         };
@@ -1121,12 +1121,12 @@ pub fn java_files(m: &Manifest, api: &PortApi) -> Result<Vec<(String, String)>, 
         }
         let _ = write!(
             src,
-            "import rustanything.RustAnythingError;\n\n\
-             /**\n * {{@code {name}}} over many {{@code {item}}} values kept in Rust, generated by rust-anything: built once,\n \
+            "import everythingrust.EverythingRustError;\n\n\
+             /**\n * {{@code {name}}} over many {{@code {item}}} values kept in Rust, generated by everything-rust: built once,\n \
              * then each {{@link #run}} maps them all in one call, on all cores. Safe for concurrent use;\n \
              * close it when done (a Cleaner frees it otherwise).\n */\n\
              public final class {class} implements AutoCloseable {{\n    \
-             static {{\n        try {{\n            Class.forName(\"rustanything.{native}\");\n        }} catch (ClassNotFoundException e) {{\n            \
+             static {{\n        try {{\n            Class.forName(\"everythingrust.{native}\");\n        }} catch (ClassNotFoundException e) {{\n            \
              throw new ExceptionInInitializerError(e);\n        }}\n    }}\n\n    \
              private static final java.lang.ref.Cleaner CLEANER = java.lang.ref.Cleaner.create();\n\n    \
              /** The Rust handle; freed once, by {{@link #close}} or the Cleaner. */\n    \

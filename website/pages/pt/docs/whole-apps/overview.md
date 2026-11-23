@@ -5,7 +5,7 @@ description: Do primeiro registo a um binário em Rust puro. O objetivo é uma a
 
 # Migrar uma aplicação completa
 
-O objetivo é uma aplicação em Rust puro que se comporta como o original, mantendo o original como referência. O seu agente escreve o Rust; o rust-anything ordena o trabalho, cria a estrutura e comprova cada passo. CLIs, servidores HTTP e bibliotecas.
+O objetivo é uma aplicação em Rust puro que se comporta como o original, mantendo o original como referência. O seu agente escreve o Rust; o everything-rust ordena o trabalho, cria a estrutura e comprova cada passo. CLIs, servidores HTTP e bibliotecas.
 
 ```
 analyze --whole-app ──> app record ──> app front-door ──> per unit: the loop, then app wire ──> app lift
@@ -17,7 +17,7 @@ analyze --whole-app ──> app record ──> app front-door ──> per unit: 
 ## 1. Planear
 
 ```sh
-rust-anything analyze . --whole-app
+everything-rust analyze . --whole-app
 ```
 
 O `--whole-app` acrescenta a forma da aplicação (CLI, servidor ou biblioteca) e os pontos de entrada, todas as dependências externas (importadas ou declaradas) com a respetiva crate Rust e grau de adequação, a ordem de migração em peças (unidades que se importam mutuamente avançam juntas), e decisões numeradas com uma resposta recomendada: unidades a manter, unidades bloqueadas, dependências sem crate ou com uma crate parcial.
@@ -33,7 +33,7 @@ O `--whole-app` acrescenta a forma da aplicação (CLI, servidor ou biblioteca) 
 
 ## Como o agente avança
 
-A [skill de aplicação completa](https://github.com/erkamyaman/rust-anything/blob/main/skills/rust-anything/whole-app.md) guia o agente ao longo do processo, começando pelas decisões que só você pode tomar:
+A [skill de aplicação completa](https://github.com/marprojector/everything-rust/blob/main/skills/everything-rust/whole-app.md) guia o agente ao longo do processo, começando pelas decisões que só você pode tomar:
 
 - **Interrogatório**: o agente pergunta por rondas, cada pergunta com a respetiva resposta recomendada, até que todas as decisões de que a migração depende estejam resolvidas, e regista cada uma como um ADR em `rust/DECISIONS.md`, com `rust/GLOSSARY.md` a mapear os termos do original para nomes em Rust.
 - **Investigação**: agentes em segundo plano leem as fontes primárias de cada dependência e escrevem `rust/research/<topic>.md`, com todas as armadilhas semânticas que encontraram.

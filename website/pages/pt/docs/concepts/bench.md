@@ -6,7 +6,7 @@ description: O bench mede os casos registados no original e no Rust, bridge incl
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 O `bench` mede o tempo dos casos registados no original e no módulo Rust compilado, bridge incluída, e devolve as linhas e um veredicto com recomendações: publicar, manter as funções mais lentas na linguagem de origem ou migrar uma unidade maior. Um ganho inferior a 1 significa que a migração é mais lenta tal como os seus chamadores a chamam. `--min-ms` define o tempo mínimo medido por função e por lado (predefinição 200).
@@ -31,7 +31,7 @@ Medido por chamada em código real ([seis linguagens](/docs/real-world/six-langu
 | Java | 0.18x | migrar unidades maiores |
 | Go | 0.04x | migrar unidades maiores |
 
-Todas as 29 funções do núcleo do x18n que podem ser movidas sem alterar a API foram migradas: todos os gates passam e 7,925 casos registados correspondem exatamente, e o `bench` mostrou que as migrações são mais lentas do que o TS quando chamadas a partir de JS, porque a bridge custa mais do que o trabalho ([relatório](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). O vercel/ms correu a 0.56x por chamada sobre os seus casos registados ([caso de estudo](/docs/real-world/vercel-ms)).
+Todas as 29 funções do núcleo do x18n que podem ser movidas sem alterar a API foram migradas: todos os gates passam e 7,925 casos registados correspondem exatamente, e o `bench` mostrou que as migrações são mais lentas do que o TS quando chamadas a partir de JS, porque a bridge custa mais do que o trabalho ([relatório](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). O vercel/ms correu a 0.56x por chamada sobre os seus casos registados ([caso de estudo](/docs/real-world/vercel-ms)).
 
 ## O que ganha: mover o ciclo
 

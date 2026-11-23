@@ -6,7 +6,7 @@ description: Her öğe için bir kez çağrılan bir port bir JIT'e yenilir. Bat
 # Batch'ler ve hot path'ler
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # ya da: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # ya da: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch`, `param` değerlerini bir kez alıp Rust'ta tutan bir sınıf üretir: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Her sorguda `run(<other args>)` tüm sonuçları tek bir dizi olarak döndürür, `rank(<other args>, min)` ise öğe indekslerini en iyiden başlayarak döndürür. Tüm çekirdeklerde çalışır ve hatalar orijinalinkilerle aynıdır. C dışındaki her dil batch alır.
@@ -16,9 +16,9 @@ yenilir. Kazandıran, döngüyü taşımaktır: `profile` onu bulur ve `--batch`
 her çağrıda fonksiyonu hepsinin üzerinde, tüm çekirdeklerde, typed array sonuçlarla çalıştıran bir sınıf üretir.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: çalışmanın dörtte biri, `matched` tarafından anahtar başına çağrılıyor: batch'leyin
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -59,7 +59,7 @@ Her dil batch alır ve çağrı başına portların kaybettiği yerde bile oriji
 
 Derlenen orijinaller daha az kazanır: öğe başına iş zaten hızlıdır, bu yüzden batch çekirdek sayısı
 kadar kazanır. Batch crate'leri bellek ayırmayı mimalloc ile yapar: sistem ayırıcısıyla Go batch'i
-tek thread'den daha yavaştı. Demo: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+tek thread'den daha yavaştı. Demo: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 
 ## Hızlı bir indeks yazmak
 

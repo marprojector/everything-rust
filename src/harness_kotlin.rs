@@ -3,7 +3,7 @@
 //! Mirrors the Java harness, but compiles the original Kotlin sources with `kotlinc` into a
 //! fat jar (`-include-runtime`, so the Kotlin stdlib is on the runtime classpath) and then
 //! compiles the generated Java reflection driver and wrappers against that jar. Kotlin
-//! static methods are callable from Java, so the same `rustanything.RustAnythingDriver`
+//! static methods are callable from Java, so the same `everythingrust.EverythingRustDriver`
 //! is used for record, diff and bench.
 
 use crate::walk::Canonical;
@@ -17,7 +17,7 @@ use serde_json::Value;
 use crate::bridge::Manifest;
 use crate::harness::{BenchRow, CASES, DiffOutcome};
 
-const WORK_DIR: &str = ".rust-anything";
+const WORK_DIR: &str = ".everything-rust";
 
 fn run(cmd: &mut Command, what: &str) -> Result<()> {
     let _scratch = crate::harness::scratch_cwd(cmd)?;
@@ -91,14 +91,14 @@ fn needs_android_sdk(path: &Path) -> bool {
 /// the generated Java JNI wrappers (`rust: true`).
 fn compile(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<Classpath> {
     let work = crate_dir.canonical()?.join(WORK_DIR);
-    let support = work.join("kotlin-support/rust-anything");
+    let support = work.join("kotlin-support/everything-rust");
     std::fs::create_dir_all(&support)?;
     std::fs::write(
-        support.join("RustAnythingJson.java"),
+        support.join("EverythingRustJson.java"),
         crate::codegen_kotlin::JSON_JAVA,
     )?;
     std::fs::write(
-        support.join("RustAnythingDriver.java"),
+        support.join("EverythingRustDriver.java"),
         crate::codegen_kotlin::DRIVER_JAVA,
     )?;
 
@@ -148,7 +148,7 @@ fn compile(crate_dir: &Path, m: &Manifest, rust: bool) -> Result<Classpath> {
         sources.extend(
             java_files(&crate_dir.join("java"))
                 .into_iter()
-                .filter(|p| !p.ends_with("rustanything/RustAnythingJson.java")),
+                .filter(|p| !p.ends_with("everythingrust/EverythingRustJson.java")),
         );
     }
     let mut javac = Command::new("javac");
@@ -203,14 +203,14 @@ fn driver_command(
     if rust {
         let lib = crate::harness_c::built_library(crate_dir, m)?;
         cmd.arg(format!(
-            "-Drust-anything.lib.{}={}",
+            "-Deverything-rust.lib.{}={}",
             m.lib_name(),
             lib.canonical()?.display()
         ));
     }
     cmd.arg("-cp")
         .arg(cp.value()?)
-        .arg("rustanything.RustAnythingDriver")
+        .arg("everythingrust.EverythingRustDriver")
         .arg(mode)
         .arg(&targets)
         .arg(cases)
@@ -249,7 +249,7 @@ pub fn diff(crate_dir: &Path, m: &Manifest) -> Result<DiffOutcome> {
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }
@@ -262,7 +262,7 @@ pub fn bench(crate_dir: &Path, m: &Manifest, min_ms: u64) -> Result<Vec<BenchRow
     let cases = crate_dir.join(CASES);
     if !cases.exists() {
         bail!(
-            "no {CASES} in {} (run `rust-anything record` first)",
+            "no {CASES} in {} (run `everything-rust record` first)",
             crate_dir.display()
         );
     }

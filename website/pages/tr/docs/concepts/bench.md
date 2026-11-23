@@ -6,7 +6,7 @@ description: bench, kaydedilen vakaları orijinal ve Rust üzerinde köprü dahi
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench`, kaydedilen vakaları orijinal ve derlenmiş Rust modülü üzerinde köprü dahil ölçer; satırları ve öneri içeren bir karar döndürür: yayına alın, yavaş fonksiyonları kaynak dilde tutun ya da daha büyük bir birimi port edin. 1'in altındaki bir hızlanma, portun çağıranların çağırdığı şekliyle daha yavaş olduğu anlamına gelir. `--min-ms`, fonksiyon ve taraf başına ölçülen asgari süreyi belirler (varsayılan 200).
@@ -31,7 +31,7 @@ Gerçek kod üzerinde çağrı başına ölçülenler ([altı dil](/docs/real-wo
 | Java | 0.18x | daha büyük birimleri port et |
 | Go | 0.04x | daha büyük birimleri port et |
 
-x18n çekirdeğinin API değişikliği olmadan taşınabilen 29 fonksiyonunun tamamı port edildi: her gate geçiyor ve 7,925 kayıtlı vaka tam olarak eşleşiyor; `bench` ise portların JS'ten çağrıldığı haliyle TS'ten daha yavaş olduğunu gösterdi, çünkü köprünün maliyeti yapılan işten fazla ([rapor](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms, kaydedilen vakaları üzerinde çağrı başına 0.56x hızında çalıştı ([vaka çalışması](/docs/real-world/vercel-ms)).
+x18n çekirdeğinin API değişikliği olmadan taşınabilen 29 fonksiyonunun tamamı port edildi: her gate geçiyor ve 7,925 kayıtlı vaka tam olarak eşleşiyor; `bench` ise portların JS'ten çağrıldığı haliyle TS'ten daha yavaş olduğunu gösterdi, çünkü köprünün maliyeti yapılan işten fazla ([rapor](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms, kaydedilen vakaları üzerinde çağrı başına 0.56x hızında çalıştı ([vaka çalışması](/docs/real-world/vercel-ms)).
 
 ## Kazandıran: döngüyü taşımak
 

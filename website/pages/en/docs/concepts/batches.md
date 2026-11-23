@@ -6,7 +6,7 @@ description: A port called once per item loses to a JIT. Batches move the whole 
 # Batches and hot paths
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # or: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # or: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` generates a class that takes the `param` values once and keeps them in Rust: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). Per query, `run(<other args>)` returns every result as one array, and `rank(<other args>, min)` returns the item indexes, best first. It runs on all cores, and errors are the original's. Every language except C gets batches.

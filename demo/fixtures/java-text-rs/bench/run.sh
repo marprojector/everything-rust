@@ -1,7 +1,7 @@
 #!/bin/sh
 # The batches against the original Java methods. The wrapper classes have the original names, so
 # each side runs in its own JVM; equal digests mean equal results and errors.
-# Run after `rust-anything build ..`: sh run.sh
+# Run after `everything-rust build ..`: sh run.sh
 set -e
 cd "$(dirname "$0")"
 out=$(mktemp -d)

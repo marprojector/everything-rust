@@ -1,35 +1,30 @@
 <p align="center">
-  <img src="assets/logo.png" width="160" height="160" alt="rust-anything 螃蟹">
+  <img src="assets/logo.png" width="160" height="160" alt="everything-rust 螃蟹">
 </p>
 
-<h1 align="center">rust-anything</h1>
+<h1 align="center">everything-rust</h1>
 
 <p align="center"><sub><a href="../README.md">English</a> · <a href="README_TR.md">Türkçe</a> · <a href="README_UK.md">Українська</a> · <a href="README_ZH.md">简体中文</a> · 繁體中文 · <a href="README_DE.md">Deutsch</a> · <a href="README_FR.md">Français</a> · <a href="README_RU.md">Русский</a> · <a href="README_JA.md">日本語</a> · <a href="README_KO.md">한국어</a> · <a href="README_AZ.md">Azərbaycanca</a> · <a href="README_UZ.md">Oʻzbekcha</a> · <a href="README_KK.md">Қазақша</a> · <a href="README_KY.md">Кыргызча</a> · <a href="README_TK.md">Türkmençe</a> · <a href="README_TT.md">Татарча</a> · <a href="README_UG.md">ئۇيغۇرچە</a> · <a href="README_PT.md">Português</a> · <a href="README_VI.md">Tiếng Việt</a> · <a href="README_ES.md">Español</a> · <a href="README_IT.md">Italiano</a></sub></p>
 <p align="center"><sub>本譯文由社群維護，可能落後於<a href="../README.md">英文 README</a>。</sub></p>
 
 <p align="center"><b>用 Rust 重寫你的應用程式，並證明它的行為依然完全相同。</b><br>
-它不會自動翻譯程式碼：Rust 由你的程式設計代理（或你自己）撰寫，rust-anything 負責對照原程式進行驗證。</p>
+它不會自動翻譯程式碼：Rust 由你的程式設計代理（或你自己）撰寫，everything-rust 負責對照原程式進行驗證。</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
+  <img src="https://img.shields.io/github/languages/top/marprojector/everything-rust?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
   <img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20Windows-native-2563EB" alt="Native binaries for macOS, Linux and Windows">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-555" alt="MIT license"></a>
-  <a href="https://crates.io/crates/rust-anything"><img src="https://img.shields.io/crates/v/rust-anything?color=E2862A&label=crates.io" alt="crates.io version"></a>
-  <a href="https://www.npmjs.com/package/rust-anything"><img src="https://img.shields.io/npm/v/rust-anything?color=E2862A&label=npm" alt="npm version"></a>
   <br>
-  <a href="https://coderabbit.link/erkamyaman"><img src="https://img.shields.io/coderabbit/prs/github/erkamyaman/rust-anything?labelColor=171717&color=FF570A&label=Reviewed+by+CodeRabbit" alt="Pull requests reviewed by CodeRabbit"></a>
   <a href="https://github.com/rust-unofficial/awesome-rust#development-tools"><img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Rust"></a>
   <a href="https://github.com/AIshihzong/awesome-reverse-engineer-anything"><img src="https://img.shields.io/badge/Featured%20in-Awesome%20REA-f0b429" alt="Featured in Awesome REA"></a>
-  <a href="https://github.com/erkamyaman/rust-anything"><img src="https://img.shields.io/github/stars/erkamyaman/rust-anything?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/marprojector/everything-rust"><img src="https://img.shields.io/github/stars/marprojector/everything-rust?style=social" alt="GitHub stars"></a>
 </p>
 
-<p align="center"><a href="https://github.com/erkamyaman/rust-anything/discussions/127"><img src="https://img.shields.io/badge/Join%20the%20discussion-6E40C9?style=for-the-badge&logo=github&logoColor=white" alt="Join the discussion"></a></p>
 
-<p align="center"><a href="https://trendshift.io/repositories/363468" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/363468/daily?language=Rust" alt="erkamyaman/rust-anything: #1 Rust repository of the day on Trendshift" width="250" height="55"/></a></p>
 
-<p align="center"><b><a href="#快速開始">快速開始</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Releases</a> · <a href="#快速開始">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">真實移植案例</a> · <a href="faq.md#faq">常見問題</a><br>
+<p align="center"><b><a href="#快速開始">快速開始</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#快速開始">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">真實移植案例</a> · <a href="faq.md#faq">常見問題</a><br>
 <sub><a href="#支援語言">支援語言</a> · <a href="how-it-works.md#how-it-works">運作原理</a> · <a href="whole-apps.md#port-a-whole-app">整個應用程式</a> · <a href="../LICENSE">MIT</a></sub><br>
-由 <a href="https://github.com/erkamyaman">erKam Yaman</a> 在土耳其 🇹🇷 打造 · <a href="../LICENSE">MIT</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ 贊助我</a> · 贊助商：<a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
 
 <p align="center">2.0 新功能：<a href="real-world.md#prettier">Prettier 已移植到 Rust</a>。提速 19 倍 · 17,224 次錄製執行中 15,861 次完全由 Rust 執行 · 全部逐位元組一致</p>
 
@@ -62,13 +57,13 @@
   </tr>
 </table>
 
-**用 Rust 逐塊重寫你的整個應用程式。** rust-anything 會先錄製你現有的
+**用 Rust 逐塊重寫你的整個應用程式。** everything-rust 會先錄製你現有的
 Node.js（TypeScript/JavaScript）、Python、C、Go、Ruby 或 Java 應用程式的行為，然後針對每一塊
 Rust 重寫程式碼對照該錄製紀錄進行驗證，確認無誤後再繼續下一步，直到整個應用程式成為純 Rust。CLI、HTTP
 伺服器與函式庫皆適用；由你的程式開發代理程式（或你本人）來撰寫 Rust 程式碼。它只能偵測到錄製內容所涵蓋的行為：請參閱[它偵測不到什麼](how-it-works.md#what-it-cant-catch)。可以移植整個工具與伺服器，
 也可以只移植慢的部分，一次一條熱點路徑：
 
-| 真實專案（輸出與原版完全一致） | 原版 | 使用 rust-anything |
+| 真實專案（輸出與原版完全一致） | 原版 | 使用 everything-rust |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2，從命令列格式化 2,360 個 JS/TS 檔案 | 128.6 s | **6.9 s：提速 19 倍** |
 | Prettier，從命令列格式化 6,305 個 Markdown 檔案 | 352 s | **22.5 s：提速 15.6 倍** |
@@ -80,7 +75,7 @@ Prettier：在 17,224 次錄製執行中，有 15,861 次完全由 Rust 完成�
 TypeScript、JSX、JSON、GraphQL、YAML、Markdown、CSS、SCSS、Less），且全部 17,224 次都與 Prettier
 逐位元組相同，因為尚未移植的部分會回退給 Prettier 處理。json-server：514/514 筆錄製的 HTTP 案例
 在純 Rust 執行檔上全部吻合。以上數據在 Apple M4 上測得，每項執行兩次，計時前先比對每一份輸出
-（[詳細資訊](real-world.md)）。每個小函式呼叫一次 Rust 通常比 JIT 更*慢*；rust-anything 會找出
+（[詳細資訊](real-world.md)）。每個小函式呼叫一次 Rust 通常比 JIT 更*慢*；everything-rust 會找出
 真正值得搬移的迴圈，並將整個迴圈移過去。
 
 ## 只移植慢的部分
@@ -88,7 +83,7 @@ TypeScript、JSX、JSON、GraphQL、YAML、Markdown、CSS、SCSS、Less），且
 你不必移植整個應用程式。把 `go` 指向一個太慢的指令，它會移植真正耗時的那一個函式：
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 它會對這次執行進行效能剖析，挑出值得搬移的最外層函式（是迴圈，而不是迴圈裡的小呼叫；剖析結果
@@ -98,8 +93,8 @@ rust-anything go --agent claude -- python3 app.py
 啟用這個函式。接著：
 
 ```sh
-rust-anything report rust/dedupe-rs     # 供 pull request 使用的 REPORT.md 與 card.svg
-rust-anything disable rust/dedupe-rs    # 回到原版程式，逐位元組相同
+everything-rust report rust/dedupe-rs     # 供 pull request 使用的 REPORT.md 與 card.svg
+everything-rust disable rust/dedupe-rs    # 回到原版程式，逐位元組相同
 ```
 
 上表中的 [Fuse.js](real-world.md#fusejs) 那一列就是這種形式：Fuse 對單一字串的評分以批次方式套用到
@@ -113,7 +108,7 @@ rust-anything disable rust/dedupe-rs    # 回到原版程式，逐位元組相�
   <sub>json-server，一個完整的 Node 伺服器，整個提升為純 Rust 執行檔（Apple M4）。<a href="real-world.md#json-server">測量方式</a>。</sub>
 </p>
 
-> rust-anything 是一個獨立專案，與 Rust Project 或 Rust Foundation 無關，亦未獲其背書。「Rust」為 Rust Foundation 之商標。
+> everything-rust 是一個獨立專案，與 Rust Project 或 Rust Foundation 無關，亦未獲其背書。「Rust」為 Rust Foundation 之商標。
 
 > [!WARNING]
 > `record` 與 `app record` 會執行你的原版程式碼，以大量自動產生的輸入呼叫每個函式（或整個應用程式），
@@ -127,57 +122,57 @@ rust-anything disable rust/dedupe-rs    # 回到原版程式，逐位元組相�
 將這段話貼給 Claude Code、Codex、Cursor、Gemini CLI 或 OpenCode，讓你的代理程式自動安裝：
 
 ```text
-安裝 rust-anything：執行 `cargo install rust-anything`，接著執行 `rust-anything setup`。
+安裝 everything-rust：執行 `cargo install everything-rust`，接著執行 `everything-rust setup`。
 告訴我什麼時候需要重新啟動你。
 ```
 
 或是自行安裝：
 
 ```sh
-cargo install rust-anything   # 從 crates.io 安裝
-rust-anything setup           # 向 Claude Code、Codex、Cursor、Gemini CLI 與 OpenCode 註冊
+cargo install everything-rust   # 從 crates.io 安裝
+everything-rust setup           # 向 Claude Code、Codex、Cursor、Gemini CLI 與 OpenCode 註冊
 ```
 
-還沒有安裝 Rust 工具鏈？每個 [GitHub release](https://github.com/erkamyaman/rust-anything/releases) 都附帶了 macOS、Linux 與 Windows 的預先編譯執行檔；針對 JavaScript
-專案，執行 `npm install -g rust-anything` 也能安裝相同的執行檔。
+還沒有安裝 Rust 工具鏈？每個 [GitHub release](https://github.com/marprojector/everything-rust/releases) 都附帶了 macOS、Linux 與 Windows 的預先編譯執行檔；針對 JavaScript
+專案，執行 `npm install -g everything-rust` 也能安裝相同的執行檔。
 
 在 Claude Code 中你也可以將它安裝為外掛（包含 MCP 伺服器與工作流程技能；上述 CLI
 必須位於你的 `PATH` 中）：
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 `setup` 會將 MCP 伺服器加入它所偵測到的每個代理程式中，並將工作流程技能安裝至各代理程式讀取技能的目錄。它會保留你的其他設定、可安全重複執行，且可用 `--remove` 復原。
 接著你就可以直接請你的代理程式協助，例如：
 
-- *「用 rust-anything 將這個 CLI 端到端重寫為 Rust，並證明其行為完全相同。」*
-- *「這個搜尋感覺很慢。用 rust-anything 做效能分析，並將熱點迴圈搬移到 Rust。」*
-- *「用 rust-anything 規劃將 `src/parser/` 遷移至 Rust；先移植第一個單元並進行驗證。」*
+- *「用 everything-rust 將這個 CLI 端到端重寫為 Rust，並證明其行為完全相同。」*
+- *「這個搜尋感覺很慢。用 everything-rust 做效能分析，並將熱點迴圈搬移到 Rust。」*
+- *「用 everything-rust 規劃將 `src/parser/` 遷移至 Rust；先移植第一個單元並進行驗證。」*
 - *「將 `rust/text-rs` 中的 Rust 移植版與原版進行基準測試比對，告訴我是否適合上線。」*
 
 ### 支援的代理程式
 
-| 代理程式 | `rust-anything setup` 會加入的設定 |
+| 代理程式 | `everything-rust setup` 會加入的設定 |
 | --- | --- |
 | Claude Code | `~/.claude.json` 中的 MCP 伺服器、`~/.claude/skills/` 中的技能 |
 | Codex | `~/.codex/config.toml` 中的 MCP 伺服器、`~/.codex/skills/` 中的技能 |
 | Cursor | `~/.cursor/mcp.json` 中的 MCP 伺服器 |
 | Gemini CLI | `~/.gemini/settings.json` 中的 MCP 伺服器 |
 | OpenCode | `~/.config/opencode/opencode.json` 中的 MCP 伺服器（`mcp.servers`）、`~/.config/opencode/skills/` 中的技能 |
-| 其他任意 MCP 用戶端 | 手動將 `rust-anything mcp` 新增為 stdio 伺服器（見[安裝](install.md#install)） |
+| 其他任意 MCP 用戶端 | 手動將 `everything-rust mcp` 新增為 stdio 伺服器（見[安裝](install.md#install)） |
 
-修改任何已存在的設定檔前，`setup` 都會在同目錄旁留存一份備份（`<file>.rust-anything.bak`）。
+修改任何已存在的設定檔前，`setup` 都會在同目錄旁留存一份備份（`<file>.everything-rust.bak`）。
 
 若要手動設定 OpenCode，請將伺服器寫入 `~/.config/opencode/opencode.json`（`command` 是完整的
-argv），並將 [`skills/rust-anything/`](../skills/rust-anything) 複製到
-`~/.config/opencode/skills/rust-anything/`：
+argv），並將 [`skills/everything-rust/`](../skills/everything-rust) 複製到
+`~/.config/opencode/skills/everything-rust/`：
 
 ```json
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
@@ -186,16 +181,16 @@ argv），並將 [`skills/rust-anything/`](../skills/rust-anything) 複製到
 你也可以自行執行這些步驟：
 
 ```sh
-rust-anything profile . -- node bench.mjs              # 找出耗時熱點以及誰呼叫了它
-rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile . -- node bench.mjs              # 找出耗時熱點以及誰呼叫了它
+everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text
 # 撰寫 src/port.rs（或交由代理程式撰寫），接著執行：
-rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
-rust-anything diff rust/fuzzy-rs                       # 每筆錄製案例都必須吻合
-rust-anything bench rust/fuzzy-rs                      # 真的更快嗎？讓評估結論說話
-rust-anything gate rust/fuzzy-rs                       # 通過此門禁才算完成
+everything-rust record rust/fuzzy-rs && everything-rust build rust/fuzzy-rs
+everything-rust diff rust/fuzzy-rs                       # 每筆錄製案例都必須吻合
+everything-rust bench rust/fuzzy-rs                      # 真的更快嗎？讓評估結論說話
+everything-rust gate rust/fuzzy-rs                       # 通過此門禁才算完成
 ```
 
-rust-anything 並不直接翻譯程式碼：Rust 程式碼是由你的程式開發代理程式（Claude Code、Codex、Cursor、OpenCode 等）或你本人所撰寫。rust-anything 提供的是代理程式無法可靠猜測的資訊：時間花在哪裡、該先移植什麼
+everything-rust 並不直接翻譯程式碼：Rust 程式碼是由你的程式開發代理程式（Claude Code、Codex、Cursor、OpenCode 等）或你本人所撰寫。everything-rust 提供的是代理程式無法可靠猜測的資訊：時間花在哪裡、該先移植什麼
 以及依何種順序移植、讓其餘程式碼無需改變 API 即可呼叫 Rust 的橋接層、
 移植版必須完全吻合的精確行為、安全上線的方式，以及判定移植是否達標的門禁。
 
@@ -232,7 +227,7 @@ Rust 中，每次呼叫便會在所有 CPU 核心上平行運算全部項目。
 對於 PHP，`analyze` 可為 PHP 應用程式規劃遷移（支援 Composer 套件與 PSR-4 自動載入，偵測
 寬鬆比較與整數溢位轉浮點數等風險，並將 Composer 套件對應至 crate），
 且支援對 PHP CLI 或伺服器進行錄製、重播與套用 Rust 前門代理。透過 PHP FFI 將各個
-單元移植到 Rust 是下一步規劃（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。
+單元移植到 Rust 是下一步規劃（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。
 
 C# 的運作方式相同：`analyze` 會讀取 `.csproj` 專案與其 NuGet 套件
 （對應至 crate）、將 `using` 指示詞解析至對應資料夾，並標記 C# 的特殊差異
@@ -251,31 +246,11 @@ C# 的運作方式相同：`analyze` 會讀取 `.csproj` 專案與其 NuGet 套�
 ## 贊助商
 
 <p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> 是一款免費且開源的專案。如果它對你的工作有所幫助，歡迎考慮贊助支持。<br>
+  <a href="https://github.com/marprojector/everything-rust">everything-rust</a> 是一款免費且開源的專案。如果它對你的工作有所幫助，歡迎考慮贊助支持。<br>
   你的支持能讓開發持續推進。
 </p>
 
 <p align="center">
-  <a href="https://coderabbit.link/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/company-dark.svg">
-      <img src="assets/sponsors/company-light.svg" width="800" alt="企業贊助商：CodeRabbit">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/sponsors-dark.svg">
-      <img src="assets/sponsors/sponsors-light.svg" width="800" alt="個人贊助商：Santosh Yadav、Hakan Soytürk、Ali Yilmaz、Ashley Hunter、Fatih Uzuntaş">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman"><img src="https://img.shields.io/badge/%E6%88%90%E7%82%BA%E8%B4%8A%E5%8A%A9%E5%95%86-%E2%9D%A4-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="成為贊助商"></a>
-  <a href="https://buymeacoffee.com/erkamyaman"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 </p>
 
 ## 參與貢獻
@@ -286,4 +261,4 @@ C# 的運作方式相同：`analyze` 會讀取 `.csproj` 專案與其 NuGet 套�
 
 ## 授權條款
 
-[MIT](../LICENSE) © [Erkam Yaman](https://github.com/erkamyaman)。你在自己儲存庫中產生的移植程式碼與產物均歸你所有。
+[MIT](../LICENSE) © [M. Ammar R. Arief](https://github.com/marprojector)。你在自己儲存庫中產生的移植程式碼與產物均歸你所有。

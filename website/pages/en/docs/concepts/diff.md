@@ -6,9 +6,9 @@ description: diff replays every recorded case against the Rust. known-diffs.json
 # Diff and known diffs
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # must be N/N
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # must be N/N
+everything-rust diff <crate> --json
 ```
 
 `diff` replays `cases.jsonl` against the built Rust module, called the way the original's callers call it, and lists the mismatches. A mismatch is a behavior difference: fix the port, never the recording.

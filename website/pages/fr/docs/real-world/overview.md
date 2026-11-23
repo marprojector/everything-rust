@@ -1,11 +1,11 @@
 ---
 title: Portages réels
-description: Ce qui s'est passé quand rust-anything a rencontré du vrai code, avec les résultats lents à côté des rapides, et ce qui a changé dans l'outil en conséquence.
+description: Ce qui s'est passé quand everything-rust a rencontré du vrai code, avec les résultats lents à côté des rapides, et ce qui a changé dans l'outil en conséquence.
 ---
 
 # Portages réels
 
-Ce qui s'est passé quand rust-anything a rencontré du vrai code, et ce qui a changé dans l'outil en conséquence. Chaque chiffre ci-dessous vient d'un benchmark qui vérifie d'abord que les résultats sont identiques, et les cas lents sont listés à côté des rapides.
+Ce qui s'est passé quand everything-rust a rencontré du vrai code, et ce qui a changé dans l'outil en conséquence. Chaque chiffre ci-dessous vient d'un benchmark qui vérifie d'abord que les résultats sont identiques, et les cas lents sont listés à côté des rapides.
 
 | Portage | Ce que c'est | Résultat |
 | --- | --- | --- |

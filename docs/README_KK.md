@@ -1,35 +1,30 @@
 <p align="center">
-  <img src="assets/logo.png" width="160" height="160" alt="rust-anything">
+  <img src="assets/logo.png" width="160" height="160" alt="everything-rust">
 </p>
 
-<h1 align="center">rust-anything</h1>
+<h1 align="center">everything-rust</h1>
 
 <p align="center"><sub><a href="../README.md">English</a> · <a href="README_TR.md">Türkçe</a> · <a href="README_UK.md">Українська</a> · <a href="README_ZH.md">简体中文</a> · <a href="README_ZH-TW.md">繁體中文</a> · <a href="README_DE.md">Deutsch</a> · <a href="README_FR.md">Français</a> · <a href="README_RU.md">Русский</a> · <a href="README_JA.md">日本語</a> · <a href="README_KO.md">한국어</a> · <a href="README_AZ.md">Azərbaycanca</a> · <a href="README_UZ.md">Oʻzbekcha</a> · Қазақша · <a href="README_KY.md">Кыргызча</a> · <a href="README_TK.md">Türkmençe</a> · <a href="README_TT.md">Татарча</a> · <a href="README_UG.md">ئۇيغۇرچە</a> · <a href="README_PT.md">Português</a> · <a href="README_VI.md">Tiếng Việt</a> · <a href="README_ES.md">Español</a> · <a href="README_IT.md">Italiano</a></sub></p>
 <p align="center"><sub>Бұл аударманы қауымдастық жүргізеді, сондықтан ол <a href="../README.md">ағылшынша README</a> нұсқасынан артта қалуы мүмкін.</sub></p>
 
 <p align="center"><b>Қолданбаңызды Rust тілінде қайта жазып, оның бұрынғыдай жұмыс істейтінін дәлелдеңіз.</b><br>
-Ол кодты өзі аудармайды: Rust-ты кодтау агентіңіз (немесе сіз) жазады, ал rust-anything оны түпнұсқамен тексереді.</p>
+Ол кодты өзі аудармайды: Rust-ты кодтау агентіңіз (немесе сіз) жазады, ал everything-rust оны түпнұсқамен тексереді.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
+  <img src="https://img.shields.io/github/languages/top/marprojector/everything-rust?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
   <img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20Windows-native-2563EB" alt="Native binaries for macOS, Linux and Windows">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-555" alt="MIT license"></a>
-  <a href="https://crates.io/crates/rust-anything"><img src="https://img.shields.io/crates/v/rust-anything?color=E2862A&label=crates.io" alt="crates.io version"></a>
-  <a href="https://www.npmjs.com/package/rust-anything"><img src="https://img.shields.io/npm/v/rust-anything?color=E2862A&label=npm" alt="npm version"></a>
   <br>
-  <a href="https://coderabbit.link/erkamyaman"><img src="https://img.shields.io/coderabbit/prs/github/erkamyaman/rust-anything?labelColor=171717&color=FF570A&label=Reviewed+by+CodeRabbit" alt="Pull requests reviewed by CodeRabbit"></a>
   <a href="https://github.com/rust-unofficial/awesome-rust#development-tools"><img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Rust"></a>
   <a href="https://github.com/AIshihzong/awesome-reverse-engineer-anything"><img src="https://img.shields.io/badge/Featured%20in-Awesome%20REA-f0b429" alt="Featured in Awesome REA"></a>
-  <a href="https://github.com/erkamyaman/rust-anything"><img src="https://img.shields.io/github/stars/erkamyaman/rust-anything?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/marprojector/everything-rust"><img src="https://img.shields.io/github/stars/marprojector/everything-rust?style=social" alt="GitHub stars"></a>
 </p>
 
-<p align="center"><a href="https://github.com/erkamyaman/rust-anything/discussions/127"><img src="https://img.shields.io/badge/Join%20the%20discussion-6E40C9?style=for-the-badge&logo=github&logoColor=white" alt="Join the discussion"></a></p>
 
-<p align="center"><a href="https://trendshift.io/repositories/363468" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/363468/daily?language=Rust" alt="erkamyaman/rust-anything: #1 Rust repository of the day on Trendshift" width="250" height="55"/></a></p>
 
-<p align="center"><b><a href="#жылдам-бастау">Жылдам бастау</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Releases</a> · <a href="#жылдам-бастау">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">Нақты порттар</a> · <a href="faq.md#faq">Жиі қойылатын сұрақтар</a><br>
+<p align="center"><b><a href="#жылдам-бастау">Жылдам бастау</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#жылдам-бастау">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">Нақты порттар</a> · <a href="faq.md#faq">Жиі қойылатын сұрақтар</a><br>
 <sub><a href="#тілдер">Тілдер</a> · <a href="how-it-works.md#how-it-works">Қалай жұмыс істейді</a> · <a href="whole-apps.md#port-a-whole-app">Бүкіл қолданбалар</a> · <a href="../LICENSE">MIT</a></sub><br>
-Түркияда 🇹🇷 <a href="https://github.com/erkamyaman">erKam Yaman</a> жасаған · <a href="../LICENSE">MIT</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ Маған демеуші болыңыз</a> · Демеуші: <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
 
 <p align="center">2.0 нұсқасындағы жаңалық: <a href="real-world.md#prettier">Prettier, Rust-қа портталды</a>. 19x жылдамырақ · 17,224 жазылған іске қосудың 15,861-сі толығымен Rust-та · барлығы байтпа-байт бірдей</p>
 
@@ -62,7 +57,7 @@
   </tr>
 </table>
 
-**Бүкіл қолданбаңызды Rust тілінде бөлік-бөлігімен қайта жазыңыз.** rust-anything сіздің Node.js
+**Бүкіл қолданбаңызды Rust тілінде бөлік-бөлігімен қайта жазыңыз.** everything-rust сіздің Node.js
 (TypeScript/JavaScript), Python, C, Go, Ruby немесе Java қолданбаңыздың бүгін не істейтінін жазып
 алады, содан кейін Rust нұсқасының әр бөлігін келесіге өтпес бұрын сол жазбамен салыстырып тексереді,
 қолданба толығымен таза Rust болғанша. CLI-лар, HTTP серверлер және кітапханалар; Rust кодын сіздің
@@ -70,7 +65,7 @@
 [Ол нені ұстай алмайды](how-it-works.md#what-it-cant-catch) бөлімін қараңыз. Бүкіл құралдар мен
 серверлер немесе тек баяу бөлік, бір уақытта бір hot path:
 
-| Нақты жоба, шығысы түпнұсқамен бірдей | Түпнұсқа | rust-anything-пен |
+| Нақты жоба, шығысы түпнұсқамен бірдей | Түпнұсқа | everything-rust-пен |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2, командалық жолдан 2,360 JS/TS файл | 128.6 s | **6.9 s: 19x жылдамырақ** |
 | Prettier, командалық жолдан 6,305 Markdown файл | 352 s | **22.5 s: 15.6x жылдамырақ** |
@@ -84,7 +79,7 @@ JSON, GraphQL, YAML, Markdown, CSS, SCSS, Less) толығымен Rust ішін
 қайтарылады (fallback). json-server: жазылған 514/514 HTTP кейсі таза Rust бинарлық файлында сәйкес
 келеді. Apple M4-те өлшенді, әрқайсысы екі рет іске қосылды, әр шығыс уақыт өлшенбес бұрын
 салыстырылды ([толығырақ](real-world.md)). Әр кішкентай функция үшін Rust-ты жеке-жеке шақыру әдетте
-JIT-тен *баяуырақ*; rust-anything көшіруге тұрарлық циклды тауып, соны көшіреді.
+JIT-тен *баяуырақ*; everything-rust көшіруге тұрарлық циклды тауып, соны көшіреді.
 
 ## Тек баяу бөлік
 
@@ -92,7 +87,7 @@ JIT-тен *баяуырақ*; rust-anything көшіруге тұрарлық �
 жалғыз функцияны порттайды:
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 Іске қосуды профильдейді, көшіруге тұрарлық ең сыртқы функцияны таңдайды (ішіндегі кішкентай шақыруды
@@ -102,8 +97,8 @@ rust-anything go --agent claude -- python3 app.py
 жазып, тоқтайды). Функцияны әр жазылған кейс сәйкес келіп, `gate` өткенде ғана қосады. Содан кейін:
 
 ```sh
-rust-anything report rust/dedupe-rs     # pull request үшін REPORT.md және card.svg
-rust-anything disable rust/dedupe-rs    # байтпа-байт түпнұсқаға қайту
+everything-rust report rust/dedupe-rs     # pull request үшін REPORT.md және card.svg
+everything-rust disable rust/dedupe-rs    # байтпа-байт түпнұсқаға қайту
 ```
 
 Кестедегі [Fuse.js](real-world.md#fusejs) жолы дәл осындай: Fuse-тың бір жолға арналған бағасы бүкіл
@@ -118,7 +113,7 @@ JavaScript-те қалды; нәтижесінде 50,000 жол бойынша 
   <sub>json-server, бүкіл Node сервері, таза Rust бинарлық файлына айналдырылды (Apple M4). <a href="real-world.md#json-server">Қалай өлшенді</a>.</sub>
 </p>
 
-> rust-anything тәуелсіз жоба, ол Rust Project немесе Rust Foundation ұйымдарымен байланысты емес
+> everything-rust тәуелсіз жоба, ол Rust Project немесе Rust Foundation ұйымдарымен байланысты емес
 > және олар тарапынан мақұлданбаған. «Rust» Rust Foundation ұйымының сауда белгісі.
 
 > [!WARNING]
@@ -133,59 +128,59 @@ JavaScript-те қалды; нәтижесінде 50,000 жол бойынша 
 Мынаны Claude Code, Codex, Cursor, Gemini CLI немесе OpenCode ішіне қойып, орнатуды агентіңізге тапсырыңыз:
 
 ```text
-Install rust-anything: run `cargo install rust-anything`, then `rust-anything setup`.
+Install everything-rust: run `cargo install everything-rust`, then `everything-rust setup`.
 Tell me when to restart you.
 ```
 
 Немесе өзіңіз:
 
 ```sh
-cargo install rust-anything   # from crates.io
-rust-anything setup           # registers it with Claude Code, Codex, Cursor, Gemini CLI and OpenCode
+cargo install everything-rust   # from crates.io
+everything-rust setup           # registers it with Claude Code, Codex, Cursor, Gemini CLI and OpenCode
 ```
 
 Rust toolchain әлі жоқ па? macOS, Linux және Windows үшін дайын бинарлық файлдар әр
-[GitHub release](https://github.com/erkamyaman/rust-anything/releases) бетіне тіркелген, ал JavaScript
-жобалары үшін `npm install -g rust-anything` сол бинарлық файлды орнатады.
+[GitHub release](https://github.com/marprojector/everything-rust/releases) бетіне тіркелген, ал JavaScript
+жобалары үшін `npm install -g everything-rust` сол бинарлық файлды орнатады.
 
 Claude Code ішінде оны плагин ретінде де орнатуға болады (MCP сервер және skill; жоғарыдағы CLI сіздің
 `PATH` ішінде болуы керек):
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 `setup` тапқан әр агентке MCP серверді қосады және workflow skill-ін агент skill-дерді оқитын жерге
 орнатады. Ол басқа баптауларыңызды сақтайды, оны қайта іске қосу қауіпсіз, ал `--remove` барлығын кері
 қайтарады. Содан кейін агентіңізден, мысалы, былай сұраңыз:
 
-- *"Осы CLI-ды rust-anything көмегімен басынан аяғына дейін Rust тілінде қайта жаз және оның дәл солай жұмыс істейтінін дәлелде."*
-- *"Бұл іздеу баяу сияқты. Оны rust-anything көмегімен профайлда және hot loop-ты Rust-қа көшір."*
-- *"rust-anything көмегімен `src/parser/` бумасын Rust-қа көшіру жоспарын жаса; бірінші бірлікті порттап, дәлелде."*
+- *"Осы CLI-ды everything-rust көмегімен басынан аяғына дейін Rust тілінде қайта жаз және оның дәл солай жұмыс істейтінін дәлелде."*
+- *"Бұл іздеу баяу сияқты. Оны everything-rust көмегімен профайлда және hot loop-ты Rust-қа көшір."*
+- *"everything-rust көмегімен `src/parser/` бумасын Rust-қа көшіру жоспарын жаса; бірінші бірлікті порттап, дәлелде."*
 - *"`rust/text-rs` ішіндегі Rust портын түпнұсқамен бенчмарк арқылы салыстыр да, оны шығару керек пе, айт."*
 
 ### Үйлесімді агенттер
 
-| Агент | `rust-anything setup` қосатыны |
+| Агент | `everything-rust setup` қосатыны |
 | --- | --- |
 | Claude Code | `~/.claude.json` ішінде MCP сервер, `~/.claude/skills/` ішінде skill |
 | Codex | `~/.codex/config.toml` ішінде MCP сервер, `~/.codex/skills/` ішінде skill |
 | Cursor | `~/.cursor/mcp.json` ішінде MCP сервер |
 | Gemini CLI | `~/.gemini/settings.json` ішінде MCP сервер |
 | OpenCode | `~/.config/opencode/opencode.json` ішінде MCP сервер (`mcp.servers`), `~/.config/opencode/skills/` ішінде skill |
-| Кез келген басқа MCP клиент | `rust-anything mcp` командасын stdio сервер ретінде қолмен қосыңыз ([Орнату](install.md#install) бөлімін қараңыз) |
+| Кез келген басқа MCP клиент | `everything-rust mcp` командасын stdio сервер ретінде қолмен қосыңыз ([Орнату](install.md#install) бөлімін қараңыз) |
 
-Бар файлды өзгертпес бұрын `setup` оның көшірмесін қасына сақтайды (`<file>.rust-anything.bak`).
+Бар файлды өзгертпес бұрын `setup` оның көшірмесін қасына сақтайды (`<file>.everything-rust.bak`).
 
 OpenCode-ты қолмен қосу үшін серверді `~/.config/opencode/opencode.json` ішіне қойыңыз (`command`
-бүкіл argv болып табылады) және [`skills/rust-anything/`](../skills/rust-anything) бумасын
-`~/.config/opencode/skills/rust-anything/` ішіне көшіріңіз:
+бүкіл argv болып табылады) және [`skills/everything-rust/`](../skills/everything-rust) бумасын
+`~/.config/opencode/skills/everything-rust/` ішіне көшіріңіз:
 
 ```json
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
@@ -194,17 +189,17 @@ OpenCode-ты қолмен қосу үшін серверді `~/.config/opencod
 Немесе қадамдарды өзіңіз орындаңыз:
 
 ```sh
-rust-anything profile . -- node bench.mjs              # what is hot, and who calls it
-rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile . -- node bench.mjs              # what is hot, and who calls it
+everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text
 # write src/port.rs (or let your agent), then:
-rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
-rust-anything diff rust/fuzzy-rs                       # every recorded case must match
-rust-anything bench rust/fuzzy-rs                      # faster? the verdict says
-rust-anything gate rust/fuzzy-rs                       # done means this passes
+everything-rust record rust/fuzzy-rs && everything-rust build rust/fuzzy-rs
+everything-rust diff rust/fuzzy-rs                       # every recorded case must match
+everything-rust bench rust/fuzzy-rs                      # faster? the verdict says
+everything-rust gate rust/fuzzy-rs                       # done means this passes
 ```
 
-rust-anything кодты аудармайды: Rust кодын сіздің кодинг-агентіңіз (Claude Code, Codex, Cursor, OpenCode, ...)
-немесе өзіңіз жазасыз. rust-anything агент сенімді түрде болжай алмайтын нәрселерді береді: уақыт қайда
+everything-rust кодты аудармайды: Rust кодын сіздің кодинг-агентіңіз (Claude Code, Codex, Cursor, OpenCode, ...)
+немесе өзіңіз жазасыз. everything-rust агент сенімді түрде болжай алмайтын нәрселерді береді: уақыт қайда
 кетеді, алдымен нені және қандай ретпен порттау керек, қалған код Rust-ты API-ін өзгертпей шақыруы үшін
 bridge, порт сәйкес келуге тиіс нақты мінез-құлық, оны шығарудың қауіпсіз жолы және порттың қашан дайын
 болғанын айтатын gate.
@@ -244,7 +239,7 @@ PHP үшін `analyze` PHP қолданбасын жоспарлайды (Compos
 loose comparison және integer-дің float-қа толып кетуі сияқты тәуекелдер, crate-терге сәйкестендірілген
 Composer пакеттері), ал PHP CLI немесе серверін жазып алуға, қайта ойнатуға және Rust front door-ының
 артына қоюға болады. Оның бірліктерін PHP FFI арқылы Rust-қа порттау келесі қадам
-([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)).
+([issue #2](https://github.com/marprojector/everything-rust/issues/2)).
 
 C# та дәл солай жұмыс істейді: `analyze` `.csproj` жобалары мен олардың NuGet пакеттерін оқиды
 (crate-терге сәйкестендіріледі), `using` директиваларын бумаларға шешеді және C# басқаша істейтін
@@ -264,31 +259,11 @@ reflection). C# CLI немесе ASP.NET серверін жазып алуға,
 ## Демеушілер
 
 <p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> тегін және ашық бастапқы кодты жоба. Егер ол жұмысыңызға көмектессе, оған демеуші болуды қарастырыңыз.<br>
+  <a href="https://github.com/marprojector/everything-rust">everything-rust</a> тегін және ашық бастапқы кодты жоба. Егер ол жұмысыңызға көмектессе, оған демеуші болуды қарастырыңыз.<br>
   Сіздің қолдауыңыз әзірлеуді жалғастыруға мүмкіндік береді.
 </p>
 
 <p align="center">
-  <a href="https://coderabbit.link/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/company-dark.svg">
-      <img src="assets/sponsors/company-light.svg" width="800" alt="Компания демеушісі: CodeRabbit">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/sponsors-dark.svg">
-      <img src="assets/sponsors/sponsors-light.svg" width="800" alt="Демеушілер: Santosh Yadav, Hakan Soytürk, Ali Yilmaz, Ashley Hunter, Fatih Uzuntaş">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman"><img src="https://img.shields.io/badge/%D0%94%D0%B5%D0%BC%D0%B5%D1%83%D1%88%D1%96_%D0%B1%D0%BE%D0%BB%D1%83-%E2%9D%A4-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Демеуші болу"></a>
-  <a href="https://buymeacoffee.com/erkamyaman"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 </p>
 
 ## Үлес қосу
@@ -301,4 +276,4 @@ Issue-лер мен pull request-тер құпталады; [CONTRIBUTING.md](..
 
 ## Лицензия
 
-[MIT](../LICENSE) © [Erkam Yaman](https://github.com/erkamyaman). Репозиторийіңіздегі порттар мен генерацияланған код сіздікі.
+[MIT](../LICENSE) © [M. Ammar R. Arief](https://github.com/marprojector). Репозиторийіңіздегі порттар мен генерацияланған код сіздікі.

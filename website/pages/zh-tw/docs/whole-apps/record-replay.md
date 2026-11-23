@@ -8,9 +8,9 @@ description: app record 會以應用程式文件中的範例、你的輸入與�
 `record` 與 `diff` 證明單一單元；`app record` 與 `app replay` 證明整個應用程式，適用於六種語言中任一種的 CLI 與伺服器。應用程式被當成黑盒子。
 
 ```sh
-rust-anything app record . -- python3 cli.py          # 執行原始版本的指令
-rust-anything app replay .                            # 原始版本必須 100% 通過
-rust-anything app replay . --build "target/release/mytool"
+everything-rust app record . -- python3 cli.py          # 執行原始版本的指令
+everything-rust app replay .                            # 原始版本必須 100% 通過
+everything-rust app replay . --build "target/release/mytool"
 ```
 
 ## 案例從哪裡來
@@ -40,7 +40,7 @@ rust-anything app replay . --build "target/release/mytool"
 ## 重播
 
 - `app replay` 會拿任何建置版本來比對這些案例，印出 `passed/total`，寫入 `rust/app-cases/replay-report.md` 並為每個失敗的案例附上 diff，且在出現任何不一致時以非零值結束。
-- 像[入口](/docs/whole-apps/front-door)那樣，會附加寫入 `RUST_ANYTHING_FALLBACK_LOG` 所指定檔案的建置版本（每次回退到原始版本寫一行），也會回報它的回退率。
+- 像[入口](/docs/whole-apps/front-door)那樣，會附加寫入 `EVERYTHING_RUST_FALLBACK_LOG` 所指定檔案的建置版本（每次回退到原始版本寫一行），也會回報它的回退率。
 - `app replay --case <name>` 會以報告給出的名稱重新執行單一案例：這是在重新執行全部案例之前，修正不一致的快速、可重複的循環。
 
 ## 在 CI 中重播
@@ -48,7 +48,7 @@ rust-anything app replay . --build "target/release/mytool"
 報告中沒有計時或暫存路徑：同一個建置版本的兩次重播會寫出相同的檔案。請提交它，然後在 CI 中執行：
 
 ```sh
-rust-anything app replay .
+everything-rust app replay .
 git diff --exit-code rust/app-cases/replay-report.md
 ```
 

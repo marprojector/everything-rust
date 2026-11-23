@@ -1,5 +1,5 @@
-//! JS bindings for `src/stats.ts`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! JS bindings for `src/stats.ts`: generated from the signatures in `port.rs` by everything-rust.
+//! Regenerate with `everything-rust refresh` after changing them.
 
 use wasm_bindgen::prelude::*;
 

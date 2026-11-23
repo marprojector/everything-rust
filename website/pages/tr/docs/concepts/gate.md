@@ -6,7 +6,7 @@ description: gate, bir port için "bitti"nin tanımıdır. Çalıştırdığı h
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Bitti demek, `gate`'in geçmesi demektir. Şunları kontrol eder:

@@ -9,7 +9,7 @@ description: エンドツーエンドで移植した最初のアプリ全体。N
 1.0.0-beta.15）は JSON ファイルから REST API を提供します: Node、tinyhttp、lowdb で作られています。これは
 アプリ全体のフロー（`app record`、`front-door`、`wire`、`lift`）でエンドツーエンドに移植した最初のアプリで、
 結果は Node サーバーと同じ応答を返す 1 つの Rust バイナリです。すべては
-[`demo/real-world/json-server-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/json-server-rs) にあります。
+[`demo/real-world/json-server-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/json-server-rs) にあります。
 
 | ステップ | 結果 |
 | --- | --- |
@@ -51,7 +51,7 @@ json-server で見つかったこと: 自身の書き込みのたびに、ファ
 `lib/bin.js` を実行、Rust バイナリは `--release` でビルド。両方ともループバック上で同じ
 データベースのコピーを提供し、`ab -k` がウォームアップ後に同じリクエストを行ごとに 20,000 件送ります（大きなデータベースでの
 遅い埋め込みは 40 件）。2 回実行し、それぞれ 1 分間のロードアベレージが 3 未満の状態で開始しました。
-セルは 1 回目 / 2 回目の 1 秒あたりのリクエスト数です。スクリプトは [`bench/bench.py`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/json-server-rs/bench/bench.py)
+セルは 1 回目 / 2 回目の 1 秒あたりのリクエスト数です。スクリプトは [`bench/bench.py`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/json-server-rs/bench/bench.py)
 です。
 
 フィクスチャのデータベース（投稿 6 件、コメント 3 件）:

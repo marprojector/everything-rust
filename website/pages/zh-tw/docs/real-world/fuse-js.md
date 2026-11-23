@@ -7,7 +7,7 @@ description: 以 Rust 實作的 Fuse.js 字串列表搜尋。3,414/3,414 個已�
 
 [Fuse.js](https://github.com/krisk/Fuse)（20k 顆星，每週約 2,000 萬次 npm 下載，
 commit `edf2fb6`）是無數搜尋框背後的模糊搜尋函式庫。以
-rust-anything 1.6（尚未發布）移植；crate 位於 [`demo/real-world/fuse-rs`](https://github.com/erkamyaman/rust-anything/tree/main/demo/real-world/fuse-rs)。
+everything-rust 1.6（尚未發布）移植；crate 位於 [`demo/real-world/fuse-rs`](https://github.com/marprojector/everything-rust/tree/main/demo/real-world/fuse-rs)。
 
 `analyze` 把 `src/` 的每個資料夾都歸在同一個循環匯入中，所以 Fuse 無法逐檔移植。
 因此移植版本改為處理搜尋時花費時間的那條路徑：一個 54 行的轉接器

@@ -20,7 +20,7 @@ Batch-lər `new FnBatch(items)`-dir; işiniz bitəndə onları bağlayın. `prof
 - `Integer.parseInt` `Character.digit` vasitəsilə istənilən Unicode onluq rəqəmini (`١٢`, `２`) qəbul edir.
 - `Double.toString` (JDK 19+) ən qısa onluq formanı çap edir, amma heç vaxt iki rəqəmdən az yox: `4.9E-324`, Rust-un ən qısa forması isə `5e-324`-dür.
 - `\s` yalnız ASCII-dir; Rust-un `split_whitespace` funksiyası U+00A0-da da bölür.
-- Float-lar gediş-gəlişdən sağ çıxmalıdır: `serde_json`-un standart float parser-i həmişə düzgün yuvarlaqlaşdırmır, buna görə rust-anything və onun yaratdığı hər crate onun `float_roundtrip` xüsusiyyətindən istifadə edir.
+- Float-lar gediş-gəlişdən sağ çıxmalıdır: `serde_json`-un standart float parser-i həmişə düzgün yuvarlaqlaşdırmır, buna görə everything-rust və onun yaratdığı hər crate onun `float_roundtrip` xüsusiyyətindən istifadə edir.
 
 ## Sürət
 

@@ -2,7 +2,7 @@ mod common;
 
 use std::path::Path;
 
-use rust_anything::{bridge, harness};
+use everything_rust::{bridge, harness};
 
 #[test]
 fn records_java_with_comments_in_package_declarations() {
@@ -11,7 +11,7 @@ fn records_java_with_comments_in_package_declarations() {
     }
 
     let temp = std::env::temp_dir().join(format!(
-        "rust-anything-java-package-declaration {}",
+        "everything-rust-java-package-declaration {}",
         std::process::id()
     ));
     let result = record(&temp);
@@ -34,7 +34,7 @@ fn record(root: &Path) -> anyhow::Result<()> {
         name: Some("sample-rs".into()),
         force: false,
         keep: Vec::new(),
-        lang: Some(rust_anything::lang::Lang::Java),
+        lang: Some(everything_rust::lang::Lang::Java),
         batch: Vec::new(),
         as_json: Vec::new(),
         allocator: Default::default(),

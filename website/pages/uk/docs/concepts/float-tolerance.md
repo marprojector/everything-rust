@@ -6,8 +6,8 @@ description: Числовий код після портування рідко 
 # Допуск для float
 
 ```sh
-rust-anything record <crate> --float-tolerance 1e-9
-rust-anything app record . --float-tolerance 1e-9 -- python3 cli.py
+everything-rust record <crate> --float-tolerance 1e-9
+everything-rust app record . --float-tolerance 1e-9 -- python3 cli.py
 ```
 
 Числовий код (фізика, статистика, графіка) після портування рідко дає побітово ідентичні float: порядок операцій, злите множення-додавання (FMA) і математична бібліотека відрізняються між компіляторами. Якщо вас це влаштовує, записуйте з `--float-tolerance` і своїм числом. Тоді float збігаються в межах цієї частки від більшого значення (абсолютно для значень менших за 1), і `diff` та `gate` використовують цей допуск. `0` прибирає його.

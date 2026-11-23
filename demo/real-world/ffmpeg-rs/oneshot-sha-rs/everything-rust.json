@@ -1,0 +1,68 @@
+{
+  "schema": "everything-rust/bridge@1",
+  "root": "<the ffmpeg tree scripts/prepare.sh assembles; see README.md>",
+  "unit": "oneshot_sha.c",
+  "language": "c",
+  "kind": "c-abi",
+  "crate_name": "oneshot-sha-rs",
+  "exports": [
+    {
+      "name": "oneshot_sha",
+      "file": "oneshot_sha.c",
+      "line": 10,
+      "params": [
+        {
+          "name": "dst",
+          "ts_type": "buffer",
+          "optional": false,
+          "rest": false,
+          "native_type": "uint8_t*"
+        },
+        {
+          "name": "dst_size",
+          "ts_type": "len:0",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        },
+        {
+          "name": "bits",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        },
+        {
+          "name": "src",
+          "ts_type": "bytes",
+          "optional": false,
+          "rest": false,
+          "native_type": "const uint8_t*"
+        },
+        {
+          "name": "len",
+          "ts_type": "len:3",
+          "optional": false,
+          "rest": false,
+          "native_type": "size_t"
+        },
+        {
+          "name": "chunk",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false,
+          "native_type": "int"
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false,
+      "native_return": "int",
+      "prototype": "int oneshot_sha(uint8_t *dst, int dst_size, int bits, const uint8_t *src, size_t len, int chunk)"
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

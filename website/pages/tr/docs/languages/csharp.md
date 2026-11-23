@@ -17,10 +17,10 @@ description: C# önizlemededir. analyze .csproj projelerini okur ve bir C# CLI'�
 Derlenmiş bir uygulamayı kaydedin:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 Birimleri P/Invoke üzerinden port etmek sırada. O zamana kadar `bridge`, C# birimlerini açık bir mesajla reddeder.

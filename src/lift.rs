@@ -357,7 +357,7 @@ pub fn strip_unit(dir: &Path) -> Result<Vec<PathBuf>> {
 
 fn lifted_units_rs(state: &State) -> String {
     let mut out = String::from(
-        "//! Written by `rust-anything app lift`: every command is answered in Rust.\n\n\
+        "//! Written by `everything-rust app lift`: every command is answered in Rust.\n\n\
          use std::process::ExitCode;\n\n\
          use clap::ArgMatches;\n\n",
     );
@@ -443,7 +443,7 @@ fn lift_library(stage_app: &Path, state: &mut State) -> Result<()> {
     let cargo = stage_app.join("Cargo.toml");
     let mut doc: DocumentMut = std::fs::read_to_string(&cargo)?.parse()?;
     doc["package"]["description"] = value(format!(
-        "`{}` in Rust, lifted by rust-anything from its units' ports",
+        "`{}` in Rust, lifted by everything-rust from its units' ports",
         state.name
     ));
     ship_settings(&mut doc);
@@ -505,7 +505,7 @@ fn lift_app(
         && description.starts_with("Front door for")
     {
         doc["package"]["description"] = value(format!(
-            "`{}` in Rust, lifted by rust-anything from its front door",
+            "`{}` in Rust, lifted by everything-rust from its front door",
             state.name
         ));
     }
@@ -683,7 +683,7 @@ pub fn lift(opts: &LiftOptions) -> Result<LiftOutcome> {
     let rust_dir = repo.join("rust");
     let mut blockers = Vec::new();
     if state.units.is_empty() {
-        blockers.push("no unit is wired yet: run `rust-anything app wire` first".to_string());
+        blockers.push("no unit is wired yet: run `everything-rust app wire` first".to_string());
     }
     let mut units = Vec::new();
     for unit in &state.units {
@@ -800,7 +800,7 @@ pub fn lift(opts: &LiftOptions) -> Result<LiftOutcome> {
             .collect();
         if !failed.is_empty() {
             blockers.push(format!(
-                "{}: gate fails ({}): run `rust-anything gate {}`",
+                "{}: gate fails ({}): run `everything-rust gate {}`",
                 unit.crate_name,
                 failed.join(", "),
                 dir.display()
@@ -812,7 +812,7 @@ pub fn lift(opts: &LiftOptions) -> Result<LiftOutcome> {
     }
 
     let stage = std::env::temp_dir().join(format!(
-        "rust-anything-lift-{}-{}",
+        "everything-rust-lift-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
@@ -873,11 +873,11 @@ pub fn lift(opts: &LiftOptions) -> Result<LiftOutcome> {
         if library {
             "the recorded cases ran through the units' bindings, which the lift removes: `cargo test` on the crates is what CI keeps; turn the cases that matter into Rust tests"
         } else if state.kind == AppKind::Http {
-            "trycmd runs command lines only: run `rust-anything app replay <repo> --build <the binary>` in CI for the HTTP cases"
+            "trycmd runs command lines only: run `everything-rust app replay <repo> --build <the binary>` in CI for the HTTP cases"
         } else if !unordered.is_empty() {
-            "rust/app/tests/app_cases.rs runs the cases with trycmd on `cargo test`, which compares line order exactly, so it skips the cases whose order the original's own runs disagreed on: also run `rust-anything app replay` in CI for them"
+            "rust/app/tests/app_cases.rs runs the cases with trycmd on `cargo test`, which compares line order exactly, so it skips the cases whose order the original's own runs disagreed on: also run `everything-rust app replay` in CI for them"
         } else if key_order {
-            "rust/app/tests/app_cases.rs runs the cases with trycmd on `cargo test`, which compares JSON as text: also run `rust-anything app replay` in CI for the key-order normalizer"
+            "rust/app/tests/app_cases.rs runs the cases with trycmd on `cargo test`, which compares JSON as text: also run `everything-rust app replay` in CI for the key-order normalizer"
         } else {
             "rust/app/tests/app_cases.rs runs the recorded cases with trycmd on `cargo test`"
         },
@@ -1047,7 +1047,7 @@ mod tests {
     #[test]
     fn port_modules_follow_crate_paths() {
         let dir =
-            std::env::temp_dir().join(format!("rust-anything-lift-mods-{}", std::process::id()));
+            std::env::temp_dir().join(format!("everything-rust-lift-mods-{}", std::process::id()));
         let src = dir.join("src");
         std::fs::create_dir_all(&src).unwrap();
         std::fs::write(
@@ -1075,7 +1075,7 @@ mod tests {
                 crate_name: "wordcount-rs".into(),
                 path: "../wordcount-rs".into(),
                 commands: vec!["words".into(), "tcli".into()],
-                switch: "RUST_ANYTHING_UNIT_WORDCOUNT".into(),
+                switch: "EVERYTHING_RUST_UNIT_WORDCOUNT".into(),
                 routes: Vec::new(),
                 unit: None,
                 shadow: None,
@@ -1088,7 +1088,7 @@ mod tests {
         };
         let code = lifted_units_rs(&state);
         assert!(code.contains("\"words\" | \"tcli\" => Some(wordcount::run(command, matches)),"));
-        assert!(!code.contains("RUST_ANYTHING_UNIT"));
+        assert!(!code.contains("EVERYTHING_RUST_UNIT"));
         assert!(!LIFTED_MAIN.contains("original"));
     }
 }

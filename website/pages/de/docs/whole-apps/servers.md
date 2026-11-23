@@ -10,11 +10,11 @@ Port aus `PORT` oder `{port}` im Befehl (`--port` für einen, der immer auf dems
 Port lauscht):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: jede Route weitergeleitet
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: jede Route weitergeleitet
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Anfragen kommen aus `curl`-Zeilen in der Doku der App (`curl -X POST -d ... http://localhost:8080/x`),

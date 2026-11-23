@@ -3,8 +3,8 @@
 //! `enable` puts one marked block in each original source file of the unit (TS/JS or Python).
 //! The block loads the built Rust module and rebinds the ported functions, so every caller gets
 //! Rust without an import changing. `disable` removes exactly the lines `enable` added. At run
-//! time `RUST_ANYTHING_MODE=old` or the unit's `RUST_ANYTHING_UNIT_<NAME>=original` keeps the
-//! original, and a module that fails to load falls back to it (`RUST_ANYTHING_MODE=new` makes
+//! time `EVERYTHING_RUST_MODE=old` or the unit's `EVERYTHING_RUST_UNIT_<NAME>=original` keeps the
+//! original, and a module that fails to load falls back to it (`EVERYTHING_RUST_MODE=new` makes
 //! that an error instead).
 
 use std::collections::BTreeMap;
@@ -18,8 +18,8 @@ use crate::bridge::{Kind, Manifest};
 use crate::lang::Lang;
 use crate::walk::Canonical;
 
-const START: &str = ">>> rust-anything:";
-const END: &str = "<<< rust-anything:";
+const START: &str = ">>> everything-rust:";
+const END: &str = "<<< everything-rust:";
 const EOF_NOTE: &str = " (newline added)";
 
 #[derive(Debug, Serialize)]
@@ -168,8 +168,8 @@ fn supported(manifest: &Manifest) -> Result<()> {
         _ if is_supported(manifest) => Ok(()),
         lang => bail!(
             "`enable` switches TS/JS and Python ports in place; for {} use the shadow module \
-             (`rust-anything shadow`), imported where the app imported the original, and \
-             RUST_ANYTHING_MODE=old|shadow|new",
+             (`everything-rust shadow`), imported where the app imported the original, and \
+             EVERYTHING_RUST_MODE=old|shadow|new",
             lang.name()
         ),
     }
@@ -208,7 +208,7 @@ fn marker(comment: &str, crate_name: &str, crate_dir: &Path, dir: &Path) -> (Str
     let at = crate::shadow::relative(dir, crate_dir);
     (
         format!(
-            "{comment} {START} {crate_name} is on. `rust-anything disable {at}` removes this block."
+            "{comment} {START} {crate_name} is on. `everything-rust disable {at}` removes this block."
         ),
         format!("{comment} {END} {crate_name}"),
     )
@@ -234,14 +234,14 @@ fn js_block(
         "__dirname"
     };
     let var = format!(
-        "__rustAnything_{}",
+        "__everythingRust_{}",
         crate::front_door::ident(&manifest.crate_name)
     );
     let assign: Vec<String> = names.iter().map(|n| format!("{n} = {var}.{n}")).collect();
     format!(
         "{start}\n\
          // @ts-ignore\n\
-         const {var} = ((p) => p && p.env.RUST_ANYTHING_MODE !== 'old' && p.env.{switch} !== 'original' && (() => {{ try {{ const m = p.getBuiltinModule('node:module'); const at = p.getBuiltinModule('node:path').join({here}, {rel:?}); return m.createRequire(at)(at) }} catch (e) {{ if (p.env.RUST_ANYTHING_MODE === 'new') throw e }} }})())(globalThis.process)\n\
+         const {var} = ((p) => p && p.env.EVERYTHING_RUST_MODE !== 'old' && p.env.{switch} !== 'original' && (() => {{ try {{ const m = p.getBuiltinModule('node:module'); const at = p.getBuiltinModule('node:path').join({here}, {rel:?}); return m.createRequire(at)(at) }} catch (e) {{ if (p.env.EVERYTHING_RUST_MODE === 'new') throw e }} }})())(globalThis.process)\n\
          // @ts-ignore\n\
          if ({var}) {{ {} }}\n\
          {end}\n",
@@ -260,7 +260,7 @@ fn python_block(
     let (package_dir, lib) = crate::harness_py::package(crate_dir, manifest);
     let rel = crate::shadow::relative(dir, &package_dir);
     let fun = format!(
-        "_rust_anything_{}",
+        "_everything_rust_{}",
         crate::front_door::ident(&manifest.crate_name)
     );
     let names: Vec<String> = names.iter().map(|n| format!("{n:?}")).collect();
@@ -268,7 +268,7 @@ fn python_block(
         "{start}\n\
          def {fun}():\n\
          \x20   import importlib, os, sys\n\
-         \x20   mode = os.environ.get(\"RUST_ANYTHING_MODE\")\n\
+         \x20   mode = os.environ.get(\"EVERYTHING_RUST_MODE\")\n\
          \x20   if mode == \"old\" or os.environ.get(\"{switch}\") == \"original\":\n\
          \x20       return\n\
          \x20   at = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), {rel:?}))\n\
@@ -370,7 +370,7 @@ fn remove(text: &str, crate_name: &str) -> Option<String> {
 mod tests {
     use super::*;
 
-    const BLOCK: &str = "# >>> rust-anything: fuzzy-rs is on. `rust-anything disable x` removes this block.\nx = 1\n# <<< rust-anything: fuzzy-rs\n";
+    const BLOCK: &str = "# >>> everything-rust: fuzzy-rs is on. `everything-rust disable x` removes this block.\nx = 1\n# <<< everything-rust: fuzzy-rs\n";
 
     #[test]
     fn python_goes_before_the_main_guard_and_comes_out_byte_for_byte() {

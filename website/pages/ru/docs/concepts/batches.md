@@ -6,7 +6,7 @@ description: Порт, вызываемый по разу на каждый эл
 # Пакеты и горячие пути
 
 ```sh
-rust-anything bridge <repo> <unit> --batch fn:param    # или: rust-anything refresh <crate> --batch fn:param
+everything-rust bridge <repo> <unit> --batch fn:param    # или: everything-rust refresh <crate> --batch fn:param
 ```
 
 `--batch` генерирует класс, который принимает значения `param` один раз и хранит их в Rust: `new FnBatch(items)` (TS, Python, Java), `Mod::FnBatch.new(items)` (Ruby), `NewFnBatch(items)` (Go). На каждый запрос `run(<other args>)` возвращает все результаты одним массивом, а `rank(<other args>, min)` возвращает индексы элементов, лучшие первыми. Он работает на всех ядрах, а ошибки совпадают с ошибками оригинала. Пакеты получают все языки, кроме C.
@@ -16,9 +16,9 @@ rust-anything bridge <repo> <unit> --batch fn:param    # или: rust-anything r
 и выполняет функцию над всеми ними за вызов, на всех ядрах, с результатами в типизированных массивах.
 
 ```sh
-rust-anything profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
+everything-rust profile ../x18n -- node --experimental-strip-types $PWD/demo/x18n-search/search.ts .
 # -> fuzzyScore: четверть всего прогона, вызывается на каждый ключ из `matched`: нужно пакетировать
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --batch fuzzyScore:text
 ```
 
 ```js
@@ -58,7 +58,7 @@ const order = search.rank(query, 0)               // per keystroke: indexes, bes
 
 Компилируемые оригиналы выигрывают меньше: работа на элемент и так быстрая, поэтому пакет выигрывает за счёт числа
 ядер. Пакетные крейты выделяют память через mimalloc: с системным аллокатором пакет для Go был медленнее
-одного потока. Демо: [`demo/x18n-search`](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-search/README.md).
+одного потока. Демо: [`demo/x18n-search`](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-search/README.md).
 ## Как написать быстрый индекс
 
 - Пусть вызывающий код строит пакет один раз, а не на каждый запрос. Отображайте возвращённые индексы обратно на элементы обычным циклом.

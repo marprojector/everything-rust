@@ -17,10 +17,10 @@ description: "C# 处于预览阶段。analyze 会读取 .csproj 项目，C# CLI 
 录制一个已构建的应用：
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 通过 P/Invoke 迁移单元是下一步。在此之前，`bridge` 会拒绝 C# 单元，并给出明确的提示。

@@ -10,13 +10,13 @@ les bienvenus, et vous n'avez pas besoin de demander avant d'ouvrir une pull req
 
 ## Avant de commencer
 
-- **Un bug :** ouvrez une [issue](https://github.com/erkamyaman/rust-anything/issues/new/choose) avec
-  la commande lancée, sa sortie, votre plateforme et la version de rust-anything
-  (`rust-anything --version`). Un tout petit projet de reproduction aide le plus.
+- **Un bug :** ouvrez une [issue](https://github.com/marprojector/everything-rust/issues/new/choose) avec
+  la commande lancée, sa sortie, votre plateforme et la version de everything-rust
+  (`everything-rust --version`). Un tout petit projet de reproduction aide le plus.
 - **Un changement plus important** (un nouveau langage, une nouvelle commande, un changement de ce qu'est une unité ou un enregistrement) :
   ouvrez d'abord une issue pour que nous puissions nous mettre d'accord sur la forme avant que vous ne l'écriviez. Les raisons des
-  choix passés se trouvent dans [DECISIONS.md](https://github.com/erkamyaman/rust-anything/blob/main/DECISIONS.md).
-- **Un problème de sécurité :** n'ouvrez pas d'issue publique ; voir [SECURITY.md](https://github.com/erkamyaman/rust-anything/blob/main/SECURITY.md).
+  choix passés se trouvent dans [DECISIONS.md](https://github.com/marprojector/everything-rust/blob/main/DECISIONS.md).
+- **Un problème de sécurité :** n'ouvrez pas d'issue publique ; voir [SECURITY.md](https://github.com/marprojector/everything-rust/blob/main/SECURITY.md).
 
 ## Installation
 
@@ -36,16 +36,16 @@ ignorent une partie dont le runtime est absent, donc installez ceux que vous tou
 | bridges wasm | `rustup target add wasm32-unknown-unknown` et le `wasm-bindgen-cli` correspondant |
 
 ```sh
-git clone https://github.com/erkamyaman/rust-anything
-cd rust-anything
+git clone https://github.com/marprojector/everything-rust
+cd everything-rust
 git config core.hooksPath .githooks
 cargo test
 ```
 
 `cargo run -- doctor` liste les runtimes dont vous disposez parmi ceux-ci, leurs versions, et la commande
 qui installe ou met à jour chacun d'eux. Pour qu'un runtime absent fasse échouer ses tests au lieu de les ignorer
-(c'est ce que fait la CI), nommez-le dans `RUST_ANYTHING_REQUIRE`, par exemple
-`RUST_ANYTHING_REQUIRE=node,python3,go,ruby,java cargo test`.
+(c'est ce que fait la CI), nommez-le dans `EVERYTHING_RUST_REQUIRE`, par exemple
+`EVERYTHING_RUST_REQUIRE=node,python3,go,ruby,java cargo test`.
 
 Le hook exécute `scripts/check-secrets.sh`, qui refuse les clés, les tokens et les chemins de dossier personnel
 dans ce que vous commitez. La CI l'exécute sur chaque fichier.
@@ -65,7 +65,7 @@ dans ce que vous commitez. La CI l'exécute sur chaque fichier.
 - **Les fixtures** sont de petites applications sous `tests/fixtures/`. Les fixtures CLI et HTTP implémentent les mêmes
   commandes et routes dans chaque langage (`tcli upper|len|div|words|copy|now`, `/hello`, `/upper`,
   `/div/{a}/{b}`, `/now`), donc gardez-en une nouvelle identique aux autres en comportement.
-- **Le code généré** (les bridges, pilotes et portes d'entrée qu'écrit rust-anything) doit lui aussi passer
+- **Le code généré** (les bridges, pilotes et portes d'entrée qu'écrit everything-rust) doit lui aussi passer
   `clippy -D warnings`, puisque `gate` l'exécute sur les crates des utilisateurs.
 - **Style :** alignez-vous sur le code environnant. Gardez les commentaires pour ce que le code ne peut pas dire seul, et
   mettez plutôt le raisonnement derrière un changement dans la pull request.
@@ -81,8 +81,8 @@ bibliothèque absente de la table est signalée comme `unknown` ; ne devinez jam
 ## Ajouter un langage
 
 PHP et C# ont été ajoutés en préversion dans deux commits qui valent la peine d'être lus d'abord :
-[e8ac243](https://github.com/erkamyaman/rust-anything/commit/e8ac243) (PHP) et
-[caea59a](https://github.com/erkamyaman/rust-anything/commit/caea59a) (C#). Un nouveau langage commence
+[e8ac243](https://github.com/marprojector/everything-rust/commit/e8ac243) (PHP) et
+[caea59a](https://github.com/marprojector/everything-rust/commit/caea59a) (C#). Un nouveau langage commence
 de la même manière :
 
 1. Un plugin dans `src/lang/<name>.rs` : découverte, analyse (imports et risques), résolution et exports,
@@ -139,10 +139,10 @@ de petits ajustements, un mainteneur peut ajouter un commit par-dessus plutôt q
 ## Partager un portage réel
 
 Les portages de vrais projets sont la meilleure preuve de ce qui marche et de ce qui casse. Si vous avez utilisé
-rust-anything sur quelque chose de réel, une issue ou une pull request qui l'ajoute à
+everything-rust sur quelque chose de réel, une issue ou une pull request qui l'ajoute à
 [docs/real-world.md](/docs/real-world/overview) est très bienvenue. Indiquez le projet, les commandes
 lancées, le nombre de cas, et tout ce qui vous a surpris.
 
 ## Code de conduite
 
-Chaque participant est tenu de respecter le [code de conduite](https://github.com/erkamyaman/rust-anything/blob/main/CODE_OF_CONDUCT.md).
+Chaque participant est tenu de respecter le [code de conduite](https://github.com/marprojector/everything-rust/blob/main/CODE_OF_CONDUCT.md).

@@ -1,11 +1,11 @@
 ---
 title: Migrações reais
-description: O que aconteceu quando o rust-anything encontrou código real, com os resultados lentos ao lado dos rápidos, e o que mudou na ferramenta por causa disso.
+description: O que aconteceu quando o everything-rust encontrou código real, com os resultados lentos ao lado dos rápidos, e o que mudou na ferramenta por causa disso.
 ---
 
 # Migrações reais
 
-O que aconteceu quando o rust-anything encontrou código real, e o que mudou na ferramenta por causa disso. Cada número abaixo vem de um benchmark que primeiro verifica se os resultados são idênticos, e os casos lentos aparecem ao lado dos rápidos.
+O que aconteceu quando o everything-rust encontrou código real, e o que mudou na ferramenta por causa disso. Cada número abaixo vem de um benchmark que primeiro verifica se os resultados são idênticos, e os casos lentos aparecem ao lado dos rápidos.
 
 | Migração | O que é | Resultado |
 | --- | --- | --- |

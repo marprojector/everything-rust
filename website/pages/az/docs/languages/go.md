@@ -13,7 +13,7 @@ description: Go paketini orijinal API-li paketdə tipli cgo çağırışları v�
 | Tələb olunur | Go 1.21+ |
 | Vəziyyət | Go 1.24-ün `path` paketi üzərində yoxlanılıb: 2,642/2,642 (542-si Go-nun öz test cədvəllərindən), gate keçir |
 
-`profile` `go test` vasitəsilə işləyir: `rust-anything profile <repo> -- go test -run X -bench . ./pkg`. Batch-lər `NewFnBatch(items)`-dir; işiniz bitəndə onları bağlayın.
+`profile` `go test` vasitəsilə işləyir: `everything-rust profile <repo> -- go test -run X -bench . ./pkg`. Batch-lər `NewFnBatch(items)`-dir; işiniz bitəndə onları bağlayın.
 
 ## Portun düzgün etməli olduğu şeylər
 

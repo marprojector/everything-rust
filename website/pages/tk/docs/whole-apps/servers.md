@@ -9,11 +9,11 @@ description: Şol bir buýruklar HTTP serwerlerini subut edýär. --http, --fres
 portuny `PORT`-dan ýa-da buýrukdaky `{port}`-dan alýar (hemişe şol bir portda diňleýän serwer üçin `--port`):
 
 ```sh
-rust-anything app record . --http -- node server.js
-rust-anything app replay .
-rust-anything app front-door .                                    # axum: her marşrut proksi edilýär
-rust-anything app wire . api --route 'GET /users/{id}' --route '*'
-rust-anything app lift .
+everything-rust app record . --http -- node server.js
+everything-rust app replay .
+everything-rust app front-door .                                    # axum: her marşrut proksi edilýär
+everything-rust app wire . api --route 'GET /users/{id}' --route '*'
+everything-rust app lift .
 ```
 
 - Soraglar programmanyň resminamalaryndaky `curl` setirlerinden (`curl -X POST -d ... http://localhost:8080/x`),

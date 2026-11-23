@@ -1,35 +1,30 @@
 <p align="center">
-  <img src="assets/logo.png" width="160" height="160" alt="rust-anything のカニ">
+  <img src="assets/logo.png" width="160" height="160" alt="everything-rust のカニ">
 </p>
 
-<h1 align="center">rust-anything</h1>
+<h1 align="center">everything-rust</h1>
 
 <p align="center"><sub><a href="../README.md">English</a> · <a href="README_TR.md">Türkçe</a> · <a href="README_UK.md">Українська</a> · <a href="README_ZH.md">简体中文</a> · <a href="README_ZH-TW.md">繁體中文</a> · <a href="README_DE.md">Deutsch</a> · <a href="README_FR.md">Français</a> · <a href="README_RU.md">Русский</a> · 日本語 · <a href="README_KO.md">한국어</a> · <a href="README_AZ.md">Azərbaycanca</a> · <a href="README_UZ.md">Oʻzbekcha</a> · <a href="README_KK.md">Қазақша</a> · <a href="README_KY.md">Кыргызча</a> · <a href="README_TK.md">Türkmençe</a> · <a href="README_TT.md">Татарча</a> · <a href="README_UG.md">ئۇيغۇرچە</a> · <a href="README_PT.md">Português</a> · <a href="README_VI.md">Tiếng Việt</a> · <a href="README_ES.md">Español</a> · <a href="README_IT.md">Italiano</a></sub></p>
 <p align="center"><sub>この翻訳はコミュニティによって管理されており、<a href="../README.md">英語版 README</a> より古い場合があります。</sub></p>
 
 <p align="center"><b>アプリを Rust で書き直し、元と同じように動くことを証明する。</b><br>
-コードを自動翻訳するツールではありません。Rust はコーディングエージェント（またはあなた）が書き、rust-anything が元のプログラムと照合して検証します。</p>
+コードを自動翻訳するツールではありません。Rust はコーディングエージェント（またはあなた）が書き、everything-rust が元のプログラムと照合して検証します。</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
+  <img src="https://img.shields.io/github/languages/top/marprojector/everything-rust?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
   <img src="https://img.shields.io/badge/macOS%20·%20Linux%20·%20Windows-native-2563EB" alt="Native binaries for macOS, Linux and Windows">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-555" alt="MIT license"></a>
-  <a href="https://crates.io/crates/rust-anything"><img src="https://img.shields.io/crates/v/rust-anything?color=E2862A&label=crates.io" alt="crates.io version"></a>
-  <a href="https://www.npmjs.com/package/rust-anything"><img src="https://img.shields.io/npm/v/rust-anything?color=E2862A&label=npm" alt="npm version"></a>
   <br>
-  <a href="https://coderabbit.link/erkamyaman"><img src="https://img.shields.io/coderabbit/prs/github/erkamyaman/rust-anything?labelColor=171717&color=FF570A&label=Reviewed+by+CodeRabbit" alt="Pull requests reviewed by CodeRabbit"></a>
   <a href="https://github.com/rust-unofficial/awesome-rust#development-tools"><img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Rust"></a>
   <a href="https://github.com/AIshihzong/awesome-reverse-engineer-anything"><img src="https://img.shields.io/badge/Featured%20in-Awesome%20REA-f0b429" alt="Featured in Awesome REA"></a>
-  <a href="https://github.com/erkamyaman/rust-anything"><img src="https://img.shields.io/github/stars/erkamyaman/rust-anything?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/marprojector/everything-rust"><img src="https://img.shields.io/github/stars/marprojector/everything-rust?style=social" alt="GitHub stars"></a>
 </p>
 
-<p align="center"><a href="https://github.com/erkamyaman/rust-anything/discussions/127"><img src="https://img.shields.io/badge/Join%20the%20discussion-6E40C9?style=for-the-badge&logo=github&logoColor=white" alt="Join the discussion"></a></p>
 
-<p align="center"><a href="https://trendshift.io/repositories/363468" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/363468/daily?language=Rust" alt="erkamyaman/rust-anything: #1 Rust repository of the day on Trendshift" width="250" height="55"/></a></p>
 
-<p align="center"><b><a href="#クイックスタート">クイックスタート</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Releases</a> · <a href="#クイックスタート">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">実プロジェクトの移植</a> · <a href="faq.md#faq">よくある質問</a><br>
+<p align="center"><b><a href="#クイックスタート">クイックスタート</a></b> · <a href="https://github.com/marprojector/everything-rust/releases">Releases</a> · <a href="#クイックスタート">Claude Code plugin</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=everything-rust">MCP Registry</a> · <a href="real-world.md">実プロジェクトの移植</a> · <a href="faq.md#faq">よくある質問</a><br>
 <sub><a href="#対応言語">対応言語</a> · <a href="how-it-works.md#how-it-works">仕組み</a> · <a href="whole-apps.md#port-a-whole-app">アプリ全体の移植</a> · <a href="../LICENSE">MIT</a></sub><br>
-トルコ 🇹🇷 で <a href="https://github.com/erkamyaman">erKam Yaman</a> が開発 · <a href="../LICENSE">MIT</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ スポンサーになる</a> · スポンサー: <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+<p align="center">Made by <a href="https://github.com/marprojector">M. Ammar R. Arief</a> · Based on <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> by Erkam Yaman</p>
 
 <p align="center">2.0 の新機能: <a href="real-world.md#prettier">Prettier を Rust に移植</a>。19x 高速 · 記録済み実行 17,224 件中 15,861 件が完全に Rust · すべてバイト単位で一致</p>
 
@@ -62,9 +57,9 @@
   </tr>
 </table>
 
-**アプリ全体を、一つずつ Rust に書き直しましょう。** rust-anything は、既存の Node.js（TypeScript/JavaScript）、Python、C、Go、Ruby、または Java アプリが現在どう振る舞うかを記録し、Rust で書き直した各パーツを次へ進む前にその記録と照合して、最終的にアプリ全体が純粋な Rust になるまで検証を続けます。CLI、HTTP サーバー、ライブラリに対応しており、Rust コードを書くのはコーディングエージェント（あるいはあなた自身）です。記録がカバーしている範囲しか検出できない点には注意してください（[検出できないもの](how-it-works.md#what-it-cant-catch)を参照）。ツールやサーバーを丸ごと、あるいは遅い部分だけを、ホットパス一つずつ移植できます:
+**アプリ全体を、一つずつ Rust に書き直しましょう。** everything-rust は、既存の Node.js（TypeScript/JavaScript）、Python、C、Go、Ruby、または Java アプリが現在どう振る舞うかを記録し、Rust で書き直した各パーツを次へ進む前にその記録と照合して、最終的にアプリ全体が純粋な Rust になるまで検証を続けます。CLI、HTTP サーバー、ライブラリに対応しており、Rust コードを書くのはコーディングエージェント（あるいはあなた自身）です。記録がカバーしている範囲しか検出できない点には注意してください（[検出できないもの](how-it-works.md#what-it-cant-catch)を参照）。ツールやサーバーを丸ごと、あるいは遅い部分だけを、ホットパス一つずつ移植できます:
 
-| 実プロジェクト（元の実装と同一の出力） | 元の実装 | rust-anything 使用時 |
+| 実プロジェクト（元の実装と同一の出力） | 元の実装 | everything-rust 使用時 |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2、コマンドラインから 2,360 個の JS/TS ファイル | 128.6 s | **6.9 s: 19x 高速** |
 | Prettier、コマンドラインから 6,305 個の Markdown ファイル | 352 s | **22.5 s: 15.6x 高速** |
@@ -72,21 +67,21 @@
 | json-server、起動から最初のレスポンスまで | 79〜85 ms | **8〜10 ms** |
 | 50,000 文字列に対する [Fuse.js](real-world.md#fusejs) 検索、1 クエリあたり | 91.2 ms | **2.8 ms: 32x 高速** |
 
-Prettier: 17,224 件の記録済み実行のうち 15,861 件が 10 言語（JavaScript、TypeScript、JSX、JSON、GraphQL、YAML、Markdown、CSS、SCSS、Less）にわたって完全に Rust でフォーマットされ、17,224 件すべてが Prettier とバイト単位で一致します。まだ移植されていない部分は Prettier にフォールバックするためです。json-server: 記録した 514/514 件の HTTP ケースが純粋な Rust バイナリ上で一致します。Apple M4 で各 2 回実行して計測し、計測前にすべての出力を比較しています（[詳細](real-world.md)）。小さな関数ごとに毎回 Rust を呼び出すと、通常は JIT より*遅く*なります。rust-anything は移植する価値のあるループを見つけ出し、そのループごと移行します。
+Prettier: 17,224 件の記録済み実行のうち 15,861 件が 10 言語（JavaScript、TypeScript、JSX、JSON、GraphQL、YAML、Markdown、CSS、SCSS、Less）にわたって完全に Rust でフォーマットされ、17,224 件すべてが Prettier とバイト単位で一致します。まだ移植されていない部分は Prettier にフォールバックするためです。json-server: 記録した 514/514 件の HTTP ケースが純粋な Rust バイナリ上で一致します。Apple M4 で各 2 回実行して計測し、計測前にすべての出力を比較しています（[詳細](real-world.md)）。小さな関数ごとに毎回 Rust を呼び出すと、通常は JIT より*遅く*なります。everything-rust は移植する価値のあるループを見つけ出し、そのループごと移行します。
 
 ## 遅い部分だけ
 
 アプリ全体を移植する必要はありません。遅すぎるコマンドに `go` を向けると、時間を食っている関数を 1 つだけ移植します:
 
 ```sh
-rust-anything go --agent claude -- python3 app.py
+everything-rust go --agent claude -- python3 app.py
 ```
 
 実行をプロファイリングし、移行する価値のある最も外側の関数を選びます（その中の小さな呼び出しではなくループを選び、プロファイルが示す場合はバッチ化します）。生成した入力と実行中に行われた呼び出しでその関数を記録し、`src/port.rs` をエージェントに渡します（`claude`、`codex`、または stdin からプロンプトを読む任意のコマンド。`--agent` を指定しない場合は `TASK.md` を書き出して停止します）。記録したすべてのケースが一致し、`gate` に合格した場合にのみ、その関数を有効にします。その後は次のとおりです:
 
 ```sh
-rust-anything report rust/dedupe-rs     # プルリクエスト用の REPORT.md と card.svg
-rust-anything disable rust/dedupe-rs    # 元の実装にバイト単位で戻す
+everything-rust report rust/dedupe-rs     # プルリクエスト用の REPORT.md と card.svg
+everything-rust disable rust/dedupe-rs    # 元の実装にバイト単位で戻す
 ```
 
 上の表の [Fuse.js](real-world.md#fusejs) の行がこの形です。1 つの文字列に対する Fuse のスコア計算をリスト全体でバッチ化して Rust に移し、オブジェクトキー、拡張検索、その他の部分は JavaScript に残したまま、50,000 文字列に対して 1 クエリあたり 91.2 ms から 2.8 ms になりました。20 行の Python 製 dedupe である [`tests/fixtures/go-fuzzy`](../tests/fixtures/go-fuzzy) で `go` を試してみてください。移植版を有効・無効にするすべての方法: [Switch a port on and off](how-it-works.md#switch-a-port-on-and-off)。
@@ -97,7 +92,7 @@ rust-anything disable rust/dedupe-rs    # 元の実装にバイト単位で戻�
   <sub>Node サーバー全体である json-server を、純粋な Rust バイナリにリフト（Apple M4）。<a href="real-world.md#json-server">計測方法</a>。</sub>
 </p>
 
-> rust-anything は独立したプロジェクトであり、Rust Project または Rust Foundation と提携・承認関係にあるものではありません。"Rust" は Rust Foundation の商標です。
+> everything-rust は独立したプロジェクトであり、Rust Project または Rust Foundation と提携・承認関係にあるものではありません。"Rust" は Rust Foundation の商標です。
 
 > [!WARNING]
 > `record` と `app record` は元のコードを実行し、各関数（またはアプリ全体）を多数の生成入力で呼び出します。`app record` はすべてのケースを 2 回実行します。`diff`、`gate`、`app replay` は同じケースを移植版または元の実装で再度実行します。ファイルを書き込む、データベースにアクセスする、ネットワークを呼び出すコードは、ケースごとにその処理を行います。プロジェクトのコピー上で、テスト用データベースを使い、本番環境の認証情報が環境に含まれない状態で実行してください。
@@ -107,52 +102,52 @@ rust-anything disable rust/dedupe-rs    # 元の実装にバイト単位で戻�
 Claude Code、Codex、Cursor、Gemini CLI、または OpenCode に以下を貼り付けて、エージェントにインストールを任せてください:
 
 ```text
-rust-anything をインストールして: `cargo install rust-anything` を実行し、次に `rust-anything setup` を実行してください。
+everything-rust をインストールして: `cargo install everything-rust` を実行し、次に `everything-rust setup` を実行してください。
 あなたを再起動すべきタイミングが来たら教えてください。
 ```
 
 または自分で実行します:
 
 ```sh
-cargo install rust-anything   # crates.io からインストール
-rust-anything setup           # Claude Code、Codex、Cursor、Gemini CLI、OpenCode に登録
+cargo install everything-rust   # crates.io からインストール
+everything-rust setup           # Claude Code、Codex、Cursor、Gemini CLI、OpenCode に登録
 ```
 
-Rust ツールチェーンをまだ導入していない場合は、各 [GitHub release](https://github.com/erkamyaman/rust-anything/releases) に macOS、Linux、Windows 向けのビルド済みバイナリが添付されています。JavaScript プロジェクトの場合は `npm install -g rust-anything` でも同じバイナリをインストールできます。
+Rust ツールチェーンをまだ導入していない場合は、各 [GitHub release](https://github.com/marprojector/everything-rust/releases) に macOS、Linux、Windows 向けのビルド済みバイナリが添付されています。JavaScript プロジェクトの場合は `npm install -g everything-rust` でも同じバイナリをインストールできます。
 
 Claude Code ではプラグインとしてインストールすることもできます（MCP サーバーとワークフロースキルが含まれます。上記の CLI が `PATH` に通っている必要があります）:
 
 ```text
-/plugin install rust-anything --marketplace erkamyaman/rust-anything
+/plugin install everything-rust --marketplace marprojector/everything-rust
 ```
 
 `setup` は見つかった各エージェントに MCP サーバーを追加し、エージェントがスキルを読み込む場所にワークフロースキルをインストールします。他の設定は保持され、何度実行しても安全で、`--remove` で元に戻せます。あとはエージェントに次のように依頼するだけです:
 
-- *"rust-anything を使ってこの CLI をエンドツーエンドで Rust に書き直し、元の実装と同じ挙動であることを証明して。"*
-- *"この検索が遅く感じる。rust-anything でプロファイルを取って、ホットループを Rust に移して。"*
-- *"rust-anything で `src/parser/` の Rust 移行計画を立てて。最初のユニットを移植して検証して。"*
+- *"everything-rust を使ってこの CLI をエンドツーエンドで Rust に書き直し、元の実装と同じ挙動であることを証明して。"*
+- *"この検索が遅く感じる。everything-rust でプロファイルを取って、ホットループを Rust に移して。"*
+- *"everything-rust で `src/parser/` の Rust 移行計画を立てて。最初のユニットを移植して検証して。"*
 - *"`rust/text-rs` の Rust 移植版と元の実装をベンチマーク比較して、出荷すべきか教えて。"*
 
 ### 対応エージェント
 
-| エージェント | `rust-anything setup` が追加する内容 |
+| エージェント | `everything-rust setup` が追加する内容 |
 | --- | --- |
 | Claude Code | `~/.claude.json` の MCP サーバー、`~/.claude/skills/` のスキル |
 | Codex | `~/.codex/config.toml` の MCP サーバー、`~/.codex/skills/` のスキル |
 | Cursor | `~/.cursor/mcp.json` の MCP サーバー |
 | Gemini CLI | `~/.gemini/settings.json` の MCP サーバー |
 | OpenCode | `~/.config/opencode/opencode.json` の MCP サーバー（`mcp.servers`）、`~/.config/opencode/skills/` のスキル |
-| その他の MCP クライアント | 手動で `rust-anything mcp` を stdio サーバーとして追加（[インストール](install.md#install)を参照） |
+| その他の MCP クライアント | 手動で `everything-rust mcp` を stdio サーバーとして追加（[インストール](install.md#install)を参照） |
 
-既存のファイルを変更する前に、`setup` は同じ場所にバックアップ（`<file>.rust-anything.bak`）を保存します。
+既存のファイルを変更する前に、`setup` は同じ場所にバックアップ（`<file>.everything-rust.bak`）を保存します。
 
-OpenCode を手動で設定するには、サーバーを `~/.config/opencode/opencode.json` に記述し（`command` は argv 全体です）、[`skills/rust-anything/`](../skills/rust-anything) を `~/.config/opencode/skills/rust-anything/` にコピーします:
+OpenCode を手動で設定するには、サーバーを `~/.config/opencode/opencode.json` に記述し（`command` は argv 全体です）、[`skills/everything-rust/`](../skills/everything-rust) を `~/.config/opencode/skills/everything-rust/` にコピーします:
 
 ```json
 {
   "mcp": {
     "servers": {
-      "rust-anything": { "type": "local", "command": ["rust-anything", "mcp"] }
+      "everything-rust": { "type": "local", "command": ["everything-rust", "mcp"] }
     }
   }
 }
@@ -161,16 +156,16 @@ OpenCode を手動で設定するには、サーバーを `~/.config/opencode/op
 自分で各ステップを実行することもできます:
 
 ```sh
-rust-anything profile . -- node bench.mjs              # どこがホットスポットで、誰が呼んでいるか
-rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
+everything-rust profile . -- node bench.mjs              # どこがホットスポットで、誰が呼んでいるか
+everything-rust bridge . src/fuzzy.ts --batch fuzzyScore:text
 # src/port.rs を書く（またはエージェントに書かせる）。その後:
-rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
-rust-anything diff rust/fuzzy-rs                       # 記録されたすべてのケースが一致する必要がある
-rust-anything bench rust/fuzzy-rs                      # 速くなったか？判定結果が出る
-rust-anything gate rust/fuzzy-rs                       # これに通れば完了
+everything-rust record rust/fuzzy-rs && everything-rust build rust/fuzzy-rs
+everything-rust diff rust/fuzzy-rs                       # 記録されたすべてのケースが一致する必要がある
+everything-rust bench rust/fuzzy-rs                      # 速くなったか？判定結果が出る
+everything-rust gate rust/fuzzy-rs                       # これに通れば完了
 ```
 
-rust-anything 自体はコードを自動翻訳しません。Rust コードを書くのはあなたのコーディングエージェント（Claude Code、Codex、Cursor、OpenCode など）またはあなた自身です。rust-anything が提供するのは、エージェントが推測では確実に当てられない部分です: どこに時間がかかっているか、何をどの順番で移植すべきか、既存のコードが API を変えずに Rust を呼び出すためのブリッジ、移植版が一致させるべき正確な挙動、安全に出荷する手段、そして移植の完了を判定するゲートです。
+everything-rust 自体はコードを自動翻訳しません。Rust コードを書くのはあなたのコーディングエージェント（Claude Code、Codex、Cursor、OpenCode など）またはあなた自身です。everything-rust が提供するのは、エージェントが推測では確実に当てられない部分です: どこに時間がかかっているか、何をどの順番で移植すべきか、既存のコードが API を変えずに Rust を呼び出すためのブリッジ、移植版が一致させるべき正確な挙動、安全に出荷する手段、そして移植の完了を判定するゲートです。
 
 出力が同じだけでは不十分です。アプリが外部に送るものも記録すれば、メールを 2 回送ってしまう書き直しは失敗として検出されます:
 
@@ -197,7 +192,7 @@ C 言語を除くすべての言語でバッチクラス（`--batch`）も生成
 
 言語はリポジトリから自動検出されます（`go.mod`、`pom.xml`、`.csproj` または `.sln`、`pyproject.toml`、`Gemfile`、`composer.json`、`package.json`、該当しない場合は最も多いソースファイルから判断）。`--lang` で上書きもできます。型情報はソースから取得します: TS の型、Python の型ヒント、C/Go/Java/C# のシグネチャ、Ruby の YARD タグ、PHP の型および phpdoc。型注釈がなく数値として使われている引数は数値型と推論されます。
 
-PHP については、`analyze` で PHP アプリの移行計画を立てられ（Composer パッケージと PSR-4 オートローディング、緩い比較や整数オーバーフローによる float 化などのリスク、Composer パッケージからクレートへのマッピング）、PHP の CLI やサーバーを記録・リプレイして Rust 製フロントドアの背後に配置できます。PHP の FFI を通じたユニット単位の Rust 移植は次のステップです（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。
+PHP については、`analyze` で PHP アプリの移行計画を立てられ（Composer パッケージと PSR-4 オートローディング、緩い比較や整数オーバーフローによる float 化などのリスク、Composer パッケージからクレートへのマッピング）、PHP の CLI やサーバーを記録・リプレイして Rust 製フロントドアの背後に配置できます。PHP の FFI を通じたユニット単位の Rust 移植は次のステップです（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。
 
 C# も同じように動作します: `analyze` は `.csproj` プロジェクトとその NuGet パッケージ（クレートにマッピング）を読み取り、`using` ディレクティブをフォルダに解決して、C# 特有の挙動の違い（`decimal`、`dynamic`、LINQ の遅延クエリ、`Task`、`lock`、リフレクション）を指摘します。C# の CLI や ASP.NET サーバーは記録・リプレイ・Rust フロントドア化が可能で、P/Invoke を用いたユニット単位の移植が次のステップです。
 
@@ -213,31 +208,11 @@ C# も同じように動作します: `analyze` は `.csproj` プロジェクト
 ## スポンサー
 
 <p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> は無料のオープンソースです。お役に立ちましたら、ぜひスポンサーをご検討ください。<br>
+  <a href="https://github.com/marprojector/everything-rust">everything-rust</a> は無料のオープンソースです。お役に立ちましたら、ぜひスポンサーをご検討ください。<br>
   皆様のご支援が開発を支えます。
 </p>
 
 <p align="center">
-  <a href="https://coderabbit.link/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/company-dark.svg">
-      <img src="assets/sponsors/company-light.svg" width="800" alt="企業スポンサー: CodeRabbit">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/sponsors/sponsors-dark.svg">
-      <img src="assets/sponsors/sponsors-light.svg" width="800" alt="スポンサー: Santosh Yadav、Hakan Soytürk、Ali Yilmaz、Ashley Hunter、Fatih Uzuntaş">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/sponsors/erkamyaman"><img src="https://img.shields.io/badge/%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B5%E3%83%BC%E3%81%AB%E3%81%AA%E3%82%8B-%E2%9D%A4-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="スポンサーになる"></a>
-  <a href="https://buymeacoffee.com/erkamyaman"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 </p>
 
 ## 貢献
@@ -246,4 +221,4 @@ Issue や Pull Request を歓迎します。[CONTRIBUTING.md](../CONTRIBUTING.md
 
 ## ライセンス
 
-[MIT](../LICENSE) © [Erkam Yaman](https://github.com/erkamyaman)。あなたのリポジトリ内の移植版および生成コードはすべてあなたのものです。
+[MIT](../LICENSE) © [M. Ammar R. Arief](https://github.com/marprojector)。あなたのリポジトリ内の移植版および生成コードはすべてあなたのものです。

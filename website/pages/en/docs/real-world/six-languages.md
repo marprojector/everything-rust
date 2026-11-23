@@ -1,6 +1,6 @@
 ---
 title: Six languages
-description: rust-anything run end to end on real code in Go, Ruby, Python, Java and C, with per-call and batch speed, and the bugs the runs found.
+description: everything-rust run end to end on real code in Go, Ruby, Python, Java and C, with per-call and batch speed, and the bugs the runs found.
 source: docs/real-world-languages.md
 ---
 

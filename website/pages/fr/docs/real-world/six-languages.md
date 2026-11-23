@@ -1,17 +1,17 @@
 ---
 title: Six langages
-description: rust-anything exécuté de bout en bout sur du vrai code en Go, Ruby, Python, Java et C, avec la vitesse par appel et en lot, et les bugs que ces exécutions ont trouvés.
+description: everything-rust exécuté de bout en bout sur du vrai code en Go, Ruby, Python, Java et C, avec la vitesse par appel et en lot, et les bugs que ces exécutions ont trouvés.
 ---
 
 # Du vrai code dans six langages
 
-rust-anything a été exécuté de bout en bout (analyze, bridge, record, port, diff, gate, bench) sur du vrai code dans
+everything-rust a été exécuté de bout en bout (analyze, bridge, record, port, diff, gate, bench) sur du vrai code dans
 chaque langage qu'il prend en charge. Le code devait déjà se trouver sur cette machine : le code téléchargé depuis
 Internet n'a pas été exécuté. Les cibles sont donc des modules de bibliothèque standard livrés avec les
 toolchains installées, et pour Java et C, où aucune source de bibliothèque adaptée n'était sur le disque, le JDK
 et la glibc eux-mêmes servent d'oracle derrière une fine façade.
 
-Les portages, les cas enregistrés et les entrées supplémentaires se trouvent dans [`demo/real-world`](https://github.com/erkamyaman/rust-anything/blob/main/demo/real-world/README.md).
+Les portages, les cas enregistrés et les entrées supplémentaires se trouvent dans [`demo/real-world`](https://github.com/marprojector/everything-rust/blob/main/demo/real-world/README.md).
 
 | Langage | Code | Fonctions | Cas enregistrés | Résultat |
 | --- | --- | ---: | ---: | --- |
@@ -61,7 +61,7 @@ Ce qui tranche :
 ### Lots : la recherche de x18n
 
 Les portages de fonctions feuilles ci-dessus sont mesurés par appel. Sur la recherche de la barre latérale de x18n (50,000 clés, tapée lettre
-par lettre), `rust-anything profile` a montré que `fuzzyScore` occupait environ un quart de l'exécution, appelée une fois par clé depuis
+par lettre), `everything-rust profile` a montré que `fuzzyScore` occupait environ un quart de l'exécution, appelée une fois par clé depuis
 `matched`, et a suggéré `--batch fuzzyScore:text`. Le `FuzzyScoreBatch` généré garde les
 clés en Rust ; un `FuzzyScoreIndex` dans `port.rs` les passe une seule fois en minuscules UTF-16 et garde un masque 64 bits
 des unités de code de chaque clé, de sorte que la plupart des clés qui ne peuvent pas correspondre sont ignorées sans être lues. Les résultats
@@ -112,12 +112,12 @@ Par appel, le portage Go est passé de 0.73x à 0.93x, le portage Java de 0.46x 
 
 ## Ce que les exécutions ont trouvé
 
-### Bugs dans rust-anything, corrigés
+### Bugs dans everything-rust, corrigés
 
 - **Des flottants modifiés d'un ULP** (exécution Java). L'analyseur de flottants par défaut de `serde_json` n'arrondit pas toujours
-  correctement. rust-anything altérait les entrées enregistrées en les lisant, et les crates générées
+  correctement. everything-rust altérait les entrées enregistrées en les lisant, et les crates générées
   les altéraient à nouveau. 43 cas `Double.toString` échouaient pour un portage correct. Corrigé avec la
-  feature `float_roundtrip` de `serde_json` dans rust-anything et dans chaque crate qu'il génère (napi-rs,
+  feature `float_roundtrip` de `serde_json` dans everything-rust et dans chaque crate qu'il génère (napi-rs,
   wasm et le dispatcher JSON).
 - **Les plantages C tuaient l'enregistrement** (exécution C). Des entrées hors du contrat d'une fonction C (`isalpha(INT_MAX)`)
   font planter la glibc en segfault. Le pilote C exécute désormais chaque cas dans un processus enfant forké et enregistre
@@ -195,4 +195,4 @@ Traités dès le premier portage, et confirmés par les cas enregistrés :
 | Ruby | le pilote généré charge les fichiers d'origine | le même pilote charge le wrapper Fiddle | dispatcher JSON + wrapper Fiddle qui définit les mêmes modules | fichier à charger avec require après l'original : fait un `prepend` des deux |
 | Java | pilote par réflexion compilé avec les sources d'origine | le même pilote compilé avec les classes wrapper JNI | dispatcher JSON via JNI + classes wrapper avec les méthodes statiques d'origine | classes `<Class>Shadow` |
 | Python | pilote dans le processus qui importe l'original | le même pilote importe le package PyO3 | PyO3 | module avec l'API d'origine |
-| C | `cc -shared` de l'original, appelé via ctypes, un fork par cas | ctypes sur le `cdylib` Rust | fonctions `extern "C"` avec les noms d'origine et un en-tête | `.c` shadow avec des renommages `-D` ; la feature `shadow` de la crate n'exporte que des noms `rust_anything_` |
+| C | `cc -shared` de l'original, appelé via ctypes, un fork par cas | ctypes sur le `cdylib` Rust | fonctions `extern "C"` avec les noms d'origine et un en-tête | `.c` shadow avec des renommages `-D` ; la feature `shadow` de la crate n'exporte que des noms `everything_rust_` |

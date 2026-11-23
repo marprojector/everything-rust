@@ -17,10 +17,10 @@ description: C# 目前為預覽。analyze 會讀取 .csproj 專案，而 C# CLI 
 錄製一個已建置的應用程式：
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 透過 P/Invoke 移植單元是下一步。在那之前，`bridge` 會以清楚的訊息拒絕 C# 單元。

@@ -20,7 +20,7 @@ Batch-lar `new FnBatch(items)`; iş gutarandan soň olary ýapyň. `profile` JFR
 - `Integer.parseInt` `Character.digit` arkaly islendik Unicode onluk sifrini (`١٢`, `２`) kabul edýär.
 - `Double.toString` (JDK 19+) iň gysga onluk görnüşi çap edýär, ýöne hiç haçan iki sifrden az däl: `4.9E-324`, Rust-yň iň gysga görnüşi bolsa `5e-324`.
 - `\s` diňe ASCII; Rust-yň `split_whitespace` funksiýasy U+00A0-da hem bölýär.
-- Float-lar iki tarapa geçişden üýtgemän çykmaly: `serde_json`-yň adaty float parser-i hemişe dogry tegeleklemeýär, şonuň üçin rust-anything we onuň döredýän her crate-i onuň `float_roundtrip` aýratynlygyny ulanýar.
+- Float-lar iki tarapa geçişden üýtgemän çykmaly: `serde_json`-yň adaty float parser-i hemişe dogry tegeleklemeýär, şonuň üçin everything-rust we onuň döredýän her crate-i onuň `float_roundtrip` aýratynlygyny ulanýar.
 
 ## Tizlik
 

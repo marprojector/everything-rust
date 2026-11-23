@@ -17,10 +17,10 @@ O `analyze` lê projetos `.csproj` e os respetivos pacotes NuGet (mapeados para 
 Registe uma aplicação compilada:
 
 ```sh
-rust-anything app record . -- dotnet out/app.dll
-rust-anything app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- dotnet out/app.dll
+everything-rust app record . --http -- dotnet out/app.dll --urls http://127.0.0.1:{port}
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
 A migração de unidades através de P/Invoke é o próximo passo. Até lá, o `bridge` recusa unidades C# com uma mensagem clara.

@@ -6,9 +6,9 @@ description: diff har bir yozib olingan holatni Rust'ga qarshi qayta ijro etadi.
 # Diff va ma'lum farqlar
 
 ```sh
-rust-anything build <crate>
-rust-anything diff <crate>                     # N/N bo'lishi shart
-rust-anything diff <crate> --json
+everything-rust build <crate>
+everything-rust diff <crate>                     # N/N bo'lishi shart
+everything-rust diff <crate> --json
 ```
 
 `diff` `cases.jsonl` ni build qilingan Rust moduliga qarshi, uni asl nusxa chaqiruvchilari chaqirgandek chaqirib, qayta ijro etadi va nomuvofiqliklarni ro'yxatlaydi. Nomuvofiqlik xatti-harakatdagi farqdir: portni tuzating, hech qachon yozuvni emas.

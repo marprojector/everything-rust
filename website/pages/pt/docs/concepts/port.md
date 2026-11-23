@@ -5,7 +5,7 @@ description: Escrever o port.rs, o único ficheiro que você ou o seu agente esc
 
 # Port
 
-Você ou o seu agente escrevem a migração em `src/port.rs`. Tudo o resto na crate é gerado. Depois de alterar uma assinatura em `port.rs`, execute `rust-anything refresh <crate>`.
+Você ou o seu agente escrevem a migração em `src/port.rs`. Tudo o resto na crate é gerado. Depois de alterar uma assinatura em `port.rs`, execute `everything-rust refresh <crate>`.
 
 ## Regras que poupam uma ronda de diff
 
@@ -25,14 +25,14 @@ O `js.rs` gerado traz helpers que reproduzem o JavaScript onde o Rust difere, co
 ## Um exemplo: o emoji que deslocou uma posição
 
 `packages/core/src/fuzzy.ts` do [x18n](https://github.com/x18n-dev/x18n), migrado de ambas as formas em
-[`demo/`](https://github.com/erkamyaman/rust-anything/tree/main/demo):
+[`demo/`](https://github.com/marprojector/everything-rust/tree/main/demo):
 
 ```sh
-rust-anything analyze ../x18n                                      # fuzzy.ts: pronto, wasm-bindgen (o core corre em navegadores)
-rust-anything bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
-rust-anything record demo/fuzzy-rs --count 2000
+everything-rust analyze ../x18n                                      # fuzzy.ts: pronto, wasm-bindgen (o core corre em navegadores)
+everything-rust bridge ../x18n packages/core/src/fuzzy.ts --out demo/fuzzy-rs
+everything-rust record demo/fuzzy-rs --count 2000
 # escrever src/port.rs
-rust-anything gate demo/fuzzy-rs
+everything-rust gate demo/fuzzy-rs
 ```
 
 Uma primeira migração que indexava por `char` do Rust passou em testes simples, mas falhou no `diff`:
@@ -46,7 +46,7 @@ O `indexOf` do JS conta unidades de código UTF-16, por isso um emoji ocupa duas
 `demo/*/src/port.rs` utiliza os helpers `utf16` gerados e passa 2000/2000 casos e o gate,
 como napi-rs (`demo/fuzzy-napi`) e como wasm-bindgen (`demo/fuzzy-rs`).
 
-O plano que o rust-anything escreve para todo o x18n: [`docs/examples/x18n.md`](https://github.com/erkamyaman/rust-anything/blob/main/docs/examples/x18n.md).
+O plano que o everything-rust escreve para todo o x18n: [`docs/examples/x18n.md`](https://github.com/marprojector/everything-rust/blob/main/docs/examples/x18n.md).
 ## Que tamanho deve ter?
 
 O `gate` compara as linhas da migração com as do original e falha acima de 3x (mais 50 linhas para imports e assinaturas). Passar disso costuma significar escrever à mão o que uma crate já faz, ou tratar casos um a um. O `analyze` lista as crates a utilizar.

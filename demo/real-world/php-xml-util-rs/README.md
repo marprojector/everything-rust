@@ -14,14 +14,14 @@ top-level functions written for this run. Bridged with the JSON dispatcher over 
 The project the cases were recorded from: `original/composer.json` at its root,
 `original/xml_util.php` as `src/xml_util.php`, and `XML/Util.php` from a PEAR install (Homebrew's
 PHP has it at `$(brew --prefix)/share/pear/XML/Util.php`) as `src/XML/Util.php`. The facade requires
-it from there. The bridged unit is `src/`. Point `root` in `rust-anything.json` at that project,
+it from there. The bridged unit is `src/`. Point `root` in `everything-rust.json` at that project,
 then:
 
 ```sh
-rust-anything record . --inputs inputs.jsonl   # or keep the recorded cases.jsonl
-rust-anything build .
-rust-anything gate .
-rust-anything bench .
+everything-rust record . --inputs inputs.jsonl   # or keep the recorded cases.jsonl
+everything-rust build .
+everything-rust gate .
+everything-rust bench .
 ```
 
 `inputs.jsonl` holds the strings and attribute arrays of XML_Util's own tests in every entity

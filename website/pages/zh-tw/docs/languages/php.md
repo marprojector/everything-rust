@@ -17,12 +17,12 @@ description: PHP 目前為預覽。analyze 可以規劃 PHP 應用程式，而 P
 PHP CLI 或伺服器可以被錄製、重播，並放到 Rust 入口之後：
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-透過 PHP 的 FFI 將其單元移植到 Rust 是下一步（[issue #2](https://github.com/erkamyaman/rust-anything/issues/2)）。在那之前，`bridge` 會以清楚的訊息拒絕 PHP 單元。
+透過 PHP 的 FFI 將其單元移植到 Rust 是下一步（[issue #2](https://github.com/marprojector/everything-rust/issues/2)）。在那之前，`bridge` 會以清楚的訊息拒絕 PHP 單元。
 
 CI 沒有安裝 PHP，所以 PHP 的測試只會在有安裝它的機器上執行。

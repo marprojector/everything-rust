@@ -17,8 +17,8 @@
     "closeMenu": "Menýuny ýap",
     "menu": "Menýu",
     "language": "Dil",
-    "home": "rust-anything baş sahypasy",
-    "github": "GitHub-da rust-anything",
+    "home": "everything-rust baş sahypasy",
+    "github": "GitHub-da everything-rust",
     "onThisPage": "Bu sahypada",
     "editPage": "Bu sahypany GitHub-da üýtget",
     "previous": "Öňki",
@@ -54,7 +54,7 @@
       "project": "Taslama"
     },
     "items": {
-      "/docs/introduction/what-is-rust-anything": "rust-anything näme",
+      "/docs/introduction/what-is-everything-rust": "everything-rust näme",
       "/docs/introduction/quick-start": "Çalt başlangyç",
       "/docs/introduction/install": "Gurnamak",
       "/docs/introduction/agents": "Agentiňizi sazlaň",
@@ -104,7 +104,7 @@
   "hero": {
     "title1": "Programmaňyzy Rust-da täzeden ýazyň.",
     "title2": "Onuň edil şonuň ýaly işleýändigini subut ediň.",
-    "sub": "rust-anything siziň kodyňyzyň näme edýändigini ýazga alýar, soňra ýazga alnan her ýagdaýy Rust portuna garşy gaýtadan işledýär. Rust koduny agentiňiz ýazýar. Çykyşlar gabat gelýänçä hiç zat çykarylmaýar.",
+    "sub": "everything-rust siziň kodyňyzyň näme edýändigini ýazga alýar, soňra ýazga alnan her ýagdaýy Rust portuna garşy gaýtadan işledýär. Rust koduny agentiňiz ýazýar. Çykyşlar gabat gelýänçä hiç zat çykarylmaýar.",
     "cta": "Çalt başlangyjy okaň",
     "source": "GitHub-daky çeşme kody",
     "sourceLanguage": "Çeşme dili",
@@ -138,10 +138,10 @@
     "installTitle": "Gurnamak",
     "installDesc": "CLI-ni gurnaň, soňra MCP serweri we workflow skill-ini Claude Code, Codex, Cursor we Gemini CLI bilen hasaba alyň.",
     "installNote": "macOS, Linux we Windows üçin taýýar binar faýllar her [GitHub release]({releases}) sahypasynda bar.",
-    "agentPrompt": "rust-anything gurna: `cargo install rust-anything`, soňra `rust-anything setup` işlet.",
+    "agentPrompt": "everything-rust gurna: `cargo install everything-rust`, soňra `everything-rust setup` işlet.",
     "agentRestart": "Seni haçan täzeden başlatmalydygyny maňa aýt.",
     "loopTitle": "Port nähili taýýar edilýär",
-    "loopDesc": "Asyl nusga hakykatyň çeşmesi bolup galýar. rust-anything kody terjime etmeýär: ol agentiň çaklap bilmeýän zatlaryny we portuň haçan taýýardygyny aýdýan gate-i berýär.",
+    "loopDesc": "Asyl nusga hakykatyň çeşmesi bolup galýar. everything-rust kody terjime etmeýär: ol agentiň çaklap bilmeýän zatlaryny we portuň haçan taýýardygyny aýdýan gate-i berýär.",
     "steps": [
       {
         "title": "Ýazga almak",
@@ -272,7 +272,7 @@
       "csharp": "tutuş programmany ýazga almak we gaýtadan işletmek; birlik bridge-leri indiki nobatda"
     },
     "sponsorsTitle": "Hemaýatkärler",
-    "sponsorsDesc": "rust-anything mugt we açyk çeşmeli. Eger ol işiňize kömek edýän bolsa, oňa hemaýatkär bolmagy göz öňünde tutuň. Siziň goldawyňyz işläp düzmegiň dowam etmegine kömek edýär.",
+    "sponsorsDesc": "everything-rust mugt we açyk çeşmeli. Eger ol işiňize kömek edýän bolsa, oňa hemaýatkär bolmagy göz öňünde tutuň. Siziň goldawyňyz işläp düzmegiň dowam etmegine kömek edýär.",
     "companySponsor": "Kompaniýa hemaýatkäri",
     "becomeSponsor": "Hemaýatkär boluň"
   }

@@ -9,9 +9,9 @@ fn the_plugin_ships_the_same_skill_and_mcp_server() {
     for dir in ["plugin", "directory"] {
         for file in ["SKILL.md", "whole-app.md"] {
             assert_eq!(
-                read(&format!("{dir}/skills/rust-anything/{file}")),
-                read(&format!("skills/rust-anything/{file}")),
-                "{dir}/skills/rust-anything/{file} differs from skills/rust-anything/{file}"
+                read(&format!("{dir}/skills/everything-rust/{file}")),
+                read(&format!("skills/everything-rust/{file}")),
+                "{dir}/skills/everything-rust/{file} differs from skills/everything-rust/{file}"
             );
         }
     }

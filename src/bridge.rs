@@ -18,8 +18,8 @@ use crate::ts::exports::{
     ExportedClass, ExportedFn, LocalType, exported_classes, exported_functions, local_types,
 };
 
-pub const MANIFEST: &str = "rust-anything.json";
-pub const SCHEMA: &str = "rust-anything/bridge@1";
+pub const MANIFEST: &str = "everything-rust.json";
+pub const SCHEMA: &str = "everything-rust/bridge@1";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -220,7 +220,7 @@ impl Manifest {
         let path = crate_dir.join(MANIFEST);
         let text = std::fs::read_to_string(&path).with_context(|| {
             format!(
-                "reading {} (run `rust-anything bridge` first)",
+                "reading {} (run `everything-rust bridge` first)",
                 path.display()
             )
         })?;
@@ -791,7 +791,7 @@ pub fn add_batches(crate_dir: &Path, specs: &[String]) -> Result<Refreshed> {
 }
 
 /// Cargo.toml with the dependencies and library types today's bindings need, for crates
-/// bridged by an older rust-anything; versions and features already set are kept.
+/// bridged by an older everything-rust; versions and features already set are kept.
 fn with_template_deps(cargo: &str, template: &str) -> Result<String> {
     let mut doc: toml_edit::DocumentMut = cargo.parse().context("Cargo.toml")?;
     let template: toml_edit::DocumentMut = template.parse().context("Cargo.toml template")?;
@@ -1073,7 +1073,7 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
     let unit = match whole.cloned().or_else(single) {
         Some(unit) => unit,
         None => bail!(
-            "no unit or source file `{wanted}`; `rust-anything analyze` lists unit ids, and any \
+            "no unit or source file `{wanted}`; `everything-rust analyze` lists unit ids, and any \
              source file inside a unit can be bridged on its own"
         ),
     };
@@ -1202,7 +1202,7 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
         bail!(
             "`{}` is defined twice in `{}` ({} and {}), and the bridge names every export by \
              itself, so one would silently replace the other. Bridge the module you want on its \
-             own (`rust-anything bridge <root> <that file>`), or rename one of them",
+             own (`everything-rust bridge <root> <that file>`), or rename one of them",
             pair[0].0,
             unit.id,
             pair[0].1,
@@ -1256,7 +1256,7 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
         .unwrap_or_else(|| root.join("rust").join(&crate_name));
     if crate_dir.exists() && std::fs::read_dir(&crate_dir)?.next().is_some() {
         bail!(
-            "{} already exists and is not empty; rust-anything never overwrites a port in progress",
+            "{} already exists and is not empty; everything-rust never overwrites a port in progress",
             crate_dir.display()
         );
     }
@@ -1301,7 +1301,7 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
         loader_file(&manifest, &fns),
         (
             ".gitignore".into(),
-            "target/\n*.node\npkg/\n.rust-anything/\n*.so\n*.pyd\n__pycache__/\n".into(),
+            "target/\n*.node\npkg/\n.everything-rust/\n*.so\n*.pyd\n__pycache__/\n".into(),
         ),
         ("README.md".into(), readme(&manifest)),
         (
@@ -1340,7 +1340,7 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
 
     format_rust(&crate_dir);
     let mut notes = vec![format!(
-        "Port each function in src/port.rs, then: rust-anything record {0} && rust-anything build {0} && rust-anything diff {0}",
+        "Port each function in src/port.rs, then: everything-rust record {0} && everything-rust build {0} && everything-rust diff {0}",
         crate_dir.display()
     )];
     if utf16 {
@@ -1491,21 +1491,21 @@ fn ffi_bindings(m: &Manifest, api: &codegen::PortApi) -> Result<Vec<(String, Str
             );
             files.push((
                 format!(
-                    "java/rustanything/{}.java",
+                    "java/everythingrust/{}.java",
                     crate::codegen_ffi::java_native_class(m)
                 ),
                 crate::codegen_java::native_class(m, api),
             ));
             files.push((
-                "java/rustanything/RustAnythingJson.java".into(),
+                "java/everythingrust/EverythingRustJson.java".into(),
                 crate::codegen_java::JSON_JAVA.into(),
             ));
             files.push((
-                "java/rustanything/RustAnythingWire.java".into(),
+                "java/everythingrust/EverythingRustWire.java".into(),
                 crate::codegen_java::WIRE_JAVA.into(),
             ));
             files.push((
-                "java/rustanything/RustAnythingError.java".into(),
+                "java/everythingrust/EverythingRustError.java".into(),
                 crate::codegen_java::ERROR_JAVA.into(),
             ));
         }
@@ -1532,7 +1532,7 @@ fn bridge_ffi(manifest: &Manifest, crate_dir: &Path, kept: &[JsOnly]) -> Result<
         ("src/port.rs".into(), port),
         (
             ".gitignore".into(),
-            "target/\n.rust-anything/\nruby/*.so\nruby/*.bundle\nphp/*.so\nphp/*.dylib\nphp/*.dll\ncs/*.so\ncs/*.dylib\ncs/*.dll\n".into(),
+            "target/\n.everything-rust/\nruby/*.so\nruby/*.bundle\nphp/*.so\nphp/*.dylib\nphp/*.dll\ncs/*.so\ncs/*.dylib\ncs/*.dll\n".into(),
         ),
         ("README.md".into(), readme(manifest)),
         (
@@ -1545,7 +1545,7 @@ fn bridge_ffi(manifest: &Manifest, crate_dir: &Path, kept: &[JsOnly]) -> Result<
     format_rust(crate_dir);
     format_wrapper(crate_dir);
     let mut notes = vec![format!(
-        "Port each function in src/port.rs, then: rust-anything record {0} && rust-anything build {0} && rust-anything diff {0}",
+        "Port each function in src/port.rs, then: everything-rust record {0} && everything-rust build {0} && everything-rust diff {0}",
         crate_dir.display()
     )];
     for j in kept {
@@ -1574,7 +1574,7 @@ fn bridge_c(manifest: &Manifest, crate_dir: &Path, kept: &[JsOnly]) -> Result<Ou
         ("src/port.rs".into(), crate::codegen_c::port_rs(manifest)),
         (
             ".gitignore".into(),
-            "target/\n.rust-anything/\nruby/*.so\nruby/*.bundle\nphp/*.so\nphp/*.dylib\nphp/*.dll\n".into(),
+            "target/\n.everything-rust/\nruby/*.so\nruby/*.bundle\nphp/*.so\nphp/*.dylib\nphp/*.dll\n".into(),
         ),
         ("README.md".into(), readme(manifest)),
         (
@@ -1588,7 +1588,7 @@ fn bridge_c(manifest: &Manifest, crate_dir: &Path, kept: &[JsOnly]) -> Result<Ou
     format_rust(crate_dir);
     let mut notes = vec![
         format!(
-            "Port each function in src/port.rs, then: rust-anything record {0} && rust-anything build {0} && rust-anything diff {0}",
+            "Port each function in src/port.rs, then: everything-rust record {0} && everything-rust build {0} && everything-rust diff {0}",
             crate_dir.display()
         ),
         format!(
@@ -1629,7 +1629,7 @@ fn readme(m: &Manifest) -> String {
     };
     let shadow = match m.language {
         Lang::Php | Lang::Csharp => String::new(),
-        _ => "rust-anything shadow .   # run both in the app, log mismatches\n".into(),
+        _ => "everything-rust shadow .   # run both in the app, log mismatches\n".into(),
     };
     let switch = match m.language {
         Lang::Php => format!(
@@ -1644,10 +1644,10 @@ fn readme(m: &Manifest) -> String {
         _ => String::new(),
     };
     format!(
-        "# {name}\n\nRust port of `{unit}`, bridged with {kind}. Generated by rust-anything.\n\n## Functions\n\n{functions}\n\
-         ## Loop\n\n```sh\nrust-anything record .   # record what the {original} code does\nrust-anything build .    # build the {module}\n\
-         rust-anything diff .     # run the recorded cases against Rust\n{shadow}\
-         rust-anything gate .     # fmt, clippy, tests, unsafe, API, diff\n```\n{switch}",
+        "# {name}\n\nRust port of `{unit}`, bridged with {kind}. Generated by everything-rust.\n\n## Functions\n\n{functions}\n\
+         ## Loop\n\n```sh\neverything-rust record .   # record what the {original} code does\neverything-rust build .    # build the {module}\n\
+         everything-rust diff .     # run the recorded cases against Rust\n{shadow}\
+         everything-rust gate .     # fmt, clippy, tests, unsafe, API, diff\n```\n{switch}",
         name = m.crate_name,
         unit = m.unit,
         kind = match m.kind {
@@ -1739,13 +1739,13 @@ mod tests {
 
     #[test]
     fn a_relative_root_is_resolved_from_the_crate_and_kept_relative() {
-        let base = std::env::temp_dir().join(format!("rust-anything-root-{}", std::process::id()));
+        let base = std::env::temp_dir().join(format!("everything-rust-root-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&base);
         let crate_dir = base.join("repo/rust/x-rs");
         std::fs::create_dir_all(&crate_dir).unwrap();
         std::fs::write(
             crate_dir.join(MANIFEST),
-            r#"{"schema": "rust-anything/bridge@1", "root": "../..", "unit": "src/x.ts", "kind": "napi", "crate_name": "x-rs", "exports": []}"#,
+            r#"{"schema": "everything-rust/bridge@1", "root": "../..", "unit": "src/x.ts", "kind": "napi", "crate_name": "x-rs", "exports": []}"#,
         )
         .unwrap();
         let m = Manifest::load(&crate_dir).unwrap();
@@ -1877,20 +1877,20 @@ mod tests {
     fn readme_fits_the_language() {
         let manifest = |language: &str, kind: &str| -> Manifest {
             serde_json::from_str(&format!(
-                r#"{{"schema": "rust-anything/bridge@1", "root": ".", "unit": "src/X.cs", "language": "{language}", "kind": "{kind}", "crate_name": "x-rs", "exports": []}}"#
+                r#"{{"schema": "everything-rust/bridge@1", "root": ".", "unit": "src/X.cs", "language": "{language}", "kind": "{kind}", "crate_name": "x-rs", "exports": []}}"#
             ))
             .unwrap()
         };
         let ts = readme(&manifest("ts", "napi"));
         assert!(ts.contains("what the TS code does") && ts.contains("build the napi-rs module"));
-        assert!(ts.contains("rust-anything shadow ."));
+        assert!(ts.contains("everything-rust shadow ."));
         let c = readme(&manifest("c", "c-abi"));
         assert!(c.contains("what the C code does") && c.contains("build the C library"));
         let cs = readme(&manifest("csharp", "ffi"));
         assert!(cs.contains("what the C# code does") && cs.contains("build the shared library"));
-        assert!(!cs.contains("rust-anything shadow") && cs.contains("C# has no shadow module"));
+        assert!(!cs.contains("everything-rust shadow") && cs.contains("C# has no shadow module"));
         let php = readme(&manifest("php", "ffi"));
-        assert!(!php.contains("rust-anything shadow") && php.contains("PHP has no shadow module"));
+        assert!(!php.contains("everything-rust shadow") && php.contains("PHP has no shadow module"));
     }
 
     #[test]

@@ -17,12 +17,12 @@ description: PHP ئالدىن كۆرۈش باسقۇچىدا. analyze بىر PHP 
 PHP CLI ياكى مۇلازىمېتىرىنى خاتىرىلەپ، قايتا قويۇپ، Rust ئالدى ئىشىكى ئارقىسىغا قويغىلى بولىدۇ:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-ئۇنىڭ بىرلىكلىرىنى PHP نىڭ FFI ى ئارقىلىق Rust قا كۆچۈرۈش كېيىنكى قەدەم ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). ئۇنىڭغىچە `bridge` PHP بىرلىكلىرىنى ئېنىق ئۇچۇر بىلەن رەت قىلىدۇ.
+ئۇنىڭ بىرلىكلىرىنى PHP نىڭ FFI ى ئارقىلىق Rust قا كۆچۈرۈش كېيىنكى قەدەم ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). ئۇنىڭغىچە `bridge` PHP بىرلىكلىرىنى ئېنىق ئۇچۇر بىلەن رەت قىلىدۇ.
 
 CI PHP نى ئورناتمايدۇ، شۇڭا PHP سىناقلىرى پەقەت ئۇ ئورنىتىلغان ماشىنىدىلا ئىجرا بولىدۇ.

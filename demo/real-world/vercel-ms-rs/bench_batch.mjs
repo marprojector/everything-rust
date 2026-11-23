@@ -1,5 +1,5 @@
 // ParseBatch and FormatBatch against vercel/ms: same results first, then the time for 100,000
-// values. Run after `rust-anything build .`: node bench_batch.mjs
+// values. Run after `everything-rust build .`: node bench_batch.mjs
 import { createRequire } from 'node:module'
 import { parse, format } from '../../src/index.ts'
 const { ParseBatch, FormatBatch } = createRequire(import.meta.url)('./index.cjs')

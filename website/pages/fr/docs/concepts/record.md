@@ -6,9 +6,9 @@ description: record exécute l'original sur des cas limites générés, des piè
 # Record
 
 ```sh
-rust-anything record <crate>
-rust-anything record <crate> --from-tests -- npx jest      # ou : -- pytest
-rust-anything record <crate> --inputs extra.jsonl
+everything-rust record <crate>
+everything-rust record <crate> --from-tests -- npx jest      # ou : -- pytest
+everything-rust record <crate> --inputs extra.jsonl
 ```
 
 `record` exécute les fonctions d'origine et sauvegarde ce que chacune renvoie ou lève dans `cases.jsonl`, à côté de la crate : le comportement que le portage doit reproduire. Un écart par la suite est une différence de comportement : corrigez le portage, jamais l'enregistrement.

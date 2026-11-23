@@ -22,7 +22,7 @@ pub enum Status {
     Ok,
     Missing,
     Outdated,
-    /// Something named rust-anything is there, but it is not ours.
+    /// Something named everything-rust is there, but it is not ours.
     Foreign,
 }
 
@@ -123,7 +123,7 @@ impl From<Install> for Status {
     }
 }
 
-/// An agent's `rust-anything` MCP server entry, as read from its settings.
+/// An agent's `everything-rust` MCP server entry, as read from its settings.
 #[derive(Debug, Default)]
 pub struct Entry {
     pub command: Option<String>,
@@ -482,7 +482,7 @@ fn runtime(r: &Runtime) -> Check {
     let mut detail = match (&banner, r.minimum) {
         (None, _) => format!("`{}` not found or did not run", r.program),
         (Some(b), Some(min)) if status == Status::Outdated => {
-            format!("{b}; rust-anything needs {}.{}+", min.0, min.1)
+            format!("{b}; everything-rust needs {}.{}+", min.0, min.1)
         }
         (Some(b), _) => b.clone(),
     };
@@ -612,7 +612,7 @@ fn mcp_self_test(exe: &Path) -> Check {
         detail,
         fix: (status != Status::Ok).then(|| {
             format!(
-                "run `{} mcp` by hand and look at what it prints; reinstall with `cargo install rust-anything`",
+                "run `{} mcp` by hand and look at what it prints; reinstall with `cargo install everything-rust`",
                 quoted(exe)
             )
         }),
@@ -628,7 +628,7 @@ fn talk_to_mcp(exe: &Path, limit: Duration) -> Result<usize, String> {
         .spawn()
         .map_err(|e| format!("could not start: {e}"))?;
     let requests = [
-        json!({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "rust-anything-doctor", "version": env!("CARGO_PKG_VERSION")}}}),
+        json!({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "everything-rust-doctor", "version": env!("CARGO_PKG_VERSION")}}}),
         json!({"jsonrpc": "2.0", "method": "notifications/initialized"}),
         json!({"jsonrpc": "2.0", "id": 2, "method": "tools/list"}),
     ];
@@ -797,7 +797,7 @@ fn agents(exe: &Path) -> Vec<Check> {
                         format!("{} is from another version", skill_md.display())
                     }
                     Install::Foreign => {
-                        format!("{} is not rust-anything's skill", skill_md.display())
+                        format!("{} is not everything-rust's skill", skill_md.display())
                     }
                 },
                 fix: match state {
@@ -815,7 +815,7 @@ fn agents(exe: &Path) -> Vec<Check> {
     checks
 }
 
-/// The agent's `rust-anything` entry; `Err` when the settings file cannot be read as settings.
+/// The agent's `everything-rust` entry; `Err` when the settings file cannot be read as settings.
 fn read_entry(agent: Agent, path: &Path) -> Result<Option<Entry>, String> {
     let text = match std::fs::read_to_string(path) {
         Ok(t) => t,
@@ -1002,7 +1002,7 @@ mod tests {
 
     #[test]
     fn mcp_entries_are_ours_only_when_they_run_this_binary() {
-        let exe = Path::new("/opt/bin/rust-anything");
+        let exe = Path::new("/opt/bin/everything-rust");
         let entry = |command: &str, args: &[&str], url: bool| Entry {
             command: Some(command.into()),
             args: args.iter().map(|a| a.to_string()).collect(),
@@ -1011,27 +1011,27 @@ mod tests {
         };
         assert_eq!(entry_state(None, exe), Install::Missing);
         assert_eq!(
-            entry_state(Some(&entry("/opt/bin/rust-anything", &["mcp"], false)), exe),
+            entry_state(Some(&entry("/opt/bin/everything-rust", &["mcp"], false)), exe),
             Install::Current
         );
         assert_eq!(
-            entry_state(Some(&entry("/old/rust-anything", &["mcp"], false)), exe),
+            entry_state(Some(&entry("/old/everything-rust", &["mcp"], false)), exe),
             Install::Outdated
         );
         assert_eq!(
             entry_state(
-                Some(&entry("/opt/bin/rust-anything", &["serve"], false)),
+                Some(&entry("/opt/bin/everything-rust", &["serve"], false)),
                 exe
             ),
             Install::Foreign
         );
         assert_eq!(
-            entry_state(Some(&entry("/opt/bin/rust-anything", &["mcp"], true)), exe),
+            entry_state(Some(&entry("/opt/bin/everything-rust", &["mcp"], true)), exe),
             Install::Foreign
         );
         assert_eq!(entry_state(Some(&Entry::default()), exe), Install::Foreign);
         // A server OpenCode keeps disabled is not current.
-        let mut disabled = entry("/opt/bin/rust-anything", &["mcp"], false);
+        let mut disabled = entry("/opt/bin/everything-rust", &["mcp"], false);
         disabled.disabled = true;
         assert_eq!(entry_state(Some(&disabled), exe), Install::Outdated);
     }
@@ -1039,7 +1039,7 @@ mod tests {
     #[test]
     fn opencode_entries_come_from_mcp_servers() {
         let home = std::env::temp_dir().join(format!(
-            "rust-anything-doctor-opencode-{}",
+            "everything-rust-doctor-opencode-{}",
             std::process::id()
         ));
         let _ = std::fs::remove_dir_all(&home);
@@ -1047,19 +1047,19 @@ mod tests {
         let config = home.join(".config/opencode/opencode.json");
         std::fs::write(
             &config,
-            r#"{"mcp":{"servers":{"rust-anything":{"type":"local","command":["/opt/bin/rust-anything","mcp"]}}}}"#,
+            r#"{"mcp":{"servers":{"everything-rust":{"type":"local","command":["/opt/bin/everything-rust","mcp"]}}}}"#,
         )
         .unwrap();
-        let exe = Path::new("/opt/bin/rust-anything");
+        let exe = Path::new("/opt/bin/everything-rust");
         let entry = read_entry(Agent::OpenCode, &config).unwrap();
         assert_eq!(entry_state(entry.as_ref(), exe), Install::Current);
         assert_eq!(
-            entry_state(entry.as_ref(), Path::new("/elsewhere/rust-anything")),
+            entry_state(entry.as_ref(), Path::new("/elsewhere/everything-rust")),
             Install::Outdated
         );
         std::fs::write(
             &config,
-            r#"{"mcp":{"servers":{"rust-anything":{"type":"local","command":["/opt/bin/rust-anything","mcp"],"disabled":true}}}}"#,
+            r#"{"mcp":{"servers":{"everything-rust":{"type":"local","command":["/opt/bin/everything-rust","mcp"],"disabled":true}}}}"#,
         )
         .unwrap();
         let entry = read_entry(Agent::OpenCode, &config).unwrap();
@@ -1067,7 +1067,7 @@ mod tests {
         // Older files list servers in `mcp` itself.
         std::fs::write(
             &config,
-            r#"{"mcp":{"rust-anything":{"type":"local","command":["/opt/bin/rust-anything","mcp"]}}}"#,
+            r#"{"mcp":{"everything-rust":{"type":"local","command":["/opt/bin/everything-rust","mcp"]}}}"#,
         )
         .unwrap();
         let entry = read_entry(Agent::OpenCode, &config).unwrap();

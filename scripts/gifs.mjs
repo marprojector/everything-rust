@@ -26,7 +26,7 @@ for (const name of names) {
   if (errors.length || !Number.isInteger(count) || count < 1) {
     throw new Error(`${name}.html did not load: ${errors.join('; ') || 'no frameCount'}`)
   }
-  const frames = fs.mkdtempSync(path.join(os.tmpdir(), 'rust-anything-gif-'))
+  const frames = fs.mkdtempSync(path.join(os.tmpdir(), 'everything-rust-gif-'))
   const target = page.locator('body > *:first-child')
   for (let i = 0; i < count; i++) {
     await page.evaluate(i => window.render(i), i)

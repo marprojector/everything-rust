@@ -6,7 +6,7 @@ description: gate ist die Definition von „fertig“ für eine Portierung. Jede
 # Gate
 
 ```sh
-rust-anything gate <crate>
+everything-rust gate <crate>
 ```
 
 Fertig heißt, `gate` besteht. Es prüft:

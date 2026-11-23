@@ -17,12 +17,12 @@ description: PHP preview рәвешендә. analyze PHP кушымтасын п
 PHP CLI яки серверны язып алып, кабат уйнатып, Rust front door артына куеп була:
 
 ```sh
-rust-anything app record . -- php cli.php
-rust-anything app record . --http -- php -S 127.0.0.1:{port} router.php
-rust-anything app replay .
-rust-anything app front-door .
+everything-rust app record . -- php cli.php
+everything-rust app record . --http -- php -S 127.0.0.1:{port} router.php
+everything-rust app replay .
+everything-rust app front-door .
 ```
 
-Аның берәмлекләрен PHP FFI аша Rust'ка күчерү киләсе адым ([issue #2](https://github.com/erkamyaman/rust-anything/issues/2)). Ул вакытка кадәр `bridge` PHP берәмлекләрен аңлаешлы хәбәр белән кире кага.
+Аның берәмлекләрен PHP FFI аша Rust'ка күчерү киләсе адым ([issue #2](https://github.com/marprojector/everything-rust/issues/2)). Ул вакытка кадәр `bridge` PHP берәмлекләрен аңлаешлы хәбәр белән кире кага.
 
 CI PHP урнаштырмый, шуңа күрә PHP тестлары бары ул булган машинада гына җибәрелә.

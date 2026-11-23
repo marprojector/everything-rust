@@ -1,5 +1,5 @@
-//! Python bindings for `src/colorsys_pkg/`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! Python bindings for `src/colorsys_pkg/`: generated from the signatures in `port.rs` by everything-rust.
+//! Regenerate with `everything-rust refresh` after changing them.
 
 use pyo3::prelude::*;
 

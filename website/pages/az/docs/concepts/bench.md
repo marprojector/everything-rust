@@ -6,7 +6,7 @@ description: bench qeydə alınmış halların orijinalda və Rust-da, körpü d
 # Bench
 
 ```sh
-rust-anything bench <crate>
+everything-rust bench <crate>
 ```
 
 `bench` qeydə alınmış halların orijinalda və qurulmuş Rust modulunda, körpü daxil, vaxtını ölçür və sətirləri və tövsiyəli hökmü qaytarır: buraxın, yavaş funksiyaları mənbə dilində saxlayın və ya daha böyük vahidi port edin. 1-dən aşağı sürətlənmə portun çağıranlarının çağırdığı kimi daha yavaş olduğu deməkdir. `--min-ms` funksiya və tərəf başına minimum ölçülən vaxtı təyin edir (standart 200).
@@ -31,7 +31,7 @@ Real kodda çağırış başına ölçülüb ([altı dil](/docs/real-world/six-l
 | Java | 0.18x | daha böyük vahidləri port edin |
 | Go | 0.04x | daha böyük vahidləri port edin |
 
-x18n-in core-unun API dəyişikliyi olmadan köçə bilən 29 funksiyasının hamısı port edildi: hər gate keçir və 7,925 qeydə alınmış hal dəqiq uyğun gəlir, `bench` isə portların JS-dən çağırıldıqda TS-dən daha yavaş olduğunu göstərdi, çünki körpü işin özündən baha başa gəlir ([hesabat](https://github.com/erkamyaman/rust-anything/blob/main/demo/x18n-core/README.md)). vercel/ms qeydə alınmış halları üzrə çağırış başına 0.56x işlədi ([nümunə araşdırması](/docs/real-world/vercel-ms)).
+x18n-in core-unun API dəyişikliyi olmadan köçə bilən 29 funksiyasının hamısı port edildi: hər gate keçir və 7,925 qeydə alınmış hal dəqiq uyğun gəlir, `bench` isə portların JS-dən çağırıldıqda TS-dən daha yavaş olduğunu göstərdi, çünki körpü işin özündən baha başa gəlir ([hesabat](https://github.com/marprojector/everything-rust/blob/main/demo/x18n-core/README.md)). vercel/ms qeydə alınmış halları üzrə çağırış başına 0.56x işlədi ([nümunə araşdırması](/docs/real-world/vercel-ms)).
 
 ## Nə qazandırır: dövrü köçürmək
 
